@@ -25,6 +25,8 @@ const config: Config = {
     },
     colors: {
       main: {
+        whileColor: "#ffffff",
+        "grayColor-50": "rgba(0,0,0,0.5)",
         "violet-f5": "#F5F3FF",
         "violet-ed": "#EDE9FE",
         "violet-dd": "#DDD6FE",
@@ -51,10 +53,24 @@ const config: Config = {
       fontFamily: {
         lato: ["var(--font-lato)"],
         nunito: ["var(--font-nunito)"],
+        digitalfont: ["DigitalFont"],
       },
-    },
-    backgroundImage: {
-      backgroundBlue: "url('/asset/image/backgroundBlue.png')",
+      backgroundImage: {
+        mainBackground: "url('/asset/image/mainBackground.png')",
+        frameFooter: "url('/asset/image/frameFooter.png')",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      animation: {
+        fadeIn: "fadeOut 1s ease-in-out",
+      },
+      keyframes: (theme) => ({
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      }),
     },
   },
   plugins: [require("daisyui")],

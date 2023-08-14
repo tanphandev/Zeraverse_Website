@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Lato, Nunito, Cherry_Bomb_One } from "next/font/google";
+import { Lato, Nunito } from "next/font/google";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],

@@ -1,11 +1,7 @@
 import Image from "next/image";
 
 function HomePage() {
-  return (
-    <div>
-      <p className="">Home Page</p>
-    </div>
-  );
+  return <div className="text-[#fff]">Home Page</div>;
 }
 
 export default HomePage;
