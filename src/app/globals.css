@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-[40px] font-medium leading-[1.4];
+  }
+  h2 {
+    @apply text-2xl font-medium leading-[1.4];
+  }
+  h3 {
+    @apply text-xs font-medium leading-[1.4];
+  }
+  p {
+    @apply text-sm font-normal leading-[1.6];
+  }
+}
