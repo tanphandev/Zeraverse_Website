@@ -3,6 +3,7 @@ import Image from "next/image";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import { useEffect, useRef } from "react";
 import CategoryGame from "@/app/components/CategoryGame";
+import TrendingNew from "@/app/components/TrendingNew";
 
 function HomePage() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
@@ -49,6 +50,7 @@ function HomePage() {
         <CategoryGame className="col-span-10" />
         <div className="col-span-1"></div>
       </div>
+      <TrendingNew />
     </div>
   );
 }

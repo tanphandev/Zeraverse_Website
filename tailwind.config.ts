@@ -27,6 +27,7 @@ const config: Config = {
       main: {
         whileColor: "#ffffff",
         "grayColor-50": "rgba(0,0,0,0.5)",
+        "grayColor-80": "rgba(0,0,0,0.8)",
         "violet-f5": "#F5F3FF",
         "violet-ed": "#EDE9FE",
         "violet-dd": "#DDD6FE",
