@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import { useEffect, useRef } from "react";
+import CategoryGame from "@/app/components/CategoryGame";
 
 function HomePage() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
@@ -12,6 +13,7 @@ function HomePage() {
         gridSystemRef.current.children
       ) as HTMLImageElement[];
     }
+    //resize for large items and medium items
     const itemLargeNumbers = [0, 10, 16, 29, 30];
     const itemMediumNumbers = [5, 8, 9, 14, 15, 27, 28];
     const itemLargeList = itemsRef.current.filter((item, index) => {
@@ -42,6 +44,10 @@ function HomePage() {
             />
           </div>
         ))}
+      </div>
+      <div className="grid grid-cols-11 grid-rows-1 gap-4">
+        <CategoryGame className="col-span-10" />
+        <div className="col-span-1"></div>
       </div>
     </div>
   );

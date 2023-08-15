@@ -47,6 +47,33 @@ import game45 from "@/asset/image/game45.png";
 import game46 from "@/asset/image/game46.png";
 import game47 from "@/asset/image/game47.png";
 import game48 from "@/asset/image/game48.png";
+
+import cate0 from "@/asset/image/cate0.png";
+import cate1 from "@/asset/image/cate1.png";
+import cate2 from "@/asset/image/cate2.png";
+import cate3 from "@/asset/image/cate3.png";
+import cate4 from "@/asset/image/cate4.png";
+import cate5 from "@/asset/image/cate5.png";
+import cate6 from "@/asset/image/cate6.png";
+import cate7 from "@/asset/image/cate7.png";
+import cate8 from "@/asset/image/cate8.png";
+import cate9 from "@/asset/image/cate9.png";
+import cate10 from "@/asset/image/cate10.png";
+import cate11 from "@/asset/image/cate11.png";
+import cate12 from "@/asset/image/cate12.png";
+import cate13 from "@/asset/image/cate13.png";
+import cate14 from "@/asset/image/cate14.png";
+import cate15 from "@/asset/image/cate15.png";
+import cate16 from "@/asset/image/cate16.png";
+import cate17 from "@/asset/image/cate17.png";
+import cate18 from "@/asset/image/cate18.png";
+import cate19 from "@/asset/image/cate19.png";
+import cate20 from "@/asset/image/cate20.png";
+import cate21 from "@/asset/image/cate21.png";
+import cate22 from "@/asset/image/cate22.png";
+import cate23 from "@/asset/image/cate23.png";
+import cate24 from "@/asset/image/cate24.png";
+
 export const gameList = [
   {
     name: "name",
@@ -244,4 +271,32 @@ export const gameList = [
     name: "name",
     src: game48,
   },
+];
+
+export const categoryGameList = [
+  { name: "Category Name", src: cate0 },
+  { name: "Category Name", src: cate1 },
+  { name: "Category Name", src: cate2 },
+  { name: "Category Name", src: cate3 },
+  { name: "Category Name", src: cate4 },
+  { name: "Category Name", src: cate5 },
+  { name: "Category Name", src: cate6 },
+  { name: "Category Name", src: cate7 },
+  { name: "Category Name", src: cate8 },
+  { name: "Category Name", src: cate9 },
+  { name: "Category Name", src: cate10 },
+  { name: "Category Name", src: cate11 },
+  { name: "Category Name", src: cate12 },
+  { name: "Category Name", src: cate13 },
+  { name: "Category Name", src: cate14 },
+  { name: "Category Name", src: cate15 },
+  { name: "Category Name", src: cate16 },
+  { name: "Category Name", src: cate17 },
+  { name: "Category Name", src: cate18 },
+  { name: "Category Name", src: cate19 },
+  { name: "Category Name", src: cate20 },
+  { name: "Category Name", src: cate21 },
+  { name: "Category Name", src: cate22 },
+  { name: "Category Name", src: cate23 },
+  { name: "Category Name", src: cate24 },
 ];
