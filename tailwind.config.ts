@@ -26,7 +26,10 @@ const config: Config = {
     colors: {
       main: {
         whileColor: "#ffffff",
+        "whileColor-30": "rgba(255,255,255,0.3)",
+        blackColor: "#000000",
         "grayColor-50": "rgba(0,0,0,0.5)",
+        "grayColor-70": "rgba(0,0,0,0.7)",
         "grayColor-80": "rgba(0,0,0,0.8)",
         "violet-f5": "#F5F3FF",
         "violet-ed": "#EDE9FE",
@@ -59,6 +62,7 @@ const config: Config = {
       backgroundImage: {
         mainBackground: "url('/asset/image/mainBackground.png')",
         frameFooter: "url('/asset/image/frameFooter.png')",
+        authBackround: "url('/asset/image/authBackground.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

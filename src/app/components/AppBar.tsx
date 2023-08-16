@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Logo from "@/asset/image/Logo.png";
 import {
   CasualIcon,
@@ -13,9 +14,17 @@ import {
 import { useState } from "react";
 import { setTokenSourceMapRange } from "typescript";
 function AppBar() {
+  const router = useRouter();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
+  };
+
+  const hanldeLogin = () => {
+    router.push("/login");
+  };
+  const handleRegister = () => {
+    router.push("/register");
   };
   return (
     <div>
@@ -82,10 +91,16 @@ function AppBar() {
             </div>
           </div>
         )}
-        <button className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] to-[#AF1BA0] rounded-[10px] mt-[18px] mb-[3px]">
+        <button
+          onClick={hanldeLogin}
+          className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] to-[#AF1BA0] rounded-[10px] mt-[18px] mb-[3px]"
+        >
           Login
         </button>
-        <button className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px]">
+        <button
+          onClick={handleRegister}
+          className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px]"
+        >
           Register
         </button>
         <div className="px-8 py-[6px] bg-main-pink-be rounded-[10px] mb-[11px]">
