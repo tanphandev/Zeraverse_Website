@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import {
@@ -17,8 +17,10 @@ import {
 import ProfilePicture from "@/asset/image/profilePicture.png";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 import UserBar from "./UserBar";
+import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 function AppBar() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const isCurrentUser = useSelector(currentUserSelector);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const handleToggleMenu = () => {
@@ -31,11 +33,21 @@ function AppBar() {
   const handleRegister = () => {
     router.push("/register");
   };
+  const openSeachModal = () => {
+    dispatch(searchSlice.actions.setIsSeachModal(true));
+  };
+  const GotoCategoryPage = () => {
+    router.push("/all-category");
+  };
+  const GotoHome = () => {
+    router.push("/home");
+  };
   return (
     <div>
       <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[3px] ">
         <Image
-          className="max-w-[134px] max-h-'[72px] mt-[10px]"
+          onClick={GotoHome}
+          className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"
           src={Logo}
           alt="Logo"
         />
@@ -46,7 +58,7 @@ function AppBar() {
           <button>
             <NewIcon className="mr-4" width="42" height="42px" />
           </button>
-          <button>
+          <button onClick={openSeachModal}>
             <SeachIcon width="42" height="42px" />
           </button>
         </div>
@@ -75,7 +87,10 @@ function AppBar() {
               </button>
             </div>
             <div className="mt-7">
-              <button className="block w-full text-left mb-4">
+              <button
+                onClick={GotoCategoryPage}
+                className="block w-full text-left mb-4"
+              >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
                   All Category

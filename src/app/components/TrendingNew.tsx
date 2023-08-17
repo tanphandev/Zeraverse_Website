@@ -59,7 +59,7 @@ function TrendingNew() {
             <li>Tattic Game</li>
             <li>Gamer</li>
           </ul>
-          <button>View all &gt</button>
+          <button>View all {`>`}</button>
         </div>
       </div>
     </div>

@@ -36,6 +36,7 @@ const config: Config = {
         "violet-ed": "#EDE9FE",
         "violet-dd": "#DDD6FE",
         "violet-c4": "#C4B5FD",
+        "violet-c4-50": "rgba(196, 181, 253,0.5)",
         "violet-a7": "#A78BFA",
         "violet-8b": "#8B5CF6",
         "violet-7c": "#7C3AED",
@@ -69,12 +70,19 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
-        fadeIn: "fadeIn 0.1s ease-in-out",
+        fadeIn: "fadeIn 0.5s ease-in-out",
+        slipLeftToRight: "slipLeftToRight 0.5s ease-in-out",
       },
       keyframes: (theme) => ({
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
+        },
+        slipLeftToRight: {
+          "0%": {
+            transform: "translateX(-120%)",
+          },
+          "100%": { transform: "translateX(0)" },
         },
       }),
     },

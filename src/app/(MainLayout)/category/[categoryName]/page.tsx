@@ -1,26 +1,13 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
 import { gameList } from "@/app/dataFetch/dataFetch";
+import Image from "next/image";
 import CategoryGame from "@/app/components/CategoryGame";
-import TrendingNew from "@/app/components/TrendingNew";
-import DailyGiftModal from "@/app/components/DailyGiftModal";
-import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 
-function HomePage() {
+function Category() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
-  const isCurrentUser = useSelector(currentUserSelector);
-  const [isShowDailyGiftModal, setIsShowDailyGiftModal] =
-    useState<boolean>(false);
   useEffect(() => {
-    //if isCurrentUser is true, show Daily gift
-    if (isCurrentUser) {
-      const timeOut = setTimeout(() => {
-        setIsShowDailyGiftModal(true);
-      }, 1000);
-    }
     //get item list is child of GridSystem parent
     if (gridSystemRef.current) {
       itemsRef.current = Array.from(
@@ -44,14 +31,15 @@ function HomePage() {
     });
     return;
   }, []);
-  //close modal event
-  const closeModal = () => {
-    setIsShowDailyGiftModal(false);
-  };
   return (
     <div>
+      <div className="grid grid-cols-11 gap-4">
+        <h2 className="col-span-4 text-[28px] text-center font-bold font-nunito text-main-whileColor py-7 rounded-[10px] bg-gradient-to-b from-[#979BFF] via-[#ef75f5] to-[#EF36C6] mb-4">
+          .io Games
+        </h2>
+      </div>
       <div
-        className="grid grid-cols-11 grid-flow-dense gap-4"
+        className="grid grid-cols-11 grid-flow-dense gap-4 mb-4"
         ref={gridSystemRef}
       >
         {gameList.map((game, index) => (
@@ -64,14 +52,24 @@ function HomePage() {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-11 grid-rows-1 gap-4 mt-4">
+      <div className="grid grid-cols-11">
         <CategoryGame colSpan="col-span-10" />
-        <div className="col-span-1"></div>
       </div>
-      <TrendingNew />
-      {isShowDailyGiftModal && <DailyGiftModal closeModal={closeModal} />}
+      <div className="font-lato text-main-whileColor bg-main-grayColor-80 py-4 px-7 mt-20 min-h-[311px]">
+        <nav className="text-[10px] font-bold">Home / .io Games </nav>
+        <h1 className="text-[28px] font-bold mb-2">.io Games </h1>
+        <p className="text-sm font-normal">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
+          Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
+          mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
+          tellus. Nullam quis. Lorem ipsum dolor sit amet consectetur adipiscing
+          elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
+          sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
+          vitae mattis tellus. Nullam quis.{" "}
+        </p>
+      </div>
     </div>
   );
 }
 
-export default HomePage;
+export default Category;

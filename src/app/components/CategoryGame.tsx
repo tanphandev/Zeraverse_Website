@@ -2,7 +2,9 @@
 import { categoryGameList } from "@/app/dataFetch/dataFetch";
 import CategoryItem from "./CategoryItem";
 import { useEffect, useRef, useState } from "react";
-function CategoryGame({ className }: { className: string }) {
+import { useRouter } from "next/navigation";
+function CategoryGame({ colSpan }: { colSpan?: string }) {
+  const router = useRouter();
   const CategoryGridRef = useRef<HTMLDivElement | null>(null);
   const [rowNumber, setRowNumber] = useState<number>(0);
   useEffect(() => {
@@ -23,14 +25,25 @@ function CategoryGame({ className }: { className: string }) {
       });
     }
   }, []);
+
+  const handleChooseCategory = (categoryName: string) => {
+    router.push(`/category/${categoryName}`);
+  };
   return (
     <div
       ref={CategoryGridRef}
-      className={`grid grid-cols-5 grid-rows-${rowNumber} gap-4 mt-4 ${className}`}
+      className={`flex-1 grid grid-cols-5 grid-rows-${rowNumber} gap-4 ${colSpan}`}
       id="CategoryGrid"
     >
       {categoryGameList.map((cateItem, index) => (
-        <CategoryItem key={index} src={cateItem.src} name={cateItem.name} />
+        <CategoryItem
+          onClick={() => {
+            handleChooseCategory(cateItem.name);
+          }}
+          key={index}
+          src={cateItem.src}
+          name={cateItem.name}
+        />
       ))}
     </div>
   );

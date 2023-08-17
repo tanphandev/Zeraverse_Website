@@ -1,8 +1,19 @@
 import Image, { StaticImageData } from "next/image";
 
-function CategoryItem({ src, name }: { src: StaticImageData; name: string }) {
+function CategoryItem({
+  src,
+  name,
+  onClick,
+}: {
+  src: StaticImageData;
+  name: string;
+  onClick: () => void;
+}) {
   return (
-    <div className=" h-full w-full flex items-center text-center bg-main-whileColor rounded-[10px]">
+    <div
+      onClick={onClick}
+      className=" w-full flex items-center text-center bg-main-whileColor rounded-[10px]"
+    >
       <div className="w-full">
         <Image
           className="w-full rounded-[10px]"

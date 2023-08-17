@@ -17,7 +17,30 @@
   }
 }
 
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}
+
 @font-face {
   font-family: "DigitalFont";
   src: url("/asset/fonts/DigitalFont.ttf");
+}
+
+.search-box {
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+}
+.search-box.hide {
+  transform: translateX(-120%); /* Dịch sang phải để ẩn hộp */
 }
