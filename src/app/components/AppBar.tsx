@@ -1,6 +1,8 @@
 "use client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import {
   CasualIcon,
@@ -11,10 +13,10 @@ import {
   SeachIcon,
   TagIcon,
 } from "@/asset/icons/icons";
-import { useState } from "react";
-import { setTokenSourceMapRange } from "typescript";
+import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 function AppBar() {
   const router = useRouter();
+  const isCurrentUser = useSelector(currentUserSelector);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);

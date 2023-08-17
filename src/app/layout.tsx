@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Lato, Nunito } from "next/font/google";
+import { Providers } from "@/redux-toolkit/Provider";
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -30,7 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} ${nunito.variable}`}>{children}</body>
+      <body className={`${lato.variable} ${nunito.variable}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

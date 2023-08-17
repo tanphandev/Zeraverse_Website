@@ -1,17 +1,19 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import CategoryGame from "@/app/components/CategoryGame";
 import TrendingNew from "@/app/components/TrendingNew";
 import DailyGiftModal from "@/app/components/DailyGiftModal";
+import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 
 function HomePage() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
   const [isShowDailyGiftModal, setIsShowDailyGiftModal] =
     useState<boolean>(false);
-  const isCurrentUser = true;
+  const isCurrentUser = useSelector(currentUserSelector);
   useEffect(() => {
     //if isCurrentUser is true, show Daily gift
     if (isCurrentUser) {
