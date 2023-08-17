@@ -44,7 +44,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift1} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[0] ? "" : "hidden"
               }`}
             >
@@ -64,7 +64,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift2} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[1] ? "" : "hidden"
               }`}
             >
@@ -84,7 +84,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift3} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[2] ? "" : "hidden"
               }`}
             >
@@ -104,7 +104,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift4} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[3] ? "" : "hidden"
               }`}
             >
@@ -124,7 +124,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift5} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[4] ? "" : "hidden"
               }`}
             >
@@ -144,7 +144,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift6} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[5] ? "" : "hidden"
               }`}
             >
@@ -164,7 +164,7 @@ function DailyGiftModal({ closeModal }: { closeModal: () => void }) {
               <Image width={49} src={Gift7} alt="gift" />
             </div>
             <div
-              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-20 w-full h-full flex justify-center items-center rounded-[15px] ${
+              className={`tick absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-main-whileColor-30 w-full h-full flex justify-center items-center rounded-[15px] ${
                 selectedItems[6] ? "" : "hidden"
               }`}
             >

@@ -7,13 +7,16 @@ import Logo from "@/asset/image/Logo.png";
 import {
   CasualIcon,
   CatelogyIcon,
+  CoinIcon,
   MenuIcon,
   NewIcon,
   RiderIcon,
   SeachIcon,
   TagIcon,
 } from "@/asset/icons/icons";
+import ProfilePicture from "@/asset/image/profilePicture.png";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+import UserBar from "./UserBar";
 function AppBar() {
   const router = useRouter();
   const isCurrentUser = useSelector(currentUserSelector);
@@ -93,24 +96,42 @@ function AppBar() {
             </div>
           </div>
         )}
-        <button
-          onClick={hanldeLogin}
-          className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] to-[#AF1BA0] rounded-[10px] mt-[18px] mb-[3px]"
-        >
-          Login
-        </button>
-        <button
-          onClick={handleRegister}
-          className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px]"
-        >
-          Register
-        </button>
+        {isCurrentUser ? (
+          <div className="mt-[9px]">
+            <Image
+              className="rounded-[10px]"
+              src={ProfilePicture}
+              width={94}
+              height={94}
+              alt="ProfilePicture"
+            />
+            <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
+              TanPhanDev
+            </p>
+          </div>
+        ) : (
+          <>
+            <button
+              onClick={hanldeLogin}
+              className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] to-[#AF1BA0] rounded-[10px] mt-[18px] mb-[3px]"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleRegister}
+              className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px]"
+            >
+              Register
+            </button>
+          </>
+        )}
         <div className="px-8 py-[6px] bg-main-pink-be rounded-[10px] mb-[11px]">
           <p className="text-2xl text-main-whileColor font-normal font-digitalfont">
             00:60:00
           </p>
         </div>
       </div>
+      {isCurrentUser && <UserBar />}
     </div>
   );
 }
