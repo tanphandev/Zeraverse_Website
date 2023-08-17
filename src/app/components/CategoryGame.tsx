@@ -18,7 +18,6 @@ function CategoryGame({ className }: { className: string }) {
       const itemLargeList = CategoryChild.filter((item, index) => {
         return itemLargeNumbers.includes(index);
       });
-      console.log("itemLargeList", itemLargeList);
       itemLargeList.forEach((itemLarge) => {
         itemLarge.classList.add("row-span-2", "flex-col");
       });

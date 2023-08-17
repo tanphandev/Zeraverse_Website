@@ -1,14 +1,25 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { gameList } from "@/app/dataFetch/dataFetch";
-import { useEffect, useRef } from "react";
 import CategoryGame from "@/app/components/CategoryGame";
 import TrendingNew from "@/app/components/TrendingNew";
+import DailyGiftModal from "@/app/components/DailyGiftModal";
 
 function HomePage() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
+  const [isShowDailyGiftModal, setIsShowDailyGiftModal] =
+    useState<boolean>(false);
+  const isCurrentUser = true;
   useEffect(() => {
+    //if isCurrentUser is true, show Daily gift
+    if (isCurrentUser) {
+      const timeOut = setTimeout(() => {
+        setIsShowDailyGiftModal(true);
+      }, 1000);
+    }
+    //get item list is child of GridSystem parent
     if (gridSystemRef.current) {
       itemsRef.current = Array.from(
         gridSystemRef.current.children
@@ -29,7 +40,12 @@ function HomePage() {
     itemMediumList.forEach((item) => {
       item.classList.add("col-span-2", "row-span-2");
     });
+    return;
   }, []);
+  //close modal event
+  const closeModal = () => {
+    setIsShowDailyGiftModal(false);
+  };
   return (
     <div className="flex-1">
       <div
@@ -51,6 +67,7 @@ function HomePage() {
         <div className="col-span-1"></div>
       </div>
       <TrendingNew />
+      {isShowDailyGiftModal && <DailyGiftModal closeModal={closeModal} />}
     </div>
   );
 }

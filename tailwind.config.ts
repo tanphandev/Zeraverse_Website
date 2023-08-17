@@ -27,6 +27,7 @@ const config: Config = {
       main: {
         whileColor: "#ffffff",
         "whileColor-30": "rgba(255,255,255,0.3)",
+        "whileColor-20": "rgba(255,255,255,0.2)",
         blackColor: "#000000",
         "grayColor-50": "rgba(0,0,0,0.5)",
         "grayColor-70": "rgba(0,0,0,0.7)",
@@ -68,7 +69,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
-        fadeIn: "fadeOut 1s ease-in-out",
+        fadeIn: "fadeIn 0.1s ease-in-out",
       },
       keyframes: (theme) => ({
         fadeIn: {
