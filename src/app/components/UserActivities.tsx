@@ -3,7 +3,11 @@ import MostPlayedPic from "@/asset/image/MostPlayedPic.png";
 import SlipBar from "./SlipBar";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import PlayListGame from "./PlaylistGame";
-function UserActivities() {
+import { UserField } from "../constants/constants";
+type Props = {
+  onClick: (title: string) => void;
+};
+function UserActivities({ onClick }: Props) {
   return (
     <div className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px]">
       <h2 className="text-[28px] text-center font-bold bg-main-pink-ec rounded-t-[20px]  pt-[22px] pb-[14px] pl-4">
@@ -20,10 +24,26 @@ function UserActivities() {
             height={204}
           />
         </div>
-        <SlipBar data={gameList} title="Recent games" />
-        <SlipBar data={gameList} title="Loved games" />
-        <PlayListGame data={gameList} title="Playlist" />
-        <SlipBar data={gameList} title="Purchase history" />
+        <SlipBar
+          onClick={onClick}
+          data={gameList}
+          title={UserField.recentGame}
+        />
+        <SlipBar
+          onClick={onClick}
+          data={gameList}
+          title={UserField.lovedGame}
+        />
+        <PlayListGame
+          onClick={onClick}
+          data={gameList}
+          title={UserField.playListGame}
+        />
+        <SlipBar
+          onClick={onClick}
+          data={gameList}
+          title={UserField.purchaseHistory}
+        />
       </div>
     </div>
   );

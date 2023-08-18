@@ -3,13 +3,19 @@ import Image from "next/image";
 type Props = {
   data: Array<any>;
   title: string;
+  onClick: (title: string) => void;
 };
-function SlipBar({ data, title }: Props) {
+function SlipBar({ data, title, onClick }: Props) {
   return (
     <div className="mb-[43px]">
       <div className="flex justify-between text-main-whileColor mb-4">
         <h1 className="text-2xl font-bold font-nunito">{title}</h1>
-        <button className="text-sx font-medium font-lato">
+        <button
+          onClick={() => {
+            onClick(title);
+          }}
+          className="text-sx font-medium font-lato"
+        >
           View all {">"}
         </button>
       </div>

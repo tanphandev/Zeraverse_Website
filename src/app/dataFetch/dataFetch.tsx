@@ -300,3 +300,424 @@ export const categoryGameList = [
   { name: "Category Name", src: cate23 },
   { name: "Category Name", src: cate24 },
 ];
+
+export const userPlayListGame = [
+  {
+    name: "2 players",
+    listGame: [
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+    ],
+  },
+  {
+    name: "Bad game",
+    listGame: [
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+    ],
+  },
+  {
+    name: "Girl game",
+    listGame: [
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+      {
+        name: "name",
+        src: game10,
+      },
+    ],
+  },
+];
+
+export const userPlayListDetail = [
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+  {
+    name: "name",
+    src: game10,
+  },
+];

@@ -1,5 +1,4 @@
 import { CopyIcon } from "@/asset/icons/icons";
-
 function UserStatus() {
   return (
     <div className="relative text-main-whileColor bg-main-grayColor-50 rounded-[20px]">

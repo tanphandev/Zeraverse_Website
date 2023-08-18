@@ -23,34 +23,41 @@ function AppBar() {
   const dispatch = useDispatch();
   const isCurrentUser = useSelector(currentUserSelector);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
-
+  //go to Login Form
   const hanldeLogin = () => {
     router.push("/login");
   };
+  //go to Register Form
   const handleRegister = () => {
     router.push("/register");
   };
+  // dispatch action to open SearchModal
   const openSeachModal = () => {
     dispatch(searchSlice.actions.setIsSeachModal(true));
   };
+  //Go to Game Game Category
   const GotoGameCategoryAllPage = () => {
     router.push("/game-category-all");
   };
+  //Go to Article Category
   const GotoArticleCategoryPage = () => {
     router.push("/article-category");
   };
+  // Go to Home
   const GotoHome = () => {
     router.push("/home");
   };
+  //Go to User Profile
   const GotoUserProfile = () => {
     router.push("/user");
   };
   return (
     <div>
-      <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[3px] ">
+      <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[16px] ">
         <Image
           onClick={GotoHome}
           className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"

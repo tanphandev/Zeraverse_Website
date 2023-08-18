@@ -3,13 +3,19 @@ import Picture from "@/asset/image/game10.png";
 type Props = {
   data: Array<any>;
   title: string;
+  onClick: (title: string) => void;
 };
-function PlayListGame({ data, title }: Props) {
+function PlayListGame({ data, title, onClick }: Props) {
   return (
     <div className="mb-[43px]">
       <div className="flex justify-between text-main-whileColor mb-4">
         <h1 className="text-2xl font-bold font-nunito">{title}</h1>
-        <button className="text-sx font-medium font-lato">
+        <button
+          onClick={() => {
+            onClick(title);
+          }}
+          className="text-sx font-medium font-lato"
+        >
           View all {">"}
         </button>
       </div>
@@ -24,9 +30,9 @@ function PlayListGame({ data, title }: Props) {
               alt="Image"
               className="w-[94px] rounded-[10px] inline-block"
             />
-            <div className="ml-[12px] mr-[18px] py-[24px] font-lato text-main-whileColor">
+            <div className="ml-[12px] mr-[18px] py-[24px] font-lato text-main-whileColor text-center">
               <h2 className="text-xl font-bold">2 players</h2>
-              <button className="text-xs font-medium">View all {">"}</button>
+              <button className="text-xs  font-medium">View all {">"}</button>
             </div>
           </div>
         ))}
