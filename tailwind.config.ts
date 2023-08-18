@@ -26,6 +26,8 @@ const config: Config = {
     colors: {
       main: {
         whileColor: "#ffffff",
+        "whileColor-50": "rgba(255,255,255,0.5)",
+        "whileColor-40": "rgba(255,255,255,0.4)",
         "whileColor-30": "rgba(255,255,255,0.3)",
         "whileColor-20": "rgba(255,255,255,0.2)",
         blackColor: "#000000",

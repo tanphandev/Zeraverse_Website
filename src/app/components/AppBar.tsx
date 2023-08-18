@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
+import ProfilePicture from "@/asset/image/profilePicture.png";
+import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+import UserBar from "./UserBar";
+import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 import {
   CasualIcon,
   CatelogyIcon,
@@ -14,10 +18,6 @@ import {
   SeachIcon,
   TagIcon,
 } from "@/asset/icons/icons";
-import ProfilePicture from "@/asset/image/profilePicture.png";
-import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
-import UserBar from "./UserBar";
-import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -36,11 +36,17 @@ function AppBar() {
   const openSeachModal = () => {
     dispatch(searchSlice.actions.setIsSeachModal(true));
   };
-  const GotoCategoryPage = () => {
-    router.push("/all-category");
+  const GotoGameCategoryAllPage = () => {
+    router.push("/game-category-all");
+  };
+  const GotoArticleCategoryPage = () => {
+    router.push("/article-category");
   };
   const GotoHome = () => {
     router.push("/home");
+  };
+  const GotoUserProfile = () => {
+    router.push("/user");
   };
   return (
     <div>
@@ -88,12 +94,21 @@ function AppBar() {
             </div>
             <div className="mt-7">
               <button
-                onClick={GotoCategoryPage}
+                onClick={GotoGameCategoryAllPage}
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
-                  All Category
+                  Game Category
+                </p>
+              </button>
+              <button
+                onClick={GotoArticleCategoryPage}
+                className="block w-full text-left mb-4"
+              >
+                <CatelogyIcon className="inline" width="32px" height="32px" />
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                  Article Category
                 </p>
               </button>
               <button className="block w-full text-left mb-4">
@@ -112,7 +127,7 @@ function AppBar() {
           </div>
         )}
         {isCurrentUser ? (
-          <div className="mt-[9px]">
+          <div onClick={GotoUserProfile} className="mt-[9px] cursor-pointer">
             <Image
               className="rounded-[10px]"
               src={ProfilePicture}

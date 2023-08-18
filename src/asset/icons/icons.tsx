@@ -573,3 +573,99 @@ export const ArrowLeftIcon = ({
     </defs>
   </svg>
 );
+
+export const AddIcon = ({
+  width = "42px",
+  height = "37px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 30 29"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g filter="url(#filter0_i_162_11151)">
+      <circle
+        cx="15.2957"
+        cy="14.5"
+        r="14.5"
+        fill="#2B2B2B"
+        fill-opacity="0.7"
+      />
+    </g>
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M15.7957 6C16.3479 6 16.7957 6.44772 16.7957 7V13H22.7957C23.3479 13 23.7957 13.4477 23.7957 14C23.7957 14.5523 23.3479 15 22.7957 15H16.7957V21C16.7957 21.5523 16.3479 22 15.7957 22C15.2434 22 14.7957 21.5523 14.7957 21V15H8.79565C8.24337 15 7.79565 14.5523 7.79565 14C7.79565 13.4477 8.24337 13 8.79565 13H14.7957V7C14.7957 6.44772 15.2434 6 15.7957 6Z"
+      fill="white"
+    />
+    <defs>
+      <filter
+        id="filter0_i_162_11151"
+        x="0.795654"
+        y="-1"
+        width="29"
+        height="30"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="-1" />
+        <feGaussianBlur stdDeviation="0.5" />
+        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="shape"
+          result="effect1_innerShadow_162_11151"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
+export const CopyIcon = ({
+  width = "42px",
+  height = "37px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 17 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 20C1.45 20 0.979 19.8043 0.587 19.413C0.195667 19.021 0 18.55 0 18V4H2V18H13V20H2ZM6 16C5.45 16 4.97933 15.8043 4.588 15.413C4.196 15.021 4 14.55 4 14V2C4 1.45 4.196 0.979 4.588 0.587C4.97933 0.195667 5.45 0 6 0H15C15.55 0 16.021 0.195667 16.413 0.587C16.8043 0.979 17 1.45 17 2V14C17 14.55 16.8043 15.021 16.413 15.413C16.021 15.8043 15.55 16 15 16H6ZM6 14H15V2H6V14Z"
+      fill="#F9A8D4"
+    />
+  </svg>
+);

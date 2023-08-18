@@ -55,7 +55,7 @@ function Category() {
       <div className="grid grid-cols-11">
         <CategoryGame colSpan="col-span-10" />
       </div>
-      <div className="font-lato text-main-whileColor bg-main-grayColor-80 py-4 px-7 mt-20 min-h-[311px]">
+      <div className="font-lato text-main-whileColor bg-main-grayColor-80 py-4 px-7 mt-20 min-h-[311px] mb-[42px]">
         <nav className="text-[10px] font-bold">Home / .io Games </nav>
         <h1 className="text-[28px] font-bold mb-2">.io Games </h1>
         <p className="text-sm font-normal">

@@ -1,9 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { categoryGameList } from "@/app/dataFetch/dataFetch";
 import CategoryItem from "./CategoryItem";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-function CategoryGame({ colSpan }: { colSpan?: string }) {
+function GameCategory({ colSpan }: { colSpan?: string }) {
   const router = useRouter();
   const CategoryGridRef = useRef<HTMLDivElement | null>(null);
   const [rowNumber, setRowNumber] = useState<number>(0);
@@ -27,7 +27,7 @@ function CategoryGame({ colSpan }: { colSpan?: string }) {
   }, []);
 
   const handleChooseCategory = (categoryName: string) => {
-    router.push(`/category/${categoryName}`);
+    router.push(`/game-category/${categoryName}`);
   };
   return (
     <div
@@ -49,4 +49,4 @@ function CategoryGame({ colSpan }: { colSpan?: string }) {
   );
 }
 
-export default CategoryGame;
+export default GameCategory;
