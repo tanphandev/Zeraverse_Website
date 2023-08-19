@@ -3,8 +3,15 @@ import {
   userPlayListGame,
   userPlayListDetail,
 } from "@/app/dataFetch/dataFetch";
+import {
+  DeleteIcon,
+  DeleteItemIcon,
+  DeletePlayListIcon,
+  XmarkICon,
+} from "@/asset/icons/icons";
 import Image from "next/image";
 import { useState } from "react";
+import DeletePopUp from "./popup/DeletePopUp";
 
 type Props = {
   title: string;
@@ -65,34 +72,122 @@ function UserPlayListPage({ title, onBack }: Props) {
     </>
   );
   const PlayListItem = () => {
+    const [isOpenDeletePlayList, setIsOpenDeletePlayList] =
+      useState<boolean>(false);
+    const [showDeleteChooseGame, setShowDeleteChooseGame] =
+      useState<boolean>(false);
+    const [isOpenDeleteGame, setIsOpenDeleteGame] = useState<boolean>(false);
     const OnBackToPlayListGame = () => {
       setIsOpenPlayListItem(false);
       setIsOpenPlayList(true);
     };
+    //Show Delete PlayList PopUp
+    const openDeletePlayListPopUp = () => {
+      setIsOpenDeletePlayList(true);
+    };
+    //Click yes event to delete PlayList
+    const hanleClickDeletePlayListYes = () => {
+      setIsOpenDeletePlayList(false);
+    };
+    //Click no event to delete PlayList
+    const hanleClickDeletePlayListNo = () => {
+      setIsOpenDeletePlayList(false);
+    };
+    //choose game item to Delete
+    const handleChooseGameToDelete = () => {
+      setShowDeleteChooseGame(true);
+    };
+    //Show Delete Game PopUp
+    const openDeleteGamePopUp = () => {
+      setIsOpenDeleteGame(true);
+    };
+    //Click yes event to delete game
+    const hanleClickDeleteGameYes = () => {
+      setIsOpenDeleteGame(false);
+      setShowDeleteChooseGame(false);
+    };
+    //Click no event to delete game
+    const hanleClickDeleteGameNo = () => {
+      setIsOpenDeleteGame(false);
+      setShowDeleteChooseGame(false);
+    };
     return (
       <>
         <div className="relative">
-          <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
-            {`Playlist games/`}{" "}
-            <span className="text-2xl">PlayList Item Name</span>
-          </h2>
           <button
             onClick={OnBackToPlayListGame}
             className="absolute top-1/2 left-5 -translate-y-1/2 text-sm font-bold font-lato"
           >
             {"<"} Back
           </button>
+          <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
+            {`Playlist games/`}{" "}
+            <span className="text-2xl">PlayList Item Name</span>
+          </h2>
+          <div className="absolute delete-icon top-1/2 right-[22px] -translate-y-1/2 z-20">
+            <DeleteIcon className="cursor-pointer" width="22px" height="24px" />
+            {/* delete Option */}
+            <ul className="delete-option absolute hidden  bottom-[-25px] right-[-10px] translate-y-[105%] w-[180px] rounded-[15px] border-[1px] border-main-pink-db text-base font-bold font-nunito text-main-whileColor bg-main-grayColor-90 p-2 before:content-['']  before:absolute before:top-[-40px] before:right-0 before:w-full before:h-[50px]">
+              <li
+                onClick={openDeletePlayListPopUp}
+                className="p-[10px] rounded-[10px] hover:bg-main-pink-db"
+              >
+                <DeletePlayListIcon
+                  className="mr-[10px] inline-block"
+                  width="24px"
+                  height="24px"
+                />
+                <p className="inline-block">Delete Playlist</p>
+              </li>
+              <li
+                onClick={handleChooseGameToDelete}
+                className="p-[10px] rounded-[10px] hover:bg-main-pink-db"
+              >
+                <DeleteItemIcon
+                  className="mr-[10px] inline-block"
+                  width="24px"
+                  height="24px"
+                />
+                <p className="inline-block">Delete Item</p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="grid grid-cols-10 gap-4 p-11">
           {userPlayListDetail.map((item, index) => (
-            <Image
-              key={index}
-              src={item.src}
-              alt="game_picture"
-              className="w-full rounded-[10px]"
-            />
+            <div onClick={openDeleteGamePopUp} key={index} className="relative">
+              <Image
+                src={item.src}
+                alt="game_picture"
+                className="w-full rounded-[10px]"
+              />
+              <div
+                className={`${
+                  showDeleteChooseGame ? "" : "hidden"
+                } absolute top-0 right-0 left-0 bottom-0 bg-main-grayColor-40 flex flex-col items-end rounded-[10px]`}
+              >
+                <div className="p-[7px]">
+                  <XmarkICon width="15px" height="15px" />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
+        {/* popup */}
+        {isOpenDeletePlayList && (
+          <DeletePopUp
+            content="Delete Playlist"
+            onClickYes={hanleClickDeletePlayListYes}
+            onClickNo={hanleClickDeletePlayListNo}
+          />
+        )}
+        {isOpenDeleteGame && (
+          <DeletePopUp
+            onClickNo={hanleClickDeleteGameNo}
+            onClickYes={hanleClickDeleteGameYes}
+            content="Delete Playlist"
+          />
+        )}
       </>
     );
   };
