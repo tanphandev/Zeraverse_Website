@@ -49,3 +49,10 @@
 .delete-icon:hover .delete-option {
   display: block;
 }
+
+.pagination {
+  /* width: 336px; */
+}
+.pagination .active {
+  color: #f472b6;
+}

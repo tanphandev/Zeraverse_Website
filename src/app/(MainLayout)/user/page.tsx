@@ -7,6 +7,7 @@ import UserActivities from "@/app/components/UserActivities";
 import UserFieldDetail from "@/app/components/UserFieldDetail";
 import { UserField } from "@/app/constants/constants";
 import UserPlayList from "@/app/components/UserPlayList";
+import PurchaseHistory from "@/app/components/PurchaseHistory";
 function UserProfile() {
   const router = useRouter();
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
@@ -81,7 +82,7 @@ function UserProfile() {
         <UserPlayList onBack={onBack} title={UserField.playListGame} />
       )}
       {isOpenPurchaseHistory && (
-        <UserFieldDetail onBack={onBack} title={UserField.purchaseHistory} />
+        <PurchaseHistory onBack={onBack} title={UserField.purchaseHistory} />
       )}
     </>
   );
