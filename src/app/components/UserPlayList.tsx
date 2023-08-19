@@ -10,7 +10,7 @@ import {
   XmarkICon,
 } from "@/asset/icons/icons";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import DeletePopUp from "./popup/DeletePopUp";
 
 type Props = {
@@ -22,6 +22,12 @@ function UserPlayListPage({ title, onBack }: Props) {
   const [isOpenPlayList, setIsOpenPlayList] = useState<boolean>(true);
   const [isOpenPlayListItem, setIsOpenPlayListItem] = useState<boolean>(false);
   const listGame20 = userPlayListGame[0].listGame.slice(0, 20);
+  const userPlayListPageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (userPlayListPageRef.current) {
+      userPlayListPageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isOpenPlayList, isOpenPlayListItem]);
   const GotoPlayListItem = () => {
     setIsOpenPlayList(false);
     setIsOpenPlayListItem(true);
@@ -155,7 +161,11 @@ function UserPlayListPage({ title, onBack }: Props) {
         </div>
         <div className="grid grid-cols-10 gap-4 p-11">
           {userPlayListDetail.map((item, index) => (
-            <div onClick={openDeleteGamePopUp} key={index} className="relative">
+            <div
+              onClick={openDeleteGamePopUp}
+              key={index}
+              className="relative cursor-pointer"
+            >
               <Image
                 src={item.src}
                 alt="game_picture"
@@ -192,7 +202,10 @@ function UserPlayListPage({ title, onBack }: Props) {
     );
   };
   return (
-    <div className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px]">
+    <div
+      ref={userPlayListPageRef}
+      className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px]"
+    >
       {isOpenPlayList && <UserPlayList />}
       {isOpenPlayListItem && <PlayListItem />}
     </div>

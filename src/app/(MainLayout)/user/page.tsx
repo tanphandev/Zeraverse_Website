@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import UserStatus from "@/app/components/UserStatus";
 import UserReward from "@/app/components/UserReward";
@@ -10,12 +10,25 @@ import UserPlayList from "@/app/components/UserPlayList";
 import PurchaseHistory from "@/app/components/PurchaseHistory";
 function UserProfile() {
   const router = useRouter();
+  const userProfileRef = useRef<HTMLDivElement>(null);
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
   const [isOpenRecentGame, setIsOpenRecentGame] = useState<boolean>(false);
   const [isOpenLovedGame, setIsOpenLovedGame] = useState<boolean>(false);
   const [isOpenPlayListGame, setIsOpenPlayListGame] = useState<boolean>(false);
   const [isOpenPurchaseHistory, setIsOpenPurchaseHistory] =
     useState<boolean>(false);
+
+  useEffect(() => {
+    if (userProfileRef.current) {
+      userProfileRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [
+    isOpenUserDetail,
+    isOpenRecentGame,
+    isOpenLovedGame,
+    isOpenPlayListGame,
+    isOpenPurchaseHistory,
+  ]);
   const handleChooseField = (title: string) => {
     switch (title) {
       case UserField.recentGame: {
@@ -58,7 +71,7 @@ function UserProfile() {
     setIsOpenUserDetail(true);
   };
   return (
-    <>
+    <div ref={userProfileRef}>
       {isOpenUserDetail && (
         <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
           <div className="col-span-4">
@@ -84,7 +97,7 @@ function UserProfile() {
       {isOpenPurchaseHistory && (
         <PurchaseHistory onBack={onBack} title={UserField.purchaseHistory} />
       )}
-    </>
+    </div>
   );
 }
 
