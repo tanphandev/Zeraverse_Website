@@ -911,3 +911,198 @@ export const ArrowLeftIconPagi = ({
     </defs>
   </svg>
 );
+
+export const SendIcon = ({
+  width = "14px",
+  height = "14px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 14 13"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.119902 11.9469C0.120677 12.6868 0.896959 13.1697 1.56103 12.8433L14.4683 6.4988L1.56089 0.154257C0.896848 -0.172146 0.120598 0.31064 0.119756 1.05056L0.115775 4.54974C0.115191 5.06321 0.503577 5.49368 1.0144 5.54573L10.3673 6.4988L1.06486 6.97276C0.532635 6.99988 0.115184 7.4396 0.115742 7.97251L0.119902 11.9469Z"
+      fill="#BD1ECB"
+    />
+  </svg>
+);
+
+export const PauseIcon = ({
+  width = "32px",
+  height = "32px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="16" cy="16" r="13.5" stroke="#DDD6FE" />
+    <path
+      d="M20 23C19.45 23 18.979 22.804 18.587 22.412C18.195 22.02 17.9993 21.5493 18 21V11C18 10.45 18.196 9.979 18.588 9.587C18.98 9.195 19.4507 8.99934 20 9C20.55 9 21.021 9.196 21.413 9.588C21.805 9.98 22.0007 10.4507 22 11V21C22 21.55 21.804 22.021 21.412 22.413C21.02 22.805 20.5493 23.0007 20 23ZM12 23C11.45 23 10.979 22.804 10.587 22.412C10.195 22.02 9.99934 21.5493 10 21V11C10 10.45 10.196 9.979 10.588 9.587C10.98 9.195 11.4507 8.99934 12 9C12.55 9 13.021 9.196 13.413 9.588C13.805 9.98 14.0007 10.4507 14 11V21C14 21.55 13.804 22.021 13.412 22.413C13.02 22.805 12.5493 23.0007 12 23Z"
+      fill="#DDD6FE"
+    />
+  </svg>
+);
+
+export const HeartIcon = ({
+  width = "32px",
+  height = "32px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g filter="url(#filter0_i_2613_215)">
+      <path
+        d="M17.2943 20.8295L16.4078 20.3223C13.2619 18.5305 11.184 17.344 10.6522 15.3595C10.2164 13.733 11.0452 12.1512 12.5328 11.7526C13.3731 11.5274 14.2939 11.7377 14.9995 12.2652C15.3468 11.4556 16.0391 10.8131 16.8794 10.5879C18.367 10.1893 19.8756 11.1448 20.3115 12.7713C20.8432 14.7558 19.637 16.8223 17.8084 19.947L17.2943 20.8295Z"
+        fill="#FD38C6"
+      />
+      <path
+        d="M15.9998 28.4667L14.0665 26.7067C7.19984 20.48 2.6665 16.36 2.6665 11.3333C2.6665 7.21333 5.89317 4 9.99984 4C12.3198 4 14.5465 5.08 15.9998 6.77333C17.4532 5.08 19.6798 4 21.9998 4C26.1065 4 29.3332 7.21333 29.3332 11.3333C29.3332 16.36 24.7998 20.48 17.9332 26.7067L15.9998 28.4667Z"
+        fill="#929292"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_i_2613_215"
+        x="0"
+        y="0"
+        width="34"
+        height="34"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dx="2" dy="2" />
+        <feGaussianBlur stdDeviation="1" />
+        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="shape"
+          result="effect1_innerShadow_2613_215"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
+export const AddPlayListIcon = ({
+  width = "32px",
+  height = "32px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M26.2857 17.7143H17.7143V26.2857C17.7143 26.7404 17.5337 27.1764 17.2122 27.4979C16.8907 27.8194 16.4547 28 16 28C15.5453 28 15.1093 27.8194 14.7878 27.4979C14.4663 27.1764 14.2857 26.7404 14.2857 26.2857V17.7143H5.71429C5.25963 17.7143 4.82359 17.5337 4.5021 17.2122C4.18061 16.8907 4 16.4547 4 16C4 15.5453 4.18061 15.1093 4.5021 14.7878C4.82359 14.4663 5.25963 14.2857 5.71429 14.2857H14.2857V5.71429C14.2857 5.25963 14.4663 4.82359 14.7878 4.5021C15.1093 4.18061 15.5453 4 16 4C16.4547 4 16.8907 4.18061 17.2122 4.5021C17.5337 4.82359 17.7143 5.25963 17.7143 5.71429V14.2857H26.2857C26.7404 14.2857 27.1764 14.4663 27.4979 14.7878C27.8194 15.1093 28 15.5453 28 16C28 16.4547 27.8194 16.8907 27.4979 17.2122C27.1764 17.5337 26.7404 17.7143 26.2857 17.7143Z"
+      fill="#929292"
+    />
+  </svg>
+);
+
+export const ExpandIcon = ({
+  width = "32px",
+  height = "32px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_2613_220)">
+      <path
+        d="M16 14.1146L20.8762 9.2384L17.4284 9.23934L17.4274 6.57213L25.4281 6.57213V14.5728L22.7609 14.5719L22.7618 11.124L17.8856 16.0002L22.7618 20.8764L22.7609 17.4286L25.4281 17.4276L25.4281 25.4283H17.4274L17.4284 22.7611L20.8762 22.7621L16 17.8858L11.1238 22.7621L14.5716 22.7611L14.5726 25.4283H6.57191L6.57191 17.4276L9.23912 17.4286L9.23817 20.8764L14.1144 16.0002L9.23817 11.124L9.23912 14.5719L6.57191 14.5728V6.57213L14.5726 6.57213L14.5716 9.23934L11.1238 9.2384L16 14.1146Z"
+        fill="#929292"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_2613_220">
+        <rect width="32" height="32" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const ReportIcon = ({
+  width = "32px",
+  height = "32px",
+  className,
+}: {
+  width: string;
+  height: string;
+  className?: string;
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M16 22.6667C16.3778 22.6667 16.6947 22.5387 16.9507 22.2827C17.2058 22.0276 17.3333 21.7111 17.3333 21.3333C17.3333 20.9556 17.2058 20.6387 16.9507 20.3827C16.6947 20.1276 16.3778 20 16 20C15.6222 20 15.3058 20.1276 15.0507 20.3827C14.7947 20.6387 14.6667 20.9556 14.6667 21.3333C14.6667 21.7111 14.7947 22.0276 15.0507 22.2827C15.3058 22.5387 15.6222 22.6667 16 22.6667ZM14.6667 17.3333H17.3333V9.33333H14.6667V17.3333ZM11 28L4 21V11L11 4H21L28 11V21L21 28H11ZM12.1333 25.3333H19.8667L25.3333 19.8667V12.1333L19.8667 6.66667H12.1333L6.66667 12.1333V19.8667L12.1333 25.3333Z"
+      fill="#929292"
+    />
+  </svg>
+);

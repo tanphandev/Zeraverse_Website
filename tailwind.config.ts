@@ -26,12 +26,14 @@ const config: Config = {
     colors: {
       main: {
         whileColor: "#ffffff",
+        "whileColor-70": "rgba(255,255,255,0.7)",
         "whileColor-50": "rgba(255,255,255,0.5)",
         "whileColor-40": "rgba(255,255,255,0.4)",
         "whileColor-30": "rgba(255,255,255,0.3)",
         "whileColor-20": "rgba(255,255,255,0.2)",
         blackColor: "#000000",
         "grayColor-40": "rgba(0,0,0,0.4)",
+        "grayColor-45": "rgba(0,0,0,0.45)",
         "grayColor-50": "rgba(0,0,0,0.5)",
         "grayColor-70": "rgba(0,0,0,0.7)",
         "grayColor-80": "rgba(0,0,0,0.8)",
@@ -57,6 +59,7 @@ const config: Config = {
         "pink-be": "#BE185D",
         "pink-9d": "#9D174D",
         "pink-83": "#831843",
+        "gray-18": "rgba(24, 24, 24, 0.6)",
       },
     },
     extend: {
@@ -72,6 +75,10 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      gridTemplateRows: {
+        // Simple 8 row grid
+        "7": "repeat(7, minmax(0, 1fr))",
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",

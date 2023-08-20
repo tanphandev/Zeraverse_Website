@@ -2,13 +2,14 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import CategoryGame from "@/app/components/CategoryGame";
 import TrendingNew from "@/app/components/TrendingNew";
 import DailyGiftModal from "@/app/components/DailyGiftModal";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
-
 function HomePage() {
+  const router = useRouter();
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
   const isCurrentUser = useSelector(currentUserSelector);
@@ -48,6 +49,10 @@ function HomePage() {
   const closeModal = () => {
     setIsShowDailyGiftModal(false);
   };
+  //Go to Game Screen
+  const gotoGameScreen = () => {
+    router.push("/game-screen");
+  };
   return (
     <div>
       <div
@@ -55,7 +60,7 @@ function HomePage() {
         ref={gridSystemRef}
       >
         {gameList.map((game, index) => (
-          <div key={index}>
+          <div onClick={gotoGameScreen} key={index}>
             <Image
               className={`max-w-full max-h-full rounded-[10px]`}
               src={game.src}
