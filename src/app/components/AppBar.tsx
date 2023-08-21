@@ -11,13 +11,13 @@ import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 import {
   CasualIcon,
   CatelogyIcon,
-  CoinIcon,
   MenuIcon,
   NewIcon,
   RiderIcon,
   SeachIcon,
   TagIcon,
 } from "@/asset/icons/icons";
+import Link from "next/link";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -26,14 +26,6 @@ function AppBar() {
   //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
-  };
-  //go to Login Form
-  const hanldeLogin = () => {
-    router.push("/login");
-  };
-  //go to Register Form
-  const handleRegister = () => {
-    router.push("/register");
   };
   // dispatch action to open SearchModal
   const openSeachModal = () => {
@@ -44,16 +36,12 @@ function AppBar() {
     router.push("/game-category-all");
   };
   //Go to Article Category
-  const GotoArticleCategoryPage = () => {
-    router.push("/article-category");
+  const GotoAllArticleCategoryPage = () => {
+    router.push("/article-category-all");
   };
   // Go to Home
   const GotoHome = () => {
     router.push("/home");
-  };
-  //Go to User Profile
-  const GotoUserProfile = () => {
-    router.push("/user");
   };
   return (
     <div>
@@ -110,7 +98,7 @@ function AppBar() {
                 </p>
               </button>
               <button
-                onClick={GotoArticleCategoryPage}
+                onClick={GotoAllArticleCategoryPage}
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
@@ -134,36 +122,38 @@ function AppBar() {
           </div>
         )}
         {isCurrentUser ? (
-          <div onClick={GotoUserProfile} className="mt-[9px] cursor-pointer">
-            <Image
-              className="rounded-[10px]"
-              src={ProfilePicture}
-              width={94}
-              height={94}
-              alt="ProfilePicture"
-            />
-            <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
-              TanPhanDev
-            </p>
-          </div>
+          <Link href={"/user"}>
+            <div className="mt-[9px] cursor-pointer">
+              <Image
+                className="rounded-[10px]"
+                src={ProfilePicture}
+                width={94}
+                height={94}
+                alt="ProfilePicture"
+              />
+              <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
+                TanPhanDev
+              </p>
+            </div>
+          </Link>
         ) : (
           <>
-            <button
-              onClick={hanldeLogin}
-              className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] to-[#AF1BA0] rounded-[10px] mt-[18px] mb-[3px]"
+            <Link
+              href={"/login"}
+              className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] via-[#BB37AE] to-[#AF1BA0] shadow-[inset_-2px_-2px_1px_rgba(0,0,0,0.3)] rounded-[10px] mt-[18px] mb-[3px]"
             >
               Login
-            </button>
-            <button
-              onClick={handleRegister}
-              className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px]"
+            </Link>
+            <Link
+              href={"/register"}
+              className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px] leading-[1.6]"
             >
               Register
-            </button>
+            </Link>
           </>
         )}
-        <div className="px-8 py-[6px] bg-main-pink-be rounded-[10px] mb-[11px]">
-          <p className="text-2xl text-main-whileColor font-normal font-digitalfont">
+        <div className="px-8 py-[6px] bg-main-pink-be  shadow-[inset_-2px_-2px_1px] shadow-[#d5358d] rounded-[10px] mb-[11px]">
+          <p className="text-2xl text-main-whileColor font-normal font-digitalfont ">
             00:60:00
           </p>
         </div>

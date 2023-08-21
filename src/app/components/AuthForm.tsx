@@ -67,7 +67,7 @@ function AuthForm({ type }: { type: string }) {
         <div className="flex justify-end">
           <p
             onClick={handleOnClickForgotPass}
-            className="inline text-sm font-semibold text-right text-main-violet-c4 mb-[15px] cursor-pointer"
+            className="inline text-sm font-semibold text-right text-main-violet-c4 mb-[15px] hover:text-[#6664ed] cursor-pointer"
           >
             Forgot the password ?
           </p>
@@ -82,7 +82,7 @@ function AuthForm({ type }: { type: string }) {
           </p>
         </div>
       )}
-      <button className="w-full h-[36px] rounded-[20px] bg-gradient-to-tl from-[#5200FF] to-[#F265E4] mb-[11px]">
+      <button className="w-full h-[36px] rounded-[20px] bg-gradient-to-br from-[#F265E4] via-[#7270FF] to-[#5200FF] mb-[11px]">
         {type}
       </button>
       <p className="text-sm font-semibold mb-[7px] text-center">
@@ -115,7 +115,7 @@ function AuthForm({ type }: { type: string }) {
           No account yet?
           <span
             onClick={handleOnClickRegister}
-            className=" text-main-violet-c4 ml-4 cursor-pointer"
+            className=" text-main-violet-c4 ml-4 cursor-pointer hover:text-[#6664ed]"
           >
             Register Now!
           </span>
@@ -125,7 +125,7 @@ function AuthForm({ type }: { type: string }) {
           Already registered?
           <span
             onClick={handleOnClickLogin}
-            className=" text-main-violet-c4 ml-4 cursor-pointer"
+            className=" text-main-violet-c4 ml-4 hover:text-[#6664ed] cursor-pointer"
           >
             Sign in
           </span>

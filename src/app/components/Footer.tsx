@@ -13,22 +13,24 @@ function Footer() {
     <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">
       <div className=" w-full h-full ">
         <div className="flex w-full h-[calc(100%-40px)] items-center justify-between">
-          <Image
-            className="max-w-[290px] max-h-[156px]"
-            src={Logo}
-            alt="Logo"
-          />
+          <Link href={"/home"}>
+            <Image
+              className="max-w-[290px] max-h-[156px]"
+              src={Logo}
+              alt="Logo"
+            />
+          </Link>
           <div className="flex">
             <form className="font-lato mr-[116px]">
               <h3 className="text-main-whileColor font-semibold mb-[11px] font-lato">
                 Join our newsletter
               </h3>
               <input
-                className="w-[296px] rounded-[10px] p-[7px] leading-[1.6] text-base text-main-grayColor-50 block mb-[11px]"
+                className="outline-none w-[296px] rounded-[10px] p-[7px] leading-[1.6] text-base text-main-blackColor block mb-[11px]"
                 placeholder="Enter your name"
               />
               <input
-                className="w-[296px] h-[40px] rounded-[10px] p-[7px] leading-[1.6] text-base text-main-grayColor-50 mb-[11px]"
+                className="outline-none w-[296px] h-[40px] rounded-[10px] p-[7px] leading-[1.6] text-base text-main-blackColor mb-[11px]"
                 placeholder="Enter your email"
               />
               <button className="block text-base text-main-whileColor font-bold leading-[1.6] px-[10px] py-[5px] rounded-[10px] bg-gradient-to-tl from-[#5200FF] to-[#F265E4] ">
@@ -41,38 +43,50 @@ function Footer() {
               </h2>
               <div className="flex flex-col">
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block]"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
                   href={"about-us"}
                 >
                   About Us
                 </Link>
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block]"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
                   href={"privacy-policy"}
                 >
                   Privacy Policy
                 </Link>
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block]"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
                   href={"terms-of-use"}
                 >
                   Terms
                 </Link>
               </div>
               <div className="flex">
-                <RedditIcon className="mr-[19px]" width="30px" height="30px" />
+                <RedditIcon
+                  className="mr-[19px] cursor-pointer"
+                  width="30px"
+                  height="30px"
+                />
                 <FacebookIcon
-                  className="mr-[19px]"
+                  className="mr-[19px] cursor-pointer"
                   width="30px"
                   height="30px"
                 />
-                <TwitterIcon className="mr-[19px]" width="30px" height="30px" />
+                <TwitterIcon
+                  className="mr-[19px] cursor-pointer"
+                  width="30px"
+                  height="30px"
+                />
                 <TelegramIcon
-                  className="mr-[19px]"
+                  className="mr-[19px] cursor-pointer"
                   width="30px"
                   height="30px"
                 />
-                <DiscordIcon className="" width="30px" height="30px" />
+                <DiscordIcon
+                  className="cursor-pointer"
+                  width="30px"
+                  height="30px"
+                />
               </div>
             </div>
           </div>
