@@ -1,4 +1,4 @@
-function DeletePopUp({
+function DeletePlayListPopUp({
   content,
   onClickYes,
   onClickNo,
@@ -31,4 +31,4 @@ function DeletePopUp({
   );
 }
 
-export default DeletePopUp;
+export default DeletePlayListPopUp;

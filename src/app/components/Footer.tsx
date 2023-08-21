@@ -54,7 +54,7 @@ function Footer() {
                 </Link>
                 <Link
                   className="text-base leading-[1.6 text-main-whileColor mb-[10px] block]"
-                  href={"terms"}
+                  href={"terms-of-use"}
                 >
                   Terms
                 </Link>

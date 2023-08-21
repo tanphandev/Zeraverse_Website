@@ -56,3 +56,13 @@
 .pagination .active {
   color: #f472b6;
 }
+
+.checkbox {
+  border-radius: 50%;
+}
+
+.tab-container .active-tab {
+  color: #ffffff;
+  background-color: #9d174d;
+  border-color: #ec4899;
+}

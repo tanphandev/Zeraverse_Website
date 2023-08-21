@@ -74,6 +74,10 @@ import cate22 from "@/asset/image/cate22.png";
 import cate23 from "@/asset/image/cate23.png";
 import cate24 from "@/asset/image/cate24.png";
 
+import Avatar from "@/asset/image/profilePicture.png";
+import UserBackround from "@/asset/image/UserPageBackround.png";
+import PlayTimePic from "@/asset/image/playtimePic.png";
+
 export const gameList = [
   {
     name: "name",
@@ -719,5 +723,374 @@ export const userPlayListDetail = [
   {
     name: "name",
     src: game10,
+  },
+];
+
+export const avatarShoplist = [
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+  {
+    title: "Dog hug coin",
+    image: Avatar,
+  },
+];
+
+export const coverPageList = [
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+  {
+    title: "Crystal Planet",
+    image: UserBackround,
+  },
+];
+
+export const playtimesList = [
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
+  },
+  {
+    title: "+5 minutes",
+    image: PlayTimePic,
   },
 ];

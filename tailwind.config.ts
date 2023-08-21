@@ -60,6 +60,7 @@ const config: Config = {
         "pink-9d": "#9D174D",
         "pink-83": "#831843",
         "gray-18": "rgba(24, 24, 24, 0.6)",
+        "blue-dark": "rgba(91, 33, 182, 0.4)",
       },
     },
     extend: {

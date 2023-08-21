@@ -1,4 +1,6 @@
 "use client";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import {
   userPlayListGame,
   userPlayListDetail,
@@ -9,9 +11,7 @@ import {
   DeletePlayListIcon,
   XmarkICon,
 } from "@/asset/icons/icons";
-import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
-import DeletePopUp from "./popup/DeletePopUp";
+import DeletePlayListPopUp from "./popup/DeletePlayListPopUp";
 
 type Props = {
   title: string;
@@ -185,14 +185,14 @@ function UserPlayListPage({ title, onBack }: Props) {
         </div>
         {/* popup */}
         {isOpenDeletePlayList && (
-          <DeletePopUp
+          <DeletePlayListPopUp
             content="Delete Playlist"
             onClickYes={hanleClickDeletePlayListYes}
             onClickNo={hanleClickDeletePlayListNo}
           />
         )}
         {isOpenDeleteGame && (
-          <DeletePopUp
+          <DeletePlayListPopUp
             onClickNo={hanleClickDeleteGameNo}
             onClickYes={hanleClickDeleteGameYes}
             content="Delete Playlist"

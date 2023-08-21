@@ -1,8 +1,12 @@
+import { useRouter } from "next/navigation";
 import { CoinIcon } from "@/asset/icons/icons";
 import Image from "next/image";
 import ProfilePicture from "@/asset/image/profilePicture.png";
-
 function UserBar() {
+  const router = useRouter();
+  const goToSimpleShop = () => {
+    router.push("/simple-shop");
+  };
   return (
     <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[3px] ">
       <div className="w-[146px] border-b-[1px] border-main-violet-c4">
@@ -103,7 +107,10 @@ function UserBar() {
           </p>
         </div>
       </div>
-      <button className=" py-[3px] px-[30px] bg-main-pink-be rounded-[10px] mb-[14px]">
+      <button
+        onClick={goToSimpleShop}
+        className=" py-[3px] px-[30px] bg-main-pink-be rounded-[10px] mb-[14px]"
+      >
         <p className="items-center mb-[2px] text-xs text-center font-bold text-main-whileColor leading-[1.6]">
           Shop
         </p>
