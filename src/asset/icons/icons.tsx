@@ -756,7 +756,7 @@ export const XmarkICon = ({
 }: {
   width: string;
   height: string;
-  onClick: React.MouseEventHandler<SVGSVGElement>;
+  onClick?: React.MouseEventHandler<SVGSVGElement>;
   className?: string;
 }) => (
   <svg

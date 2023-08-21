@@ -198,7 +198,7 @@ function PrivacyPolicy() {
         third-party game distributor (directly or through the use of cookies or
         similar technology). Please note that if you choose to play a
         third-party game, you are playing that game in the environment of that
-        game's third-party developer, over which we have no control. Your
+        game&apos;s third-party developer, over which we have no control. Your
         acceptance of this Privacy Policy by using the Site, entails that third
         parties may drop cookies and/or use web beacons for advertising and
         tracking purposes.
@@ -234,17 +234,18 @@ function PrivacyPolicy() {
       <p>
         Google Chrome: Open your browser. Click the Chrome menu and choose
         settings. Click display advanced settings and then the button Settings
-        for content in the 'Privacy' section. In the 'Cookies' section you can
-        edit your cookies settings and remove cookies.
+        for content in the &apos;Privacy&apos; section. In the
+        &apos;Cookies&apos; section you can edit your cookies settings and
+        remove cookies.
       </p>
       <p>
         Internet Explorer: Open your browser. Click Tools and then Internet
-        options. Click the 'Privacy' section and choose the level you want with
-        the slide control. You can also change this manually by clicking
-        Advanced. A distinction is made between permanent direct cookies (first
-        party cookies), permanent indirect cookies (third party cookies) and
-        temporary cookies (session cookies). You can remove cookies by means of
-        the main screen of internet options.
+        options. Click the &apos;Privacy&apos; section and choose the level you
+        want with the slide control. You can also change this manually by
+        clicking Advanced. A distinction is made between permanent direct
+        cookies (first party cookies), permanent indirect cookies (third party
+        cookies) and temporary cookies (session cookies). You can remove cookies
+        by means of the main screen of internet options.
       </p>{" "}
       <p>
         Mozilla Firefox: Open your browser. Select Privacy. Set Firefox to Use

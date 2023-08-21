@@ -13,16 +13,17 @@ function TermsOfUse() {
       <h1 className="font-bold">TERMS OF USE</h1>
       <div className="text-base font-bold font-nunito text-justify">
         <p>
-          Welcome to Zeraverse.io! We (hereafter referred to as 'Zeraverse',
-          'we', 'our' or 'us') operate a website, accessible at
-          https://zeraverse.io. In this document we explain the terms of use for
-          our Zeraverse.io Website. The Zeraverse.io Website may include access
-          to virtual environments, games and other content, as well as
-          downloadable software or applications for use on personal computers,
-          tablets, mobile devices or phones. All users of the Zeraverse.io
-          Website (“Website Visitors”) are subject to the following terms and
-          conditions of use (these “Terms of Use”). Please read these Terms of
-          Use carefully before accessing or using any part of this Zeraverse.io
+          Welcome to Zeraverse.io! We (hereafter referred to as
+          &apos;Zeraverse&apos;, &apos;we&apos;, &apos;our&apos; or
+          &apos;us&apos;) operate a website, accessible at https://zeraverse.io.
+          In this document we explain the terms of use for our Zeraverse.io
+          Website. The Zeraverse.io Website may include access to virtual
+          environments, games and other content, as well as downloadable
+          software or applications for use on personal computers, tablets,
+          mobile devices or phones. All users of the Zeraverse.io Website
+          (“Website Visitors”) are subject to the following terms and conditions
+          of use (these “Terms of Use”). Please read these Terms of Use
+          carefully before accessing or using any part of this Zeraverse.io
           Website. By accessing or using this Zeraverse.io Website, you agree
           that you have read, understand, and agree to be bound by these Terms
           of Use, as amended from time to time by Zeraverse.io. If you do not
@@ -70,12 +71,12 @@ function TermsOfUse() {
           information, including but not limited to user names or passwords;
           (12) “stalk,” “phish,” abuse or harass another user, or attempt to do
           any of the foregoing; or (13) engage in any other conduct that
-          restricts or inhibits anyone's use or enjoyment of the Zeraverse.io
-          Website, or which, as determined by Zeraverse.io, may harm
-          Zeraverse.io or Website Visitors or expose them to liability. Without
-          limiting any of the foregoing, you also agree to abide by any code of
-          conduct and policies applicable to the Zeraverse.io Website or any
-          service available on the Zeraverse.io Website.
+          restricts or inhibits anyone&apos;s use or enjoyment of the
+          Zeraverse.io Website, or which, as determined by Zeraverse.io, may
+          harm Zeraverse.io or Website Visitors or expose them to liability.
+          Without limiting any of the foregoing, you also agree to abide by any
+          code of conduct and policies applicable to the Zeraverse.io Website or
+          any service available on the Zeraverse.io Website.
           <p>You agree to use the Site only for lawful purposes: </p>
         </p>
         <p>
@@ -122,16 +123,16 @@ function TermsOfUse() {
           infringement; or if the material is in breach with the applicable data
           protection laws and regulations); (2) monitor and/or record
           communications between and among Website Visitors for as far as
-          allowed under the applicable law; and (3) terminate any user's access
-          to all or part of the Zeraverse.io Website. However, Zeraverse.io can
-          neither review all material or communication before it is posted on
-          the Zeraverse.io Website nor ensure prompt removal of objectionable
-          material after it has been posted. Accordingly, Zeraverse.io assumes
-          no liability for any action or inaction regarding transmissions,
-          communications or content provided by third parties. Zeraverse.io
-          reserves the right to take any action it deems necessary to protect
-          the personal safety of Website Visitors and the public; however,
-          Zeraverse.io has no liability or responsibility to anyone for
+          allowed under the applicable law; and (3) terminate any user&apos;s
+          access to all or part of the Zeraverse.io Website. However,
+          Zeraverse.io can neither review all material or communication before
+          it is posted on the Zeraverse.io Website nor ensure prompt removal of
+          objectionable material after it has been posted. Accordingly,
+          Zeraverse.io assumes no liability for any action or inaction regarding
+          transmissions, communications or content provided by third parties.
+          Zeraverse.io reserves the right to take any action it deems necessary
+          to protect the personal safety of Website Visitors and the public;
+          however, Zeraverse.io has no liability or responsibility to anyone for
           performance or non-performance of the activities described in this
           paragraph.
         </p>

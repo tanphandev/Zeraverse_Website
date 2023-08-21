@@ -1,6 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import AvatarShop from "@/app/components/AvatarShop";
 import CoverPage from "@/app/components/CoverPageShop";
 import PlaytimesShop from "@/app/components/PlayTimesShop";
@@ -25,17 +31,17 @@ const tabs = [
   },
 ];
 
-export function SimpleShop() {
+function SimpleShop() {
   const router = useRouter();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
+  const tabsRef = useRef<HTMLButtonElement[]>([]);
   useEffect(() => {
     function setTabPosition() {
       tabsRef.current.forEach((tab, idx) => {
         if (idx === activeTabIndex) {
-          tab?.classList.add("active-tab");
+          tab.classList.add("active-tab");
         } else {
-          tab?.classList.remove("active-tab");
+          tab.classList.remove("active-tab");
         }
       });
     }
@@ -70,7 +76,7 @@ export function SimpleShop() {
               return (
                 <button
                   key={idx}
-                  ref={(el) => (tabsRef.current[idx] = el)}
+                  // ref={(el) => (tabsRef.current[idx] = el)}
                   className="text-base text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
                   onClick={() => setActiveTabIndex(idx)}
                 >

@@ -44,7 +44,7 @@ function HomePage() {
       item.classList.add("col-span-2", "row-span-2");
     });
     return;
-  }, []);
+  }, [isCurrentUser]);
   //close modal event
   const closeModal = () => {
     setIsShowDailyGiftModal(false);

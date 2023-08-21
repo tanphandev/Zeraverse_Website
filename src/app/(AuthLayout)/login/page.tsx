@@ -4,9 +4,9 @@ import Logo from "@/asset/image/Logo.png";
 import successAuth from "@/asset/image/successAuth.png";
 import failedAuth from "@/asset/image/failedAuth.png";
 import AuthForm from "@/app/components/AuthForm";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-function LoginPage({ children }: { children: string }) {
+function LoginPage() {
   const [isShowForm, setIsShowForm] = useState<boolean>(true);
   const [loginStatus, setLoginStatus] = useState<string>("success");
   const Confirm = () => {
