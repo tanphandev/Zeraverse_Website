@@ -9,9 +9,11 @@ function PrivacyPolicy() {
       >
         {"<"} Back
       </Link>
-      <p className="text-xs font-lato font-bold mb-[20px] mt-5">
-        Home/ Privacy policy
-      </p>
+      <div className="text-xs font-bold mb-[20px] mt-5">
+        <Link href={"/"}>Home</Link>
+        {" / "}
+        <Link href={"/privacy-policy"}>Privacy policy</Link>
+      </div>
       <h1 className="font-bold">PRIVACY POLICY</h1>
       <h2 className="text-[32px] font-bold font-nunito">
         I. WHICH DATA DO WE COLLECT?

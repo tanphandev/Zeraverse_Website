@@ -9,7 +9,11 @@ function AboutUs() {
       >
         {"<"} Back
       </Link>
-      <p className="text-xs font-bold mb-[20px] mt-5">Home / About us </p>
+      <div className="text-xs font-bold mb-[20px] mt-5">
+        <Link href={"/"}>Home</Link>
+        {" / "}
+        <Link href={"/about-us"}>About us</Link>
+      </div>
       <h1 className="font-bold">ABOUT US</h1>
       <div className="text-base font-bold font-nunito text-justify">
         <p>

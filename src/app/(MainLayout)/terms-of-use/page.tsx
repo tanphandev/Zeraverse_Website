@@ -9,7 +9,11 @@ function TermsOfUse() {
       >
         {"<"} Back
       </Link>
-      <p className="text-xs font-bold mb-[20px] mt-5">Home / Term of use </p>
+      <div className="text-xs font-bold mb-[20px] mt-5">
+        <Link href={"/"}>Home</Link>
+        {" / "}
+        <Link href={"/terms-of-use"}>Term</Link>
+      </div>
       <h1 className="font-bold">TERMS OF USE</h1>
       <div className="text-base font-bold font-nunito text-justify">
         <p>

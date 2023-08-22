@@ -77,7 +77,9 @@ import cate24 from "@/asset/image/cate24.png";
 import Avatar from "@/asset/image/profilePicture.png";
 import UserBackround from "@/asset/image/UserPageBackround.png";
 import PlayTimePic from "@/asset/image/playtimePic.png";
+import ArticlePic from "@/asset/image/articlesPicture.png";
 
+import News from "@/asset/image/news.jpg";
 export const gameList = [
   {
     name: "name",
@@ -1092,5 +1094,181 @@ export const playtimesList = [
   {
     title: "+5 minutes",
     image: PlayTimePic,
+  },
+];
+
+export const news = [
+  {
+    name: "The unseen of spending three years at Pixelgrade",
+    image: News,
+  },
+  {
+    name: "The unseen of spending three years at Pixelgrade",
+    image: News,
+  },
+  {
+    name: "The unseen of spending three years at Pixelgrade",
+    image: News,
+  },
+  {
+    name: "The unseen of spending three years at Pixelgrade",
+    image: News,
+  },
+  {
+    name: "The unseen of spending three years at Pixelgrade",
+    image: News,
+  },
+];
+
+export const articleList = [
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+  },
+  {
+    image: ArticlePic,
+    title: "The unseen of spending three years at Pixelgrade",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
   },
 ];

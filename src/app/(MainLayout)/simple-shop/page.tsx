@@ -37,7 +37,7 @@ function SimpleShop() {
   const tabsRef = useRef<HTMLButtonElement[]>([]);
   useEffect(() => {
     function setTabPosition() {
-      tabsRef.current.forEach((tab, idx) => {
+      tabsRef.current?.forEach((tab, idx) => {
         if (idx === activeTabIndex) {
           tab.classList.add("active-tab");
         } else {
@@ -76,7 +76,11 @@ function SimpleShop() {
               return (
                 <button
                   key={idx}
-                  // ref={(el) => (tabsRef.current[idx] = el)}
+                  ref={(el) => {
+                    if (el) {
+                      tabsRef.current[idx] = el;
+                    }
+                  }}
                   className="text-base text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
                   onClick={() => setActiveTabIndex(idx)}
                 >

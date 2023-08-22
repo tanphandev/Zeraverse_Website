@@ -13,6 +13,8 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{html,js}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   darkMode: "class",
   theme: {
@@ -32,6 +34,7 @@ const config: Config = {
         "whileColor-30": "rgba(255,255,255,0.3)",
         "whileColor-20": "rgba(255,255,255,0.2)",
         blackColor: "#000000",
+        "grayColor-20": "rgba(0,0,0,0.2)",
         "grayColor-40": "rgba(0,0,0,0.4)",
         "grayColor-45": "rgba(0,0,0,0.45)",
         "grayColor-50": "rgba(0,0,0,0.5)",
@@ -99,16 +102,6 @@ const config: Config = {
       }),
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: false, // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "light", // name of one of the included themes for dark mode
-    base: true, // applies background color and foreground color for root element by default
-    styled: true, // include daisyUI colors and design decisions for all components
-    utils: true, // adds responsive and modifier utility classes
-    rtl: false, // rotate style direction from left-to-right to right-to-left. You also need to add dir="rtl" to your html tag and install `tailwindcss-flip` plugin for Tailwind CSS.
-    prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
-    logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
-  },
+  plugins: [require("tw-elements/dist/plugin.cjs")],
 };
 export default config;

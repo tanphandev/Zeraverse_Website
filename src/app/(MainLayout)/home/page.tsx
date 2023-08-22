@@ -73,7 +73,23 @@ function HomePage() {
         <CategoryGame colSpan="col-span-10" />
         <div className="col-span-1"></div>
       </div>
-      <TrendingNew />
+      <div className="bg-main-grayColor-80 pt-[26px] pb-4 px-[53px] mt-[192px] mb-[70px]">
+        <TrendingNew />
+        <div>
+          <h2 className="text-[28px] font-bold text-main-whileColor mb-[10px]">
+            List Article category
+          </h2>
+          <div className=" text-sm font-normal font-lato text-main-pink-ec">
+            <ul className="list-disc pl-[17px] mb-[14px]">
+              <li>Game</li>
+              <li>Game Play</li>
+              <li>Tattic Game</li>
+              <li>Gamer</li>
+            </ul>
+            <button>View all {`>`}</button>
+          </div>
+        </div>
+      </div>
       {isShowDailyGiftModal && <DailyGiftModal closeModal={closeModal} />}
     </div>
   );

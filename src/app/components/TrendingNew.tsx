@@ -4,12 +4,12 @@ import TrendingNew2 from "@/asset/image/trendingNew2.png";
 
 function TrendingNew() {
   return (
-    <div className="bg-main-grayColor-80 pt-[26px] pb-4 px-[53px] mt-[192px] mb-[70px]">
+    <div>
       <h2 className="text-[28px] font-bold font-lato text-main-whileColor mb-[10px]">
         Trending News
       </h2>
       <div className="flex justify-center mb-[22px]">
-        <div className="flex items-center border border-main-pink-be mr-4 rounded-[10px]">
+        <div className="flex items-center border border-main-pink-be mr-4 rounded-[10px] bg-main-blackColor">
           <Image
             className="w-[194px] h-[194px] ml-[5px] mr-4 my-[5px]"
             src={TrendingNew1}
@@ -28,7 +28,7 @@ function TrendingNew() {
             </p>
           </div>
         </div>
-        <div className="flex items-center border border-main-pink-be mr-4 rounded-[10px]">
+        <div className="flex items-center border border-main-pink-be rounded-[10px] bg-main-blackColor">
           <Image
             className="w-[194px] h-[194px] ml-[5px] mr-4 my-[5px]"
             src={TrendingNew2}
@@ -46,20 +46,6 @@ function TrendingNew() {
               eiusmod tempor incididunt ut labore et dolore magna aliqua...
             </p>
           </div>
-        </div>
-      </div>
-      <div>
-        <h2 className="text-[28px] font-bold text-main-whileColor mb-[10px]">
-          List Article category
-        </h2>
-        <div className=" text-sm font-normal font-lato text-main-pink-ec">
-          <ul className="list-disc pl-[17px] mb-[14px]">
-            <li>Game</li>
-            <li>Game Play</li>
-            <li>Tattic Game</li>
-            <li>Gamer</li>
-          </ul>
-          <button>View all {`>`}</button>
         </div>
       </div>
     </div>

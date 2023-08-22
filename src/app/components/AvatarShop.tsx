@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import Avatar from "@/asset/image/profilePicture.png";
 import {
   CoinIcon,
   ArrowRightIconPagi,
