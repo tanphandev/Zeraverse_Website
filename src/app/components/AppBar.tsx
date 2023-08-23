@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Tippy from "@tippyjs/react/headless";
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import ProfilePicture from "@/asset/image/profilePicture.png";
@@ -19,11 +20,15 @@ import {
   TagIcon,
 } from "@/asset/icons/icons";
 import Link from "next/link";
+import UserOption from "./UserOptions";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const isCurrentUser = useSelector(currentUserSelector);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const [visibleUserOption, setVisibleUserOption] = useState(false);
+  const showUserOption = () => setVisibleUserOption(true);
+  const hideUserOption = () => setVisibleUserOption(false);
   //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -124,20 +129,28 @@ function AppBar() {
           </div>
         )}
         {isCurrentUser ? (
-          <Link href={"/user"}>
-            <div className="mt-[9px] cursor-pointer">
-              <Image
-                className="rounded-[10px]"
-                src={ProfilePicture}
-                width={94}
-                height={94}
-                alt="ProfilePicture"
-              />
-              <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
-                TanPhanDev
-              </p>
+          <Tippy
+            interactive={true}
+            placement="bottom"
+            onClickOutside={hideUserOption}
+            visible={visibleUserOption}
+            render={(attrs) => <UserOption {...attrs} />}
+          >
+            <div onClick={visibleUserOption ? hideUserOption : showUserOption}>
+              <div className="mt-[9px] cursor-pointer">
+                <Image
+                  className="rounded-[10px]"
+                  src={ProfilePicture}
+                  width={94}
+                  height={94}
+                  alt="ProfilePicture"
+                />
+                <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
+                  TanPhanDev
+                </p>
+              </div>
             </div>
-          </Link>
+          </Tippy>
         ) : (
           <>
             <Link
