@@ -1,15 +1,19 @@
 "use client";
-import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { ArrowLeftIcon, LogoIcon, SeachIcon } from "@/asset/icons/icons";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import {
+  ArrowLeftIcon,
+  ClearIcon,
+  LogoIcon,
+  SeachIcon,
+} from "@/asset/icons/icons";
 import gamePicture from "@/asset/image/game0.png";
 import Image from "next/image";
-import { isOpenSearchModalSelector } from "@/redux-toolkit/selectors/searchSelector";
 import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 
 function SearchModal() {
+  const [searchInput, setSearchInput] = useState<string>("");
   const dispatch = useDispatch();
-  const isOpenSeachModal = useSelector(isOpenSearchModalSelector);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
   const searchBoxRef = useRef<HTMLDivElement>(null);
   const suggestSearchs = [
@@ -93,10 +97,15 @@ function SearchModal() {
       dispatch(searchSlice.actions.setIsSeachModal(false));
     }, 500);
   };
+  const handleOnChangeSearchInput = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchInput(event.target.value);
+  };
   return (
     <div
       ref={searchWrapperRef}
-      className="seach-wapper fixed top-0 right-0 bottom-0 left-0 bg-main-grayColor-50 backdrop-blur-sm animate-fadeIn"
+      className="seach-wapper fixed top-0 right-0 bottom-0 z-50 left-0 bg-main-grayColor-50 backdrop-blur-sm animate-fadeIn"
     >
       <div
         ref={searchBoxRef}
@@ -116,16 +125,32 @@ function SearchModal() {
             height="37px"
           />
           <input
+            spellCheck="false"
+            value={searchInput}
+            onChange={handleOnChangeSearchInput}
             className="w-[602px] h-[64px] rounded-[15px] text-main-violet-5b bg-main-whileColor text-[22px] placeholder-main-violet-c4 font-bold font-nunito pl-20 pr-[62px] outline-none"
             placeholder="What are you playing today?"
           />
-          <SeachIcon
-            className="absolute top-1/2 right-[7px] -translate-y-1/2 text-main-violet-8b"
-            width="42px"
-            height="42px"
-          />
+          <div className="absolute top-1/2 right-[7px] -translate-y-1/2">
+            {!!searchInput === true ? (
+              <ClearIcon
+                onClick={() => {
+                  setSearchInput("");
+                }}
+                width="30px"
+                height="30px"
+                className="mr-2"
+              />
+            ) : (
+              <SeachIcon
+                className="text-main-violet-8b"
+                width="42px"
+                height="42px"
+              />
+            )}
+          </div>
         </div>
-        <ul className="w-[644px] overflow-hidden overflow-x-scroll no-scrollbar flex mb-[27px]">
+        <ul className="w-[644px] overflow-x-scroll no-scrollbar flex mb-[27px]">
           {suggestSearchs.map((suggestSearch, index) => {
             return (
               <li

@@ -1260,12 +1260,15 @@ export const ClearIcon = ({
   width = "20px",
   height = "20px",
   className,
+  onClick,
 }: {
   width: string;
   height: string;
   className?: string;
+  onClick: () => void;
 }) => (
   <svg
+    onClick={onClick}
     className={className}
     width={width}
     height={height}

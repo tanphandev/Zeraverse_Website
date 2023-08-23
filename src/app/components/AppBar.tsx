@@ -138,7 +138,9 @@ function AppBar() {
             placement="bottom"
             onClickOutside={hideUserOption}
             visible={visibleUserOption}
-            render={(attrs) => <UserOption {...attrs} />}
+            render={(attrs) => (
+              <UserOption hideUserOption={hideUserOption} {...attrs} />
+            )}
           >
             <div onClick={visibleUserOption ? hideUserOption : showUserOption}>
               <div className="mt-[9px] cursor-pointer">

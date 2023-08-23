@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef } from "react";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import Image from "next/image";
 type Props = {
@@ -6,8 +8,17 @@ type Props = {
 };
 
 function UserFieldDetail({ title, onBack }: Props) {
+  const userFieldDetailRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (userFieldDetailRef.current) {
+      userFieldDetailRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   return (
-    <div className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px] mb-[40px]">
+    <div
+      ref={userFieldDetailRef}
+      className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px] mb-[40px]"
+    >
       <div className="relative">
         <h2 className=" flex items-center justify-center text-[28px] text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
           {title}

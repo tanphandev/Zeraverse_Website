@@ -8,6 +8,7 @@ import CategoryGame from "@/app/components/CategoryGame";
 import TrendingNew from "@/app/components/TrendingNew";
 import DailyGiftModal from "@/app/components/DailyGiftModal";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+import Link from "next/link";
 function HomePage() {
   const router = useRouter();
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
@@ -93,15 +94,13 @@ function HomePage() {
               <li>Tattic Game</li>
               <li>Gamer</li>
             </ul>
-            <button>View all {`>`}</button>
+            <Link href={"article-category-all"}>View all {`>`}</Link>
           </div>
         </div>
       </div>
-      {false && <DailyGiftModal closeModal={closeModal} />}
+      {isShowDailyGiftModal && <DailyGiftModal closeModal={closeModal} />}
     </div>
   );
 }
 
 export default HomePage;
-
-// isShowDailyGiftModal

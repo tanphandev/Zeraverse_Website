@@ -1,12 +1,13 @@
 import { AchievementIcon, LogoutIcon, UserIcon } from "@/asset/icons/icons";
 import Link from "next/link";
 
-function UserOption() {
+function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
   return (
     <div className="flex flex-col items-start px-4 py-3 rounded-2xl border-[1px] border-main-pink-9d bg-[#0c0020]">
       <Link
         className="flex items-center group hover:text-main-violet-8b px-3 pb-3"
         href={"/user"}
+        onClick={hideUserOption}
       >
         <UserIcon
           className="inline text-main-violet-c4 group-hover:text-main-violet-8b  mr-1"
@@ -20,6 +21,7 @@ function UserOption() {
       <Link
         className="flex items-center group hover:text-main-violet-8b border-b-[1px] border-main-violet-6d px-3 pb-3"
         href={"/achievements"}
+        onClick={hideUserOption}
       >
         <AchievementIcon
           className="inline text-main-violet-c4 group-hover:text-main-violet-8b mr-1"
@@ -30,7 +32,10 @@ function UserOption() {
           Achievements
         </p>
       </Link>
-      <button className="flex items-center text-main-whileColor group hover:text-main-violet-8b  mx-3 mt-3">
+      <button
+        onClick={hideUserOption}
+        className="flex items-center text-main-whileColor group hover:text-main-violet-8b  mx-3 mt-3"
+      >
         <LogoutIcon
           className="inline group-hover:text-main-violet-8b mr-1"
           width="20px"

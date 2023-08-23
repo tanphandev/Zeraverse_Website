@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { gameList } from "@/app/dataFetch/dataFetch";
 import Image from "next/image";
 import CategoryGame from "@/app/components/CategoryGame";
+import Link from "next/link";
 
 function Category() {
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
@@ -43,13 +44,20 @@ function Category() {
         ref={gridSystemRef}
       >
         {gameList.map((game, index) => (
-          <div key={index}>
+          <Link
+            href={"/game-screen"}
+            key={index}
+            className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+          >
             <Image
-              className={`max-w-full max-h-full rounded-[10px]`}
+              className={`max-w-full max-h-full rounded-[20px]`}
               src={game.src}
               alt="gamePicture"
             />
-          </div>
+            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)]">
+              {game.name}
+            </p>
+          </Link>
         ))}
       </div>
       <div className="grid grid-cols-11">

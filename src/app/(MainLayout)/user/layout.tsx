@@ -28,8 +28,8 @@ function UserLayout({ children }: { children: string }) {
             Ut et.
           </p>
         </div>
-        <div className="flex py-1 px-[10px] bg-main-violet-4c rounded-[10px] shadow-[0_4px_5px_rgba(0,0,0,0.6)]">
-          <h2 className="font-black font-nunito mr-[5px] text-main-whileColor">
+        <div className="flex items-center py-1 px-[10px] bg-main-violet-4c rounded-[10px] shadow-[0_4px_5px_rgba(0,0,0,0.6)]">
+          <h2 className="text-[24px] font-black font-nunito mr-[5px] text-main-whileColor">
             70
           </h2>
           <CoinIcon className="mr-[5px]" width="30px" height="32px" />

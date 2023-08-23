@@ -59,7 +59,7 @@ function SimpleShop() {
         {"<"}Back
       </button>
       <div className="mt-[9px]">
-        <h1 className="inline font-bold px-[30px] py-[10px] bg-main-pink-9d rounded-[20px] shadow-[inset_-2px_-2px_2px_rgba(0,0,0,0.6)] ">
+        <h1 className="inline text-[40px] font-bold font-lato px-[30px] py-[10px] bg-main-pink-9d rounded-[20px] shadow-[inset_-2px_-2px_2px_rgba(0,0,0,0.6)] ">
           Simple Shop
         </h1>
       </div>
