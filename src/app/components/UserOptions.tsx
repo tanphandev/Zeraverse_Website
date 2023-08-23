@@ -1,7 +1,13 @@
 import { AchievementIcon, LogoutIcon, UserIcon } from "@/asset/icons/icons";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
 
 function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(authenticationSlice.actions.setCurrentUser(false));
+  };
   return (
     <div className="flex flex-col items-start px-4 py-3 rounded-2xl border-[1px] border-main-pink-9d bg-[#0c0020]">
       <Link
@@ -41,7 +47,10 @@ function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
           width="20px"
           height="20px"
         />
-        <p className="inline text-base font-nunito font-medium group-hover:text-main-violet-8b">
+        <p
+          onClick={handleLogOut}
+          className="inline text-base font-nunito font-medium group-hover:text-main-violet-8b"
+        >
           Log out
         </p>
       </button>

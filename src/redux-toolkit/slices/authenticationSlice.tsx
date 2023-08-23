@@ -4,7 +4,11 @@ const authenticationSlice = createSlice({
   initialState: {
     currentUser: true,
   },
-  reducers: {},
+  reducers: {
+    setCurrentUser: (state, action) => {
+      state.currentUser = action.payload;
+    },
+  },
 });
 
 export default authenticationSlice;
