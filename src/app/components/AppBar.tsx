@@ -11,6 +11,7 @@ import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 import {
   CasualIcon,
   CatelogyIcon,
+  GameIcon,
   MenuIcon,
   NewIcon,
   RiderIcon,
@@ -30,14 +31,6 @@ function AppBar() {
   // dispatch action to open SearchModal
   const openSeachModal = () => {
     dispatch(searchSlice.actions.setIsSeachModal(true));
-  };
-  //Go to Game Game Category
-  const GotoGameCategoryAllPage = () => {
-    router.push("/game-category-all");
-  };
-  //Go to Article Category
-  const GotoAllArticleCategoryPage = () => {
-    router.push("/article-category-all");
   };
   // Go to Home
   const GotoHome = () => {
@@ -88,24 +81,33 @@ function AppBar() {
               </button>
             </div>
             <div className="mt-7">
-              <button
-                onClick={GotoGameCategoryAllPage}
+              <Link
+                href={"/hall-of-fame"}
+                className="block w-full text-left mb-4"
+              >
+                <GameIcon className="inline" width="32px" height="32px" />
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                  Hall Of Fame
+                </p>
+              </Link>
+              <Link
+                href={"/game-category-all"}
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
-                  Game Category
+                  Game Categor
                 </p>
-              </button>
-              <button
-                onClick={GotoAllArticleCategoryPage}
+              </Link>
+              <Link
+                href={"/article-category-all"}
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
                   Article Category
                 </p>
-              </button>
+              </Link>
               <button className="block w-full text-left mb-4">
                 <TagIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">

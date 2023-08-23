@@ -72,7 +72,7 @@ function News({ list, itemsPerPage }: Props) {
         pageCount={pageCount}
         renderOnZeroPageCount={null}
         pageClassName="page-item text-[14px] font-bold font-nunito px-[32px] text-[#ffffff]"
-        containerClassName="pagination flex justify-center mb-[20px]"
+        containerClassName="pagination flex justify-center mb-[20px] mr-[114px]"
         activeClassName="active"
         breakClassName="break"
         nextClassName="pagi-next"
