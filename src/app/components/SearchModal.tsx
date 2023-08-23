@@ -116,11 +116,11 @@ function SearchModal() {
             height="37px"
           />
           <input
-            className="w-[602px] h-[64px] rounded-[15px] bg-main-whileColor text-[22px] placeholder-main-violet-c4 font-bold font-nunito pl-20 pr-[62px] outline-none"
+            className="w-[602px] h-[64px] rounded-[15px] text-main-violet-5b bg-main-whileColor text-[22px] placeholder-main-violet-c4 font-bold font-nunito pl-20 pr-[62px] outline-none"
             placeholder="What are you playing today?"
           />
           <SeachIcon
-            className="absolute top-1/2 right-[7px] -translate-y-1/2"
+            className="absolute top-1/2 right-[7px] -translate-y-1/2 text-main-violet-8b"
             width="42px"
             height="42px"
           />

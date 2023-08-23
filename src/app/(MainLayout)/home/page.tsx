@@ -60,12 +60,19 @@ function HomePage() {
         ref={gridSystemRef}
       >
         {gameList.map((game, index) => (
-          <div onClick={gotoGameScreen} key={index}>
+          <div
+            onClick={gotoGameScreen}
+            key={index}
+            className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+          >
             <Image
-              className={`max-w-full max-h-full rounded-[10px]`}
+              className={`max-w-full max-h-full rounded-[20px]`}
               src={game.src}
               alt="gamePicture"
             />
+            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)]">
+              {game.name}
+            </p>
           </div>
         ))}
       </div>
@@ -90,9 +97,11 @@ function HomePage() {
           </div>
         </div>
       </div>
-      {isShowDailyGiftModal && <DailyGiftModal closeModal={closeModal} />}
+      {false && <DailyGiftModal closeModal={closeModal} />}
     </div>
   );
 }
 
 export default HomePage;
+
+// isShowDailyGiftModal

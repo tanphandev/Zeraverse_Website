@@ -12,11 +12,11 @@ function CategoryItem({
   return (
     <div
       onClick={onClick}
-      className=" w-full flex items-center text-center bg-main-whileColor rounded-[10px]"
+      className="w-full flex items-center text-center bg-main-whileColor rounded-[20px] transition-all hover:scale-105 duration-300"
     >
       <div className="w-full">
         <Image
-          className="w-full rounded-[10px]"
+          className="w-full rounded-[20px]"
           src={src}
           alt="category image"
         />

@@ -80,6 +80,31 @@ import PlayTimePic from "@/asset/image/playtimePic.png";
 import ArticlePic from "@/asset/image/articlesPicture.png";
 
 import News from "@/asset/image/news.jpg";
+
+export const avatarShopList = [
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+  { avatar: Avatar, coin: "70" },
+];
+
 export const gameList = [
   {
     name: "name",

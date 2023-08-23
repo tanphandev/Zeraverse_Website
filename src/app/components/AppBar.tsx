@@ -58,7 +58,11 @@ function AppBar() {
             <NewIcon className="mr-4" width="42" height="42px" />
           </Link>
           <button onClick={openSeachModal}>
-            <SeachIcon width="42" height="42px" />
+            <SeachIcon
+              width="42"
+              height="42px"
+              className="text-main-violet-c4"
+            />
           </button>
         </div>
         {toggleMenu && (
@@ -70,7 +74,7 @@ function AppBar() {
                   width="42px"
                   height="42px"
                 />
-                <p className="font-lato ml-[10px] text-main-whileColor inline">
+                <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   Rider
                 </p>
               </button>
@@ -80,7 +84,7 @@ function AppBar() {
                   width="42px"
                   height="42px"
                 />
-                <p className="font-lato ml-[10px] text-main-whileColor inline">
+                <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   Casual
                 </p>
               </button>
@@ -91,7 +95,7 @@ function AppBar() {
                 className="block w-full text-left mb-4"
               >
                 <GameIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   Hall Of Fame
                 </p>
               </Link>
@@ -100,7 +104,7 @@ function AppBar() {
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   Game Categor
                 </p>
               </Link>
@@ -109,19 +113,19 @@ function AppBar() {
                 className="block w-full text-left mb-4"
               >
                 <CatelogyIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   Article Category
                 </p>
               </Link>
               <button className="block w-full text-left mb-4">
                 <TagIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   All Game Tags
                 </p>
               </button>
               <button className="block w-full text-left">
                 <TagIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline">
+                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   All Article Tags
                 </p>
               </button>
@@ -167,10 +171,19 @@ function AppBar() {
             </Link>
           </>
         )}
-        <div className="px-8 py-[6px] bg-main-pink-be  shadow-[inset_-2px_-2px_1px] shadow-[#d5358d] rounded-[10px] mb-[11px]">
+        <div className="relative group px-8 py-[6px] bg-main-pink-be  shadow-[inset_-2px_-2px_1px] shadow-[#d5358d] rounded-[10px] mb-[11px]">
           <p className="text-2xl text-main-whileColor font-normal font-digitalfont ">
             00:60:00
           </p>
+          {/* Purchase more time */}
+          <Link
+            href={"/simple-shop"}
+            className="hidden absolute top-0 bottom-0 left-0 right-0 group-hover:flex justify-center items-center rounded-[10px] bg-gradient-to-b from-[#3d0ca5] to-[#de22cb] cursor-pointer"
+          >
+            <p className="text-sm font-nunito font-semibold text-main-whileColor">
+              Purchase more time
+            </p>
+          </Link>
         </div>
       </div>
       {isCurrentUser && <UserBar />}

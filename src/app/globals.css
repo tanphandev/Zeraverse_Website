@@ -32,11 +32,51 @@
   }
 }
 
+/* add digital font */
 @font-face {
   font-family: "DigitalFont";
   src: url("/asset/fonts/DigitalFont.ttf");
 }
 
+/* css for scrollbar App */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* css scrolldown for AvatarShop */
+
+.avatar-shop-list::-webkit-scrollbar {
+  width: 2px;
+}
+
+.avatar-shop-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.avatar-shop-list::-webkit-scrollbar-thumb {
+  background: #eceaea;
+  border-radius: 5px;
+}
+
+/* css */
 .search-box {
   transition: transform 0.5s ease-in-out;
   transform: translateX(0);
