@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
-import { HidePasswordIcon, ShowPasswordIcon } from "@/asset/icons/icons";
 import { useState } from "react";
+import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
+import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
 
 type PasswordVisible = {
   isNewPasswordVisible: boolean;

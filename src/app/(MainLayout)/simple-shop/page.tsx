@@ -10,12 +10,13 @@ import {
 import AvatarShop from "@/app/components/AvatarShop";
 import CoverPage from "@/app/components/CoverPageShop";
 import PlaytimesShop from "@/app/components/PlayTimesShop";
-import { AddIcon, CoinIcon } from "@/asset/icons/icons";
 import {
   avatarShoplist,
   coverPageList,
   playtimesList,
 } from "@/app/dataFetch/dataFetch";
+import CoinIcon from "@/asset/icons/CoinIcon";
+import AddIcon from "@/asset/icons/AddIcon";
 const tabs = [
   {
     label: "Avatar",

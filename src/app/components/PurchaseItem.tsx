@@ -3,11 +3,9 @@ import Image from "next/image";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Avatar from "@/asset/image/profilePicture.png";
-import {
-  CoinIcon,
-  ArrowRightIconPagi,
-  ArrowLeftIconPagi,
-} from "@/asset/icons/icons";
+import CoinIcon from "@/asset/icons/CoinIcon";
+import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
+import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 type Props = {
   list: Array<any>;
   title: string;

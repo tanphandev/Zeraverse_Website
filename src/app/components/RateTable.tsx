@@ -1,9 +1,7 @@
 "use client";
-import {
-  ArrowDown,
-  ArrowLeftIconPagi,
-  ArrowRightIconPagi,
-} from "@/asset/icons/icons";
+import ArrowDown from "@/asset/icons/ArrowDownIcon";
+import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
+import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 type RateInfo = {

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import UserPageBackground from "@/asset/image/UserPageBackround.png";
 import Avatar from "@/asset/image/profilePicture.png";
-import { AddIcon, CoinIcon } from "@/asset/icons/icons";
+import CoinIcon from "@/asset/icons/CoinIcon";
+import AddIcon from "@/asset/icons/AddIcon";
 
 function UserLayout({ children }: { children: string }) {
   return (

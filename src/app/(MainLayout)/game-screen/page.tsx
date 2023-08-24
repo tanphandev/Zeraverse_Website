@@ -14,15 +14,13 @@ import Video from "@/asset/image/video.png";
 import hallofframe1 from "@/asset/image/hallofframe1.png";
 import hallofframe2 from "@/asset/image/hallofframe2.png";
 import hallofframe3 from "@/asset/image/hallofframe3.png";
-import {
-  AddPlayListIcon,
-  CoinIcon,
-  ExpandIcon,
-  HeartIcon,
-  PauseIcon,
-  ReportIcon,
-  SendIcon,
-} from "@/asset/icons/icons";
+import CoinIcon from "@/asset/icons/CoinIcon";
+import SendIcon from "@/asset/icons/SendIcon";
+import PauseIcon from "@/asset/icons/PauseIcon";
+import HeartIcon from "@/asset/icons/HeartIcon";
+import AddPlayListIcon from "@/asset/icons/AddPlayListIcon";
+import ExpandIcon from "@/asset/icons/ExpandIcon";
+import ReportIcon from "@/asset/icons/ReportIcon";
 
 function GameScreen() {
   return (

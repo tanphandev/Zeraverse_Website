@@ -2,13 +2,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-
-import {
-  CoinIcon,
-  ArrowRightIconPagi,
-  ArrowLeftIconPagi,
-} from "@/asset/icons/icons";
 import BuyShopPopUp from "./popup/BuyShopPopUp";
+import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
+import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 type Props = {
   list: Array<any>;
   itemsPerPage: number;

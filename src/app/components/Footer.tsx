@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import Link from "next/link";
-import {
-  DiscordIcon,
-  FacebookIcon,
-  RedditIcon,
-  TelegramIcon,
-  TwitterIcon,
-} from "@/asset/icons/icons";
+import RedditIcon from "@/asset/icons/RedditIcon";
+import FacebookIcon from "@/asset/icons/FacebookIcon";
+import TwitterIcon from "@/asset/icons/TwitterIcon";
+import TelegramIcon from "@/asset/icons/TelegramIcon";
+import DiscordIcon from "@/asset/icons/DiscordIcon";
 function Footer() {
   return (
     <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">

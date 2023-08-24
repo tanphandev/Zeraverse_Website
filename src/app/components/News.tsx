@@ -3,7 +3,8 @@ import { useState } from "react";
 import Image from "next/image";
 import NewLogo from "@/asset/image/newsLogo.png";
 import ReactPaginate from "react-paginate";
-import { ArrowLeftIconPagi, ArrowRightIconPagi } from "@/asset/icons/icons";
+import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
+import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 type Props = {
   list: Array<any>;
   itemsPerPage: number;

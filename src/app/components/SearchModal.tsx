@@ -1,15 +1,13 @@
 "use client";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import {
-  ArrowLeftIcon,
-  ClearIcon,
-  LogoIcon,
-  SeachIcon,
-} from "@/asset/icons/icons";
 import gamePicture from "@/asset/image/game0.png";
 import Image from "next/image";
 import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
+import ArrowLeftIcon from "@/asset/icons/ArrowLeftIcon";
+import LogoIcon from "@/asset/icons/LogoIcon";
+import ClearIcon from "@/asset/icons/ClearIcon";
+import SeachIcon from "@/asset/icons/SearchIcon";
 
 function SearchModal() {
   const [searchInput, setSearchInput] = useState<string>("");

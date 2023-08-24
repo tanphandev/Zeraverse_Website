@@ -1,21 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {
-  MutableRefObject,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import AvatarShop from "@/app/components/AvatarShop";
-import CoverPage from "@/app/components/CoverPageShop";
-import PlaytimesShop from "@/app/components/PlayTimesShop";
-import { AddIcon, CoinIcon } from "@/asset/icons/icons";
-import {
-  avatarShoplist,
-  coverPageList,
-  playtimesList,
-} from "@/app/dataFetch/dataFetch";
+import { useEffect, useRef, useState } from "react";
 import HallOfFameZera from "@/app/components/HallOfFameZera";
 import GamePlayed from "@/app/components/HallOfFameGamePlayed";
 import PlaysStreak from "@/app/components/HallOfFamePlaysStreak";

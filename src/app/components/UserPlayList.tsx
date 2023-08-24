@@ -5,13 +5,11 @@ import {
   userPlayListGame,
   userPlayListDetail,
 } from "@/app/dataFetch/dataFetch";
-import {
-  DeleteIcon,
-  DeleteItemIcon,
-  DeletePlayListIcon,
-  XmarkICon,
-} from "@/asset/icons/icons";
 import DeletePlayListPopUp from "./popup/DeletePlayListPopUp";
+import DeleteIcon from "@/asset/icons/DeleteIcon";
+import DeletePlayListIcon from "@/asset/icons/DeletePlayListIcon";
+import DeleteItemIcon from "@/asset/icons/DeleteItemIcon";
+import XmarkICon from "@/asset/icons/XmarkIcon";
 
 type Props = {
   title: string;

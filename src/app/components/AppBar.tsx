@@ -9,18 +9,16 @@ import ProfilePicture from "@/asset/image/profilePicture.png";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 import UserBar from "./UserBar";
 import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
-import {
-  CasualIcon,
-  CatelogyIcon,
-  GameIcon,
-  MenuIcon,
-  NewIcon,
-  RiderIcon,
-  SeachIcon,
-  TagIcon,
-} from "@/asset/icons/icons";
 import Link from "next/link";
 import UserOption from "./UserOptions";
+import MenuIcon from "@/asset/icons/MenuIcon";
+import NewIcon from "@/asset/icons/NewsIcon";
+import SeachIcon from "@/asset/icons/SearchIcon";
+import RiderIcon from "@/asset/icons/RiderIcon";
+import CasualIcon from "@/asset/icons/CasualIcon";
+import GameIcon from "@/asset/icons/GameIcon";
+import CatelogyIcon from "@/asset/icons/CategoryIcon";
+import TagIcon from "@/asset/icons/TagIcon";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();

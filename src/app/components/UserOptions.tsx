@@ -1,7 +1,9 @@
-import { AchievementIcon, LogoutIcon, UserIcon } from "@/asset/icons/icons";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
+import UserIcon from "@/asset/icons/UserIcon";
+import AchievementIcon from "@/asset/icons/AchievementsIcon";
+import LogoutIcon from "@/asset/icons/LogoutIcon";
 
 function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
   const dispatch = useDispatch();

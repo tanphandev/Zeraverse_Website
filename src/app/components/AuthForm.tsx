@@ -1,10 +1,8 @@
 "use client";
-import {
-  FacebookColorIcon,
-  GoogleIcon,
-  HidePasswordIcon,
-  ShowPasswordIcon,
-} from "@/asset/icons/icons";
+import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
+import GoogleIcon from "@/asset/icons/GoogleIcon";
+import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
+import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

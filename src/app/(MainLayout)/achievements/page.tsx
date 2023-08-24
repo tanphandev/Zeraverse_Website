@@ -6,7 +6,7 @@ import achievementLeft from "@/asset/image/achievementLeft.png";
 import achievementRight from "@/asset/image/achievementRight.png";
 import gamePic from "@/asset/image/game1.png";
 import Image from "next/image";
-import { CoinIcon } from "@/asset/icons/icons";
+import CoinIcon from "@/asset/icons/CoinIcon";
 function Achievements() {
   const router = useRouter();
   const GotoHome = () => {

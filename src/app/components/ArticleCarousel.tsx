@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { news } from "@/app/dataFetch/dataFetch";
-import { ArrowRightIcon } from "@/asset/icons/icons";
+import ArrowRightIcon from "@/asset/icons/ArrowRightIcon";
 function ArticleCarousel() {
   const [initComplete, setInitComplete] = useState(false);
   console.log("initComplete", initComplete);

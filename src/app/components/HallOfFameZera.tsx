@@ -7,8 +7,8 @@ import top2 from "@/asset/image/fame2-2.png";
 import top3 from "@/asset/image/fame3-3.png";
 
 import Avatar from "@/asset/image/profilePicture.png";
-import { ArrowDown, CoinIcon } from "@/asset/icons/icons";
 import RateTable from "./RateTable";
+import CoinIcon from "@/asset/icons/CoinIcon";
 function HallOfFameZera() {
   const rateList = [
     { name: "Name", place: "4", quantity: "1000" },

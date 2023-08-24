@@ -1,4 +1,5 @@
-import { CoinIcon, XmarkICon } from "@/asset/icons/icons";
+import CoinIcon from "@/asset/icons/CoinIcon";
+import XmarkICon from "@/asset/icons/XmarkIcon";
 import Image from "next/image";
 
 function BuyShopPopUp({
