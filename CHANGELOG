@@ -1,0 +1,5 @@
+datafetch -> file json
+những file k phải component thì k cần .tsx
+asset -> public
+import icon như component (source zera)
+
