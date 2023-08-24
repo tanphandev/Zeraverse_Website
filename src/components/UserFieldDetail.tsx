@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { gameList } from "@/app/dataFetch/dataFetch";
+import { gameList } from "@/dataFetch/dataFetch";
 import Image from "next/image";
 type Props = {
   title: string;

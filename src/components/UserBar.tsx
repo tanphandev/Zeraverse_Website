@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { avatarShopList } from "../dataFetch/dataFetch";
+import { avatarShopList } from "@/dataFetch/dataFetch";
 import CoinIcon from "@/asset/icons/CoinIcon";
 function UserBar() {
   return (

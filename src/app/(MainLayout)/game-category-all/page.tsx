@@ -1,4 +1,4 @@
-import CategoryGame from "@/app/components/CategoryGame";
+import CategoryGame from "@/components/CategoryGame";
 
 function AllCategoryPage() {
   return (

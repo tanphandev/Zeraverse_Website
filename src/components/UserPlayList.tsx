@@ -1,10 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import {
-  userPlayListGame,
-  userPlayListDetail,
-} from "@/app/dataFetch/dataFetch";
+import { userPlayListGame, userPlayListDetail } from "@/dataFetch/dataFetch";
 import DeletePlayListPopUp from "./popup/DeletePlayListPopUp";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
 import DeletePlayListIcon from "@/asset/icons/DeletePlayListIcon";

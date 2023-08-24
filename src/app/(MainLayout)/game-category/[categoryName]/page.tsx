@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { gameList } from "@/app/dataFetch/dataFetch";
+import { gameList } from "@/dataFetch/dataFetch";
 import Image from "next/image";
-import CategoryGame from "@/app/components/CategoryGame";
+import CategoryGame from "@/components/CategoryGame";
 import Link from "next/link";
 
 function Category() {

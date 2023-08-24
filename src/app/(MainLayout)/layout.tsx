@@ -1,9 +1,9 @@
 "use client";
 import { useSelector } from "react-redux";
-import Footer from "@/app/components/Footer";
-import AppBar from "@/app/components/AppBar";
+import Footer from "@/components/Footer";
+import AppBar from "@/components/AppBar";
 import { isOpenSearchModalSelector } from "@/redux-toolkit/selectors/searchSelector";
-import SearchModal from "../components/SearchModal";
+import SearchModal from "@/components/SearchModal";
 function MainLayout({ children }: { children: string }) {
   const isOpenSeachModal = useSelector(isOpenSearchModalSelector);
   return (

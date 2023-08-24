@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MostPlayedPic from "@/asset/image/MostPlayedPic.png";
 import SlipBar from "./SlipBar";
-import { gameList } from "@/app/dataFetch/dataFetch";
+import { gameList } from "@/dataFetch/dataFetch";
 import PlayListGame from "./PlaylistGame";
 import { UserField } from "../constants/constants";
 type Props = {

@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import PurchaseItem from "./PurchaseItem";
 import PurchaseAvatar from "./PurchaseItem";
-import { categoryGameList } from "@/app/dataFetch/dataFetch";
+import { categoryGameList } from "@/dataFetch/dataFetch";
 type Props = {
   title: string;
   onBack: (title: string) => void;

@@ -1,10 +1,10 @@
-import News from "@/app/components/News";
-import PopularNews from "@/app/components/PopularNews";
-import TrendingNew from "@/app/components/TrendingNew";
-import { articleList } from "@/app/dataFetch/dataFetch";
+import News from "@/components/News";
+import PopularNews from "@/components/PopularNews";
+import TrendingNew from "@/components/TrendingNew";
+import { articleList } from "@/dataFetch/dataFetch";
 import dynamic from "next/dynamic";
 const ArticleCarouselDynamic = dynamic(
-  () => import("@/app/components/ArticleCarousel"),
+  () => import("@/components/ArticleCarousel"),
   {
     ssr: false,
   }

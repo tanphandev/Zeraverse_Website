@@ -7,14 +7,14 @@ import {
   useRef,
   useState,
 } from "react";
-import AvatarShop from "@/app/components/AvatarShop";
-import CoverPage from "@/app/components/CoverPageShop";
-import PlaytimesShop from "@/app/components/PlayTimesShop";
+import AvatarShop from "@/components/AvatarShop";
+import CoverPage from "@/components/CoverPageShop";
+import PlaytimesShop from "@/components/PlayTimesShop";
 import {
   avatarShoplist,
   coverPageList,
   playtimesList,
-} from "@/app/dataFetch/dataFetch";
+} from "@/dataFetch/dataFetch";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
 const tabs = [

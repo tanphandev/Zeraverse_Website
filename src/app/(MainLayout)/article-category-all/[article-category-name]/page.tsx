@@ -1,4 +1,4 @@
-import ArticleItem from "@/app/components/ArticeItem";
+import ArticleItem from "@/components/ArticeItem";
 import Link from "next/link";
 
 function ArticleCategory() {

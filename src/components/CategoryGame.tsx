@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { categoryGameList } from "@/app/dataFetch/dataFetch";
+import { categoryGameList } from "@/dataFetch/dataFetch";
 import CategoryItem from "./CategoryItem";
 function GameCategory({ colSpan }: { colSpan?: string }) {
   const router = useRouter();

@@ -3,10 +3,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { gameList } from "@/app/dataFetch/dataFetch";
-import CategoryGame from "@/app/components/CategoryGame";
-import TrendingNew from "@/app/components/TrendingNew";
-import DailyGiftModal from "@/app/components/DailyGiftModal";
+import { gameList } from "@/dataFetch/dataFetch";
+import CategoryGame from "@/components/CategoryGame";
+import TrendingNew from "@/components/TrendingNew";
+import DailyGiftModal from "@/components/DailyGiftModal";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 import Link from "next/link";
 function HomePage() {

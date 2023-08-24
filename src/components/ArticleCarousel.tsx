@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { news } from "@/app/dataFetch/dataFetch";
+import { news } from "@/dataFetch/dataFetch";
 import ArrowRightIcon from "@/asset/icons/ArrowRightIcon";
 function ArticleCarousel() {
   const [initComplete, setInitComplete] = useState(false);

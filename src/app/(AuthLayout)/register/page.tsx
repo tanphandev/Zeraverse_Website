@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
-import AuthForm from "@/app/components/AuthForm";
+import AuthForm from "@/components/AuthForm";
 
 function RegisterPage() {
   return (
