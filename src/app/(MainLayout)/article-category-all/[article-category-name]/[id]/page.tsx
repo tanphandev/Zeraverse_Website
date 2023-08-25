@@ -6,7 +6,7 @@ function Article({ params }: { params: { id: string } }) {
   return (
     <div className="font-nunito text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 py-[24px] px-[28px] mb-[40px]">
       <Link
-        href={"/home"}
+        href={"/"}
         className="text-sm font-bold font-lato text-main-pink-ec cursor-pointer"
       >
         {"<"} Back

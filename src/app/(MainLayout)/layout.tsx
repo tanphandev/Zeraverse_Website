@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import AppBar from "@/components/AppBar";
 import { isOpenSearchModalSelector } from "@/redux-toolkit/selectors/searchSelector";
 import SearchModal from "@/components/SearchModal";
-function MainLayout({ children }: { children: string }) {
+function MainLayout({ children }: { children: React.ReactNode }) {
   const isOpenSeachModal = useSelector(isOpenSearchModalSelector);
   return (
     <div className="bg-mainBackground w-full bg-cover bg-bottom bg-fixed">

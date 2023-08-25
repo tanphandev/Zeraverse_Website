@@ -36,7 +36,7 @@ function HallOfFame() {
     setTabPosition();
   }, [activeTabIndex]);
   const GotoHome = () => {
-    router.push("/home");
+    router.push("/");
   };
   return (
     <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">

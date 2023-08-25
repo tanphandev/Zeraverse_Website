@@ -5,7 +5,7 @@ const tokenRequireAPIs = {
 const nonTokenRequireAPIs = {
   singleSignOn: "/auth/sso",
   registerEmail: "/auth/register-email",
-  LoginEmail: "/auth/login-email",
+  loginEmail: "/auth/login-email",
 };
 
 // const setAuthToken = (token: string) => {

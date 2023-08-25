@@ -1,26 +1,69 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { loginEmail } from "@/redux-toolkit/slices/authenticationSlice";
+import { AppDispatch } from "@/redux-toolkit/store";
+import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+// create schema formik
+const LoginEmailSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Please Enter your password!")
+    .email("Invalid email!"),
+  password: Yup.string()
+    .required("Please enter your password")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+      "Password must contain at least 6 characters, have Uppercase, Lowercase"
+    ),
+});
 
 function AuthForm({ type }: { type: string }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const currentUser = useSelector(currentUserSelector);
+  // check currentUser
+  if (currentUser) {
+    if (!currentUser.username) {
+      router.push("/create-username");
+    } else {
+      router.push("/");
+    }
+  }
+  //config formik
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: LoginEmailSchema,
+    onSubmit: (value) => {
+      const loginUser: LoginUser = {
+        email: value.email,
+        password: value.password,
+      };
+      dispatch(loginEmail(loginUser));
+    },
+  });
+  // Go to Forgot password page
   const handleOnClickForgotPass = () => {
     router.push("/forgot-password");
   };
-
+  // Go to Register page
   const handleOnClickRegister = () => {
     router.push("/register");
   };
-
+  // Go to Login page
   const handleOnClickLogin = () => {
     router.push("/login");
   };
-
   //toggle Password Visibility event
   const togglePasswordVisibility = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -29,15 +72,23 @@ function AuthForm({ type }: { type: string }) {
     setIsPasswordVisible(!isPasswordVisible);
   };
   return (
-    <form className="text-main-whileColor font-lato">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="text-main-whileColor font-lato"
+    >
       <div className="mb-[10px]">
         <label htmlFor="email" className="text-base font-bold block">
           Email
         </label>
         <input
           id="email"
+          type="text"
+          {...formik.getFieldProps("email")}
           className="bg-main-violet-ed text-main-blackColor w-[400px] h-[45px] rounded-[10px] outline-none px-3"
         />
+        {formik.touched.email && formik.errors.email ? (
+          <div className="text-main-pink-be">{formik.errors.email}</div>
+        ) : null}
       </div>
       <div className="mb-1">
         <label htmlFor="password" className="text-base font-bold block">
@@ -46,6 +97,7 @@ function AuthForm({ type }: { type: string }) {
         <div className="relative">
           <input
             id="password"
+            {...formik.getFieldProps("password")}
             type={isPasswordVisible ? "text" : "password"}
             className="bg-main-violet-ed text-main-blackColor w-[400px] h-[45px] rounded-[10px] outline-none px-3"
           />
@@ -60,6 +112,11 @@ function AuthForm({ type }: { type: string }) {
             )}
           </button>
         </div>
+        {formik.touched.password && formik.errors.password ? (
+          <p className="text-justify max-w-[400px] text-main-pink-be">
+            {formik.errors.password}
+          </p>
+        ) : null}
       </div>
       {type === "Login" ? (
         <div className="flex justify-end">
@@ -80,8 +137,10 @@ function AuthForm({ type }: { type: string }) {
           </p>
         </div>
       )}
-      <button className="w-full h-[36px] rounded-[20px] bg-gradient-to-br from-[#F265E4] via-[#7270FF] to-[#5200FF] mb-[11px]">
-        {type}
+      <button type="submit" className="w-full mb-[11px]">
+        <p className=" rounded-[20px] bg-gradient-to-br from-[#F265E4] via-[#7270FF] to-[#5200FF] py-2">
+          {type}
+        </p>
       </button>
       <p className="text-sm font-semibold mb-[7px] text-center">
         or sign in with

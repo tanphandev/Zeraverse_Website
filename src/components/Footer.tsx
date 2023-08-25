@@ -11,7 +11,7 @@ function Footer() {
     <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">
       <div className=" w-full h-full ">
         <div className="flex w-full h-[calc(100%-40px)] items-center justify-between">
-          <Link href={"/home"}>
+          <Link href={"/"}>
             <Image
               className="max-w-[290px] max-h-[156px]"
               src={Logo}

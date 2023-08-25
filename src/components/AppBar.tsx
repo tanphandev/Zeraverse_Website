@@ -37,7 +37,7 @@ function AppBar() {
   };
   // Go to Home
   const GotoHome = () => {
-    router.push("/home");
+    router.push("/");
   };
   return (
     <div>
