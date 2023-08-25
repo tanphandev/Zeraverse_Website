@@ -37,7 +37,7 @@ function PlayStreak() {
   ];
   return (
     <div className="px-[80px] pb-[40px] border-[5px] border-main-pink-f9 rounded-[30px]">
-      <div className="flex justify-center items-end mt-[206px] mb-[22px]">
+      <div className="flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
         <div>
           <div className="relative mx-[15px]">
             <Image src={fame2} alt="fame2" className="w-[233px]" />

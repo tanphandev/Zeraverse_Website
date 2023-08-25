@@ -1,10 +1,12 @@
 "use client";
 import { useEffect } from "react";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Lato, Nunito, Roboto } from "next/font/google";
 import { Providers } from "@/redux-toolkit/Provider";
 import "tw-elements/dist/css/tw-elements.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
+import { ToastContainer, toast } from "react-toastify";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -43,6 +45,18 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${nunito.variable} ${roboto.className}`}
       >
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

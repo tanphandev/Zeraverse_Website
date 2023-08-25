@@ -4,11 +4,14 @@ import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
 import UserIcon from "@/asset/icons/UserIcon";
 import AchievementIcon from "@/asset/icons/AchievementsIcon";
 import LogoutIcon from "@/asset/icons/LogoutIcon";
+import { deleteCookie } from "cookies-next";
 
 function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
   const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(authenticationSlice.actions.setCurrentUser(false));
+    dispatch(authenticationSlice.actions.setCurrentUser(""));
+    deleteCookie("token");
+    localStorage.removeItem("username");
   };
   return (
     <div className="flex flex-col items-start px-4 py-3 rounded-2xl border-[1px] border-main-pink-9d bg-[#0c0020]">

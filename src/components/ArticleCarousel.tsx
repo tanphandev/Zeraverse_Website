@@ -5,7 +5,6 @@ import { news } from "@/dataFetch/dataFetch";
 import ArrowRightIcon from "@/asset/icons/ArrowRightIcon";
 function ArticleCarousel() {
   const [initComplete, setInitComplete] = useState(false);
-  console.log("initComplete", initComplete);
   const init = async () => {
     const { Carousel, initTE } = await import("tw-elements");
     initTE({ Carousel });

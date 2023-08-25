@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { gameList } from "@/dataFetch/dataFetch";
 import CategoryGame from "@/components/CategoryGame";
@@ -10,14 +10,35 @@ import DailyGiftModal from "@/components/DailyGiftModal";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 import Link from "next/link";
 import MainLayout from "./(MainLayout)/layout";
+import ApiCaller from "@/api/apiCaller";
+import { nonTokenRequireAPIs } from "@/api/api";
+import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
 
 export default function Home() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
   const isCurrentUser = useSelector(currentUserSelector);
   const [isShowDailyGiftModal, setIsShowDailyGiftModal] =
     useState<boolean>(false);
+  // GetUserProfile
+  useEffect(() => {
+    const userName = localStorage.getItem("username");
+    if (!!userName) {
+      const fetchUserProfile = async () => {
+        try {
+          const res = await ApiCaller.get(
+            `${nonTokenRequireAPIs.getUserProfile}/${userName}`
+          );
+          dispatch(authenticationSlice.actions.setCurrentUser(res.data));
+        } catch (error) {
+          throw error;
+        }
+      };
+      fetchUserProfile();
+    }
+  }, []);
   useEffect(() => {
     //if isCurrentUser is true, show Daily gift
     if (isCurrentUser) {
@@ -46,7 +67,6 @@ export default function Home() {
     itemMediumList.forEach((item) => {
       item.classList.add("col-span-2", "row-span-2");
     });
-    return;
   }, [isCurrentUser]);
   //close modal event
   const closeModal = () => {

@@ -66,6 +66,7 @@ const config: Config = {
         "blue-dark": "rgba(91, 33, 182, 0.4)",
       },
     },
+    satisfies: ["animate-[fade-in-up_1s_ease-in-out]"],
     extend: {
       fontFamily: {
         lato: ["var(--font-lato)"],
@@ -86,9 +87,14 @@ const config: Config = {
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",
+        fadeUp: "fadeUp 1s ease-in-out",
         slipLeftToRight: "slipLeftToRight 0.5s ease-in-out",
       },
       keyframes: (theme) => ({
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(100%)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },

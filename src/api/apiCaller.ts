@@ -90,7 +90,7 @@ const ApiCaller = {
     data: any,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
-  ): Promise<ApiResponse<any>> {
+  ): Promise<any> {
     return requestAPI(METHOD_PUT, url, headers, data, baseUrl);
   },
 
@@ -99,7 +99,7 @@ const ApiCaller = {
     data?: FormData,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
-  ): Promise<ApiResponse<any>> {
+  ): Promise<any> {
     return requestAPI(METHOD_DELETE, url, headers, data, baseUrl);
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,7 +8,10 @@ import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
-import { loginEmail } from "@/redux-toolkit/slices/authenticationSlice";
+import {
+  loginEmail,
+  registerEmail,
+} from "@/redux-toolkit/slices/authenticationSlice";
 import { AppDispatch } from "@/redux-toolkit/store";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 // create schema formik
@@ -26,6 +29,7 @@ const LoginEmailSchema = Yup.object().shape({
 
 function AuthForm({ type }: { type: string }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isAcceptTerm, setIsAcceptTerm] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector(currentUserSelector);
@@ -34,6 +38,7 @@ function AuthForm({ type }: { type: string }) {
     if (!currentUser.username) {
       router.push("/create-username");
     } else {
+      localStorage.setItem("username", JSON.stringify(currentUser.username));
       router.push("/");
     }
   }
@@ -45,11 +50,16 @@ function AuthForm({ type }: { type: string }) {
     },
     validationSchema: LoginEmailSchema,
     onSubmit: (value) => {
-      const loginUser: LoginUser = {
+      const authUser: AuthUser = {
         email: value.email,
         password: value.password,
       };
-      dispatch(loginEmail(loginUser));
+      if (type === "Login") {
+        dispatch(loginEmail(authUser));
+      } else {
+        dispatch(registerEmail(authUser));
+        router.push("/");
+      }
     },
   });
   // Go to Forgot password page
@@ -129,7 +139,14 @@ function AuthForm({ type }: { type: string }) {
         </div>
       ) : (
         <div className="flex text-center justify-center mb-[14px]">
-          <input type="checkbox" className="mr-[5px]" />
+          <input
+            checked={isAcceptTerm}
+            onChange={() => {
+              setIsAcceptTerm(!isAcceptTerm);
+            }}
+            type="checkbox"
+            className="mr-[5px]"
+          />
           <p className="text-xs inline-block">
             I accept the{" "}
             <span className="text-main-violet-c4">Terms & Conditions</span> and{" "}
@@ -137,7 +154,11 @@ function AuthForm({ type }: { type: string }) {
           </p>
         </div>
       )}
-      <button type="submit" className="w-full mb-[11px]">
+      <button
+        {...(!isAcceptTerm && type === "Register" ? { disabled: true } : {})}
+        type="submit"
+        className="w-full mb-[11px] disabled:opacity-50"
+      >
         <p className=" rounded-[20px] bg-gradient-to-br from-[#F265E4] via-[#7270FF] to-[#5200FF] py-2">
           {type}
         </p>
