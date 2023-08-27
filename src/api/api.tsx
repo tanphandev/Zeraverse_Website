@@ -3,7 +3,7 @@ const tokenRequireAPIs = {
 };
 
 const nonTokenRequireAPIs = {
-  singleSignOn: "/auth/sso",
+  loginWithGoogle: "/auth/sso",
   registerEmail: "/auth/register-email",
   loginEmail: "/auth/login-email",
   updateUserName: "/users/username",

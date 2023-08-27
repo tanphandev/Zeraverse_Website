@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import type { Metadata } from "next";
 import { Lato, Nunito, Roboto } from "next/font/google";
 import { Providers } from "@/redux-toolkit/Provider";
+import AuthProvider from "@/provider/AuthProvider";
 import "tw-elements/dist/css/tw-elements.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -57,7 +58,9 @@ export default function RootLayout({
           pauseOnHover
           theme="dark"
         />
-        <Providers>{children}</Providers>
+        <AuthProvider>
+          <Providers>{children}</Providers>
+        </AuthProvider>
       </body>
     </html>
   );

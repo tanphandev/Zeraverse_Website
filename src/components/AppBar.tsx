@@ -22,11 +22,17 @@ import TagIcon from "@/asset/icons/TagIcon";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const isCurrentUser = useSelector(currentUserSelector);
+  let userName = "";
+  const currentUser = useSelector(currentUserSelector);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [visibleUserOption, setVisibleUserOption] = useState(false);
   const showUserOption = () => setVisibleUserOption(true);
   const hideUserOption = () => setVisibleUserOption(false);
+
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    userName = JSON.parse(localStorage.getItem("username") || "{}");
+  }
   //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -130,7 +136,7 @@ function AppBar() {
             </div>
           </div>
         )}
-        {isCurrentUser ? (
+        {!!currentUser ? (
           <Tippy
             interactive={true}
             placement="bottom"
@@ -150,7 +156,7 @@ function AppBar() {
                   alt="ProfilePicture"
                 />
                 <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
-                  TanPhanDev
+                  {userName}
                 </p>
               </div>
             </div>
@@ -186,7 +192,7 @@ function AppBar() {
           </Link>
         </div>
       </div>
-      {isCurrentUser && <UserBar />}
+      {!!currentUser && <UserBar />}
     </div>
   );
 }

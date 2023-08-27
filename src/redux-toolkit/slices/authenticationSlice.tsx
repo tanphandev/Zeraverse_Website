@@ -38,6 +38,24 @@ const authenticationSlice = createSlice({
           state.error = action.payload.error;
         }
       })
+      .addCase(loginWithGoogle.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(loginWithGoogle.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(loginWithGoogle.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.success) {
+          state.currentUser = action.payload.data;
+          setCookie("token", state.currentUser.token);
+          state.error = "";
+          toast.success("Login Successed");
+        } else {
+          state.error = action.payload.error;
+        }
+      })
       .addCase(registerEmail.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -56,6 +74,7 @@ const authenticationSlice = createSlice({
 
 export default authenticationSlice;
 
+// login With Email
 export const loginEmail = createAsyncThunk(
   "authentication/loginEmail",
   async (loginUser: AuthUser, { rejectWithValue }) => {
@@ -63,6 +82,28 @@ export const loginEmail = createAsyncThunk(
       const res = await ApiCaller.post(
         nonTokenRequireAPIs.loginEmail,
         loginUser
+      );
+      if (!res.success) {
+        toast.error(res.error.message);
+      }
+      return res;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Login With Google
+export const loginWithGoogle = createAsyncThunk(
+  "authentication/loginWithGoogle",
+  async (
+    googleData: { method: string; token: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const res = await ApiCaller.post(
+        nonTokenRequireAPIs.loginWithGoogle,
+        googleData
       );
       if (!res.success) {
         toast.error(res.error.message);

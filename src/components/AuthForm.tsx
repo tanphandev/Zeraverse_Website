@@ -1,15 +1,17 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useSession, signIn } from "next-auth/react";
 import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
 import {
   loginEmail,
+  loginWithGoogle,
   registerEmail,
 } from "@/redux-toolkit/slices/authenticationSlice";
 import { AppDispatch } from "@/redux-toolkit/store";
@@ -26,10 +28,10 @@ const LoginEmailSchema = Yup.object().shape({
       "Password must contain at least 6 characters, have Uppercase, Lowercase"
     ),
 });
-
 function AuthForm({ type }: { type: string }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isAcceptTerm, setIsAcceptTerm] = useState(false);
+  const { data: session } = useSession();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector(currentUserSelector);
@@ -42,6 +44,17 @@ function AuthForm({ type }: { type: string }) {
       router.push("/");
     }
   }
+  // get User data with  Google Data
+  useEffect(() => {
+    if (session) {
+      const googleData = {
+        method: "GOOGLE",
+        token: session.user.token_id,
+      };
+      dispatch(loginWithGoogle(googleData));
+    }
+  }, [session, dispatch]);
+
   //config formik
   const formik = useFormik({
     initialValues: {
@@ -80,6 +93,11 @@ function AuthForm({ type }: { type: string }) {
   ) => {
     event.preventDefault();
     setIsPasswordVisible(!isPasswordVisible);
+  };
+  //handle Click Login with Google
+  const handleSignInWithGoogle = (event: React.MouseEvent) => {
+    event.preventDefault();
+    signIn("google");
   };
   return (
     <form
@@ -167,7 +185,10 @@ function AuthForm({ type }: { type: string }) {
         or sign in with
       </p>
       <div className="flex justify-between mb-[16px]">
-        <button className="bg-main-whileColor rounded-[20px] px-[19px] py-2">
+        <button
+          onClick={handleSignInWithGoogle}
+          className="bg-main-whileColor rounded-[20px] px-[19px] py-2"
+        >
           <GoogleIcon
             className="inline-block mr-[10px]"
             width="25px"
