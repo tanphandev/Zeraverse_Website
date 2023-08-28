@@ -20,7 +20,7 @@ import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSel
 // create schema formik
 const LoginEmailSchema = Yup.object().shape({
   email: Yup.string()
-    .required("Please Enter your password!")
+    .required("Please enter your email!")
     .email("Invalid email!"),
   password: Yup.string()
     .required("Please enter your password")
@@ -33,7 +33,6 @@ function AuthForm({ type }: { type: string }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isAcceptTerm, setIsAcceptTerm] = useState(false);
   const { data: session } = useSession();
-  console.log("session", session);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector(currentUserSelector);

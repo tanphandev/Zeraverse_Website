@@ -9,6 +9,7 @@ const authenticationSlice = createSlice({
   initialState: {
     isLoading: false,
     currentUser: "",
+    isCheckedForgotPassword: false,
     error: null,
   } as any,
   reducers: {
@@ -21,6 +22,7 @@ const authenticationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Status of Login With Email Pasword
       .addCase(loginEmail.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -39,6 +41,7 @@ const authenticationSlice = createSlice({
           state.error = action.payload.error;
         }
       })
+      // Status of Login With Google
       .addCase(loginWithGoogle.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -57,6 +60,7 @@ const authenticationSlice = createSlice({
           state.error = action.payload.error;
         }
       })
+      // Status of Login With Facebook
       .addCase(loginWithFacebook.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -75,6 +79,7 @@ const authenticationSlice = createSlice({
           state.error = action.payload.error;
         }
       })
+      // Status of Register With Email Password
       .addCase(registerEmail.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -87,6 +92,25 @@ const authenticationSlice = createSlice({
         toast.success(
           "A verification email has been sent to you. Please check it!"
         );
+      })
+      // Status of Forgot Password
+      .addCase(forgotPassword.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.success) {
+          state.isCheckedForgotPassword = action.payload.data;
+          state.error = "";
+          toast.success("Please check your email to reset password");
+        } else {
+          state.error = action.payload.error;
+          toast.error(state.error.message);
+        }
       });
   },
 });
@@ -168,7 +192,7 @@ export const loginWithFacebook = createAsyncThunk(
     }
   }
 );
-
+//register user with email and password
 export const registerEmail = createAsyncThunk(
   "authentication/registerEmail",
   async (registerUser: AuthUser, { rejectWithValue, dispatch }) => {
@@ -182,6 +206,24 @@ export const registerEmail = createAsyncThunk(
       if (!res.success) {
         toast.error(res.error.message);
       }
+      return res;
+    } catch (error: any) {
+      dispatch(globalLoadingSlice.actions.setGlobalLoading(false));
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+// forgot password
+export const forgotPassword = createAsyncThunk(
+  "authentication/forgotPassword",
+  async (forgotData: { email: string }, { rejectWithValue, dispatch }) => {
+    try {
+      dispatch(globalLoadingSlice.actions.setGlobalLoading(true));
+      const res = await ApiCaller.post(
+        nonTokenRequireAPIs.forgotPassword,
+        forgotData
+      );
+      dispatch(globalLoadingSlice.actions.setGlobalLoading(false));
       return res;
     } catch (error: any) {
       dispatch(globalLoadingSlice.actions.setGlobalLoading(false));
