@@ -3,9 +3,10 @@ const tokenRequireAPIs = {
 };
 
 const nonTokenRequireAPIs = {
-  loginWithGoogle: "/auth/sso",
+  loginWithSSO: "/auth/sso",
   registerEmail: "/auth/register-email",
   loginEmail: "/auth/login-email",
+  forgotPassword: "/users/forgot-password",
   updateUserName: "/users/username",
   getUserProfile: "/users/profile",
 };

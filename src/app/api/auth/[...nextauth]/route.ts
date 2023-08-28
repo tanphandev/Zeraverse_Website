@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 const handler = NextAuth({
   // Configure one or more authentication providers
   providers: [
@@ -7,18 +8,28 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+    }),
   ],
   callbacks: {
     async jwt({ token, account, user }) {
       // Persist the OAuth access_token to the token right after signin
       if (account) {
-        token.id_token = account.id_token;
+        token.provider = account.provider;
+        if (account.provider === "google") {
+          token.id_token = account.id_token;
+        } else if (account.provider === "facebook") {
+          token.id_token = account.access_token;
+        }
       }
       return token;
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token from a provider.
       session.user.token_id = token.id_token;
+      session.user.provider = token.provider;
       return session;
     },
   },

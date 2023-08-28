@@ -11,6 +11,7 @@ import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
 import {
   loginEmail,
+  loginWithFacebook,
   loginWithGoogle,
   registerEmail,
 } from "@/redux-toolkit/slices/authenticationSlice";
@@ -32,6 +33,7 @@ function AuthForm({ type }: { type: string }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isAcceptTerm, setIsAcceptTerm] = useState(false);
   const { data: session } = useSession();
+  console.log("session", session);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector(currentUserSelector);
@@ -46,12 +48,18 @@ function AuthForm({ type }: { type: string }) {
   }
   // get User data with  Google Data
   useEffect(() => {
-    if (session) {
+    if (session?.user.provider === "google") {
       const googleData = {
         method: "GOOGLE",
         token: session.user.token_id,
       };
       dispatch(loginWithGoogle(googleData));
+    } else if (session?.user.provider === "facebook") {
+      const facebookData = {
+        method: "FACEBOOK",
+        token: session.user.token_id,
+      };
+      dispatch(loginWithFacebook(facebookData));
     }
   }, [session, dispatch]);
 
@@ -98,6 +106,11 @@ function AuthForm({ type }: { type: string }) {
   const handleSignInWithGoogle = (event: React.MouseEvent) => {
     event.preventDefault();
     signIn("google");
+  };
+
+  const handleSignInWithFacebook = (event: React.MouseEvent) => {
+    event.preventDefault();
+    signIn("facebook");
   };
   return (
     <form
@@ -198,7 +211,10 @@ function AuthForm({ type }: { type: string }) {
             Continue with Google
           </p>
         </button>
-        <button className="bg-main-whileColor rounded-[20px] px-[19px] py-2">
+        <button
+          onClick={handleSignInWithFacebook}
+          className="bg-main-whileColor rounded-[20px] px-[19px] py-2"
+        >
           <FacebookColorIcon
             className="inline-block mr-[10px]"
             width="25px"

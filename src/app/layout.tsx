@@ -8,6 +8,7 @@ import "tw-elements/dist/css/tw-elements.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import { ToastContainer, toast } from "react-toastify";
+import GlobalLoading from "@/components/GlobalLoading";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -59,7 +60,10 @@ export default function RootLayout({
           theme="dark"
         />
         <AuthProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <GlobalLoading />
+          </Providers>
         </AuthProvider>
       </body>
     </html>

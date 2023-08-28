@@ -4,7 +4,7 @@ import Logo from "@/asset/image/Logo.png";
 import successAuth from "@/asset/image/successAuth.png";
 import failedAuth from "@/asset/image/failedAuth.png";
 import AuthForm from "@/components/AuthForm";
-import { ReactNode, useEffect, useState } from "react";
+import { useState } from "react";
 
 function LoginPage() {
   const [isShowForm, setIsShowForm] = useState<boolean>(true);
