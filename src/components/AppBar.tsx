@@ -1,15 +1,15 @@
 "use client";
+import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Tippy from "@tippyjs/react/headless";
-import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import ProfilePicture from "@/asset/image/profilePicture.png";
 import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
 import UserBar from "./UserBar";
 import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
-import Link from "next/link";
 import UserOption from "./UserOptions";
 import MenuIcon from "@/asset/icons/MenuIcon";
 import NewIcon from "@/asset/icons/NewsIcon";
@@ -19,6 +19,9 @@ import CasualIcon from "@/asset/icons/CasualIcon";
 import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
+import ApiCaller from "@/api/apiCaller";
+import { nonTokenRequireAPIs } from "@/api/api";
+import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -28,6 +31,24 @@ function AppBar() {
   const [visibleUserOption, setVisibleUserOption] = useState(false);
   const showUserOption = () => setVisibleUserOption(true);
   const hideUserOption = () => setVisibleUserOption(false);
+
+  // GetUserProfile
+  useEffect(() => {
+    const userName = localStorage.getItem("username");
+    if (!!userName) {
+      const fetchUserProfile = async () => {
+        try {
+          const res = await ApiCaller.get(
+            `${nonTokenRequireAPIs.getUserProfile}/${userName}`
+          );
+          dispatch(authenticationSlice.actions.setCurrentUser(res.data));
+        } catch (error) {
+          throw error;
+        }
+      };
+      fetchUserProfile();
+    }
+  }, [dispatch]);
 
   if (typeof window !== "undefined") {
     // Perform localStorage action

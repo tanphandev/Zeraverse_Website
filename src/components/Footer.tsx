@@ -6,7 +6,17 @@ import FacebookIcon from "@/asset/icons/FacebookIcon";
 import TwitterIcon from "@/asset/icons/TwitterIcon";
 import TelegramIcon from "@/asset/icons/TelegramIcon";
 import DiscordIcon from "@/asset/icons/DiscordIcon";
-function Footer() {
+import ApiCaller from "@/api/apiCaller";
+import { nonTokenRequireAPIs } from "@/api/api";
+import { IContact } from "@/interface/IContact";
+//call api to get contacts
+const getContacts = async (): Promise<IContact[]> => {
+  const res = await ApiCaller.get(nonTokenRequireAPIs.contact);
+  const contacts = res.data;
+  return contacts;
+};
+async function Footer() {
+  const contacts: IContact[] = await getContacts();
   return (
     <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">
       <div className=" w-full h-full ">
@@ -60,31 +70,25 @@ function Footer() {
                 </Link>
               </div>
               <div className="flex">
-                <RedditIcon
-                  className="mr-[19px] cursor-pointer"
-                  width="30px"
-                  height="30px"
-                />
-                <FacebookIcon
-                  className="mr-[19px] cursor-pointer"
-                  width="30px"
-                  height="30px"
-                />
-                <TwitterIcon
-                  className="mr-[19px] cursor-pointer"
-                  width="30px"
-                  height="30px"
-                />
-                <TelegramIcon
-                  className="mr-[19px] cursor-pointer"
-                  width="30px"
-                  height="30px"
-                />
-                <DiscordIcon
-                  className="cursor-pointer"
-                  width="30px"
-                  height="30px"
-                />
+                {contacts.map((contact, index) => {
+                  let SocialIcon: JSX.Element | null = null;
+                  if (contact.network === "Facebook") {
+                    SocialIcon = <FacebookIcon width="30px" height="30px" />;
+                  } else if (contact.network === "Twitter") {
+                    SocialIcon = <TwitterIcon width="30px" height="30px" />;
+                  } else if (contact.network === "Telegram") {
+                    SocialIcon = <TelegramIcon width="30px" height="30px" />;
+                  } else if (contact.network === "Discord") {
+                    SocialIcon = <DiscordIcon width="30px" height="30px" />;
+                  }
+                  return (
+                    <Link key={index} href={contact.link}>
+                      <div className="mr-[19px] cursor-pointer">
+                        {SocialIcon}
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

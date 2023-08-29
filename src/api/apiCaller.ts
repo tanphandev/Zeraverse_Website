@@ -5,6 +5,13 @@ const METHOD_POST = "post";
 const METHOD_PUT = "put";
 const METHOD_DELETE = "delete";
 
+export enum cacheType {
+  forceCache = "force-cache",
+  noCache = "no-cache",
+  noStore = "no-store",
+  reload = "reload",
+}
+
 export type ResponseData<T> = {
   success?: boolean;
   data: T;
@@ -26,22 +33,32 @@ async function requestAPI(
   headers: object = {
     "Content-Type": "application/json",
   },
+  cache: string = cacheType.forceCache,
   dataBody: FormData | undefined | object = {},
+  params: any = null,
   baseUrl: string | undefined = BASE_URL
 ): Promise<ApiResponse<any>> {
-  const fullUrl: string = `${baseUrl}${url}`;
+  let fullUrl: string = "";
+  if (params) {
+    const queryParams = new URLSearchParams(params);
+    fullUrl = `${baseUrl}${url}?${queryParams.toString()}`;
+  } else {
+    fullUrl = `${baseUrl}${url}`;
+  }
   const config: { [k: string]: any } = {
     headers: { ...headers },
     method,
   };
-  const accessToken = localStorage.getItem("token") || getCookie("token");
+  // add Cache-Control into Headers
+  config.headers["Cache-Control"] = cache;
+  let accessToken = null;
+  if (typeof window !== "undefined") {
+    accessToken = localStorage.getItem("token") || getCookie("token");
+  }
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
-
-  if (method === METHOD_GET) {
-    config.params = dataBody;
-  } else {
+  if (method !== METHOD_GET) {
     config.body = JSON.stringify(dataBody);
   }
   return fetch(fullUrl, { ...config })
@@ -56,11 +73,13 @@ async function requestAPI(
 const ApiCaller = {
   get(
     url: string,
-    data: FormData | any = null,
+    data: any = null,
+    params?: any,
+    cache?: string,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
-  ): Promise<ApiResponse<any>> {
-    return requestAPI(METHOD_GET, url, headers, data, baseUrl)
+  ): Promise<any> {
+    return requestAPI(METHOD_GET, url, headers, cache, data, params, baseUrl)
       .then((value: any) => {
         return value;
       })
@@ -73,10 +92,12 @@ const ApiCaller = {
     url: string,
     // data: string | FormData | undefined,
     data: any,
+    prams?: any,
+    cache?: string,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_POST, url, headers, data, baseUrl)
+    return requestAPI(METHOD_POST, url, headers, cache, data, prams, baseUrl)
       .then((value: any) => {
         return value;
       })
@@ -88,19 +109,31 @@ const ApiCaller = {
   put(
     url: string,
     data: any,
+    params?: any,
+    cache?: string,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_PUT, url, headers, data, baseUrl);
+    return requestAPI(METHOD_PUT, url, headers, cache, data, params, baseUrl);
   },
 
   delete(
     url: string,
     data?: FormData,
+    params?: any,
+    cache?: string,
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_DELETE, url, headers, data, baseUrl);
+    return requestAPI(
+      METHOD_DELETE,
+      url,
+      headers,
+      cache,
+      data,
+      params,
+      baseUrl
+    );
   },
 };
 

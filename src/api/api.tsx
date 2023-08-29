@@ -9,6 +9,10 @@ const nonTokenRequireAPIs = {
   forgotPassword: "/users/forgot-password",
   updateUserName: "/users/username",
   getUserProfile: "/users/profile",
+  getGame: "/game",
+  getGameCategory: "/game/categories",
+  getNewest: "/article/newest",
+  contact: "/contacts",
 };
 
 // const setAuthToken = (token: string) => {
