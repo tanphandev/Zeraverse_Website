@@ -5,8 +5,8 @@ import * as Yup from "yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Logo from "@/asset/image/Logo.png";
-import { forgotPassword } from "@/redux-toolkit/slices/authenticationSlice";
-import { AppDispatch } from "@/redux-toolkit/store";
+import { AppDispatch } from "@/store/store";
+import { forgotPassword } from "@/services/authenticationSlice";
 
 // create schema formik
 const forgotPasswordSchema = Yup.object().shape({

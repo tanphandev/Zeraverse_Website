@@ -1,5 +1,6 @@
 import CoinIcon from "@/asset/icons/CoinIcon";
 import XmarkICon from "@/asset/icons/XmarkIcon";
+import { IAvatarShop } from "@/interface/IAvatarShop";
 import Image from "next/image";
 
 function BuyShopPopUp({
@@ -28,18 +29,20 @@ function BuyShopPopUp({
           </h2>
           <div className="p-[5px] bg-gradient-to-b from-[#C4B5FD] via-[#979BFF] to-[#EF36C6] rounded-[20px] mb-5">
             <Image
-              src={data.image}
+              src={data.value}
               alt="image"
               className="rounded-[20px] h-[204px] w-auto"
+              height={204}
+              width={204}
             />
           </div>
           <div className="w-full mb-7 text-center">
             <p className="inline text-base font-bold font-nunito mr-[60px]">
-              {data.title}
+              {data.name}
             </p>
             <div className="inline-block items-center">
               <p className="inline text-sm font-black font-nunito mr-[8px]">
-                70
+                {data.price}
               </p>
               <CoinIcon className="inline" width="20px" height="20px" />
             </div>

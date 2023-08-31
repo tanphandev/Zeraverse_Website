@@ -3,12 +3,12 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import gamePicture from "@/asset/image/game0.png";
-import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
+import searchSlice from "@/services/searchSlice";
 import ArrowLeftIcon from "@/asset/icons/ArrowLeftIcon";
 import LogoIcon from "@/asset/icons/LogoIcon";
 import ClearIcon from "@/asset/icons/ClearIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";
-import { isOpenSearchModalSelector } from "@/redux-toolkit/selectors/searchSelector";
+import { isOpenSearchModalSelector } from "@/store/selectors/searchSelector";
 
 function SearchModal() {
   const [searchInput, setSearchInput] = useState<string>("");

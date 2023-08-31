@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import HallOfFameZera from "@/components/HallOfFameZera";
-import GamePlayed from "@/components/HallOfFameGamePlayed";
-import PlaysStreak from "@/components/HallOfFamePlaysStreak";
+import GamePlayed from "@/components/HallOfFame/HallOfFameGamePlayed";
+import HallOfFameZera from "@/components/HallOfFame/HallOfFameZera";
+import PlaysStreak from "@/components/HallOfFame/HallOfFamePlaysStreak";
 const tabs = [
   {
     label: "ZERA",

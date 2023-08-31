@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Tippy from "@tippyjs/react/headless";
 import Logo from "@/asset/image/Logo.png";
 import ProfilePicture from "@/asset/image/profilePicture.png";
-import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+import { currentUserSelector } from "@/store/selectors/authenticationSelector";
+import authenticationSlice from "@/services/authenticationSlice";
+import searchSlice from "@/services/searchSlice";
 import UserBar from "./UserBar";
-import { searchSlice } from "@/redux-toolkit/slices/searchSlice";
 import UserOption from "./UserOptions";
 import MenuIcon from "@/asset/icons/MenuIcon";
 import NewIcon from "@/asset/icons/NewsIcon";
@@ -21,7 +22,7 @@ import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
 import ApiCaller from "@/api/apiCaller";
 import { nonTokenRequireAPIs } from "@/api/api";
-import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
+
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import Background from "@/asset/image/UserPageBackround.png";
-import BuyShopPopUp from "./popup/BuyShopPopUp";
+import BuyShopPopUp from "../popup/BuyShopPopUp";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";

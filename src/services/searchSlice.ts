@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const searchSlice = createSlice({
+const searchSlice = createSlice({
   name: "seach",
   initialState: {
     isOpenSeachModal: false,
@@ -11,3 +11,5 @@ export const searchSlice = createSlice({
     },
   },
 });
+
+export default searchSlice;

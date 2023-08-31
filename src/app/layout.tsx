@@ -2,13 +2,13 @@
 import { useEffect } from "react";
 import type { Metadata } from "next";
 import { Lato, Nunito, Roboto } from "next/font/google";
-import { Providers } from "@/redux-toolkit/Provider";
-import AuthProvider from "@/provider/AuthProvider";
+import ReduxProvider from "@/components/Providers/ReduxProvider";
 import "tw-elements/dist/css/tw-elements.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import { ToastContainer, toast } from "react-toastify";
-import GlobalLoading from "@/components/GlobalLoading";
+import { ToastContainer } from "react-toastify";
+import GlobalLoading from "@/components/Modals/GlobalLoading";
+import SSOProvider from "@/components/Providers/SSOProvider";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -59,12 +59,12 @@ export default function RootLayout({
           pauseOnHover
           theme="dark"
         />
-        <AuthProvider>
-          <Providers>
+        <SSOProvider>
+          <ReduxProvider>
             {children}
             <GlobalLoading />
-          </Providers>
-        </AuthProvider>
+          </ReduxProvider>
+        </SSOProvider>
       </body>
     </html>
   );

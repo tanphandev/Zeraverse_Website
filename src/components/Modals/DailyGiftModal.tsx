@@ -11,7 +11,7 @@ import Gift5 from "@/asset/image/gift5.png";
 import Gift6 from "@/asset/image/gift6.png";
 import Gift7 from "@/asset/image/gift7.png";
 import tick from "@/asset/image/tick.png";
-import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+import { currentUserSelector } from "@/store/selectors/authenticationSelector";
 function DailyGiftModal() {
   const isCurrentUser = useSelector(currentUserSelector);
   const [selectedItems, setSelectedItems] = useState([

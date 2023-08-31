@@ -3,7 +3,7 @@ import MostPlayedPic from "@/asset/image/MostPlayedPic.png";
 import SlipBar from "./SlipBar";
 import { gameList } from "@/dataFetch/dataFetch";
 import PlayListGame from "./PlaylistGame";
-import { UserField } from "../constants/constants";
+import { UserField } from "../../utils/constants";
 type Props = {
   onClick: (title: string) => void;
 };

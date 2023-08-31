@@ -7,9 +7,9 @@ import {
   useRef,
   useState,
 } from "react";
-import AvatarShop from "@/components/AvatarShop";
-import CoverPage from "@/components/CoverPageShop";
-import PlaytimesShop from "@/components/PlayTimesShop";
+import AvatarShop from "@/components/Shops/AvatarShop";
+import CoverPage from "@/components/Shops/CoverPageShop";
+import PlaytimesShop from "@/components/Shops/PlayTimesShop";
 import {
   avatarShoplist,
   coverPageList,

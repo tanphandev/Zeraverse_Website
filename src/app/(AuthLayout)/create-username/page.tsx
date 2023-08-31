@@ -1,7 +1,6 @@
 "use client";
 import { nonTokenRequireAPIs } from "@/api/api";
 import ApiCaller from "@/api/apiCaller";
-import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";

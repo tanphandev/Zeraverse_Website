@@ -1,4 +1,4 @@
-import { globalLoadingSelector } from "@/redux-toolkit/selectors/globalLoadingSelector";
+import { globalLoadingSelector } from "@/store/selectors/globalLoadingSelector";
 import { useSelector } from "react-redux";
 import { HashLoader } from "react-spinners";
 function GlobalLoading() {

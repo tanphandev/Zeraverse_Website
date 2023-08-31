@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import authenticationSlice from "@/redux-toolkit/slices/authenticationSlice";
+import authenticationSlice from "@/services/authenticationSlice";
 import UserIcon from "@/asset/icons/UserIcon";
 import AchievementIcon from "@/asset/icons/AchievementsIcon";
 import LogoutIcon from "@/asset/icons/LogoutIcon";

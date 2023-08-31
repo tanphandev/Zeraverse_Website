@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import BuyShopPopUp from "./popup/BuyShopPopUp";
+import BuyShopPopUp from "../popup/BuyShopPopUp";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import CoinIcon from "@/asset/icons/CoinIcon";

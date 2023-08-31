@@ -1,9 +1,9 @@
 import Link from "next/link";
-import CategoryGame from "@/components/CategoryGame";
-import TrendingNew from "@/components/TrendingNew";
+import CategoryGame from "@/components/Games/CategoryGame";
+import TrendingNew from "@/components/Articles/TrendingNew";
 import MainLayout from "./(MainLayout)/layout";
-import GameList from "@/components/GameList";
-import DailyGiftModal from "@/components/DailyGiftModal";
+import GameList from "@/components/Games/GameList";
+import DailyGiftModal from "@/components/Modals/DailyGiftModal";
 
 export default function Home() {
   return (

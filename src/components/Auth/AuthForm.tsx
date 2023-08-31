@@ -14,9 +14,9 @@ import {
   loginWithFacebook,
   loginWithGoogle,
   registerEmail,
-} from "@/redux-toolkit/slices/authenticationSlice";
-import { AppDispatch } from "@/redux-toolkit/store";
-import { currentUserSelector } from "@/redux-toolkit/selectors/authenticationSelector";
+} from "@/services/authenticationSlice";
+import { AppDispatch } from "@/store/store";
+import { currentUserSelector } from "@/store/selectors/authenticationSelector";
 // create schema formik
 const LoginEmailSchema = Yup.object().shape({
   email: Yup.string()

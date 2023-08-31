@@ -1,13 +1,12 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import UserStatus from "@/components/UserStatus";
-import UserReward from "@/components/UserReward";
-import UserActivities from "@/components/UserActivities";
-import UserFieldDetail from "@/components/UserFieldDetail";
-import { UserField } from "@/constants/constants";
-import UserPlayList from "@/components/UserPlayList";
-import PurchaseHistory from "@/components/PurchaseHistory";
+import { useState } from "react";
+import UserStatus from "@/components/Profile/UserStatus";
+import UserReward from "@/components/Profile/UserReward";
+import UserActivities from "@/components/Profile/UserActivities";
+import UserFieldDetail from "@/components/Profile/UserFieldDetail";
+import { UserField } from "@/utils/constants";
+import UserPlayList from "@/components/Profile/UserPlayList";
+import PurchaseHistory from "@/components/Profile/PurchaseHistory";
 function UserProfile() {
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
   const [isOpenRecentGame, setIsOpenRecentGame] = useState<boolean>(false);

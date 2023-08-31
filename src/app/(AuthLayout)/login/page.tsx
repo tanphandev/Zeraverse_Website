@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
 import successAuth from "@/asset/image/successAuth.png";
 import failedAuth from "@/asset/image/failedAuth.png";
-import AuthForm from "@/components/AuthForm";
+import AuthForm from "@/components/Auth/AuthForm";
 import { useState } from "react";
 
 function LoginPage() {

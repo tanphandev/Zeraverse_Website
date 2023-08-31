@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { gameList } from "@/dataFetch/dataFetch";
 import Image from "next/image";
-import CategoryGame from "@/components/CategoryGame";
+import CategoryGame from "@/components/Games/CategoryGame";
 import Link from "next/link";
 
 function Category() {

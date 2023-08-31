@@ -9,7 +9,6 @@ import Avatar from "@/asset/image/profilePicture.png";
 import PlayStreakLeft from "@/asset/image/PlayStreakLeft.png";
 import PlayStreakRight from "@/asset/image/PlayStreakRight.png";
 import PlayedGameRate from "@/asset/image/playedGameRateAvatar.png";
-
 import RateTable from "./RateTable";
 function PlayStreak() {
   const rateList = [

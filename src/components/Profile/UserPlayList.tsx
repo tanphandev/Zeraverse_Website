@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { userPlayListGame, userPlayListDetail } from "@/dataFetch/dataFetch";
-import DeletePlayListPopUp from "./popup/DeletePlayListPopUp";
+import DeletePlayListPopUp from "../popup/DeletePlayListPopUp";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
 import DeletePlayListIcon from "@/asset/icons/DeletePlayListIcon";
 import DeleteItemIcon from "@/asset/icons/DeleteItemIcon";
