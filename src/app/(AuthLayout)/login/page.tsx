@@ -5,9 +5,9 @@ import successAuth from "@/asset/image/successAuth.png";
 import failedAuth from "@/asset/image/failedAuth.png";
 import AuthForm from "@/components/Auth/AuthForm";
 import { useState } from "react";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 
 function LoginPage() {
-  const [isShowForm, setIsShowForm] = useState<boolean>(true);
   const [loginStatus, setLoginStatus] = useState<string>("success");
   const Confirm = () => {
     return (
@@ -48,16 +48,17 @@ function LoginPage() {
       </div>
     );
   };
+
+  const { loginWithEmail } = useAuthContext();
+  const handleLoginWithEmail = (loginFormData: IAuthFormData) => {
+    loginWithEmail(loginFormData);
+  };
   return (
     <>
-      {isShowForm === true ? (
-        <div className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30">
-          <Image className="w-[200px] h-[108px] mb-4" src={Logo} alt="Logo" />
-          <AuthForm type="Login" />
-        </div>
-      ) : (
-        <Confirm />
-      )}
+      <div className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30">
+        <Image className="w-[200px] h-[108px] mb-4" src={Logo} alt="Logo" />
+        <AuthForm handleSubmit={handleLoginWithEmail} type="Login" />
+      </div>
     </>
   );
 }

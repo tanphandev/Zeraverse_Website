@@ -9,6 +9,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import GlobalLoading from "@/components/Modals/GlobalLoading";
 import SSOProvider from "@/components/Providers/SSOProvider";
+import AuthContextProvider from "@/contexts/AuthContextProvider";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -61,8 +62,10 @@ export default function RootLayout({
         />
         <SSOProvider>
           <ReduxProvider>
-            {children}
-            <GlobalLoading />
+            <AuthContextProvider>
+              {children}
+              <GlobalLoading />
+            </AuthContextProvider>
           </ReduxProvider>
         </SSOProvider>
       </body>

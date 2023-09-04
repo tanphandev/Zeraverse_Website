@@ -1,0 +1,9 @@
+{
+  "BASE_URL": "https://user-api.zeraverse.io/api/v1",
+  "GOOGLE_CLIENT_ID": "371858033556-qbqdmhpas9c0thtv6rhnic84f9jltvvi.apps.googleusercontent.com",
+  "GOOGLE_CLIENT_SECRET": "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",
+  "FACEBOOK_CLIENT_ID": "663954559013968",
+  "FACEBOOK_CLIENT_SECRET": "37fe71147b939d5f6a4b9fd149fd7dce",
+  "NEXTAUTH_SECRET": "secret_key",
+  "NEXTAUTH_URL": "http://localhost:3000"
+}

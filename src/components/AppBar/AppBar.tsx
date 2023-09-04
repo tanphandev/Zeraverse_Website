@@ -7,8 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Tippy from "@tippyjs/react/headless";
 import Logo from "@/asset/image/Logo.png";
 import ProfilePicture from "@/asset/image/profilePicture.png";
-import { currentUserSelector } from "@/store/selectors/authenticationSelector";
-import authenticationSlice from "@/services/authenticationSlice";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 import searchSlice from "@/services/searchSlice";
 import UserBar from "./UserBar";
 import UserOption from "./UserOptions";
@@ -21,40 +20,18 @@ import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
 import ApiCaller from "@/api/apiCaller";
-import { nonTokenRequireAPIs } from "@/api/api";
 
 function AppBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   let userName = "";
-  const currentUser = useSelector(currentUserSelector);
+  const { userInfo } = useAuthContext();
+  const currentUser: boolean = !!userInfo;
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [visibleUserOption, setVisibleUserOption] = useState(false);
   const showUserOption = () => setVisibleUserOption(true);
   const hideUserOption = () => setVisibleUserOption(false);
 
-  // GetUserProfile
-  useEffect(() => {
-    const userName = localStorage.getItem("username");
-    if (!!userName) {
-      const fetchUserProfile = async () => {
-        try {
-          const res = await ApiCaller.get(
-            `${nonTokenRequireAPIs.getUserProfile}/${userName}`
-          );
-          dispatch(authenticationSlice.actions.setCurrentUser(res.data));
-        } catch (error) {
-          throw error;
-        }
-      };
-      fetchUserProfile();
-    }
-  }, [dispatch]);
-
-  if (typeof window !== "undefined") {
-    // Perform localStorage action
-    userName = JSON.parse(localStorage.getItem("username") || "{}");
-  }
   //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);

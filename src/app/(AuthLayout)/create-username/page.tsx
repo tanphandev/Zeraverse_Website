@@ -1,22 +1,20 @@
 "use client";
-import { nonTokenRequireAPIs } from "@/api/api";
-import ApiCaller from "@/api/apiCaller";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import * as userService from "@/services/user.service";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
+import { staticPaths } from "@/utils/paths";
+import { TOAST_MESSAGE } from "@/utils/constants";
 const schema = Yup.object().shape({
   username: Yup.string()
     .required("Please enter your name!")
-    .max(15, "Name be 20 characters or less")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{2,})/,
-      "Your Name must contain at least 2 characters, have Uppercase, Lowercase"
-    ),
+    .min(2, "Name must contain at least 2 characters")
+    .max(15, "Name be 20 characters or less"),
 });
 function CreateUserName() {
-  const dispatch = useDispatch();
+  const { token, setUsernameAuth } = useAuthContext();
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -24,27 +22,20 @@ function CreateUserName() {
     },
     validationSchema: schema,
     onSubmit: (value) => {
-      handleChangeUserName(value);
+      handleChangeUserName(value.username);
     },
   });
-  const handleChangeUserName = async (userData: { username: string }) => {
+  const handleChangeUserName = async (username: string) => {
     try {
-      const res = await ApiCaller.put(
-        nonTokenRequireAPIs.updateUserName,
-        userData
-      );
-      if (res.success) {
-        //store username into localstorage
-        localStorage.setItem(
-          "username",
-          JSON.stringify(`@${userData.username}`)
-        );
-        router.push("/");
-      } else {
-        toast.error(res.error.message);
-      }
-    } catch (err: any) {
-      throw err;
+      if (token === null) return;
+      const { data } = await userService.changeUserNameUser(username, token);
+      setUsernameAuth(username);
+      localStorage.setItem("username", `@${username}`);
+      router.push(staticPaths.home);
+      toast.success(TOAST_MESSAGE.CREATE_USER_NAME_SUCCESS);
+    } catch (e: any) {
+      toast.error(e.message);
+      throw e;
     }
   };
   return (

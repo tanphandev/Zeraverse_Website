@@ -1,24 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useSession, signIn } from "next-auth/react";
 import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
-import {
-  loginEmail,
-  loginWithFacebook,
-  loginWithGoogle,
-  registerEmail,
-} from "@/services/authenticationSlice";
-import { AppDispatch } from "@/store/store";
-import { currentUserSelector } from "@/store/selectors/authenticationSelector";
+
 // create schema formik
-const LoginEmailSchema = Yup.object().shape({
+const AuthFormSchema = Yup.object().shape({
   email: Yup.string()
     .required("Please enter your email!")
     .email("Invalid email!"),
@@ -29,57 +23,33 @@ const LoginEmailSchema = Yup.object().shape({
       "Password must contain at least 6 characters, have Uppercase, Lowercase"
     ),
 });
-function AuthForm({ type }: { type: string }) {
+function AuthForm({
+  type,
+  handleSubmit,
+}: {
+  type: string;
+  handleSubmit: (authFormData: IAuthFormData) => void | any;
+}) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isAcceptTerm, setIsAcceptTerm] = useState(false);
+  const { loginWithSSO } = useAuthContext();
   const { data: session } = useSession();
+  console.log("session", session);
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
-  const currentUser = useSelector(currentUserSelector);
-  // check currentUser
-  if (currentUser) {
-    if (!currentUser.username) {
-      router.push("/create-username");
-    } else {
-      localStorage.setItem("username", JSON.stringify(currentUser.username));
-      router.push("/");
-    }
-  }
-  // get User data with  Google Data
-  useEffect(() => {
-    if (session?.user.provider === "google") {
-      const googleData = {
-        method: "GOOGLE",
-        token: session.user.token_id,
-      };
-      dispatch(loginWithGoogle(googleData));
-    } else if (session?.user.provider === "facebook") {
-      const facebookData = {
-        method: "FACEBOOK",
-        token: session.user.token_id,
-      };
-      dispatch(loginWithFacebook(facebookData));
-    }
-  }, [session, dispatch]);
 
-  //config formik
+  // config formik
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: LoginEmailSchema,
+    validationSchema: AuthFormSchema,
     onSubmit: (value) => {
-      const authUser: AuthUser = {
+      const authFormData: IAuthFormData = {
         email: value.email,
         password: value.password,
       };
-      if (type === "Login") {
-        dispatch(loginEmail(authUser));
-      } else {
-        dispatch(registerEmail(authUser));
-        router.push("/");
-      }
+      handleSubmit(authFormData);
     },
   });
   // Go to Forgot password page
@@ -102,11 +72,11 @@ function AuthForm({ type }: { type: string }) {
     setIsPasswordVisible(!isPasswordVisible);
   };
   //handle Click Login with Google
-  const handleSignInWithGoogle = (event: React.MouseEvent) => {
+  const handleSignInWithGoogle = async (event: React.MouseEvent) => {
     event.preventDefault();
     signIn("google");
   };
-
+  //handle Click Login with Facebook
   const handleSignInWithFacebook = (event: React.MouseEvent) => {
     event.preventDefault();
     signIn("facebook");

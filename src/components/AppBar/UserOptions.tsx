@@ -1,19 +1,15 @@
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import authenticationSlice from "@/services/authenticationSlice";
 import UserIcon from "@/asset/icons/UserIcon";
 import AchievementIcon from "@/asset/icons/AchievementsIcon";
 import LogoutIcon from "@/asset/icons/LogoutIcon";
 import { signOut } from "next-auth/react";
 
-import { deleteCookie } from "cookies-next";
-
 function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
   const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(authenticationSlice.actions.setCurrentUser(""));
-    deleteCookie("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("accessToken");
     signOut();
   };
   return (
