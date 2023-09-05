@@ -1,12 +1,12 @@
 "use client";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Logo from "@/asset/image/Logo.png";
-import { AppDispatch } from "@/store/store";
-import { forgotPassword } from "@/services/authenticationSlice";
+import * as AuthService from "@/services/auth.service";
+import { toast } from "react-toastify";
+import { TOAST_MESSAGE } from "@/utils/constants";
 
 // create schema formik
 const forgotPasswordSchema = Yup.object().shape({
@@ -16,7 +16,6 @@ const forgotPasswordSchema = Yup.object().shape({
 });
 function ForgotPassword() {
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
   //config formik
   const formik = useFormik({
     initialValues: {
@@ -24,9 +23,22 @@ function ForgotPassword() {
     },
     validationSchema: forgotPasswordSchema,
     onSubmit: (value) => {
-      dispatch(forgotPassword({ email: value.email }));
+      handleForgotPassword({ email: value.email });
     },
   });
+
+  const handleForgotPassword = async (forgotData: { email: string }) => {
+    try {
+      const { success, data } = await AuthService.forgotPassword(forgotData);
+      if (success) {
+        toast.success(TOAST_MESSAGE.RESET_PASSWORD);
+      }
+    } catch (e: any) {
+      toast.error(e?.message);
+      throw e;
+    }
+  };
+
   const handleOnClickLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     router.push("/login");

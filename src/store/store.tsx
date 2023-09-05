@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authenticationSlice from "@/services/authenticationSlice";
+import authenticationSlice from "@/services/auth.service";
 import searchSlice from "@/services/searchSlice";
 import globalLoadingSlice from "@/services/globalLoadingSlice";
 
 export const store = configureStore({
   reducer: {
-    globalLoading: globalLoadingSlice.reducer,
     authentication: authenticationSlice.reducer,
+    globalLoading: globalLoadingSlice.reducer,
     search: searchSlice.reducer,
   },
 });

@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import AppBar from "@/components/AppBar/AppBar";
-import SearchModal from "@/components/Modals/SearchModal";
+// import SearchModal from "@/components/Modals/SearchModal";
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-mainBackground w-full bg-cover bg-bottom bg-fixed">
@@ -9,7 +9,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
         <div className="flex-1">{children}</div>
       </div>
       <Footer />
-      <SearchModal />
+      {/* <SearchModal /> */}
     </div>
   );
 }

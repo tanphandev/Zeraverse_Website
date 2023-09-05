@@ -14,6 +14,7 @@ const authenticationSlice = createSlice({
   },
 });
 
+export default authenticationSlice;
 // Login with email
 export const loginWithEmail = async (loginFormData: IAuthFormData) => {
   try {
@@ -50,4 +51,13 @@ export const registerWithEmail = async (registerData: IAuthFormData) => {
     throw e;
   }
 };
-export default authenticationSlice;
+
+// forgot password
+export const forgotPassword = async (forgotData: { email: string }) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.forgot_password, forgotData);
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};

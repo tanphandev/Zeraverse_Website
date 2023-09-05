@@ -1,10 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useSession, signIn } from "next-auth/react";
 import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
@@ -32,7 +30,6 @@ function AuthForm({
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isAcceptTerm, setIsAcceptTerm] = useState(false);
-  const { loginWithSSO } = useAuthContext();
   const { data: session } = useSession();
   console.log("session", session);
   const router = useRouter();

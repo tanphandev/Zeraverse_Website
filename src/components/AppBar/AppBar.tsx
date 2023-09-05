@@ -2,8 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Tippy from "@tippyjs/react/headless";
 import Logo from "@/asset/image/Logo.png";
 import ProfilePicture from "@/asset/image/profilePicture.png";
@@ -19,7 +19,6 @@ import CasualIcon from "@/asset/icons/CasualIcon";
 import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
-import ApiCaller from "@/api/apiCaller";
 
 function AppBar() {
   const router = useRouter();

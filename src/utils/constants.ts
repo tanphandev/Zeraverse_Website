@@ -37,6 +37,11 @@ export enum VERIFY_STATUS {
   INIT = "INIT",
 }
 
+export enum MODAL_STATUS {
+  OPEN = "OPEN",
+  CLOSE = "CLOSE",
+}
+
 // sso method
 export enum SSO_METHOD {
   FACEBOOK = "FACEBOOK",
@@ -48,8 +53,26 @@ export const TOAST_MESSAGE = {
   LOGIN_SUCCESS: "Login Successed",
   LOGIN_FAIL: "Login Failed",
   CHECK_EMAIL: "A verification email has been sent to you. Please check it!",
+  RESET_PASSWORD: "Please check your email to reset password",
   CREATE_USER_NAME_SUCCESS: "Create User Name Successed",
 };
+
+//modal
+export enum MODAL_NAME {
+  NONE = "NONE",
+  SEARCH = "SEARCH",
+  BUY_AVATAR = "BUY_AVATAR",
+  // EDIT_PROFILE = "EDIT_PROFILE",
+  // DAILY_BONUS = "DAILY_BONUS",
+  // BUY = "BUY",
+  // PLAYLIST = "PLAYLIST",
+  // DELETE_PLAYLIST = "DELETE_PLAYLIST",
+  // CONFIRM = "CONFIRM",
+  // REPORT = "REPORT",
+  // BUY_TIME = "BUY_TIME",
+  // USERS_ONLINE_GAME = "USERS_ONLINE_GAME",
+  // RESET_LOGIN = "RESET_LOGIN",
+}
 
 export enum UserField {
   recentGame = "Recent games",
