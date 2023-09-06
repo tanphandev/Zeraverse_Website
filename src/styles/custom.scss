@@ -1,0 +1,9 @@
+// search modal css
+.search-box {
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+}
+
+.search-box.hide-modal {
+  transform: translateX(-120%);
+}

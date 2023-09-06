@@ -72,14 +72,6 @@
 }
 
 /* css */
-.search-box {
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(0);
-}
-
-.search-box.hide {
-  transform: translateX(-120%);
-}
 /* show delete option of Playlist Game when hover delete icon */
 .delete-icon:hover .delete-option {
   display: block;

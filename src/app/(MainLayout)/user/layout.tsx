@@ -3,23 +3,34 @@ import UserPageBackground from "@/asset/image/UserPageBackround.png";
 import Avatar from "@/asset/image/profilePicture.png";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
+import EditIcon from "@/asset/icons/EditIcon";
 
 function UserLayout({ children }: { children: string }) {
   return (
     <div className="flex-1">
-      <div className="relative">
-        <Image
-          src={UserPageBackground}
-          alt="bacground"
-          className="w-full h-[350px] rounded-[20px]"
-        />
-        <Image
-          className="absolute bottom-0 left-11 translate-y-1/2"
-          src={Avatar}
-          alt="avatar"
-          width={204}
-          height={204}
-        />
+      <div className="relative group rounded-[20px]">
+        <div>
+          <Image
+            src={UserPageBackground}
+            alt="bacground"
+            className="w-full h-[350px] rounded-[20px]"
+          />
+          <div className="transition-all hidden group-hover:flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]">
+            <EditIcon width="30px" height="30px" />
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-11 translate-y-1/2 rounded-[20px]">
+          <Image
+            className="rounded-[20px]"
+            src={Avatar}
+            alt="avatar"
+            width={204}
+            height={204}
+          />
+          <div className="transition-all flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]">
+            <EditIcon width="30px" height="30px" />
+          </div>
+        </div>
       </div>
       <div className="flex justify-between items-center mt-[10px] mb-[27px]">
         <div className="font-lato text-main-whileColor ml-[264px] w-[306px]">

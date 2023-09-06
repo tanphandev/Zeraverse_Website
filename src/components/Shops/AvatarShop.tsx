@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import BuyShopPopUp from "../popup/BuyShopPopUp";
+import BuyShopModal from "../Modals/BuyShopModal";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
@@ -115,7 +115,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
       />
       {/* Buy Avatar PopUp */}
       {isOpenBuyAvatarPopUp && (
-        <BuyShopPopUp
+        <BuyShopModal
           title="Avatar"
           data={dataPopUp}
           onClickBuy={handleOnClickBuy}

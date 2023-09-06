@@ -28,6 +28,30 @@ export const HTTP_ERROR_CODE = {
   UNDER_MAINTENANCE: 503,
 };
 
+// http method
+export const HTTP_METHOD = {
+  METHOD_GET: "get",
+  METHOD_POST: "post",
+  METHOD_PUT: "put",
+  METHOD_DELETE: "delete",
+};
+
+//toast message
+export const TOAST_MESSAGE = {
+  LOGIN_SUCCESS: "Login Successed",
+  LOGIN_FAIL: "Login Failed",
+  CHECK_EMAIL: "A verification email has been sent to you. Please check it!",
+  RESET_PASSWORD: "Please check your email to reset password",
+  CREATE_USER_NAME_SUCCESS: "Create User Name Successed",
+};
+
+// SHOP NAME
+export enum SHOP_NAME {
+  AVATAR = "Avatar",
+  COVER = "Cover",
+  PLAYTIME = "Playtimes",
+}
+
 // verify_status
 export enum VERIFY_STATUS {
   NOT_START = "NOT_START",
@@ -48,20 +72,21 @@ export enum SSO_METHOD {
   GOOGLE = "GOOGLE",
 }
 
-//toast message
-export const TOAST_MESSAGE = {
-  LOGIN_SUCCESS: "Login Successed",
-  LOGIN_FAIL: "Login Failed",
-  CHECK_EMAIL: "A verification email has been sent to you. Please check it!",
-  RESET_PASSWORD: "Please check your email to reset password",
-  CREATE_USER_NAME_SUCCESS: "Create User Name Successed",
-};
+//cache type
+export enum cacheType {
+  forceCache = "force-cache",
+  noCache = "no-cache",
+  noStore = "no-store",
+  reload = "reload",
+}
 
 //modal
 export enum MODAL_NAME {
   NONE = "NONE",
+  LOADING = "LOADING",
   SEARCH = "SEARCH",
   BUY_AVATAR = "BUY_AVATAR",
+
   // EDIT_PROFILE = "EDIT_PROFILE",
   // DAILY_BONUS = "DAILY_BONUS",
   // BUY = "BUY",

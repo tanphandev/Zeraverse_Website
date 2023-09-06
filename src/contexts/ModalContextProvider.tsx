@@ -6,15 +6,18 @@ import {
   useMemo,
   useState,
 } from "react";
-
+import * as helper from "@/utils/helper";
 import { MODAL_NAME, MODAL_STATUS } from "@/utils/constants";
 import SearchModal from "@/components/Modals/SearchModal";
+import BuyShopModal from "@/components/Modals/BuyShopModal";
+import GlobalLoading from "@/components/Modals/GlobalLoading";
 
 type ModalContextType = {
   modal: MODAL_NAME;
   setModal: React.Dispatch<React.SetStateAction<MODAL_NAME>>;
   openModal: (modalName: MODAL_NAME) => void;
   closeModal: () => void;
+  closeModalWithAnimation: (duration: number) => void;
   payload: any;
   setPayload: React.Dispatch<React.SetStateAction<any>>;
   statusModal: MODAL_STATUS;
@@ -25,16 +28,8 @@ const ModalContext = createContext(null as any);
 
 const Modal: any = {
   [MODAL_NAME.SEARCH]: <SearchModal />,
-  //   [MODAL_NAME.EDIT_PROFILE]: <ModalEditProfile />,
-  //   [MODAL_NAME.DAILY_BONUS]: <ModalDailyBonus />,
-  //   [MODAL_NAME.BUY]: <ModalBuy />,
-  //   [MODAL_NAME.PLAYLIST]: <ModalPlaylist />,
-  //   [MODAL_NAME.DELETE_PLAYLIST]: <ModalDeletePlaylist />,
-  //   [MODAL_NAME.CONFIRM]: <ModalConfirm />,
-  //   [MODAL_NAME.REPORT]: <ModalReport />,
-  //   [MODAL_NAME.BUY_TIME]: <ModalBuyTime />,
-  //   [MODAL_NAME.USERS_ONLINE_GAME]: <ModalUsersOnline />,
-  //   [MODAL_NAME.RESET_LOGIN]: <ModalResetLogin />,
+  [MODAL_NAME.LOADING]: <GlobalLoading />,
+  [MODAL_NAME.BUY_AVATAR]: <BuyShopModal />,
 };
 
 export const useModalContext = () => {
@@ -54,19 +49,21 @@ export const ModalContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [payload, setPayload] = useState<any>();
-  const [modal, setModal] = useState<MODAL_NAME>(MODAL_NAME.SEARCH);
+  const [modal, setModal] = useState<MODAL_NAME>(MODAL_NAME.NONE);
   const [statusModal, setStatusModal] = useState<MODAL_STATUS>(
     MODAL_STATUS.CLOSE
   );
 
+  const closeModalWithAnimation = useCallback((duration: number = 300) => {
+    document.getElementById("modal")?.classList.add("hide-modal");
+    helper.sleep(duration).then(() => {
+      openModal(MODAL_NAME.NONE);
+    });
+  }, []);
+
   const closeModal = useCallback(() => {
     setModal(MODAL_NAME.NONE);
   }, []);
-
-  const closeModalWithAnimation = (duration = 150) => {
-    // document.getElementById("modal").classList?.remove("animation-open-modal");
-    // sleep(duration).then(() => openModal(MODAL_NAME.NONE));
-  };
 
   const openModal = useCallback((modalName: MODAL_NAME) => {
     setModal(modalName);
@@ -78,6 +75,7 @@ export const ModalContextProvider = ({
       setModal,
       openModal,
       closeModal,
+      closeModalWithAnimation,
       payload,
       setPayload,
       statusModal,
@@ -88,6 +86,7 @@ export const ModalContextProvider = ({
       setModal,
       openModal,
       closeModal,
+      closeModalWithAnimation,
       payload,
       setPayload,
       statusModal,
@@ -96,7 +95,7 @@ export const ModalContextProvider = ({
   );
 
   return (
-    <ModalContext.Provider value={{ modalProvider }}>
+    <ModalContext.Provider value={modalProvider}>
       {modal === "NONE" ? null : Modal[modal]}
       {children}
     </ModalContext.Provider>

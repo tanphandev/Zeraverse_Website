@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
-import { ISso } from "@/interface/ISso";
+import { ISso } from "@/interface/auth/ISso";
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState: {

@@ -1,34 +1,47 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import useSWR from "swr";
 import CoinIcon from "@/asset/icons/CoinIcon";
-import ApiCaller from "@/api/apiCaller";
-import { nonTokenRequireAPIs } from "@/api/api";
-import { IAvatarShop } from "@/interface/IAvatarShop";
-import BuyShopPopUp from "../popup/BuyShopPopUp";
-//call api to get items in avatar shop
-const avatarShopFetcher = async (): Promise<IAvatarShop[]> => {
-  const res = await ApiCaller.get(nonTokenRequireAPIs.getAvatarShop);
-  return res.data.rows;
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import * as shopService from "@/services/shop.service";
+import { avatarShopSelector } from "@/store/selectors/shopSelector";
+import { IAvatarShop } from "@/interface/shop/IAvatarShop";
+import { useModalContext } from "@/contexts/ModalContextProvider";
+import { MODAL_NAME, SHOP_NAME } from "@/utils/constants";
+type Props = {
+  zera?: number | null;
 };
-function UserBar() {
-  const [isOpenBuyModal, setIsOpenBuyModal] = useState<boolean>(false);
-  const { data: avatarShop } = useSWR("getAvatarShop", avatarShopFetcher);
-  //
-  const openBuyModalPopUp = () => {
-    setIsOpenBuyModal(true);
-  };
-  //
-  const handleOnClickBuy = () => {};
-  const closePopUp = () => {};
 
+type PayLoadBuyModal = {
+  title: SHOP_NAME;
+  id: number;
+  name: string;
+  price: number;
+  url: string;
+};
+function UserBar({ zera }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const avatarShop = useSelector<RootState>(
+    avatarShopSelector
+  ) as IAvatarShop[];
+  const { openModal, setPayload } = useModalContext();
+  console.log("avatarShop", avatarShop);
+  //call api to get items in avatar shop
+  useEffect(() => {
+    dispatch(shopService.getAvatarShop({}));
+  }, []);
+  // handleClickBuy
+  const handleClickBuyAvatar = (payload: PayLoadBuyModal) => {
+    openModal(MODAL_NAME.BUY_AVATAR);
+    setPayload(payload);
+  };
   return (
     <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[3px] ">
       <div className="w-[146px] border-b-[1px] border-main-violet-c4">
         <h2 className="my-[10px] text-base font-black font-nunito text-main-whileColor text-center">
-          4070{" "}
+          {zera}
           <CoinIcon className="ml-2 inline-block" width="20px" height="20px" />
         </h2>
       </div>
@@ -46,20 +59,21 @@ function UserBar() {
               {/* buy */}
               <div className="hidden group-hover:flex absolute items-center justify-center top-0 left-0 bottom-0 right-0 bg-main-grayColor-40 rounded-[10px]">
                 <button
-                  onClick={openBuyModalPopUp}
+                  onClick={() => {
+                    const payload = {
+                      title: SHOP_NAME.AVATAR,
+                      id: item.id,
+                      name: item.name,
+                      price: item.price,
+                      url: item.url,
+                    };
+                    handleClickBuyAvatar(payload);
+                  }}
                   className="px-[10px] py-[5px] rounded-[10px] bg-gradient-to-b from-[#9D174D] to-[#5F0026]"
                 >
                   <p className="text-[10px] font-bold font-nunito text-main-whileColor">
                     Buy now
                   </p>
-                  {isOpenBuyModal && (
-                    <BuyShopPopUp
-                      title="Avatar"
-                      data={item}
-                      onClickBuy={handleOnClickBuy}
-                      onClose={closePopUp}
-                    />
-                  )}
                 </button>
               </div>
             </div>

@@ -1,16 +1,7 @@
 import { getCookie } from "cookies-next";
-const BASE_URL = process.env.BASE_URL;
-const METHOD_GET = "get";
-const METHOD_POST = "post";
-const METHOD_PUT = "put";
-const METHOD_DELETE = "delete";
-
-export enum cacheType {
-  forceCache = "force-cache",
-  noCache = "no-cache",
-  noStore = "no-store",
-  reload = "reload",
-}
+import { config } from "@/envs/env";
+import { HTTP_METHOD, cacheType } from "@/utils/constants";
+const BASE_URL = config["BASE_URL"];
 
 export type ResponseData<T> = {
   success?: boolean;
@@ -31,12 +22,15 @@ async function requestAPI(
   method: string,
   url: string,
   headers: object = {
-    "Content-Type": "application/json",
+    Accept: "application/json",
+    "Content-Type": "application/json; charset=utf-8",
+    "Access-Control-Allow-Credentials": true,
+    "X-Requested-With": "XMLHttpRequest",
   },
   cache: string = cacheType.forceCache,
   dataBody: FormData | undefined | object = {},
   params: any = null,
-  baseUrl: string | undefined = BASE_URL
+  baseUrl: string = BASE_URL
 ): Promise<ApiResponse<any>> {
   let fullUrl: string = "";
   if (params) {
@@ -53,12 +47,13 @@ async function requestAPI(
   config.headers["Cache-Control"] = cache;
   let accessToken = null;
   if (typeof window !== "undefined") {
-    accessToken = localStorage.getItem("token") || getCookie("token");
+    accessToken =
+      localStorage.getItem("accessToken") || getCookie("accessToken");
   }
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  if (method !== METHOD_GET) {
+  if (method !== HTTP_METHOD.METHOD_GET) {
     config.body = JSON.stringify(dataBody);
   }
   return fetch(fullUrl, { ...config })
@@ -79,7 +74,15 @@ const ApiCaller = {
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_GET, url, headers, cache, data, params, baseUrl)
+    return requestAPI(
+      HTTP_METHOD.METHOD_GET,
+      url,
+      headers,
+      cache,
+      data,
+      params,
+      baseUrl
+    )
       .then((value: any) => {
         return value;
       })
@@ -97,7 +100,15 @@ const ApiCaller = {
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_POST, url, headers, cache, data, prams, baseUrl)
+    return requestAPI(
+      HTTP_METHOD.METHOD_POST,
+      url,
+      headers,
+      cache,
+      data,
+      prams,
+      baseUrl
+    )
       .then((value: any) => {
         return value;
       })
@@ -114,7 +125,15 @@ const ApiCaller = {
     headers?: object,
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
-    return requestAPI(METHOD_PUT, url, headers, cache, data, params, baseUrl);
+    return requestAPI(
+      HTTP_METHOD.METHOD_PUT,
+      url,
+      headers,
+      cache,
+      data,
+      params,
+      baseUrl
+    );
   },
 
   delete(
@@ -126,7 +145,7 @@ const ApiCaller = {
     baseUrl: string | undefined = BASE_URL
   ): Promise<any> {
     return requestAPI(
-      METHOD_DELETE,
+      HTTP_METHOD.METHOD_DELETE,
       url,
       headers,
       cache,

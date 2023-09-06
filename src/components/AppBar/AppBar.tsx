@@ -1,16 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import Tippy from "@tippyjs/react/headless";
 import Logo from "@/asset/image/Logo.png";
-import ProfilePicture from "@/asset/image/profilePicture.png";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
-import searchSlice from "@/services/searchSlice";
-import UserBar from "./UserBar";
 import UserOption from "./UserOptions";
+import { useModalContext } from "@/contexts/ModalContextProvider";
+import { MODAL_NAME } from "@/utils/constants";
+import { staticPaths } from "@/utils/paths";
+import UserBar from "./UserBar";
 import MenuIcon from "@/asset/icons/MenuIcon";
 import NewIcon from "@/asset/icons/NewsIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";
@@ -19,13 +18,12 @@ import CasualIcon from "@/asset/icons/CasualIcon";
 import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
-
+import CustomImage from "../Others/CustomImage";
 function AppBar() {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  let userName = "";
   const { userInfo } = useAuthContext();
-  const currentUser: boolean = !!userInfo;
+  const playtime = userInfo?.playtime;
+  console.log("userInfo", userInfo);
+  const { openModal } = useModalContext();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [visibleUserOption, setVisibleUserOption] = useState(false);
   const showUserOption = () => setVisibleUserOption(true);
@@ -35,23 +33,20 @@ function AppBar() {
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
-  // dispatch action to open SearchModal
+  // open search Modal
   const openSeachModal = () => {
-    dispatch(searchSlice.actions.setIsSeachModal(true));
-  };
-  // Go to Home
-  const GotoHome = () => {
-    router.push("/");
+    openModal(MODAL_NAME.SEARCH);
   };
   return (
     <div>
       <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[16px] ">
-        <Image
-          onClick={GotoHome}
-          className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"
-          src={Logo}
-          alt="Logo"
-        />
+        <Link href={staticPaths.home}>
+          <Image
+            className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"
+            src={Logo}
+            alt="Logo"
+          />
+        </Link>
         <div className="pb-4 border-b-[1px] border-main-violet-c4 ">
           <button onClick={handleToggleMenu}>
             <MenuIcon className="mr-4" width="42" height="42px" />
@@ -134,7 +129,7 @@ function AppBar() {
             </div>
           </div>
         )}
-        {!!currentUser ? (
+        {!!userInfo ? (
           <Tippy
             interactive={true}
             placement="bottom"
@@ -145,16 +140,16 @@ function AppBar() {
             )}
           >
             <div onClick={visibleUserOption ? hideUserOption : showUserOption}>
-              <div className="mt-[9px] cursor-pointer">
-                <Image
+              <div className="flex flex-col items-center mt-[9px] cursor-pointer">
+                <CustomImage
                   className="rounded-[10px]"
-                  src={ProfilePicture}
+                  src={userInfo?.avatar}
                   width={94}
                   height={94}
                   alt="ProfilePicture"
                 />
                 <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
-                  {userName}
+                  {userInfo.username}
                 </p>
               </div>
             </div>
@@ -190,7 +185,7 @@ function AppBar() {
           </Link>
         </div>
       </div>
-      {!!currentUser && <UserBar />}
+      {!!userInfo && <UserBar zera={userInfo?.zera} />}
     </div>
   );
 }

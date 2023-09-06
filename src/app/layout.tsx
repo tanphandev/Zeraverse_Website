@@ -5,9 +5,8 @@ import { Lato, Nunito, Roboto } from "next/font/google";
 import ReduxProvider from "@/components/Providers/ReduxProvider";
 import "tw-elements/dist/css/tw-elements.min.css";
 import "react-toastify/dist/ReactToastify.css";
-import "./globals.css";
+import "@/styles/globals.scss";
 import { ToastContainer } from "react-toastify";
-import GlobalLoading from "@/components/Modals/GlobalLoading";
 import SSOProvider from "@/components/Providers/SSOProvider";
 import AuthContextProvider from "@/contexts/AuthContextProvider";
 import { ModalContextProvider } from "@/contexts/ModalContextProvider";
@@ -63,10 +62,9 @@ export default function RootLayout({
         />
         <SSOProvider>
           <ReduxProvider>
-            <AuthContextProvider>
-              <ModalContextProvider> {children}</ModalContextProvider>
-              <GlobalLoading />
-            </AuthContextProvider>
+            <ModalContextProvider>
+              <AuthContextProvider>{children}</AuthContextProvider>
+            </ModalContextProvider>
           </ReduxProvider>
         </SSOProvider>
       </body>

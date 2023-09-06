@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Gift1 from "@/asset/image/gift1.png";
@@ -11,9 +10,10 @@ import Gift5 from "@/asset/image/gift5.png";
 import Gift6 from "@/asset/image/gift6.png";
 import Gift7 from "@/asset/image/gift7.png";
 import tick from "@/asset/image/tick.png";
-import { currentUserSelector } from "@/store/selectors/authenticationSelector";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 function DailyGiftModal() {
-  const isCurrentUser = useSelector(currentUserSelector);
+  const { userInfo } = useAuthContext();
+  const isCurrentUser: boolean = !!userInfo;
   const [selectedItems, setSelectedItems] = useState([
     false,
     false,

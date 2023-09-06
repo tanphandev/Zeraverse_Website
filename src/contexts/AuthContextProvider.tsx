@@ -9,25 +9,26 @@ import {
   useState,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { staticPaths } from "@/utils/paths";
-import { ISso } from "@/interface/ISso";
+import { ISso } from "@/interface/auth/ISso";
 import useNavigationEvent from "@/hooks/useNavigationEvent";
 import * as AuthService from "@/services/auth.service";
 import { getUserInfo } from "@/services/user.service";
 import {
   AUTHEN_PAGE_URL,
   ERROR_PAGE_URL,
+  MODAL_NAME,
   PRIVATE_PAGE_URL,
-  SSO_METHOD,
   TOAST_MESSAGE,
   VERIFY_STATUS,
 } from "@/utils/constants";
+import { IUserInfo } from "@/interface/user/IUserInfo";
+import { useModalContext } from "./ModalContextProvider";
 
 type AuthContextType = {
-  userInfo: object | null;
-  setUserInfo: React.Dispatch<React.SetStateAction<object | null>>;
+  userInfo: IUserInfo | null;
+  setUserInfo: React.Dispatch<React.SetStateAction<IUserInfo | null>>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   usernameAuth: string | null;
@@ -61,29 +62,25 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const url = `${pathname}${
     !!searchParams.toString() ? "?" : ""
   }${searchParams}`;
-  const [userInfo, setUserInfo] = useState<object | null>(null);
+  const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
   // const [activitiesInfo, setActivitiesInfo] = useState();
   // const [anonymousInfo, setAnonymousInfo] = useState();
   const [token, setToken] = useState<string | null>(null);
   const [usernameAuth, setUsernameAuth] = useState<string | null>(null);
-  const { data: session } = useSession();
   const [isRedirectToPrevPage, setIsRedirectToPrevPage] =
     useState<boolean>(false);
   const [verifyStatus, setVerifyStatus] = useState<VERIFY_STATUS>(
     VERIFY_STATUS.NOT_START
   );
-
   const prevRoute = useRef<string>("");
   const currentRoute = useRef<string>(url);
-  // console.log("token", token);
-  // console.log("usernameAuth", usernameAuth);
-  // console.log("userInfo", userInfo);
-  // console.log("verify status", verifyStatus);
-
   const isAuthenPath = useMemo(
     () => Object.values(AUTHEN_PAGE_URL).includes(pathname),
     [pathname]
   );
+
+  //Loading
+  const { openModal, closeModal } = useModalContext();
 
   const isNotFoundPath = useMemo(
     () => Object.values(ERROR_PAGE_URL).includes(pathname),
@@ -94,24 +91,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     () => Object.values(PRIVATE_PAGE_URL).includes(pathname),
     [pathname]
   );
-
-  // login with Google or Facebook
-  useEffect(() => {
-    if (session?.user.provider === "google") {
-      const googleData: ISso = {
-        method: SSO_METHOD.GOOGLE,
-        token: session.user.token_id,
-      };
-      loginWithSSO(googleData);
-    }
-    if (session?.user.provider === "facebook") {
-      const facebookData: ISso = {
-        method: SSO_METHOD.FACEBOOK,
-        token: session.user.token_id,
-      };
-      loginWithSSO(facebookData);
-    }
-  }, [session]);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -165,12 +144,14 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const loginWithEmail = useCallback(async (loginFormData: IAuthFormData) => {
     try {
       //call api login with email
+      openModal(MODAL_NAME.LOADING);
       const {
         success,
         data: { token, username },
       } = await AuthService.loginWithEmail(loginFormData);
       //show toast
       if (success) {
+        closeModal();
         toast.success(TOAST_MESSAGE.LOGIN_SUCCESS);
       }
       //set token
@@ -189,6 +170,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
           : staticPaths.home
       );
     } catch (e: any) {
+      closeModal();
       toast.error(e?.message);
       throw e;
     }
@@ -197,12 +179,12 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   // Login with SSO
   const loginWithSSO = useCallback(async (SSOData: ISso) => {
     try {
+      openModal(MODAL_NAME.LOADING);
       const {
         success,
         data: { username, token },
       } = await AuthService.loginWithSSO(SSOData);
       if (success) {
-        toast.success(TOAST_MESSAGE.LOGIN_SUCCESS);
         //set token
         setToken(token);
         localStorage.setItem("accessToken", token);
@@ -217,8 +199,11 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
             ? prevRoute.current ?? staticPaths.home
             : staticPaths.home
         );
+        closeModal();
+        toast.success(TOAST_MESSAGE.LOGIN_SUCCESS);
       }
     } catch (e: any) {
+      closeModal();
       toast.error(e?.message);
       throw e;
     }
@@ -237,7 +222,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   // verify AccessToken
   const verifyAccessToken = async () => {
-    console.log("into verify access token");
     if (verifyStatus === VERIFY_STATUS.SUCCESS) return;
     setVerifyStatus(VERIFY_STATUS.IN_PROGRESS);
     if (usernameAuth === null) return;
@@ -256,7 +240,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const clearAuthenticatorData = () => {
-    console.log("clear authentication data");
     setToken(null);
     localStorage.removeItem("accessToken");
     setUsernameAuth(null);
