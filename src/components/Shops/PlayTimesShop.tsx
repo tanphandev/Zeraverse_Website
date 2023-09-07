@@ -83,14 +83,7 @@ function PlayTimeShop({ list, itemsPerPage }: Props) {
         previousClassName="pagi-previous"
       />
       {/* Buy PlayTimes PopUp */}
-      {isOpenPlayTimePopUp && (
-        <BuyShopModal
-          title="PlayTimes"
-          data={dataPopUp}
-          onClickBuy={handleOnClickBuy}
-          onClose={closePopUp}
-        />
-      )}
+      {isOpenPlayTimePopUp && <BuyShopModal />}
     </div>
   );
 }

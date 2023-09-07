@@ -1,54 +1,62 @@
-"use client";
-import { useEffect, useRef } from "react";
-import PurchaseItem from "./PurchaseItem";
-import PurchaseAvatar from "./PurchaseItem";
-import { categoryGameList } from "@/dataFetch/dataFetch";
+import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
+import NoData from "../Others/NoData";
+import ProfilePic from "@/asset/image/profilePicture.png";
+import CoverPic from "@/asset/image/UserPageBackround.png";
+import Image from "next/image";
 type Props = {
+  data: IPurchaseHistory;
   title: string;
-  onBack: (title: string) => void;
+  onClick: (title: string) => void;
 };
-function PurchaseHistory({ title, onBack }: Props) {
-  const purchaseAvatarList = [...categoryGameList];
-  const purchaseHistoryRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (purchaseHistoryRef.current) {
-      purchaseHistoryRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
+function PurchaseHistory({ onClick, data, title }: Props) {
+  const isAvatarData = data.avatar && data.avatar.length > 0;
+  const isCoverData = data.cover && data.cover.length > 0;
   return (
-    <div
-      ref={purchaseHistoryRef}
-      className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px] mb-[40px]"
-    >
-      <div className="relative">
-        <h2 className=" flex items-center justify-center text-[28px] text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
-          {title}
-        </h2>
+    <div className="mb-[43px]">
+      <div className="flex justify-between text-main-whileColor mb-4">
+        <h1 className="text-2xl font-bold font-nunito">{title}</h1>
         <button
           onClick={() => {
-            onBack(title);
+            onClick(title);
           }}
-          className="absolute top-1/2 left-5 -translate-y-1/2 text-sm font-bold font-lato"
+          className="text-sx font-medium font-lato"
         >
-          {"<"} Back
+          View all {">"}
         </button>
       </div>
-      <div className="px-6 pt-8 pb-7">
-        <PurchaseItem
-          list={purchaseAvatarList}
-          title="Avatar"
-          widthPic="94px"
-          heightPic="94px"
-          itemsPerPage={8}
-        />
-        <PurchaseItem
-          list={purchaseAvatarList}
-          title="Cover Page"
-          widthPic="204px"
-          heightPic="94px"
-          itemsPerPage={8}
-        />
-      </div>
+      {isAvatarData || isCoverData ? (
+        <div className="w-full overflow-x-scroll no-scrollbar">
+          <div className="flex space-x-4 py-3">
+            {data?.avatar.map((item, index) => (
+              <div className="flex-shrink-0" key={index}>
+                <Image
+                  className="rounded-[10px]"
+                  src={item?.item_info?.url}
+                  alt="avatar"
+                  width={94}
+                  height={94}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex space-x-4 py-3">
+            {data?.cover.map((item, index) => (
+              <div className="flex-shrink-0" key={index}>
+                <Image
+                  className="rounded-[10px] w-[204px] h-[94px]"
+                  src={item?.item_info?.url}
+                  alt="cover"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <NoData />
+      )}
     </div>
   );
 }

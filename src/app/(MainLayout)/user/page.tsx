@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
-import UserStatus from "@/components/Profile/UserStatus";
+import UserStatus from "@/components/Profile/UserStatistic";
 import UserReward from "@/components/Profile/UserReward";
 import UserActivities from "@/components/Profile/UserActivities";
 import UserFieldDetail from "@/components/Profile/UserFieldDetail";
-import { UserField } from "@/utils/constants";
 import UserPlayList from "@/components/Profile/UserPlayList";
-import PurchaseHistory from "@/components/Profile/PurchaseHistory";
+import PurchaseHistoryDetail from "@/components/Profile/PurchaseHistoryDetail";
+import { UserField } from "@/utils/constants";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 function UserProfile() {
+  const { userInfo } = useAuthContext();
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
   const [isOpenRecentGame, setIsOpenRecentGame] = useState<boolean>(false);
   const [isOpenLovedGame, setIsOpenLovedGame] = useState<boolean>(false);
@@ -62,12 +64,12 @@ function UserProfile() {
         <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
           <div className="col-span-4">
             <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
-              <UserStatus />
-              <UserReward />
+              <UserStatus userInfo={userInfo} />
+              <UserReward userInfo={userInfo} />
             </div>
           </div>
           <div className="col-span-7">
-            <UserActivities onClick={handleChooseField} />
+            <UserActivities userInfo={userInfo} onClick={handleChooseField} />
           </div>
         </div>
       )}
@@ -81,7 +83,10 @@ function UserProfile() {
         <UserPlayList onBack={onBack} title={UserField.playListGame} />
       )}
       {isOpenPurchaseHistory && (
-        <PurchaseHistory onBack={onBack} title={UserField.purchaseHistory} />
+        <PurchaseHistoryDetail
+          onBack={onBack}
+          title={UserField.purchaseHistory}
+        />
       )}
     </div>
   );

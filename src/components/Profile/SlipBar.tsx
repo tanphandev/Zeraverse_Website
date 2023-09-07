@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NoData from "../Others/NoData";
 
 type Props = {
   data: Array<any>;
@@ -20,17 +21,21 @@ function SlipBar({ data, title, onClick }: Props) {
         </button>
       </div>
       <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar">
-        {data.map((item, index) => (
-          <div key={index} className="inline-block mr-4">
-            <Image
-              src={item.src}
-              alt="Image"
-              width={94}
-              height={94}
-              className="rounded-[10px] inline-block"
-            />
-          </div>
-        ))}
+        {data.length === 0 ? (
+          <NoData />
+        ) : (
+          data.map((item, index) => (
+            <div key={index} className="inline-block mr-4">
+              <Image
+                src={item?.thumbnail}
+                alt="Image"
+                width={94}
+                height={94}
+                className="rounded-[10px] inline-block"
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

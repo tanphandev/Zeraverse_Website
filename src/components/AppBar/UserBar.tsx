@@ -27,7 +27,6 @@ function UserBar({ zera }: Props) {
     avatarShopSelector
   ) as IAvatarShop[];
   const { openModal, setPayload } = useModalContext();
-  console.log("avatarShop", avatarShop);
   //call api to get items in avatar shop
   useEffect(() => {
     dispatch(shopService.getAvatarShop({}));

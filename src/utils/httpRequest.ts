@@ -1,7 +1,7 @@
 import axios from "axios";
-
 import { config } from "../envs/env";
 import { ERROR_PAGE_URL, HTTP_ERROR_CODE, PRIVATE_PAGE_URL } from "./constants";
+import queryString from "query-string";
 
 // const StatusCode = {
 //   Unauthorized: 401,
@@ -43,6 +43,9 @@ class Http {
     const http = axios.create({
       baseURL: config["BASE_URL"],
       headers,
+      paramsSerializer: (params) => {
+        return queryString.stringify(params, { encode: false });
+      },
       // timeout: 1000 * 10,
       // withCredentials: true,
     });

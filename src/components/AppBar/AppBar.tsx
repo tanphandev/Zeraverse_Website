@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import Tippy from "@tippyjs/react/headless";
-import Logo from "@/asset/image/Logo.png";
-import { useAuthContext } from "@/contexts/AuthContextProvider";
 import UserOption from "./UserOptions";
+import UserBar from "./UserBar";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
 import { staticPaths } from "@/utils/paths";
-import UserBar from "./UserBar";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
+import Logo from "@/asset/image/Logo.png";
 import MenuIcon from "@/asset/icons/MenuIcon";
 import NewIcon from "@/asset/icons/NewsIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";
@@ -19,10 +19,9 @@ import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
 import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 function AppBar() {
   const { userInfo } = useAuthContext();
-  const playtime = userInfo?.playtime;
-  console.log("userInfo", userInfo);
   const { openModal } = useModalContext();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [visibleUserOption, setVisibleUserOption] = useState(false);
@@ -144,6 +143,7 @@ function AppBar() {
                 <CustomImage
                   className="rounded-[10px]"
                   src={userInfo?.avatar}
+                  fallback={images.default_profile_image}
                   width={94}
                   height={94}
                   alt="ProfilePicture"

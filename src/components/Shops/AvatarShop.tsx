@@ -114,14 +114,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
         previousClassName="pagi-previous"
       />
       {/* Buy Avatar PopUp */}
-      {isOpenBuyAvatarPopUp && (
-        <BuyShopModal
-          title="Avatar"
-          data={dataPopUp}
-          onClickBuy={handleOnClickBuy}
-          onClose={closePopUp}
-        />
-      )}
+      {isOpenBuyAvatarPopUp && <BuyShopModal />}
     </div>
   );
 }

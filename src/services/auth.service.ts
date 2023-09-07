@@ -1,20 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
 import { ISso } from "@/interface/auth/ISso";
-const authenticationSlice = createSlice({
-  name: "authentication",
-  initialState: {
-    currentUser: null,
-  },
-  reducers: {
-    setCurrentUser: (state, action) => {
-      state.currentUser = action.payload;
-    },
-  },
-});
 
-export default authenticationSlice;
 // Login with email
 export const loginWithEmail = async (loginFormData: IAuthFormData) => {
   try {

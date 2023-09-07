@@ -1,7 +1,10 @@
 import Image from "next/image";
-import Picture from "@/asset/image/game10.png";
+import IPlayListGame from "@/interface/user/IPlayListGame";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
+import NoData from "../Others/NoData";
 type Props = {
-  data: Array<any>;
+  data: IPlayListGame[];
   title: string;
   onClick: (title: string) => void;
 };
@@ -19,24 +22,31 @@ function PlayListGame({ data, title, onClick }: Props) {
           View all {">"}
         </button>
       </div>
-      <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="mr-4 inline-flex border-[3px] border-main-pink-f4 rounded-[10px]"
-          >
-            <Image
-              src={Picture}
-              alt="Image"
-              className="w-[94px] rounded-[10px] inline-block"
-            />
-            <div className="ml-[12px] mr-[18px] py-[24px] font-lato text-main-whileColor text-center">
-              <h2 className="text-xl font-bold">2 players</h2>
-              <button className="text-xs  font-medium">View all {">"}</button>
+      {data.length === 0 ? (
+        <NoData />
+      ) : (
+        <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="mr-4 inline-flex border-[3px] border-main-pink-f4 rounded-[10px]"
+            >
+              <Image
+                width={0}
+                height={0}
+                sizes="100vw"
+                src={item?.thumbnail}
+                alt="Image"
+                className="w-[94px] rounded-[10px] inline-block"
+              />
+              <div className="ml-[12px] mr-[18px] py-[24px] font-lato text-main-whileColor text-center">
+                <h2 className="text-xl font-bold">{item?.name}</h2>
+                <button className="text-xs  font-medium">View all {">"}</button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

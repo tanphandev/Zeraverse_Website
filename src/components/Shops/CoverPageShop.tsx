@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import BuyShopPopUp from "../Modals/BuyShopModal";
+import BuyShopModal from "../Modals/BuyShopModal";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import CoinIcon from "@/asset/icons/CoinIcon";
@@ -112,14 +112,7 @@ function CoverPageShop({ list, itemsPerPage }: Props) {
         previousClassName="pagi-previous"
       />
       {/* Buy Avatar PopUp */}
-      {isOpenBuyCoverPagerPopUp && (
-        <BuyShopPopUp
-          title="Page Cover"
-          data={dataPopUp}
-          onClickBuy={handleOnClickBuy}
-          onClose={closePopUp}
-        />
-      )}
+      {isOpenBuyCoverPagerPopUp && <BuyShopModal />}
     </div>
   );
 }

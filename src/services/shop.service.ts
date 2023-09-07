@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
-import { ISso } from "@/interface/auth/ISso";
 const shopSlice = createSlice({
   name: "shop",
   initialState: {
@@ -39,7 +38,7 @@ export const getAvatarShop = createAsyncThunk(
       const avatarShop = data?.data?.rows;
       return avatarShop;
     } catch (e: any) {
-      return rejectWithValue(e.message);
+      return rejectWithValue(e?.message);
     }
   }
 );
