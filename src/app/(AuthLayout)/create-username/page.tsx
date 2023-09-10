@@ -7,7 +7,7 @@ import * as userService from "@/services/user.service";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { staticPaths } from "@/utils/paths";
-import { MODAL_NAME, TOAST_MESSAGE } from "@/utils/constants";
+import { GLOBAL_MODAL_NAME, TOAST_MESSAGE } from "@/utils/constants";
 const schema = Yup.object().shape({
   username: Yup.string()
     .required("Please enter your name!")
@@ -17,7 +17,7 @@ const schema = Yup.object().shape({
 function CreateUserName() {
   const { token, setUsernameAuth } = useAuthContext();
   const router = useRouter();
-  const { openModal, closeModal } = useModalContext();
+  const { openGlobalModal, closeGlobalModal } = useModalContext();
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -30,20 +30,20 @@ function CreateUserName() {
   const handleChangeUserName = async (username: string) => {
     try {
       if (token === null) return;
-      openModal(MODAL_NAME.LOADING);
+      openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
       const { success, data } = await userService.changeUserNameUser(
         username,
         token
       );
       if (success) {
-        closeModal();
+        closeGlobalModal();
         setUsernameAuth(username);
         localStorage.setItem("username", `@${username}`);
         router.push(staticPaths.home);
         toast.success(TOAST_MESSAGE.CREATE_USER_NAME_SUCCESS);
       }
     } catch (e: any) {
-      closeModal();
+      closeGlobalModal();
       toast.error(e.message);
       throw e;
     }

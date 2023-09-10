@@ -7,3 +7,11 @@
 .search-box.hide-modal {
   transform: translateX(-120%);
 }
+
+// Edit Profile and Cover Page Modal
+.edit-cover-modal.hide-modal,
+.edit-profile-modal.hide-modal {
+  opacity: 0;
+  scale: 0.8;
+  transform-origin: center;
+}

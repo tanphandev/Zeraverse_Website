@@ -6,4 +6,5 @@ export default interface IPlayListGame {
   thumbnail: string;
   updated_at: string;
   user_id: number;
+  detail: any[];
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserStatus from "@/components/Profile/UserStatistic";
 import UserReward from "@/components/Profile/UserReward";
 import UserActivities from "@/components/Profile/UserActivities";
@@ -8,15 +8,41 @@ import UserPlayList from "@/components/Profile/UserPlayList";
 import PurchaseHistoryDetail from "@/components/Profile/PurchaseHistoryDetail";
 import { UserField } from "@/utils/constants";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import * as userService from "@/services/user.service";
+import {
+  userLovedGameSelector,
+  userPlayListGameSelector,
+  userPurchaseHistorySelector,
+  userRecentlyGameSelector,
+} from "@/store/selectors/userSelector";
+import IPlayListGame from "@/interface/user/IPlayListGame";
+import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 function UserProfile() {
+  const dispatch = useDispatch<AppDispatch>();
   const { userInfo } = useAuthContext();
+  const userRecentlyGame = useSelector<RootState>(
+    userRecentlyGameSelector
+  ) as IGame[];
+  const userLovedGame = useSelector<RootState>(
+    userLovedGameSelector
+  ) as IGame[];
+  const userPlayListGame = useSelector<RootState>(
+    userPlayListGameSelector
+  ) as IPlayListGame[];
+  const userPurchaseHistory = useSelector<RootState>(
+    userPurchaseHistorySelector
+  ) as IPurchaseHistory;
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
   const [isOpenRecentGame, setIsOpenRecentGame] = useState<boolean>(false);
   const [isOpenLovedGame, setIsOpenLovedGame] = useState<boolean>(false);
   const [isOpenPlayListGame, setIsOpenPlayListGame] = useState<boolean>(false);
   const [isOpenPurchaseHistory, setIsOpenPurchaseHistory] =
     useState<boolean>(false);
-
+  useEffect(() => {
+    dispatch(userService.getUserInventories({}));
+  }, [dispatch]);
   const handleChooseField = (title: string) => {
     switch (title) {
       case UserField.recentGame: {
@@ -74,13 +100,26 @@ function UserProfile() {
         </div>
       )}
       {isOpenRecentGame && (
-        <UserFieldDetail onBack={onBack} title={UserField.recentGame} />
+        <UserFieldDetail
+          dataList={userRecentlyGame}
+          onBack={onBack}
+          title={UserField.recentGame}
+        />
       )}
       {isOpenLovedGame && (
-        <UserFieldDetail onBack={onBack} title={UserField.lovedGame} />
+        <UserFieldDetail
+          dataList={userLovedGame}
+          onBack={onBack}
+          title={UserField.lovedGame}
+        />
       )}
       {isOpenPlayListGame && (
-        <UserPlayList onBack={onBack} title={UserField.playListGame} />
+        <UserPlayList
+          dataList={userPlayListGame}
+          onBack={onBack}
+          title={UserField.playListGame}
+          // showPlayListDetailFirst={{ isShowFirst: boolean, playListId: number }}
+        />
       )}
       {isOpenPurchaseHistory && (
         <PurchaseHistoryDetail

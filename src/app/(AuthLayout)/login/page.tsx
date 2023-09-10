@@ -6,31 +6,54 @@ import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { ISso } from "@/interface/auth/ISso";
-import { SSO_METHOD } from "@/utils/constants";
-import { useRouter } from "next/navigation";
+import { GLOBAL_MODAL_NAME, MODAL_NAME, SSO_METHOD } from "@/utils/constants";
+import { useModalContext } from "@/contexts/ModalContextProvider";
 
 function LoginPage() {
   const { loginWithEmail, loginWithSSO } = useAuthContext();
+  const { openGlobalModal, closeGlobalModal } = useModalContext();
   const { data: session } = useSession();
-  const router = useRouter();
-  const handleLoginWithEmail = (loginFormData: IAuthFormData) => {
-    loginWithEmail(loginFormData);
+  const handleLoginWithEmail = async (loginFormData: IAuthFormData) => {
+    openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
+    try {
+      await loginWithEmail(loginFormData);
+    } catch (e: any) {
+      closeGlobalModal();
+      throw e;
+    }
+    closeGlobalModal();
   };
   // login with Google or Facebook
   useEffect(() => {
     if (session?.user.provider === "google") {
+      openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
       const googleData: ISso = {
         method: SSO_METHOD.GOOGLE,
         token: session.user.token_id,
       };
-      loginWithSSO(googleData);
+      loginWithSSO(googleData)
+        .then(() => {
+          closeGlobalModal();
+        })
+        .catch((e: any) => {
+          throw e;
+          closeGlobalModal();
+        });
     }
     if (session?.user.provider === "facebook") {
+      openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
       const facebookData: ISso = {
         method: SSO_METHOD.FACEBOOK,
         token: session.user.token_id,
       };
-      loginWithSSO(facebookData);
+      loginWithSSO(facebookData)
+        .then(() => {
+          closeGlobalModal();
+        })
+        .catch((e: any) => {
+          throw e;
+          closeGlobalModal();
+        });
     }
   }, [session]);
   return (

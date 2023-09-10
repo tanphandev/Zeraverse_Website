@@ -1,10 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
+import { INVENTORY_NAME } from "@/utils/constants";
 const userSlice = createSlice({
   name: "user",
   initialState: {
     isLoading: false,
+    inventories: {
+      categories: [],
+      avatar: [],
+      cover: [],
+    },
     statistic: null,
     rewards: [],
     mostPlayedGame: null,
@@ -20,6 +26,40 @@ const userSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder
+      .addCase(getUserInventories.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserInventories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const categories = action.payload?.item_categories;
+        const inventoryItem = action.payload?.user_inventory?.rows;
+        const inventoryAvatar: any = [];
+        const inventoryCover: any = [];
+        // get inventory item id
+        const avatarId = categories.find(
+          (inventoryItem: any) => inventoryItem.item === INVENTORY_NAME.AVATAR
+        )?.id;
+        const coverId = categories.find(
+          (inventoryItem: any) => inventoryItem.item === INVENTORY_NAME.COVER
+        )?.id;
+        // get item list for inventory item
+        inventoryItem.forEach((item: any) => {
+          if (item?.item_info?.category_item_id === avatarId) {
+            inventoryAvatar.push(item);
+          } else if (item?.item_info?.category_item_id === coverId) {
+            inventoryCover.push(item);
+          }
+        });
+        // set state
+        state.inventories.categories = categories;
+        state.inventories.avatar = inventoryAvatar;
+        state.inventories.cover = inventoryCover;
+      })
+      .addCase(getUserInventories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
     builder
       .addCase(getUserStatistic.pending, (state, action) => {
         state.isLoading = true;
@@ -142,6 +182,52 @@ export const getUserInfo = async (userName: string) => {
   }
 };
 
+export const updateUserProfile = async (userData: {
+  avatar: number;
+  quote: string;
+}) => {
+  try {
+    const { data } = await httpRequest.put(
+      apiURL.update_user_profile,
+      userData
+    );
+    if (!data.success) {
+      throw new Error(data?.error?.message);
+    }
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const updateCoverProfle = async (userData: { cover: number }) => {
+  try {
+    const { data } = await httpRequest.put(
+      apiURL.update_user_profile,
+      userData
+    );
+    if (!data.success) {
+      throw new Error(data?.error?.message);
+    }
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getUserInventories = createAsyncThunk(
+  "user/getUserInventories",
+  async (data: {}, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(apiURL.get_user_inventories);
+      const userInventories = data?.data;
+      return userInventories;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
+
 export const getUserStatistic = createAsyncThunk(
   "user/getUserStatistic",
   async (username: string, { rejectWithValue }) => {
@@ -231,6 +317,18 @@ export const getUserPlayListGame = createAsyncThunk(
     }
   }
 );
+
+export const getUserPlayListItem = async (playListId: number) => {
+  try {
+    const { data } = await httpRequest.get(
+      apiURL.get_user_playlist_game_item(playListId)
+    );
+
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
 
 export const getUserPurchaseHistory = createAsyncThunk(
   "user/getUserPurchaseHistory",

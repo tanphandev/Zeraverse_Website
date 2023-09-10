@@ -1,31 +1,76 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { userPlayListGame, userPlayListDetail } from "@/dataFetch/dataFetch";
+import * as userService from "@/services/user.service";
 import DeletePlayListPopUp from "../popup/DeletePlayListPopUp";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
 import DeletePlayListIcon from "@/asset/icons/DeletePlayListIcon";
 import DeleteItemIcon from "@/asset/icons/DeleteItemIcon";
 import XmarkICon from "@/asset/icons/XmarkIcon";
+import IPlayListGame from "@/interface/user/IPlayListGame";
+import Link from "next/link";
+import { staticPaths } from "@/utils/paths";
+import NoData from "../Others/NoData";
 
 type Props = {
   title: string;
+  dataList: IPlayListGame[];
   onBack: (title: string) => void;
+  // showPlayListDetailFirst?: {
+  //   isShowFirst: boolean;
+  //   playListId: number;
+  // };
 };
 
-function UserPlayListPage({ title, onBack }: Props) {
+function UserPlayListPage({
+  title,
+  dataList,
+  onBack,
+}: // showPlayListDetailFirst,
+Props) {
+  const [playListGame, setPlayListGame] = useState(dataList);
+  console.log("playListGame", playListGame);
   const [isOpenPlayList, setIsOpenPlayList] = useState<boolean>(true);
-  const [isOpenPlayListItem, setIsOpenPlayListItem] = useState<boolean>(false);
-  const listGame20 = userPlayListGame[0].listGame.slice(0, 20);
+  const [playListItem, setPlayListItem] = useState<{
+    isOpenPlayListItem: boolean;
+    playListDetail: any;
+  }>({
+    isOpenPlayListItem: false,
+    playListDetail: {},
+  });
   const userPlayListPageRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (userPlayListPageRef.current) {
       userPlayListPageRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [isOpenPlayList, isOpenPlayListItem]);
-  const GotoPlayListItem = () => {
+  }, [isOpenPlayList, playListItem]);
+
+  useEffect(() => {
+    const newPlayListGame = playListGame.map(async (playlistItem, index) => {
+      try {
+        const { success, data } = await userService.getUserPlayListItem(
+          parseInt(playlistItem.id)
+        );
+        if (success) {
+          return { ...playlistItem, detail: data };
+        }
+        return playlistItem;
+      } catch (e: any) {
+        throw e;
+      }
+    });
+    // wait all promise finish and update state PlayListGame
+    Promise.all(newPlayListGame).then((result) => {
+      setPlayListGame(result);
+    });
+  }, []);
+  console.log("playList Game", playListGame);
+  const GotoPlayListItem = (playListDetail: IPlayListGame) => {
     setIsOpenPlayList(false);
-    setIsOpenPlayListItem(true);
+    setPlayListItem({
+      isOpenPlayListItem: true,
+      playListDetail: playListDetail,
+    });
   };
 
   const UserPlayList = () => (
@@ -43,43 +88,67 @@ function UserPlayListPage({ title, onBack }: Props) {
           {"<"} Back
         </button>
       </div>
-      <div className="p-11">
-        {userPlayListGame.map((listGame, index) => (
-          <div key={index} className="mb-9">
-            <div className="flex justify-between text-main-whileColor mb-4">
-              <h2 className="text-2xl font-bold font-nunito">
-                {listGame.name}
-              </h2>
-              <button
-                onClick={GotoPlayListItem}
-                className="text-xs font-medium font-lato"
-              >
-                View all {">"}
-              </button>
+      <div className="p-11 mb-[40px]">
+        {playListGame.length === 0 ? (
+          <NoData />
+        ) : (
+          playListGame.map((playListDetail, index) => (
+            <div key={index} className="mb-9">
+              <div className="flex justify-between text-main-whileColor mb-4">
+                <h2 className="text-2xl font-bold font-nunito">
+                  {playListDetail.name}
+                </h2>
+                <button
+                  onClick={() => {
+                    GotoPlayListItem(playListDetail);
+                  }}
+                  className="text-xs font-medium font-lato"
+                >
+                  View all {">"}
+                </button>
+              </div>
+              <div className="grid grid-cols-10 grid-rows-1 gap-4">
+                {playListDetail?.detail?.slice(0, 10).map((game, index) => (
+                  <Link
+                    href={staticPaths.game_screen}
+                    key={index}
+                    className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+                  >
+                    <Image
+                      className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                      src={game.thumbnail}
+                      alt="gamePicture"
+                      sizes="100vw"
+                      width={94}
+                      height={94}
+                    />
+                    <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                      {game.title}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-10 grid-rows-2 gap-4">
-              {listGame20.map((game, index) => (
-                <Image
-                  key={index}
-                  src={game.src}
-                  alt="gamePicture"
-                  className="w-full rounded-[10px]"
-                />
-              ))}
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </>
   );
-  const PlayListItem = () => {
+  const PlayListItem = ({
+    playListDetail,
+  }: {
+    playListDetail: IPlayListGame;
+  }) => {
     const [isOpenDeletePlayList, setIsOpenDeletePlayList] =
       useState<boolean>(false);
     const [showDeleteChooseGame, setShowDeleteChooseGame] =
       useState<boolean>(false);
     const [isOpenDeleteGame, setIsOpenDeleteGame] = useState<boolean>(false);
     const OnBackToPlayListGame = () => {
-      setIsOpenPlayListItem(false);
+      setPlayListItem((prev) => ({
+        ...prev,
+        isOpenPlayListItem: false,
+      }));
       setIsOpenPlayList(true);
     };
     //Show Delete PlayList PopUp
@@ -123,7 +192,7 @@ function UserPlayListPage({ title, onBack }: Props) {
           </button>
           <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
             {`Playlist games/`}{" "}
-            <span className="text-2xl">PlayList Item Name</span>
+            <span className="text-2xl">{playListDetail.name}</span>
           </h2>
           <div className="absolute delete-icon top-1/2 right-[22px] -translate-y-1/2 z-20">
             <DeleteIcon className="cursor-pointer" width="22px" height="24px" />
@@ -155,27 +224,38 @@ function UserPlayListPage({ title, onBack }: Props) {
           </div>
         </div>
         <div className="grid grid-cols-10 gap-4 p-11">
-          {userPlayListDetail.map((item, index) => (
-            <div
-              onClick={openDeleteGamePopUp}
+          {playListDetail.detail.map((item, index) => (
+            <Link
+              href={staticPaths.game_screen}
               key={index}
-              className="relative cursor-pointer"
+              className="relative group hover:scale-105 transition-all ease-in-out duration-300"
             >
               <Image
-                src={item.src}
-                alt="game_picture"
-                className="w-full rounded-[10px]"
+                className={`max-w-full max-h-full w-auto h-full rounded-[20px] `}
+                src={item.thumbnail}
+                alt="picture"
+                sizes="100vw"
+                width={94}
+                height={94}
               />
+              <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                {item.title}
+              </p>
               <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.nativeEvent.preventDefault();
+                  openDeleteGamePopUp();
+                }}
                 className={`${
                   showDeleteChooseGame ? "" : "hidden"
-                } absolute top-0 right-0 left-0 bottom-0 bg-main-grayColor-40 flex flex-col items-end rounded-[10px]`}
+                } absolute top-0 right-0 left-0 bottom-0 bg-main-grayColor-40 flex flex-col items-end rounded-[10px] cursor-pointer z-10`}
               >
                 <div className="p-[7px]">
                   <XmarkICon width="15px" height="15px" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         {/* popup */}
@@ -202,7 +282,9 @@ function UserPlayListPage({ title, onBack }: Props) {
       className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px]"
     >
       {isOpenPlayList && <UserPlayList />}
-      {isOpenPlayListItem && <PlayListItem />}
+      {playListItem.isOpenPlayListItem && (
+        <PlayListItem playListDetail={playListItem.playListDetail} />
+      )}
     </div>
   );
 }

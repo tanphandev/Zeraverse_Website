@@ -63,13 +63,21 @@ function UserActivities({ userInfo, onClick }: Props) {
             Most played
           </h3>
           {!!mostPlayedGame ? (
-            <Image
-              src={mostPlayedGame.game_detail?.thumbnail}
-              alt="MostPlayedPicture"
-              width={324}
-              height={204}
-              className="rounded-[20px]"
-            />
+            <Link
+              href={staticPaths.game_screen}
+              className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+            >
+              <Image
+                className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                src={mostPlayedGame.game_detail?.thumbnail}
+                alt="MostPlayedPicture"
+                width={324}
+                height={204}
+              />
+              <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                {mostPlayedGame.game_detail?.title}
+              </p>
+            </Link>
           ) : (
             <>
               <p className="text-lg font-semibold font-nunito text-main-whileColor mb-2">

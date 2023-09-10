@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { gameList } from "@/dataFetch/dataFetch";
 import Image from "next/image";
+import NoData from "../Others/NoData";
 type Props = {
   title: string;
+  dataList: Array<IGame>;
   onBack: (title: string) => void;
 };
 
-function UserFieldDetail({ title, onBack }: Props) {
+function UserFieldDetail({ title, dataList, onBack }: Props) {
   const userFieldDetailRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (userFieldDetailRef.current) {
@@ -32,16 +33,26 @@ function UserFieldDetail({ title, onBack }: Props) {
           {"<"} Back
         </button>
       </div>
-      <div className="grid grid-cols-10 gap-4 p-11">
-        {gameList.map((item, index) => (
-          <Image
-            key={index}
-            src={item.src}
-            alt="game_picture"
-            className="w-full rounded-[10px]"
-          />
-        ))}
-      </div>
+
+      {dataList.length === 0 ? (
+        <div className="p-11">
+          <NoData />
+        </div>
+      ) : (
+        <div className="grid grid-cols-10 gap-4 p-11">
+          {dataList.map((item, index) => (
+            <Image
+              key={index}
+              src={item.thumbnail}
+              alt="game_picture"
+              className="w-full rounded-[10px]"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

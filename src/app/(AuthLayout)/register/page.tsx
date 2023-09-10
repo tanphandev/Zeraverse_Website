@@ -5,21 +5,30 @@ import { toast } from "react-toastify";
 import Logo from "@/asset/image/Logo.png";
 import AuthForm from "@/components/Auth/AuthForm";
 import * as AuthService from "@/services/auth.service";
-import { AUTHEN_PAGE_URL, TOAST_MESSAGE } from "@/utils/constants";
+import {
+  AUTHEN_PAGE_URL,
+  GLOBAL_MODAL_NAME,
+  TOAST_MESSAGE,
+} from "@/utils/constants";
+import { useModalContext } from "@/contexts/ModalContextProvider";
 
 function RegisterPage() {
   const router = useRouter();
+  const { openGlobalModal, closeGlobalModal } = useModalContext();
   const handleRegister = async (registerData: IAuthFormData) => {
+    openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
     try {
       const { data, success } = await AuthService.registerWithEmail(
         registerData
       );
       if (success) {
+        closeGlobalModal();
         router.push(AUTHEN_PAGE_URL.LOGIN);
         toast.success(TOAST_MESSAGE.CHECK_EMAIL);
       }
       return data;
     } catch (e: any) {
+      closeGlobalModal();
       toast.error(e.message);
       throw e;
     }

@@ -28,8 +28,8 @@ function AuthForm({
   type: string;
   handleSubmit: (authFormData: IAuthFormData) => void | any;
 }) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isAcceptTerm, setIsAcceptTerm] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isAcceptTerm, setIsAcceptTerm] = useState<boolean>(false);
   const router = useRouter();
 
   // config formik

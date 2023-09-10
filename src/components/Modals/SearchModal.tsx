@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useModalContext } from "@/contexts/ModalContextProvider";
+import { useOnClickOutside } from "@/hooks/useClickOutSide";
 import gamePicture from "@/asset/image/game0.png";
 import ArrowLeftIcon from "@/asset/icons/ArrowLeftIcon";
 import LogoIcon from "@/asset/icons/LogoIcon";
@@ -11,6 +12,12 @@ import "@/styles/custom.scss";
 function SearchModal() {
   const [searchInput, setSearchInput] = useState<string>("");
   const { closeModalWithAnimation } = useModalContext();
+  const searchModalRef = useRef<HTMLDivElement>(null);
+  console.log("searchModalRef", searchModalRef);
+  const handleCloseSearchModal = () => {
+    closeModalWithAnimation(500);
+  };
+  useOnClickOutside(searchModalRef, handleCloseSearchModal);
   const suggestSearchs = [
     "CAR GAME",
     ".IO GAME",
@@ -100,6 +107,7 @@ function SearchModal() {
   return (
     <div className="seach-wapper fixed top-0 right-0 bottom-0 z-50 left-0 bg-main-grayColor-50 backdrop-blur-sm animate-fadeIn">
       <div
+        ref={searchModalRef}
         id="modal"
         className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] h-full animate-slipLeftToRight "
       >

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import NoData from "../Others/NoData";
+import Link from "next/link";
+import { staticPaths } from "@/utils/paths";
 
 type Props = {
   data: Array<any>;
@@ -20,23 +22,32 @@ function SlipBar({ data, title, onClick }: Props) {
           View all {">"}
         </button>
       </div>
-      <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar">
-        {data.length === 0 ? (
-          <NoData />
-        ) : (
-          data.map((item, index) => (
-            <div key={index} className="inline-block mr-4">
+
+      {data.length === 0 ? (
+        <NoData />
+      ) : (
+        <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar p-[10px] mx-[-10px]">
+          {data.map((item, index) => (
+            <Link
+              href={staticPaths.game_screen}
+              key={index}
+              className="relative group hover:scale-105 transition-all ease-in-out duration-300 inline-block mr-4"
+            >
               <Image
+                className={`w-[94px] h-[94px] rounded-[20px]`}
                 src={item?.thumbnail}
                 alt="Image"
-                width={94}
-                height={94}
-                className="rounded-[10px] inline-block"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
-            </div>
-          ))
-        )}
-      </div>
+              <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                {item?.title}
+              </p>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

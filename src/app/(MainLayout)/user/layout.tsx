@@ -7,9 +7,19 @@ import AddIcon from "@/asset/icons/AddIcon";
 import EditIcon from "@/asset/icons/EditIcon";
 import { images } from "@/asset/image/images";
 import "tippy.js/dist/tippy.css";
+import { useModalContext } from "@/contexts/ModalContextProvider";
+import { MODAL_NAME } from "@/utils/constants";
 
 function UserLayout({ children }: { children: string }) {
   const { userInfo } = useAuthContext();
+  const { openModal } = useModalContext();
+  const openEditAvatarModal = () => {
+    openModal(MODAL_NAME.EDIT_PROFILE);
+  };
+
+  const openEditCoverModal = () => {
+    openModal(MODAL_NAME.EDIT_COVER);
+  };
   return (
     <div className="flex-1">
       <div className="relative group rounded-[20px]">
@@ -17,11 +27,19 @@ function UserLayout({ children }: { children: string }) {
           <div>
             <CustomImage
               src={userInfo?.cover}
+              style={{
+                objectFit: "cover",
+              }}
               fallback={images.default_cover_image}
               alt="bacground"
+              width={0}
+              height={0}
               className="w-full h-[350px] rounded-[20px]"
             />
-            <div className="transition-all hidden group-hover:flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]">
+            <div
+              onClick={openEditCoverModal}
+              className="transition-all hidden group-hover:flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
+            >
               <EditIcon width="30px" height="30px" />
             </div>
           </div>
@@ -36,7 +54,10 @@ function UserLayout({ children }: { children: string }) {
               width={204}
               height={204}
             />
-            <div className="transition-all flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]">
+            <div
+              onClick={openEditAvatarModal}
+              className="transition-all flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
+            >
               <EditIcon width="30px" height="30px" />
             </div>
           </div>
@@ -49,6 +70,9 @@ function UserLayout({ children }: { children: string }) {
               {userInfo?.username}
             </h2>
           </Tippy>
+          <p className="text-base font-medium font-lato text-main-whileColor">
+            {userInfo?.quote}
+          </p>
         </div>
         <div className="flex items-center py-1 px-[10px] bg-main-violet-4c rounded-[10px] shadow-[0_4px_5px_rgba(0,0,0,0.6)]">
           <h2 className="text-[24px] font-black font-nunito mr-[5px] text-main-whileColor">

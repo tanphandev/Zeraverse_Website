@@ -81,13 +81,26 @@ export enum cacheType {
   reload = "reload",
 }
 
+//global modal
+export enum GLOBAL_MODAL_NAME {
+  NONE = "NONE",
+  LOADING = "LOADING",
+}
+
 //modal
 export enum MODAL_NAME {
   NONE = "NONE",
-  LOADING = "LOADING",
   SEARCH = "SEARCH",
+  EDIT_PROFILE = "EDIT_PROFILE",
+  EDIT_COVER = "EDIT_COVER",
   BUY_AVATAR = "BUY_AVATAR",
 }
+
+//User inventory name
+export const INVENTORY_NAME = {
+  AVATAR: "AVATAR",
+  COVER: "COVER",
+};
 
 export enum UserField {
   recentGame = "Recent games",

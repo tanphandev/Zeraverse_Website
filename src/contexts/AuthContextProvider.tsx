@@ -24,7 +24,6 @@ import {
   VERIFY_STATUS,
 } from "@/utils/constants";
 import { IUserInfo } from "@/interface/user/IUserInfo";
-import { useModalContext } from "./ModalContextProvider";
 
 type AuthContextType = {
   userInfo: IUserInfo | null;
@@ -78,9 +77,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     () => Object.values(AUTHEN_PAGE_URL).includes(pathname),
     [pathname]
   );
-
-  //Loading
-  const { openModal, closeModal } = useModalContext();
 
   const isNotFoundPath = useMemo(
     () => Object.values(ERROR_PAGE_URL).includes(pathname),
@@ -144,14 +140,12 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const loginWithEmail = useCallback(async (loginFormData: IAuthFormData) => {
     try {
       //call api login with email
-      openModal(MODAL_NAME.LOADING);
       const {
         success,
         data: { token, username },
       } = await AuthService.loginWithEmail(loginFormData);
       //show toast
       if (success) {
-        closeModal();
         toast.success(TOAST_MESSAGE.LOGIN_SUCCESS);
       }
       //set token
@@ -170,7 +164,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
           : staticPaths.home
       );
     } catch (e: any) {
-      closeModal();
       toast.error(e?.message);
       throw e;
     }
@@ -179,7 +172,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   // Login with SSO
   const loginWithSSO = useCallback(async (SSOData: ISso) => {
     try {
-      openModal(MODAL_NAME.LOADING);
       const {
         success,
         data: { username, token },
@@ -199,11 +191,9 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
             ? prevRoute.current ?? staticPaths.home
             : staticPaths.home
         );
-        closeModal();
         toast.success(TOAST_MESSAGE.LOGIN_SUCCESS);
       }
     } catch (e: any) {
-      closeModal();
       toast.error(e?.message);
       throw e;
     }

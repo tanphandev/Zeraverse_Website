@@ -1,3 +1,7 @@
+export const userAvatarInventorySelector = (state: any) =>
+  state.user.inventories.avatar;
+export const userCoverInventorySelector = (state: any) =>
+  state.user.inventories.cover;
 export const userStatisticSelector = (state: any) => state.user.statistic;
 export const userRewardsSelector = (state: any) => state.user.rewards;
 export const userMostPlayedGameSelector = (state: any) =>

@@ -1,7 +1,5 @@
 import Image from "next/image";
 import IPlayListGame from "@/interface/user/IPlayListGame";
-import CustomImage from "../Others/CustomImage";
-import { images } from "@/asset/image/images";
 import NoData from "../Others/NoData";
 type Props = {
   data: IPlayListGame[];

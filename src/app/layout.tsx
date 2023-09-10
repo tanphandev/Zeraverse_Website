@@ -62,9 +62,9 @@ export default function RootLayout({
         />
         <SSOProvider>
           <ReduxProvider>
-            <ModalContextProvider>
-              <AuthContextProvider>{children}</AuthContextProvider>
-            </ModalContextProvider>
+            <AuthContextProvider>
+              <ModalContextProvider>{children}</ModalContextProvider>
+            </AuthContextProvider>
           </ReduxProvider>
         </SSOProvider>
       </body>
