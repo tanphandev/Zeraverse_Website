@@ -6,8 +6,11 @@ import Avatar from "@/asset/image/profilePicture.png";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
+import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
+import { ICoverInventory } from "@/interface/user/ICoverInventory";
+import { formatDate } from "@/utils/helper";
 type Props = {
-  list: Array<any>;
+  list: IAvatarInventory[] | ICoverInventory[];
   title: string;
   widthPic: string;
   heightPic: string;
@@ -43,19 +46,22 @@ function PurchaseItem({
         {currentItems.map((item, index) => (
           <div className="flex items-center" key={index}>
             <Image
-              src={item.src}
+              src={item.item_info.url}
               alt="Image"
+              width={0}
+              height={0}
+              sizes="100vw"
               className={`h-[${heightPic}] w-[${widthPic}] rounded-[10px] mr-[15px]`}
             />
             <div className="flex flex-col text-main-whileColor">
               <div className="flex items-center">
                 <h3 className="inline-block text-xl font-black font-nunito mr-2 ">
-                  70
+                  {item.item_info.price}
                 </h3>
                 <CoinIcon className="inline-block" width="20px" height="22px" />
               </div>
               <span className="text-[8px] font-normal italic font-nunito">
-                10/04/2023 05:00
+                {formatDate(item.updated_at)}
               </span>
             </div>
           </div>

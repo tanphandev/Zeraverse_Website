@@ -21,7 +21,6 @@ export const loginWithSSO = async (SSOData: ISso) => {
     const { data } = await httpRequest.post(apiURL.login_with_SSO, SSOData);
     return data;
   } catch (e: any) {
-    console.log("error", e);
     throw e;
   }
 };

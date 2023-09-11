@@ -330,6 +330,17 @@ export const getUserPlayListItem = async (playListId: number) => {
   }
 };
 
+export const deleteUserPlayListGame = async (playListId: number) => {
+  try {
+    const { data } = await httpRequest.delete(
+      apiURL.delete_user_playlist_game(playListId)
+    );
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
 export const getUserPurchaseHistory = createAsyncThunk(
   "user/getUserPurchaseHistory",
   async (username: string, { rejectWithValue }) => {

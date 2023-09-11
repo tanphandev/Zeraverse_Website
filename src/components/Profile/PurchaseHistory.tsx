@@ -6,7 +6,7 @@ import Image from "next/image";
 type Props = {
   data: IPurchaseHistory;
   title: string;
-  onClick: (title: string) => void;
+  onClick: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function PurchaseHistory({ onClick, data, title }: Props) {
   const isAvatarData = data.avatar && data.avatar.length > 0;
@@ -17,9 +17,9 @@ function PurchaseHistory({ onClick, data, title }: Props) {
         <h1 className="text-2xl font-bold font-nunito">{title}</h1>
         <button
           onClick={() => {
-            onClick(title);
+            onClick({ title });
           }}
-          className="text-sx font-medium font-lato"
+          className="text-sx font-medium font-lato hover:text-main-pink-db"
         >
           View all {">"}
         </button>

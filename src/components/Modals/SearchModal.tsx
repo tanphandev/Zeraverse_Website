@@ -13,7 +13,6 @@ function SearchModal() {
   const [searchInput, setSearchInput] = useState<string>("");
   const { closeModalWithAnimation } = useModalContext();
   const searchModalRef = useRef<HTMLDivElement>(null);
-  console.log("searchModalRef", searchModalRef);
   const handleCloseSearchModal = () => {
     closeModalWithAnimation(500);
   };

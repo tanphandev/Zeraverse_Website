@@ -37,13 +37,27 @@ function UserProfile() {
   const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
   const [isOpenRecentGame, setIsOpenRecentGame] = useState<boolean>(false);
   const [isOpenLovedGame, setIsOpenLovedGame] = useState<boolean>(false);
-  const [isOpenPlayListGame, setIsOpenPlayListGame] = useState<boolean>(false);
+  const [openPlayListGame, setOpenPlayListGame] = useState<{
+    isOpenPlayListGame: boolean;
+    isShowPlayListDetailFirst: boolean;
+    playListid: string | null;
+  }>({
+    isOpenPlayListGame: false,
+    isShowPlayListDetailFirst: false,
+    playListid: null,
+  });
   const [isOpenPurchaseHistory, setIsOpenPurchaseHistory] =
     useState<boolean>(false);
   useEffect(() => {
     dispatch(userService.getUserInventories({}));
   }, [dispatch]);
-  const handleChooseField = (title: string) => {
+  const handleChooseField = ({
+    title,
+    payload,
+  }: {
+    title: string;
+    payload?: any;
+  }) => {
     switch (title) {
       case UserField.recentGame: {
         setIsOpenUserDetail(false);
@@ -57,7 +71,18 @@ function UserProfile() {
       }
       case UserField.playListGame: {
         setIsOpenUserDetail(false);
-        setIsOpenPlayListGame(true);
+        if (payload?.isShowPlayListDetailFirst) {
+          setOpenPlayListGame((prev) => ({
+            isShowPlayListDetailFirst: true,
+            playListid: payload?.playListId,
+            isOpenPlayListGame: true,
+          }));
+        } else {
+          setOpenPlayListGame((prev) => ({
+            ...prev,
+            isOpenPlayListGame: true,
+          }));
+        }
         break;
       }
       case UserField.purchaseHistory: {
@@ -76,7 +101,11 @@ function UserProfile() {
         setIsOpenLovedGame(false);
         break;
       case UserField.playListGame:
-        setIsOpenPlayListGame(false);
+        setOpenPlayListGame({
+          isOpenPlayListGame: false,
+          isShowPlayListDetailFirst: false,
+          playListid: null,
+        });
         break;
       case UserField.purchaseHistory:
         setIsOpenPurchaseHistory(false);
@@ -113,16 +142,20 @@ function UserProfile() {
           title={UserField.lovedGame}
         />
       )}
-      {isOpenPlayListGame && (
+      {openPlayListGame.isOpenPlayListGame && (
         <UserPlayList
           dataList={userPlayListGame}
           onBack={onBack}
           title={UserField.playListGame}
-          // showPlayListDetailFirst={{ isShowFirst: boolean, playListId: number }}
+          showPlayListDetailFirst={{
+            isShowFirst: openPlayListGame?.isShowPlayListDetailFirst,
+            playListId: openPlayListGame?.playListid!!,
+          }}
         />
       )}
       {isOpenPurchaseHistory && (
         <PurchaseHistoryDetail
+          dataList={userPurchaseHistory}
           onBack={onBack}
           title={UserField.purchaseHistory}
         />

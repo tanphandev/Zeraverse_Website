@@ -103,3 +103,8 @@ export const toUpperCaseFirstLetter = (str: string) => {
     return str?.charAt(0)?.toUpperCase() + str?.slice(1)?.toLowerCase();
   }
 };
+
+export const formatDate = (date: string) => {
+  if (!date) return;
+  return moment(new Date(date)).format("MM/DD/YYYY h:mm A");
+};

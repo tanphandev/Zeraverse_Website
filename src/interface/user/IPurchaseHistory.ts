@@ -1,4 +1,7 @@
+import { IAvatarInventory } from "./IAvatarInventory";
+import { ICoverInventory } from "./ICoverInventory";
+
 export default interface IPurchaseHistory {
-  avatar: any[];
-  cover: any[];
+  avatar: IAvatarInventory[];
+  cover: ICoverInventory[];
 }

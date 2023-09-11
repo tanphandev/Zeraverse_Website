@@ -22,7 +22,7 @@ import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import { IUserInfo } from "@/interface/user/IUserInfo";
 type Props = {
   userInfo: IUserInfo | null;
-  onClick: (title: string) => void;
+  onClick: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function UserActivities({ userInfo, onClick }: Props) {
   const dispatch = useDispatch<AppDispatch>();

@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import * as userService from "@/services/user.service";
-import DeletePlayListPopUp from "../popup/DeletePlayListPopUp";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
 import DeletePlayListIcon from "@/asset/icons/DeletePlayListIcon";
 import DeleteItemIcon from "@/asset/icons/DeleteItemIcon";
@@ -11,31 +10,39 @@ import IPlayListGame from "@/interface/user/IPlayListGame";
 import Link from "next/link";
 import { staticPaths } from "@/utils/paths";
 import NoData from "../Others/NoData";
+import { useModalContext } from "@/contexts/ModalContextProvider";
+import { HANDLE_STATUS, MODAL_NAME } from "@/utils/constants";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 
 type Props = {
   title: string;
   dataList: IPlayListGame[];
   onBack: (title: string) => void;
-  // showPlayListDetailFirst?: {
-  //   isShowFirst: boolean;
-  //   playListId: number;
-  // };
+  showPlayListDetailFirst?: {
+    isShowFirst: boolean;
+    playListId: string;
+  };
 };
 
 function UserPlayListPage({
   title,
   dataList,
   onBack,
-}: // showPlayListDetailFirst,
-Props) {
+  showPlayListDetailFirst,
+}: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { userInfo } = useAuthContext();
   const [playListGame, setPlayListGame] = useState(dataList);
-  console.log("playListGame", playListGame);
-  const [isOpenPlayList, setIsOpenPlayList] = useState<boolean>(true);
+  const [isOpenPlayList, setIsOpenPlayList] = useState<boolean>(
+    showPlayListDetailFirst?.isShowFirst ? false : true
+  );
   const [playListItem, setPlayListItem] = useState<{
     isOpenPlayListItem: boolean;
     playListDetail: any;
   }>({
-    isOpenPlayListItem: false,
+    isOpenPlayListItem: showPlayListDetailFirst?.isShowFirst ? true : false,
     playListDetail: {},
   });
   const userPlayListPageRef = useRef<HTMLDivElement>(null);
@@ -46,25 +53,44 @@ Props) {
   }, [isOpenPlayList, playListItem]);
 
   useEffect(() => {
-    const newPlayListGame = playListGame.map(async (playlistItem, index) => {
+    setPlayListGame(dataList);
+  }, [dataList]);
+
+  useEffect(() => {
+    const updatePlayListGame = async () => {
       try {
-        const { success, data } = await userService.getUserPlayListItem(
-          parseInt(playlistItem.id)
+        const updatedPlayListGame = await Promise.all(
+          dataList.map(async (playlistItem) => {
+            const { success, data } = await userService.getUserPlayListItem(
+              parseInt(playlistItem.id)
+            );
+            if (success) {
+              return { ...playlistItem, detail: data };
+            }
+            return playlistItem;
+          })
         );
-        if (success) {
-          return { ...playlistItem, detail: data };
-        }
-        return playlistItem;
+        setPlayListGame(updatedPlayListGame);
       } catch (e: any) {
         throw e;
       }
-    });
-    // wait all promise finish and update state PlayListGame
-    Promise.all(newPlayListGame).then((result) => {
-      setPlayListGame(result);
-    });
-  }, []);
-  console.log("playList Game", playListGame);
+    };
+    updatePlayListGame();
+  }, [dataList]);
+
+  // get Play List Detail with show PlayListDetail Comp first
+  useEffect(() => {
+    if (showPlayListDetailFirst?.isShowFirst) {
+      const playListDetail = playListGame.find(
+        (item, index) => item?.id === showPlayListDetailFirst?.playListId
+      );
+      setPlayListItem((prev) => ({
+        ...prev,
+        playListDetail: playListDetail,
+      }));
+    }
+  }, [playListGame]);
+
   const GotoPlayListItem = (playListDetail: IPlayListGame) => {
     setIsOpenPlayList(false);
     setPlayListItem({
@@ -96,38 +122,42 @@ Props) {
             <div key={index} className="mb-9">
               <div className="flex justify-between text-main-whileColor mb-4">
                 <h2 className="text-2xl font-bold font-nunito">
-                  {playListDetail.name}
+                  {playListDetail?.name}
                 </h2>
                 <button
                   onClick={() => {
                     GotoPlayListItem(playListDetail);
                   }}
-                  className="text-xs font-medium font-lato"
+                  className="text-sx font-medium font-lato hover:text-main-pink-db"
                 >
                   View all {">"}
                 </button>
               </div>
-              <div className="grid grid-cols-10 grid-rows-1 gap-4">
-                {playListDetail?.detail?.slice(0, 10).map((game, index) => (
-                  <Link
-                    href={staticPaths.game_screen}
-                    key={index}
-                    className="relative group hover:scale-105 transition-all ease-in-out duration-300"
-                  >
-                    <Image
-                      className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
-                      src={game.thumbnail}
-                      alt="gamePicture"
-                      sizes="100vw"
-                      width={94}
-                      height={94}
-                    />
-                    <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
-                      {game.title}
-                    </p>
-                  </Link>
-                ))}
-              </div>
+              {playListDetail?.detail?.length === 0 ? (
+                <NoData />
+              ) : (
+                <div className="grid grid-cols-10 grid-rows-1 gap-4">
+                  {playListDetail?.detail?.slice(0, 10).map((game, index) => (
+                    <Link
+                      href={staticPaths.game_screen}
+                      key={index}
+                      className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+                    >
+                      <Image
+                        className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                        src={game.thumbnail}
+                        alt="gamePicture"
+                        sizes="100vw"
+                        width={94}
+                        height={94}
+                      />
+                      <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                        {game.title}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))
         )}
@@ -139,11 +169,9 @@ Props) {
   }: {
     playListDetail: IPlayListGame;
   }) => {
-    const [isOpenDeletePlayList, setIsOpenDeletePlayList] =
-      useState<boolean>(false);
+    const { openModal, status, setStatus, setPayload } = useModalContext();
     const [showDeleteChooseGame, setShowDeleteChooseGame] =
       useState<boolean>(false);
-    const [isOpenDeleteGame, setIsOpenDeleteGame] = useState<boolean>(false);
     const OnBackToPlayListGame = () => {
       setPlayListItem((prev) => ({
         ...prev,
@@ -151,36 +179,18 @@ Props) {
       }));
       setIsOpenPlayList(true);
     };
-    //Show Delete PlayList PopUp
-    const openDeletePlayListPopUp = () => {
-      setIsOpenDeletePlayList(true);
-    };
-    //Click yes event to delete PlayList
-    const hanleClickDeletePlayListYes = () => {
-      setIsOpenDeletePlayList(false);
-    };
-    //Click no event to delete PlayList
-    const hanleClickDeletePlayListNo = () => {
-      setIsOpenDeletePlayList(false);
-    };
     //choose game item to Delete
     const handleChooseGameToDelete = () => {
       setShowDeleteChooseGame(true);
     };
-    //Show Delete Game PopUp
-    const openDeleteGamePopUp = () => {
-      setIsOpenDeleteGame(true);
-    };
-    //Click yes event to delete game
-    const hanleClickDeleteGameYes = () => {
-      setIsOpenDeleteGame(false);
-      setShowDeleteChooseGame(false);
-    };
-    //Click no event to delete game
-    const hanleClickDeleteGameNo = () => {
-      setIsOpenDeleteGame(false);
-      setShowDeleteChooseGame(false);
-    };
+    // check delete status to back to PlayList
+    useEffect(() => {
+      if (status === HANDLE_STATUS.SUCCESS) {
+        OnBackToPlayListGame();
+        dispatch(userService.getUserPlayListGame(userInfo?.username!!));
+        setStatus(HANDLE_STATUS.NOT_START);
+      }
+    }, [status]);
     return (
       <>
         <div className="relative">
@@ -192,14 +202,21 @@ Props) {
           </button>
           <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
             {`Playlist games/`}{" "}
-            <span className="text-2xl">{playListDetail.name}</span>
+            <span className="text-2xl">{playListDetail?.name}</span>
           </h2>
           <div className="absolute delete-icon top-1/2 right-[22px] -translate-y-1/2 z-20">
             <DeleteIcon className="cursor-pointer" width="22px" height="24px" />
             {/* delete Option */}
             <ul className="delete-option absolute hidden  bottom-[-25px] right-[-10px] translate-y-[105%] w-[180px] rounded-[15px] border-[1px] border-main-pink-db text-base font-bold font-nunito text-main-whileColor bg-main-grayColor-90 p-2 before:content-['']  before:absolute before:top-[-40px] before:right-0 before:w-full before:h-[50px]">
               <li
-                onClick={openDeletePlayListPopUp}
+                onClick={() => {
+                  setStatus(HANDLE_STATUS.IN_PROGRESS);
+                  setPayload({
+                    type: MODAL_NAME.DELETE_PLAYLIST,
+                    playListId: playListDetail.id,
+                  });
+                  openModal(MODAL_NAME.DELETE_PLAYLIST);
+                }}
                 className="p-[10px] rounded-[10px] hover:bg-main-pink-db"
               >
                 <DeletePlayListIcon
@@ -223,55 +240,46 @@ Props) {
             </ul>
           </div>
         </div>
-        <div className="grid grid-cols-10 gap-4 p-11">
-          {playListDetail.detail.map((item, index) => (
-            <Link
-              href={staticPaths.game_screen}
-              key={index}
-              className="relative group hover:scale-105 transition-all ease-in-out duration-300"
-            >
-              <Image
-                className={`max-w-full max-h-full w-auto h-full rounded-[20px] `}
-                src={item.thumbnail}
-                alt="picture"
-                sizes="100vw"
-                width={94}
-                height={94}
-              />
-              <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
-                {item.title}
-              </p>
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.nativeEvent.preventDefault();
-                  openDeleteGamePopUp();
-                }}
-                className={`${
-                  showDeleteChooseGame ? "" : "hidden"
-                } absolute top-0 right-0 left-0 bottom-0 bg-main-grayColor-40 flex flex-col items-end rounded-[10px] cursor-pointer z-10`}
+        {playListDetail?.detail?.length === 0 ? (
+          <div className="p-11 mb-[40px]">
+            <NoData />
+          </div>
+        ) : (
+          <div className="grid grid-cols-10 gap-4 p-11 mb-[40px]">
+            {playListDetail?.detail?.map((item, index) => (
+              <Link
+                href={staticPaths.game_screen}
+                key={index}
+                className="relative group hover:scale-105 transition-all ease-in-out duration-300"
               >
-                <div className="p-[7px]">
-                  <XmarkICon width="15px" height="15px" />
+                <Image
+                  className={`max-w-full max-h-full w-auto h-full rounded-[20px] `}
+                  src={item.thumbnail}
+                  alt="picture"
+                  sizes="100vw"
+                  width={94}
+                  height={94}
+                />
+                <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                  {item.title}
+                </p>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.nativeEvent.preventDefault();
+                    openModal(MODAL_NAME.DELETE_ITEM_OF_PLAYLIST);
+                  }}
+                  className={`${
+                    showDeleteChooseGame ? "" : "hidden"
+                  } absolute top-0 right-0 left-0 bottom-0 bg-main-grayColor-40 flex flex-col items-end rounded-[10px] cursor-pointer z-10`}
+                >
+                  <div className="p-[12px]">
+                    <XmarkICon width="15px" height="15px" />
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        {/* popup */}
-        {isOpenDeletePlayList && (
-          <DeletePlayListPopUp
-            content="Delete Playlist"
-            onClickYes={hanleClickDeletePlayListYes}
-            onClickNo={hanleClickDeletePlayListNo}
-          />
-        )}
-        {isOpenDeleteGame && (
-          <DeletePlayListPopUp
-            onClickNo={hanleClickDeleteGameNo}
-            onClickYes={hanleClickDeleteGameYes}
-            content="Delete Playlist"
-          />
+              </Link>
+            ))}
+          </div>
         )}
       </>
     );

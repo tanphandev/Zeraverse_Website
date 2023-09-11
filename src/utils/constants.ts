@@ -44,6 +44,8 @@ export const TOAST_MESSAGE = {
   RESET_PASSWORD: "Please check your email to reset password",
   CREATE_USER_NAME_SUCCESS: "Create User Name Successed",
   COPY_SUCCESS: "Copy Successfully",
+  DELETE_PLAYLIST_SUCCESS: "Delete Playlist Success",
+  DELETE_PLAYLIST_FAIL: "Delete Playlist Fail",
 };
 
 // SHOP NAME
@@ -65,6 +67,15 @@ export enum VERIFY_STATUS {
 export enum MODAL_STATUS {
   OPEN = "OPEN",
   CLOSE = "CLOSE",
+}
+
+// handle_status
+export enum HANDLE_STATUS {
+  NOT_START = "NOT_START",
+  IN_PROGRESS = "IN_PROGRESS",
+  SUCCESS = "SUCCESS",
+  FAIL = "FAIL",
+  INIT = "INIT",
 }
 
 // sso method
@@ -94,6 +105,8 @@ export enum MODAL_NAME {
   EDIT_PROFILE = "EDIT_PROFILE",
   EDIT_COVER = "EDIT_COVER",
   BUY_AVATAR = "BUY_AVATAR",
+  DELETE_PLAYLIST = "DELETE_PLAYLIST",
+  DELETE_ITEM_OF_PLAYLIST = "DELETE_ITEM_OF_PLAYLIST",
 }
 
 //User inventory name

@@ -14,6 +14,8 @@ const apiURL = {
   get_user_playList_game: "/game/playlist",
   get_user_playlist_game_item: (playlistId: number) =>
     `/game/playlist/${playlistId}/item`,
+  delete_user_playlist_game: (playListId: number) =>
+    `/game/playlist/${playListId}`,
   get_user_purchase_history: "/users/purchase-history",
   update_user_profile: "/users",
   get_avatar_shop: "/shops/categories/1/items",

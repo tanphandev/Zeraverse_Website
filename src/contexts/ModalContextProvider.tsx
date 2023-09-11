@@ -7,12 +7,18 @@ import {
   useState,
 } from "react";
 import * as helper from "@/utils/helper";
-import { GLOBAL_MODAL_NAME, MODAL_NAME, MODAL_STATUS } from "@/utils/constants";
+import {
+  GLOBAL_MODAL_NAME,
+  HANDLE_STATUS,
+  MODAL_NAME,
+  MODAL_STATUS,
+} from "@/utils/constants";
 import SearchModal from "@/components/Modals/SearchModal";
 import BuyShopModal from "@/components/Modals/BuyShopModal";
 import GlobalLoading from "@/components/Modals/GlobalLoading";
 import EditProfileModal from "@/components/Modals/EditProfileModal";
 import EditCoverModal from "@/components/Modals/EditCoverModal";
+import DeletePlayListModal from "@/components/Modals/DeletePlayListModal";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -27,8 +33,8 @@ type ModalContextType = {
   closeModalWithAnimation: (duration: number) => void;
   payload: any;
   setPayload: React.Dispatch<React.SetStateAction<any>>;
-  statusModal: MODAL_STATUS;
-  setStatusModal: React.Dispatch<React.SetStateAction<MODAL_STATUS>>;
+  status: HANDLE_STATUS;
+  setStatus: React.Dispatch<React.SetStateAction<HANDLE_STATUS>>;
 };
 
 const ModalContext = createContext(null as any);
@@ -42,6 +48,10 @@ const Modal: any = {
   [MODAL_NAME.BUY_AVATAR]: <BuyShopModal />,
   [MODAL_NAME.EDIT_PROFILE]: <EditProfileModal itemsPerPage={6} />,
   [MODAL_NAME.EDIT_COVER]: <EditCoverModal itemsPerPage={4} />,
+  [MODAL_NAME.DELETE_PLAYLIST]: <DeletePlayListModal title="Delete Playlist" />,
+  [MODAL_NAME.DELETE_ITEM_OF_PLAYLIST]: (
+    <DeletePlayListModal title="Delete This Game" />
+  ),
 };
 
 export const useModalContext = () => {
@@ -65,9 +75,7 @@ export const ModalContextProvider = ({
     GLOBAL_MODAL_NAME.NONE
   );
   const [modal, setModal] = useState<MODAL_NAME>(MODAL_NAME.NONE);
-  const [statusModal, setStatusModal] = useState<MODAL_STATUS>(
-    MODAL_STATUS.CLOSE
-  );
+  const [status, setStatus] = useState<HANDLE_STATUS>(HANDLE_STATUS.NOT_START);
 
   // close Global modal with animation
   const closeGlobalModalWithAnimation = useCallback(
@@ -122,8 +130,8 @@ export const ModalContextProvider = ({
       closeModalWithAnimation,
       payload,
       setPayload,
-      statusModal,
-      setStatusModal,
+      status,
+      setStatus,
     }),
     [
       globalModal,
@@ -138,8 +146,8 @@ export const ModalContextProvider = ({
       closeModalWithAnimation,
       payload,
       setPayload,
-      statusModal,
-      setStatusModal,
+      status,
+      setStatus,
     ]
   );
 
