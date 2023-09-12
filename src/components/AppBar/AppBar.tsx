@@ -46,7 +46,7 @@ function AppBar() {
             alt="Logo"
           />
         </Link>
-        <div className="pb-4 border-b-[1px] border-main-violet-c4 ">
+        <div className="pb-4 border-b-[1px] border-main-violet-c4 mb-7">
           <button onClick={handleToggleMenu}>
             <MenuIcon className="mr-4" width="42" height="42px" />
           </button>
@@ -61,8 +61,9 @@ function AppBar() {
             />
           </button>
         </div>
+
         {toggleMenu && (
-          <div className=" py-7 border-b-[1px] border-main-violet-c4 animate-fadeOut animate-fadeIn ">
+          <div className="relative overflow-hidden animate-fadeInDown border-b-[1px] border-main-violet-c4">
             <div className="border-b-[1px] border-[#8f66a2]">
               <button className="block w-full text-left mb-4">
                 <RiderIcon
@@ -119,7 +120,7 @@ function AppBar() {
                   All Game Tags
                 </p>
               </button>
-              <button className="block w-full text-left">
+              <button className="block w-full text-left mb-7">
                 <TagIcon className="inline" width="32px" height="32px" />
                 <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
                   All Article Tags
@@ -149,7 +150,7 @@ function AppBar() {
                   alt="ProfilePicture"
                 />
                 <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">
-                  {userInfo.username}
+                  {userInfo?.username}
                 </p>
               </div>
             </div>

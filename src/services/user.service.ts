@@ -215,6 +215,15 @@ export const updateCoverProfle = async (userData: { cover: number }) => {
   }
 };
 
+export const claimDailyBonus = async () => {
+  try {
+    const { data } = httpRequest.post(apiURL.claim_daily_bonus, {});
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
 export const getUserInventories = createAsyncThunk(
   "user/getUserInventories",
   async (data: {}, { rejectWithValue }) => {
@@ -334,6 +343,17 @@ export const deleteUserPlayListGame = async (playListId: number) => {
   try {
     const { data } = await httpRequest.delete(
       apiURL.delete_user_playlist_game(playListId)
+    );
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
+export const deleteUserPlayListItemGame = async (gameId: number) => {
+  try {
+    const { data } = await httpRequest.delete(
+      apiURL.delete_user_playlist_item_game(gameId)
     );
     return data;
   } catch (e: any) {

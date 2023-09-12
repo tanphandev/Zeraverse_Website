@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 import Logo from "@/asset/image/Logo.png";
 import * as AuthService from "@/services/auth.service";
 import { toast } from "react-toastify";
-import { MODAL_NAME, TOAST_MESSAGE } from "@/utils/constants";
+import {
+  GLOBAL_MODAL_NAME,
+  MODAL_NAME,
+  TOAST_MESSAGE,
+} from "@/utils/constants";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 
 // create schema formik
@@ -17,7 +21,7 @@ const forgotPasswordSchema = Yup.object().shape({
 });
 function ForgotPassword() {
   const router = useRouter();
-  const { openModal, closeModal } = useModalContext();
+  const { openGlobalModal, closeGlobalModal } = useModalContext();
   //config formik
   const formik = useFormik({
     initialValues: {
@@ -30,15 +34,15 @@ function ForgotPassword() {
   });
 
   const handleForgotPassword = async (forgotData: { email: string }) => {
-    openModal(MODAL_NAME.LOADING);
+    openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
     try {
       const { success, data } = await AuthService.forgotPassword(forgotData);
       if (success) {
-        closeModal();
+        closeGlobalModal();
         toast.success(TOAST_MESSAGE.RESET_PASSWORD);
       }
     } catch (e: any) {
-      closeModal();
+      closeGlobalModal();
       toast.error(e?.message);
       throw e;
     }

@@ -26,17 +26,40 @@ function DeletePlayListModal({ title }: { title?: string }) {
             setStatus(HANDLE_STATUS.SUCCESS);
             closeGlobalModalWithAnimation(150);
             closeModalWithAnimation(150);
-            toast.success(TOAST_MESSAGE.DELETE_PLAYLIST_SUCCESS);
+            toast.success(TOAST_MESSAGE.DELETE_PLAYLIST_SUCCESS, {
+              position: "top-right",
+            });
           })
           .catch(() => {
             setStatus(HANDLE_STATUS.FAIL);
             closeGlobalModalWithAnimation(150);
             closeModalWithAnimation(150);
-            toast.error(TOAST_MESSAGE.DELETE_PLAYLIST_FAIL);
+            toast.error(TOAST_MESSAGE.DELETE_PLAYLIST_FAIL, {
+              position: "top-right",
+            });
           });
         break;
       }
       case MODAL_NAME.DELETE_ITEM_OF_PLAYLIST: {
+        openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
+        userService
+          .deleteUserPlayListItemGame(payload?.gameId)
+          .then(() => {
+            setStatus(HANDLE_STATUS.SUCCESS);
+            closeGlobalModalWithAnimation(150);
+            closeModalWithAnimation(150);
+            toast.success(TOAST_MESSAGE.DELETE_PLAYLIST_ITEM_SUCCESS, {
+              position: "top-right",
+            });
+          })
+          .catch(() => {
+            setStatus(HANDLE_STATUS.FAIL);
+            closeGlobalModalWithAnimation(150);
+            closeModalWithAnimation(150);
+            toast.error(TOAST_MESSAGE.DELETE_PLAYLIST_ITEM_FAIL, {
+              position: "top-right",
+            });
+          });
         break;
       }
       default: {

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import * as userService from "@/services/user.service";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
@@ -99,77 +99,82 @@ function UserPlayListPage({
     });
   };
 
-  const UserPlayList = () => (
-    <>
-      <div className="relative">
-        <h2 className=" text-[28px] text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
-          {title}
-        </h2>
-        <button
-          onClick={() => {
-            onBack(title);
-          }}
-          className="absolute top-1/2 left-5 -translate-y-1/2 text-sm font-bold font-lato"
-        >
-          {"<"} Back
-        </button>
-      </div>
-      <div className="p-11 mb-[40px]">
-        {playListGame.length === 0 ? (
-          <NoData />
-        ) : (
-          playListGame.map((playListDetail, index) => (
-            <div key={index} className="mb-9">
-              <div className="flex justify-between text-main-whileColor mb-4">
-                <h2 className="text-2xl font-bold font-nunito">
-                  {playListDetail?.name}
-                </h2>
-                <button
-                  onClick={() => {
-                    GotoPlayListItem(playListDetail);
-                  }}
-                  className="text-sx font-medium font-lato hover:text-main-pink-db"
-                >
-                  View all {">"}
-                </button>
-              </div>
-              {playListDetail?.detail?.length === 0 ? (
-                <NoData />
-              ) : (
-                <div className="grid grid-cols-10 grid-rows-1 gap-4">
-                  {playListDetail?.detail?.slice(0, 10).map((game, index) => (
-                    <Link
-                      href={staticPaths.game_screen}
-                      key={index}
-                      className="relative group hover:scale-105 transition-all ease-in-out duration-300"
-                    >
-                      <Image
-                        className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
-                        src={game.thumbnail}
-                        alt="gamePicture"
-                        sizes="100vw"
-                        width={94}
-                        height={94}
-                      />
-                      <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
-                        {game.title}
-                      </p>
-                    </Link>
-                  ))}
+  const UserPlayList = () => {
+    return (
+      <>
+        <div className="relative">
+          <h2 className=" text-[28px] text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
+            {title}
+          </h2>
+          <button
+            onClick={() => {
+              onBack(title);
+            }}
+            className="absolute top-1/2 left-5 -translate-y-1/2 text-sm font-bold font-lato"
+          >
+            {"<"} Back
+          </button>
+        </div>
+        <div className="p-11 mb-[40px]">
+          {playListGame.length === 0 ? (
+            <NoData />
+          ) : (
+            playListGame.map((playListDetail, index) => (
+              <div key={index} className="mb-9">
+                <div className="flex justify-between text-main-whileColor mb-4">
+                  <h2 className="text-2xl font-bold font-nunito">
+                    {playListDetail?.name}
+                  </h2>
+                  <button
+                    onClick={() => {
+                      GotoPlayListItem(playListDetail);
+                    }}
+                    className="text-sx font-medium font-lato hover:text-main-pink-db"
+                  >
+                    View all {">"}
+                  </button>
                 </div>
-              )}
-            </div>
-          ))
-        )}
-      </div>
-    </>
-  );
+                {playListDetail?.detail?.length === 0 ? (
+                  <NoData />
+                ) : (
+                  <div className="grid grid-cols-10 grid-rows-1 gap-4">
+                    {playListDetail?.detail?.slice(0, 10).map((game, index) => (
+                      <Link
+                        href={staticPaths.game_screen}
+                        key={index}
+                        className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+                      >
+                        <Image
+                          className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                          src={game.thumbnail}
+                          alt="gamePicture"
+                          sizes="100vw"
+                          width={94}
+                          height={94}
+                        />
+                        <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
+                          {game.title}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+      </>
+    );
+  };
   const PlayListItem = ({
     playListDetail,
   }: {
     playListDetail: IPlayListGame;
   }) => {
-    const { openModal, status, setStatus, setPayload } = useModalContext();
+    const { openModal, status, setStatus, payload, setPayload } =
+      useModalContext();
+    const [playlistItemDetail, setPlayListItemDetail] =
+      useState<IPlayListGame>(playListDetail);
     const [showDeleteChooseGame, setShowDeleteChooseGame] =
       useState<boolean>(false);
     const OnBackToPlayListGame = () => {
@@ -183,12 +188,30 @@ function UserPlayListPage({
     const handleChooseGameToDelete = () => {
       setShowDeleteChooseGame(true);
     };
+
+    useEffect(() => {
+      setPlayListItemDetail(playListDetail);
+    }, []);
+
     // check delete status to back to PlayList
     useEffect(() => {
       if (status === HANDLE_STATUS.SUCCESS) {
-        OnBackToPlayListGame();
-        dispatch(userService.getUserPlayListGame(userInfo?.username!!));
-        setStatus(HANDLE_STATUS.NOT_START);
+        if (payload?.type === MODAL_NAME.DELETE_PLAYLIST) {
+          OnBackToPlayListGame();
+          dispatch(userService.getUserPlayListGame(userInfo?.username!!));
+          setStatus(HANDLE_STATUS.NOT_START);
+          setPayload(null);
+        } else if (payload?.type === MODAL_NAME.DELETE_ITEM_OF_PLAYLIST) {
+          const newPlayListDetail = playlistItemDetail?.detail.filter(
+            (item) => item?.id !== payload?.gameId
+          );
+          setPlayListItemDetail((prev) => ({
+            ...prev,
+            detail: newPlayListDetail,
+          }));
+          setStatus(HANDLE_STATUS.NOT_START);
+          setPayload(null);
+        }
       }
     }, [status]);
     return (
@@ -202,7 +225,7 @@ function UserPlayListPage({
           </button>
           <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
             {`Playlist games/`}{" "}
-            <span className="text-2xl">{playListDetail?.name}</span>
+            <span className="text-2xl">{playlistItemDetail?.name}</span>
           </h2>
           <div className="absolute delete-icon top-1/2 right-[22px] -translate-y-1/2 z-20">
             <DeleteIcon className="cursor-pointer" width="22px" height="24px" />
@@ -213,7 +236,7 @@ function UserPlayListPage({
                   setStatus(HANDLE_STATUS.IN_PROGRESS);
                   setPayload({
                     type: MODAL_NAME.DELETE_PLAYLIST,
-                    playListId: playListDetail.id,
+                    playListId: playlistItemDetail.id,
                   });
                   openModal(MODAL_NAME.DELETE_PLAYLIST);
                 }}
@@ -240,13 +263,13 @@ function UserPlayListPage({
             </ul>
           </div>
         </div>
-        {playListDetail?.detail?.length === 0 ? (
+        {playlistItemDetail?.detail?.length === 0 ? (
           <div className="p-11 mb-[40px]">
             <NoData />
           </div>
         ) : (
           <div className="grid grid-cols-10 gap-4 p-11 mb-[40px]">
-            {playListDetail?.detail?.map((item, index) => (
+            {playlistItemDetail?.detail?.map((item, index) => (
               <Link
                 href={staticPaths.game_screen}
                 key={index}
@@ -267,6 +290,11 @@ function UserPlayListPage({
                   onClick={(e) => {
                     e.stopPropagation();
                     e.nativeEvent.preventDefault();
+                    setStatus(HANDLE_STATUS.IN_PROGRESS);
+                    setPayload({
+                      type: MODAL_NAME.DELETE_ITEM_OF_PLAYLIST,
+                      gameId: item?.id,
+                    });
                     openModal(MODAL_NAME.DELETE_ITEM_OF_PLAYLIST);
                   }}
                   className={`${

@@ -4,6 +4,7 @@ const apiURL = {
   register_with_email: "/auth/register-email",
   forgot_password: "/users/forgot-password",
   update_user_name: "/users/username",
+  claim_daily_bonus: "/users/claim-daily-bonus",
   getUserInfo: (userName: string) => `/users/profile/${userName}`,
   get_user_inventories: "/users/inventories",
   get_user_statistic: "/users/statistic",
@@ -16,9 +17,12 @@ const apiURL = {
     `/game/playlist/${playlistId}/item`,
   delete_user_playlist_game: (playListId: number) =>
     `/game/playlist/${playListId}`,
+  delete_user_playlist_item_game: (gameId: number) =>
+    `/game/playlist/item/${gameId}`,
   get_user_purchase_history: "/users/purchase-history",
   update_user_profile: "/users",
   get_avatar_shop: "/shops/categories/1/items",
+  buy_avatar: "/shops/buy",
 };
 
 export default apiURL;

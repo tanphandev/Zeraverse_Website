@@ -19,6 +19,7 @@ import GlobalLoading from "@/components/Modals/GlobalLoading";
 import EditProfileModal from "@/components/Modals/EditProfileModal";
 import EditCoverModal from "@/components/Modals/EditCoverModal";
 import DeletePlayListModal from "@/components/Modals/DeletePlayListModal";
+import DailyGiftModal from "@/components/Modals/DailyGiftModal";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -45,6 +46,7 @@ const GlobalModal: any = {
 
 const Modal: any = {
   [MODAL_NAME.SEARCH]: <SearchModal />,
+  [MODAL_NAME.CLAIM_DAILY_BONUS]: <DailyGiftModal />,
   [MODAL_NAME.BUY_AVATAR]: <BuyShopModal />,
   [MODAL_NAME.EDIT_PROFILE]: <EditProfileModal itemsPerPage={6} />,
   [MODAL_NAME.EDIT_COVER]: <EditCoverModal itemsPerPage={4} />,

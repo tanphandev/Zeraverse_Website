@@ -15,7 +15,7 @@ type Props = {
 };
 
 type PayLoadBuyModal = {
-  title: SHOP_NAME;
+  type: SHOP_NAME;
   id: number;
   name: string;
   price: number;
@@ -44,7 +44,7 @@ function UserBar({ zera }: Props) {
           <CoinIcon className="ml-2 inline-block" width="20px" height="20px" />
         </h2>
       </div>
-      <div className="avatar-shop-list grid grid-cols-2 gap-x-4 gap-y-2 my-[10px] ml-[14px] mr-[4px] pr-[10px] h-[206px] overflow-y-scroll">
+      <div className="avatar-shop-list grid grid-cols-2 gap-x-4 gap-y-2 my-[10px] ml-[14px] mr-[4px] pr-[10px] h-[320px] overflow-y-scroll">
         {avatarShop?.map((item, index) => (
           <div key={index}>
             <div className="relative group">
@@ -56,39 +56,49 @@ function UserBar({ zera }: Props) {
                 height={80}
               />
               {/* buy */}
-              <div className="hidden group-hover:flex absolute items-center justify-center top-0 left-0 bottom-0 right-0 bg-main-grayColor-40 rounded-[10px]">
-                <button
-                  onClick={() => {
-                    const payload = {
-                      title: SHOP_NAME.AVATAR,
-                      id: item.id,
-                      name: item.name,
-                      price: item.price,
-                      url: item.url,
-                    };
-                    handleClickBuyAvatar(payload);
-                  }}
-                  className="px-[10px] py-[5px] rounded-[10px] bg-gradient-to-b from-[#9D174D] to-[#5F0026]"
-                >
-                  <p className="text-[10px] font-bold font-nunito text-main-whileColor">
-                    Buy now
-                  </p>
-                </button>
-              </div>
+              {!item?.user_inventory && (
+                <div className="hidden group-hover:flex absolute items-center justify-center top-0 left-0 bottom-0 right-0 bg-main-grayColor-40 rounded-[10px]">
+                  <button
+                    onClick={() => {
+                      const payload = {
+                        type: SHOP_NAME.AVATAR,
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        url: item.url,
+                      };
+                      handleClickBuyAvatar(payload);
+                    }}
+                    className="px-[10px] py-[5px] rounded-[10px] bg-gradient-to-b from-[#9D174D] to-[#5F0026]"
+                  >
+                    <p className="text-[10px] font-bold font-nunito text-main-whileColor">
+                      Buy now
+                    </p>
+                  </button>
+                </div>
+              )}
             </div>
-            <p className="text-[11px] font-black font-nunito text-center text-main-whileColor">
-              {item.price}
-              <CoinIcon
-                className="inline-block ml-2"
-                width="14px"
-                height="14px"
-              />
-            </p>
+            {!!item?.user_inventory ? (
+              <div className="text-center">
+                <p className="inline text-[11px] font-semibold font-nunito text-main-whileColor px-2 py-[3px] rounded-[20px] bg-[#360e1e] shadow-[_0_1px_2px_0] shadow-main-pink-9d">
+                  Owned
+                </p>
+              </div>
+            ) : (
+              <p className="text-[11px] font-black font-nunito text-center text-main-whileColor">
+                {item.price}
+                <CoinIcon
+                  className="inline-block ml-2"
+                  width="14px"
+                  height="14px"
+                />
+              </p>
+            )}
           </div>
         ))}
       </div>
       <Link href={"/simple-shop"}>
-        <button className=" py-[3px] px-[30px] bg-main-pink-be rounded-[10px] mb-[14px]">
+        <button className="transition-colors py-[3px] px-[30px] bg-main-pink-be hover:bg-main-pink-83 rounded-[10px] mb-[14px]">
           <p className="items-center mb-[2px] text-xs text-center font-bold text-main-whileColor leading-[1.6]">
             Shop
           </p>

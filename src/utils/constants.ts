@@ -43,9 +43,15 @@ export const TOAST_MESSAGE = {
   CHECK_EMAIL: "A verification email has been sent to you. Please check it!",
   RESET_PASSWORD: "Please check your email to reset password",
   CREATE_USER_NAME_SUCCESS: "Create User Name Successed",
+  CLAIM_DAILY_GIFT_SUCCESS: "Congratulations! You have received bonus today",
+  CLAIM_DAILY_GIFT_FAIL: "Received bonus fail",
   COPY_SUCCESS: "Copy Successfully",
-  DELETE_PLAYLIST_SUCCESS: "Delete Playlist Success",
-  DELETE_PLAYLIST_FAIL: "Delete Playlist Fail",
+  DELETE_PLAYLIST_SUCCESS: "Delete playlist success",
+  DELETE_PLAYLIST_FAIL: "Delete playlist fail",
+  DELETE_PLAYLIST_ITEM_SUCCESS: "Delete game success",
+  DELETE_PLAYLIST_ITEM_FAIL: "Delete game fail",
+  BUY_AVATAR_SUCCESS: "Buy avatar success",
+  BUY_AVATAR_FAIL: "Buy avatar fail",
 };
 
 // SHOP NAME
@@ -101,6 +107,7 @@ export enum GLOBAL_MODAL_NAME {
 //modal
 export enum MODAL_NAME {
   NONE = "NONE",
+  CLAIM_DAILY_BONUS = "CLAIM_DAILY_BONUS",
   SEARCH = "SEARCH",
   EDIT_PROFILE = "EDIT_PROFILE",
   EDIT_COVER = "EDIT_COVER",

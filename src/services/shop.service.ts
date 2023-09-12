@@ -42,3 +42,14 @@ export const getAvatarShop = createAsyncThunk(
     }
   }
 );
+
+export const buyAvatarShop = async (avatarId: number) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.buy_avatar, {
+      item: avatarId,
+    });
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};

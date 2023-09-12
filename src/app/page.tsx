@@ -3,7 +3,7 @@ import CategoryGame from "@/components/Games/CategoryGame";
 import TrendingNew from "@/components/Articles/TrendingNew";
 import MainLayout from "./(MainLayout)/layout";
 import GameList from "@/components/Games/GameList";
-import DailyGiftModal from "@/components/Modals/DailyGiftModal";
+import DailyGift from "@/components/DailyGift/DailyGift";
 
 export default function Home() {
   return (
@@ -32,10 +32,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <DailyGiftModal />
+          <DailyGift />
         </div>
       </MainLayout>
     </div>
   );
 }
-// isShowDailyGiftModal

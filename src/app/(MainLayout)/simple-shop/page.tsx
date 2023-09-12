@@ -1,12 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {
-  MutableRefObject,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import AvatarShop from "@/components/Shops/AvatarShop";
 import CoverPage from "@/components/Shops/CoverPageShop";
 import PlaytimesShop from "@/components/Shops/PlayTimesShop";
