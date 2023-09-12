@@ -10,6 +10,7 @@ const userSlice = createSlice({
       categories: [],
       avatar: [],
       cover: [],
+      contact: null,
     },
     statistic: null,
     rewards: [],
@@ -141,6 +142,18 @@ const userSlice = createSlice({
         state.purchaseHistory = action.payload;
       })
       .addCase(getUserPurchaseHistory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getContact.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.contact = action.payload;
+      })
+      .addCase(getContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -396,3 +409,25 @@ export const getUserRewards = createAsyncThunk(
     }
   }
 );
+
+export const getContact = createAsyncThunk(
+  "user/getContact",
+  async (data: {}, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(apiURL.get_contact);
+      const contact = data?.data;
+      return contact;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
+
+export const newsletter = async (userData: { name: string; email: string }) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.newsletter, userData);
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};

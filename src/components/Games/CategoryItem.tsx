@@ -15,7 +15,7 @@ function CategoryItem({
     >
       <div className="h-full w-full">
         <Image
-          className=" w-full h-full min-w-[94px] rounded-[20px]"
+          className="w-full h-full min-w-[94px] rounded-[20px]"
           src={src}
           alt="category image"
           sizes="100vw"

@@ -1,24 +1,25 @@
 "use client";
+import { gameCategoriesSelector } from "@/store/selectors/game.selector";
+import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import useSWR from "swr";
+import { useDispatch, useSelector } from "react-redux";
+import * as gameService from "@/services/game.service";
 import CategoryItem from "./CategoryItem";
-import ApiCaller from "@/api/apiCaller";
-import { nonTokenRequireAPIs } from "@/api/api";
-//call api to get game categories
-const GameCategoriesfetcher = async (): Promise<IGameCategories[]> => {
-  const res = await ApiCaller.get(nonTokenRequireAPIs.getGameCategory);
-  const gameCategories = res.data;
-  return gameCategories;
-};
 function GameCategory({ colSpan }: { colSpan?: string }) {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const gameCategories = useSelector<RootState>(
+    gameCategoriesSelector
+  ) as any[];
   const CategoryGridRef = useRef<HTMLDivElement | null>(null);
   const [rowNumber, setRowNumber] = useState<number>(0);
-  const { data: gameCategories } = useSWR(
-    "gameCategories",
-    GameCategoriesfetcher
-  );
+
+  /* get game categories */
+  useEffect(() => {
+    !gameCategories && dispatch(gameService.getGameCategories({}));
+  }, [gameCategories]);
+
   useEffect(() => {
     if (CategoryGridRef.current) {
       const CategoryChild: HTMLElement[] = Array.from(

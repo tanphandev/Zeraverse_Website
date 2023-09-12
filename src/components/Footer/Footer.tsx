@@ -1,22 +1,9 @@
+import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/asset/image/Logo.png";
-import Link from "next/link";
-import FacebookIcon from "@/asset/icons/FacebookIcon";
-import TwitterIcon from "@/asset/icons/TwitterIcon";
-import TelegramIcon from "@/asset/icons/TelegramIcon";
-import DiscordIcon from "@/asset/icons/DiscordIcon";
-import ApiCaller from "@/api/apiCaller";
-import { nonTokenRequireAPIs } from "@/api/api";
-import { IContact } from "@/interface/IContact";
 import LetterForm from "./LetterForm";
-//call api to get contacts
-const getContacts = async (): Promise<IContact[]> => {
-  const res = await ApiCaller.get(nonTokenRequireAPIs.contact);
-  const contacts = res.data;
-  return contacts;
-};
-async function Footer() {
-  const contacts: IContact[] = await getContacts();
+import Contact from "./Contact";
+function Footer() {
   return (
     <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">
       <div className=" w-full h-full ">
@@ -54,27 +41,7 @@ async function Footer() {
                   Terms
                 </Link>
               </div>
-              <div className="flex">
-                {contacts.map((contact, index) => {
-                  let SocialIcon: JSX.Element | null = null;
-                  if (contact.network === "Facebook") {
-                    SocialIcon = <FacebookIcon width="30px" height="30px" />;
-                  } else if (contact.network === "Twitter") {
-                    SocialIcon = <TwitterIcon width="30px" height="30px" />;
-                  } else if (contact.network === "Telegram") {
-                    SocialIcon = <TelegramIcon width="30px" height="30px" />;
-                  } else if (contact.network === "Discord") {
-                    SocialIcon = <DiscordIcon width="30px" height="30px" />;
-                  }
-                  return (
-                    <Link key={index} href={contact.link}>
-                      <div className="mr-[19px] cursor-pointer">
-                        {SocialIcon}
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
+              <Contact />
             </div>
           </div>
         </div>

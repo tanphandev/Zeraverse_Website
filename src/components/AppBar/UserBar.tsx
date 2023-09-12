@@ -27,10 +27,12 @@ function UserBar({ zera }: Props) {
     avatarShopSelector
   ) as IAvatarShop[];
   const { openModal, setPayload } = useModalContext();
-  //call api to get items in avatar shop
+
+  /* get avatar shop */
   useEffect(() => {
-    dispatch(shopService.getAvatarShop({}));
-  }, []);
+    !avatarShop && dispatch(shopService.getAvatarShop({}));
+  }, [avatarShop]);
+
   // handleClickBuy
   const handleClickBuyAvatar = (payload: PayLoadBuyModal) => {
     openModal(MODAL_NAME.BUY_AVATAR);

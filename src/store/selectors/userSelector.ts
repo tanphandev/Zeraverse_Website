@@ -11,3 +11,4 @@ export const userLovedGameSelector = (state: any) => state.user.lovedGame;
 export const userPlayListGameSelector = (state: any) => state.user.playListGame;
 export const userPurchaseHistorySelector = (state: any) =>
   state.user.purchaseHistory;
+export const contactSelector = (state: any) => state.user.contact;

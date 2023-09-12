@@ -12,7 +12,15 @@ export default interface IGame {
   seo_description: string;
   seo_title: string;
   slug: string;
-  superslug: any;
+  superslug: {
+    code: string;
+    created_at: string;
+    description: string;
+    id: number;
+    label: string;
+    updated_at: string;
+    value: string;
+  };
   superslug_id: number;
   thumbnail: string;
   tilegrid: number;

@@ -1,23 +1,28 @@
+"use client";
 import Image from "next/image";
-import { IArticles } from "@/interface/IArticles";
-import ApiCaller from "@/api/apiCaller";
-import { nonTokenRequireAPIs } from "@/api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import * as articleService from "@/services/article.service";
+import { newestSelector } from "@/store/selectors/article.selector";
+import { useEffect } from "react";
+import { IArticle } from "@/interface/article/IArticle";
 
-async function getNewest(): Promise<IArticles[]> {
-  const res = await ApiCaller.get(nonTokenRequireAPIs.getNewest);
-  const newest = res.data.rows;
-  return newest;
-}
-async function TrendingNew() {
-  const newest: IArticles[] = await getNewest();
-  const newest2Item = newest.slice(0, 2);
+function TrendingNew() {
+  const dispatch = useDispatch<AppDispatch>();
+  const newest = useSelector<RootState>(newestSelector) as IArticle[];
+
+  /* get newest */
+  useEffect(() => {
+    !newest && dispatch(articleService.getNewest({}));
+  }, [newest]);
+  const newest2Item = newest?.slice(0, 2);
   return (
     <div>
       <h2 className="text-[28px] font-bold font-lato text-main-whileColor mb-[10px]">
         Trending News
       </h2>
       <div className="grid grid-cols-2 gap-4 mb-[22px]">
-        {newest2Item.map((item, index) => (
+        {newest2Item?.map((item, index) => (
           <div
             key={index}
             className="flex items-center border border-main-pink-be rounded-[10px] bg-main-blackColor"

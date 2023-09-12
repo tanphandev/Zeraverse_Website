@@ -1,9 +1,9 @@
-import Link from "next/link";
+import DailyGift from "@/components/DailyGift/DailyGift";
+import GameList from "@/components/Games/GameList";
 import CategoryGame from "@/components/Games/CategoryGame";
 import TrendingNew from "@/components/Articles/TrendingNew";
+import ListArticleCategory from "@/components/Articles/ListArticleCategory";
 import MainLayout from "./(MainLayout)/layout";
-import GameList from "@/components/Games/GameList";
-import DailyGift from "@/components/DailyGift/DailyGift";
 
 export default function Home() {
   return (
@@ -15,22 +15,9 @@ export default function Home() {
             <CategoryGame colSpan="col-span-10" />
             <div className="col-span-1"></div>
           </div>
-          <div className="bg-main-grayColor-80 pt-[26px] pb-4 px-[53px] mt-[192px] mb-[70px]">
+          <div className="bg-main-grayColor-80 py-[26px] px-[53px] mt-[192px] mb-[70px]">
             <TrendingNew />
-            <div>
-              <h2 className="text-[28px] font-bold text-main-whileColor mb-[10px]">
-                List Article category
-              </h2>
-              <div className=" text-sm font-normal font-lato text-main-pink-ec">
-                <ul className="list-disc pl-[17px] mb-[14px]">
-                  <li>Game</li>
-                  <li>Game Play</li>
-                  <li>Tattic Game</li>
-                  <li>Gamer</li>
-                </ul>
-                <Link href={"article-category-all"}>View all {`>`}</Link>
-              </div>
-            </div>
+            <ListArticleCategory />
           </div>
           <DailyGift />
         </div>

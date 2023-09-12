@@ -29,7 +29,6 @@ function DailyGiftModal() {
     false,
     false,
   ]);
-  console.log("selectedItems", selectedItems);
   useOnClickOutside(dailyGiftModalRef, () => {
     closeModalWithAnimation(150);
   });
