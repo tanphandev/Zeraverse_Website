@@ -9,6 +9,13 @@
   border-radius: 15px;
 }
 
+//menu
+#menu.show-menu {
+  // transform: height(0);
+  height: 426px;
+  opacity: 1;
+}
+
 // search modal css
 .search-box {
   transition: transform 0.5s ease-in-out;
@@ -29,3 +36,5 @@
   scale: 0.8;
   transform-origin: center;
 }
+
+//Show User Option

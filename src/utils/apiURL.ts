@@ -34,6 +34,9 @@ const apiURL = {
   //article
   get_newest: "/article/newest",
   get_article_categories: "/article/category",
+  get_article: (category: string) => `/article/category/${category}`,
+  get_article_detail: (slug: string) => `/article/detail/${slug}`,
+  get_article_random: "/article/random",
 };
 
 export default apiURL;

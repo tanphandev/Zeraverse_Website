@@ -14,7 +14,7 @@ import { contactSelector } from "@/store/selectors/userSelector";
 function Contact() {
   const dispatch = useDispatch<AppDispatch>();
   const contacts = useSelector<RootState>(contactSelector) as IContact[];
-  console.log("contact", contacts);
+
   /* get contact */
   useEffect(() => {
     !contacts && dispatch(userService.getContact({}));

@@ -86,7 +86,7 @@ const config: Config = {
         "7": "repeat(7, minmax(0, 1fr))",
       },
       animation: {
-        fadeIn: "fadeIn 0.5s ease-in-out",
+        fadeIn_20: "fadeIn 0.2s ease-in-out",
         fadeInDown: "fadeInDown 0.5s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
         slipLeftToRight: "slipLeftToRight 0.5s ease-in-out",
@@ -102,7 +102,7 @@ const config: Config = {
         },
         fadeInDown: {
           "0%": { opacity: "0.5", height: "0" },
-          "100%": { opacity: "1", height: "397px" },
+          "100%": { opacity: "1", height: "426px" },
         },
         slipLeftToRight: {
           "0%": {

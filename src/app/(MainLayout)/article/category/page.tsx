@@ -1,3 +1,4 @@
+import { staticPaths } from "@/utils/paths";
 import Link from "next/link";
 
 function ArticleCategoryAll() {
@@ -33,7 +34,9 @@ function ArticleCategoryAll() {
       <ul className="list-disc ml-4 text-sm font-normal font-lato text-main-pink-ec">
         {allArticleList.map((articleCategory, index) => (
           <li className="mb-2" key={index}>
-            <Link href={`/article-category-all/${articleCategory.name}`}>
+            <Link
+              href={`${staticPaths.article_category}/${articleCategory.name}`}
+            >
               {articleCategory.name}
             </Link>
           </li>

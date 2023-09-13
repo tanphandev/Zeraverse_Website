@@ -6,6 +6,7 @@ import ReduxProvider from "@/components/Providers/ReduxProvider";
 import "tw-elements/dist/css/tw-elements.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.scss";
+import "@/styles/custom.scss";
 import { ToastContainer } from "react-toastify";
 import SSOProvider from "@/components/Providers/SSOProvider";
 import AuthContextProvider from "@/contexts/AuthContextProvider";

@@ -97,3 +97,100 @@
 .slide-control {
   background-color: #ffffff !important;
 }
+
+// css articles
+// article
+
+.article {
+  h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+  }
+
+  h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+  }
+
+  h4 {
+    display: block;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  figure.image {
+    text-align: center;
+  }
+
+  figure.image img {
+    display: inline;
+  }
+
+  a {
+    display: block;
+    color: #be185d;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+  }
+  ol,
+  ul {
+    padding-left: 40px;
+  }
+
+  li {
+    list-style-type: disc;
+    size: 16px;
+    font-weight: 500;
+  }
+
+  strong {
+    font-weight: 800;
+  }
+
+  blockquote {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}

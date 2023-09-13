@@ -13,7 +13,7 @@ function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
     signOut();
   };
   return (
-    <div className="flex flex-col items-start px-4 py-3 rounded-2xl border-[1px] border-main-pink-9d bg-[#0c0020]">
+    <div className="animate-fadeIn_20 flex flex-col items-start px-4 py-3 rounded-2xl border-[1px] border-main-pink-9d bg-[#0c0020]">
       <Link
         className="flex items-center group hover:text-main-violet-8b px-3 pb-3"
         href={"/user"}

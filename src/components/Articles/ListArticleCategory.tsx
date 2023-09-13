@@ -12,7 +12,6 @@ function ListArticleCategory() {
   const listArticleCategory = useSelector<RootState>(
     listArticleCategorySelector
   ) as IListArticleCategory[];
-  console.log("ListArticleCategory", listArticleCategory);
 
   /* get list article category */
   useEffect(() => {
@@ -31,7 +30,7 @@ function ListArticleCategory() {
         </ul>
         <Link
           className="hover:text-main-pink-83"
-          href={staticPaths.article_category_all}
+          href={staticPaths.article_category}
         >
           View all {`>`}
         </Link>

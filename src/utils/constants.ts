@@ -54,13 +54,6 @@ export const TOAST_MESSAGE = {
   BUY_AVATAR_FAIL: "Buy avatar fail",
 };
 
-// SHOP NAME
-export enum SHOP_NAME {
-  AVATAR = "Avatar",
-  COVER = "Cover",
-  PLAYTIME = "Playtimes",
-}
-
 // verify_status
 export enum VERIFY_STATUS {
   NOT_START = "NOT_START",
@@ -116,10 +109,22 @@ export enum MODAL_NAME {
   DELETE_ITEM_OF_PLAYLIST = "DELETE_ITEM_OF_PLAYLIST",
 }
 
+// SHOP NAME
+export enum SHOP_NAME {
+  AVATAR = "Avatar",
+  COVER = "Cover",
+  PLAYTIME = "Playtimes",
+}
+
 //User inventory name
 export const INVENTORY_NAME = {
   AVATAR: "AVATAR",
   COVER: "COVER",
+};
+
+//Article category name
+export const ARTICLE_CATEGORY_NAME = {
+  ALL_ARTICLE: "all-articles",
 };
 
 export enum UserField {

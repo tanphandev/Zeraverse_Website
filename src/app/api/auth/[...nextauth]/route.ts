@@ -14,6 +14,7 @@ const handler = NextAuth({
       clientSecret: config["FACEBOOK_CLIENT_SECRET"] as string,
     }),
   ],
+  secret: config["NEXTAUTH_SECRET"],
   callbacks: {
     async jwt({ token, account, user }) {
       // Persist the OAuth access_token to the token right after signin

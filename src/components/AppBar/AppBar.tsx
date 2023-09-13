@@ -46,7 +46,7 @@ function AppBar() {
             alt="Logo"
           />
         </Link>
-        <div className="pb-4 border-b-[1px] border-main-violet-c4 mb-7">
+        <div className="pb-4 border-b-[1px] border-main-violet-c4">
           <button onClick={handleToggleMenu}>
             <MenuIcon className="mr-4" width="42" height="42px" />
           </button>
@@ -61,74 +61,69 @@ function AppBar() {
             />
           </button>
         </div>
-
-        {toggleMenu && (
-          <div className="relative overflow-hidden animate-fadeInDown border-b-[1px] border-main-violet-c4">
-            <div className="border-b-[1px] border-[#8f66a2]">
-              <button className="block w-full text-left mb-4">
-                <RiderIcon
-                  className="inline-block"
-                  width="42px"
-                  height="42px"
-                />
-                <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  Rider
-                </p>
-              </button>
-              <button className="block w-full text-left mb-4">
-                <CasualIcon
-                  className="inline-block"
-                  width="42px"
-                  height="42px"
-                />
-                <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  Casual
-                </p>
-              </button>
-            </div>
-            <div className="mt-7">
-              <Link
-                href={"/hall-of-fame"}
-                className="block w-full text-left mb-4"
-              >
-                <GameIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  Hall Of Fame
-                </p>
-              </Link>
-              <Link
-                href={"/game-category-all"}
-                className="block w-full text-left mb-4"
-              >
-                <CatelogyIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  Game Categor
-                </p>
-              </Link>
-              <Link
-                href={"/article-category-all"}
-                className="block w-full text-left mb-4"
-              >
-                <CatelogyIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  Article Category
-                </p>
-              </Link>
-              <button className="block w-full text-left mb-4">
-                <TagIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  All Game Tags
-                </p>
-              </button>
-              <button className="block w-full text-left mb-7">
-                <TagIcon className="inline" width="32px" height="32px" />
-                <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                  All Article Tags
-                </p>
-              </button>
-            </div>
+        {/* toggle menu */}
+        <div
+          id="menu"
+          className={`relative ${
+            toggleMenu ? "show-menu" : ""
+          } h-0 opacity-0 overflow-hidden transition-all duration-500 border-b-[1px] border-main-violet-c4`}
+        >
+          <div className="border-b-[1px] border-[#8f66a2] mt-7">
+            <button className="block w-full text-left mb-4">
+              <RiderIcon className="inline-block" width="42px" height="42px" />
+              <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                Rider
+              </p>
+            </button>
+            <button className="block w-full text-left mb-4">
+              <CasualIcon className="inline-block" width="42px" height="42px" />
+              <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                Casual
+              </p>
+            </button>
           </div>
-        )}
+          <div className="mt-7">
+            <Link
+              href={staticPaths.hall_of_fame}
+              className="block w-full text-left mb-4"
+            >
+              <GameIcon className="inline" width="32px" height="32px" />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                Hall Of Fame
+              </p>
+            </Link>
+            <Link
+              href={staticPaths.game_category_all}
+              className="block w-full text-left mb-4"
+            >
+              <CatelogyIcon className="inline" width="32px" height="32px" />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                Game Categor
+              </p>
+            </Link>
+            <Link
+              href={staticPaths.article_category}
+              className="block w-full text-left mb-4"
+            >
+              <CatelogyIcon className="inline" width="32px" height="32px" />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                Article Category
+              </p>
+            </Link>
+            <button className="block w-full text-left mb-4">
+              <TagIcon className="inline" width="32px" height="32px" />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                All Game Tags
+              </p>
+            </button>
+            <button className="block w-full text-left mb-7">
+              <TagIcon className="inline" width="32px" height="32px" />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+                All Article Tags
+              </p>
+            </button>
+          </div>
+        </div>
         {!!userInfo ? (
           <Tippy
             interactive={true}
