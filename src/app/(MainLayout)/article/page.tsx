@@ -13,7 +13,6 @@ import { IArticleRandom } from "@/interface/article/IArticleRandom";
 import News from "@/components/News/News";
 import PopularNews from "@/components/News/PopularNews";
 import TrendingNew from "@/components/Articles/TrendingNew";
-import { articleList } from "@/dataFetch/dataFetch";
 import dynamic from "next/dynamic";
 import { IArticle } from "@/interface/article/IArticle";
 import { IListArticleCategory } from "@/interface/article/IListArticleCategory";

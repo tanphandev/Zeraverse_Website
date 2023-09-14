@@ -12,3 +12,9 @@ export const userPlayListGameSelector = (state: any) => state.user.playListGame;
 export const userPurchaseHistorySelector = (state: any) =>
   state.user.purchaseHistory;
 export const contactSelector = (state: any) => state.user.contact;
+export const hallOfFameZeraSelector = (state: any) =>
+  state.user.hallOfFame.zera;
+export const hallOfFameGamesPlayedSelector = (state: any) =>
+  state.user.hallOfFame.games_played;
+export const hallOfFamePlaystreakSelector = (state: any) =>
+  state.user.hallOfFame.playstreak;

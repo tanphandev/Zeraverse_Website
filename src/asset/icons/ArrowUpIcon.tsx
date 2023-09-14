@@ -1,4 +1,4 @@
-export const ArrowDown = ({
+export const ArrowUp = ({
   width = "20px",
   height = "20px",
   className,
@@ -11,7 +11,7 @@ export const ArrowDown = ({
 }) => (
   <svg
     {...props}
-    className={className}
+    className={`${className} rotate-180`}
     width={width}
     height={height}
     viewBox="0 0 20 20"
@@ -24,4 +24,4 @@ export const ArrowDown = ({
     />
   </svg>
 );
-export default ArrowDown;
+export default ArrowUp;

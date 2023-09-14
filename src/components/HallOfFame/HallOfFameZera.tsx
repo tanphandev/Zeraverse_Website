@@ -8,32 +8,17 @@ import top3 from "@/asset/image/fame3-3.png";
 import Avatar from "@/asset/image/profilePicture.png";
 import RateTable from "./RateTable";
 import CoinIcon from "@/asset/icons/CoinIcon";
-function HallOfFameZera() {
-  const rateList = [
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-  ];
+import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
+import { abbreviateNumber } from "@/utils/helper";
+type Props = {
+  hallOfFameZera: IHallOfFameZera[];
+};
+function HallOfFameZera({ hallOfFameZera }: Props) {
+  const topThreeUser = hallOfFameZera ? hallOfFameZera?.slice(0, 3) : [];
+  const remainingUser = hallOfFameZera ? hallOfFameZera?.slice(3) : [];
   return (
     <div className="px-[80px] pb-[40px] border-[5px] border-main-pink-f9 rounded-[30px]">
+      {/* three ranked user */}
       <div className="transition-all flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
         <div>
           <div className="relative mx-[15px]">
@@ -41,13 +26,13 @@ function HallOfFameZera() {
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
               <Image
                 className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+                src={topThreeUser[1]?.user?.avatar?.url}
                 alt="picture"
                 width={94}
                 height={94}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[1]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -59,7 +44,9 @@ function HallOfFameZera() {
               <div className="flex items-center">
                 <CoinIcon width="30px" height="30px" className="mr-2" />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[1]?.total_earned_zera)}
+                  </p>
                   <p className="text-sm font-medium font-lato">Zera</p>
                 </div>
               </div>
@@ -72,13 +59,13 @@ function HallOfFameZera() {
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
               <Image
                 className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+                src={topThreeUser[0]?.user?.avatar?.url}
                 alt="picture"
                 width={94}
                 height={94}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[1]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -90,7 +77,9 @@ function HallOfFameZera() {
               <div className="flex items-center">
                 <CoinIcon width="30px" height="30px" className="mr-2" />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[1]?.total_earned_zera)}
+                  </p>
                   <p className="text-sm font-medium font-lato">Zera</p>
                 </div>
               </div>
@@ -103,13 +92,13 @@ function HallOfFameZera() {
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
               <Image
                 className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+                src={topThreeUser[2]?.user?.avatar?.url}
                 alt="picture"
                 width={94}
                 height={94}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[2]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -121,7 +110,9 @@ function HallOfFameZera() {
               <div className="flex items-center">
                 <CoinIcon width="30px" height="30px" className="mr-2" />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[2]?.total_earned_zera)}
+                  </p>
                   <p className="text-sm font-medium font-lato">Zera</p>
                 </div>
               </div>
@@ -129,7 +120,8 @@ function HallOfFameZera() {
           </div>
         </div>
       </div>
-      <RateTable quanityName="ZERA" list={rateList} itemsPerPage={10} />
+      {/* remaining user */}
+      <RateTable quanityName="ZERA" list={remainingUser} itemsPerPage={10} />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import Breadcrumbs from "@/components/Others/Breadcumbs";
+import { staticPaths } from "@/utils/paths";
 import Link from "next/link";
 function AboutUs() {
   return (
@@ -8,11 +10,18 @@ function AboutUs() {
       >
         {"<"} Back
       </Link>
-      <div className="text-xs font-bold mb-[20px] mt-5">
-        <Link href={"/"}>Home</Link>
-        {" / "}
-        <Link href={"/about-us"}>About us</Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          {
+            label: "Home",
+            path: staticPaths.home,
+          },
+          {
+            label: "About",
+            path: staticPaths.home,
+          },
+        ]}
+      />
       <h1 className="font-bold">ABOUT US</h1>
       <div className="text-base font-bold font-nunito text-justify">
         <p>

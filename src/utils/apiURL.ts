@@ -37,6 +37,10 @@ const apiURL = {
   get_article: (category: string) => `/article/category/${category}`,
   get_article_detail: (slug: string) => `/article/detail/${slug}`,
   get_article_random: "/article/random",
+  //hall of fame
+  get_hall_of_fame: "/hall-of-fames",
+  //achievements
+  get_achievements: (username: string) => `/achievements/${username}`,
 };
 
 export default apiURL;

@@ -127,6 +127,13 @@ export const ARTICLE_CATEGORY_NAME = {
   ALL_ARTICLE: "all-articles",
 };
 
+//Hall of fame type
+export enum HallOfFameType {
+  ZERA = "zera",
+  PLAYSTREAK = "playstreak",
+  GAME_PLAYED = "games_played",
+}
+
 export enum UserField {
   recentGame = "Recent games",
   lovedGame = "Loved games",

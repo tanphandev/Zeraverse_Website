@@ -4,25 +4,60 @@ import { useEffect, useRef, useState } from "react";
 import GamePlayed from "@/components/HallOfFame/HallOfFameGamePlayed";
 import HallOfFameZera from "@/components/HallOfFame/HallOfFameZera";
 import PlaysStreak from "@/components/HallOfFame/HallOfFamePlaysStreak";
-const tabs = [
-  {
-    label: "ZERA",
-    component: <HallOfFameZera />,
-  },
-  {
-    label: "Games Played",
-    component: <GamePlayed />,
-  },
-  {
-    label: "Playstreak",
-    component: <PlaysStreak />,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import * as userService from "@/services/user.service";
+import {
+  hallOfFameGamesPlayedSelector,
+  hallOfFamePlaystreakSelector,
+  hallOfFameZeraSelector,
+} from "@/store/selectors/userSelector";
+import { HallOfFameType } from "@/utils/constants";
+import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
+import { IHallOfFameGamePlayed } from "@/interface/user/IHallOfFameGamePlayed";
+import { IHallOfFamePlayStreak } from "@/interface/user/IHallOfFamePlayStreak";
 
 function HallOfFame() {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  /* selector */
+  const hallOfFameZera = useSelector<RootState>(
+    hallOfFameZeraSelector
+  ) as IHallOfFameZera[];
+  const hallOfFameGamePlayed = useSelector<RootState>(
+    hallOfFameGamesPlayedSelector
+  ) as IHallOfFameGamePlayed[];
+  const hallOfFamePlaysStreak = useSelector<RootState>(
+    hallOfFamePlaystreakSelector
+  ) as IHallOfFamePlayStreak[];
+
+  /*  defind tabs */
+  const tabs = [
+    {
+      label: "ZERA",
+      component: <HallOfFameZera hallOfFameZera={hallOfFameZera} />,
+    },
+    {
+      label: "Games Played",
+      component: <GamePlayed hallOfFameGamePlayed={hallOfFameGamePlayed} />,
+    },
+    {
+      label: "Playstreak",
+      component: <PlaysStreak hallOfFamePlaysStreak={hallOfFamePlaysStreak} />,
+    },
+  ];
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const tabsRef = useRef<HTMLButtonElement[]>([]);
+
+  /* get hall of fame zera */
+  useEffect(() => {
+    dispatch(userService.getHallOfFame(HallOfFameType.ZERA));
+    dispatch(userService.getHallOfFame(HallOfFameType.GAME_PLAYED));
+    dispatch(userService.getHallOfFame(HallOfFameType.PLAYSTREAK));
+  }, []);
+
+  /* set active tab */
   useEffect(() => {
     function setTabPosition() {
       tabsRef.current?.forEach((tab, idx) => {
@@ -35,6 +70,7 @@ function HallOfFame() {
     }
     setTabPosition();
   }, [activeTabIndex]);
+
   const GotoHome = () => {
     router.push("/");
   };

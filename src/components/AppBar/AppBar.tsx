@@ -50,7 +50,7 @@ function AppBar() {
           <button onClick={handleToggleMenu}>
             <MenuIcon className="mr-4" width="42" height="42px" />
           </button>
-          <Link className="inline-block" href={"/news"}>
+          <Link className="inline-block" href={staticPaths.article}>
             <NewIcon className="mr-4" width="42" height="42px" />
           </Link>
           <button onClick={openSeachModal}>

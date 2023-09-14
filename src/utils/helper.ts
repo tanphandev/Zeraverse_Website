@@ -104,6 +104,26 @@ export const toUpperCaseFirstLetter = (str: string) => {
   }
 };
 
+export const toUpperCaseFirstLetterOfWord = (s: string) => {
+  const words: string[] = s.match(/\b\w+\b/g) || [];
+  const capitalizedWords: string[] = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  );
+  const result: string = capitalizedWords.join(" ");
+
+  return result;
+};
+
+export const toUpperCaseFirstLetterOfDoc = (s: string) => {
+  const words: string[] = s.match(/\b\w+\b/g) || [];
+  if (words.length > 0) {
+    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+  }
+  const result: string = words.join(" ");
+
+  return result;
+};
+
 export const formatDate = (date: string) => {
   if (!date) return;
   return moment(new Date(date)).format("MM/DD/YYYY h:mm A");

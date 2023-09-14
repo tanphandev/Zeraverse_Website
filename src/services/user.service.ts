@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
-import { INVENTORY_NAME } from "@/utils/constants";
+import { HallOfFameType, INVENTORY_NAME } from "@/utils/constants";
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -19,6 +19,11 @@ const userSlice = createSlice({
     lovedGame: [],
     playListGame: [],
     purchaseHistory: {},
+    hallOfFame: {
+      zera: null,
+      games_played: null,
+      playstreak: null,
+    },
     error: null,
   } as any,
   reducers: {
@@ -154,6 +159,18 @@ const userSlice = createSlice({
         state.contact = action.payload;
       })
       .addCase(getContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getHallOfFame.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getHallOfFame.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.hallOfFame[action.payload.type] = action.payload.rankingList;
+      })
+      .addCase(getHallOfFame.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -431,3 +448,25 @@ export const newsletter = async (userData: { name: string; email: string }) => {
     throw e;
   }
 };
+
+export const getHallOfFame = createAsyncThunk(
+  "user/getHallOfFame",
+  async (type: HallOfFameType, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(apiURL.get_hall_of_fame, {
+        params: {
+          sort: type,
+          filter: "high_to_low",
+        },
+      });
+      const rankingList = data?.data;
+      const payload = {
+        type,
+        rankingList,
+      };
+      return payload;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);

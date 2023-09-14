@@ -8,30 +8,20 @@ import top3 from "@/asset/image/fame3-3.png";
 import PlayedGameRate from "@/asset/image/gameplayedRate.png";
 import Avatar from "@/asset/image/playedGameRateAvatar.png";
 import RateTable from "./RateTable";
-function GamePlayed() {
-  const rateList = [
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-    { name: "Name", place: "4", quantity: "1000" },
-  ];
+import { IHallOfFameGamePlayed } from "@/interface/user/IHallOfFameGamePlayed";
+import { abbreviateNumber } from "@/utils/helper";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
+type Props = {
+  hallOfFameGamePlayed: IHallOfFameGamePlayed[];
+};
+function GamePlayed({ hallOfFameGamePlayed }: Props) {
+  const topThreeUser = hallOfFameGamePlayed
+    ? hallOfFameGamePlayed?.slice(0, 3)
+    : [];
+  const remainingUser = hallOfFameGamePlayed
+    ? hallOfFameGamePlayed?.slice(3)
+    : [];
   return (
     <div className="px-[80px] pb-[40px] border-[5px] border-main-pink-f9 rounded-[30px]">
       <div className="flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
@@ -39,15 +29,16 @@ function GamePlayed() {
           <div className="relative mx-[15px]">
             <Image src={fame2} alt="fame2" className="w-[233px] --[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+              <CustomImage
+                className="w-[94px] h-[94px] mb-[10px] rounded-[10px]"
+                src={topThreeUser[1]?.user?.avatar?.url}
+                fallback={images.default_profile_image}
                 alt="picture"
-                width={94}
-                height={94}
+                width={0}
+                height={0}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[1]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -63,7 +54,9 @@ function GamePlayed() {
                   className="mr-2 w-[35px] h-[27px]"
                 />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[1]?.total_games_played)}
+                  </p>
                   <p className="text-sm font-medium font-lato">Total</p>
                 </div>
               </div>
@@ -74,15 +67,16 @@ function GamePlayed() {
           <div className="relative mx-[15px] mb-[44px]">
             <Image src={fame1} alt="fame1" className="w-[233px] --[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+              <CustomImage
+                className="w-[94px] h-[94px] mb-[10px] rounded-[10px]"
+                src={topThreeUser[0]?.user?.avatar?.url}
+                fallback={images.default_profile_image}
                 alt="picture"
-                width={94}
-                height={94}
+                width={0}
+                height={0}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[0]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -98,7 +92,9 @@ function GamePlayed() {
                   className="mr-2 w-[35px] h-[27px]"
                 />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[0]?.total_games_played)}
+                  </p>
                   <p className="text-sm font-medium font-lato">Total</p>
                 </div>
               </div>
@@ -109,15 +105,16 @@ function GamePlayed() {
           <div className="relative mx-[15px]">
             <Image src={fame3} alt="fame3" className="w-[233px] --[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={Avatar}
+              <CustomImage
+                className="w-[94px] h-[94px] mb-[10px] rounded-[10px]"
+                src={topThreeUser[2]?.user?.avatar?.url}
+                fallback={images.default_profile_image}
                 alt="picture"
-                width={94}
-                height={94}
+                width={0}
+                height={0}
               />
               <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                LamPhan
+                {topThreeUser[2]?.user?.username}
               </p>
               <Image
                 className="mb-[18px]"
@@ -133,7 +130,9 @@ function GamePlayed() {
                   className="mr-2 w-[35px] h-[27px]"
                 />
                 <div>
-                  <p className="text-[28px] font-lato leading-[1]">9000</p>
+                  <p className="text-[28px] font-lato leading-[1]">
+                    {abbreviateNumber(+topThreeUser[2]?.total_games_played)}
+                  </p>
                   <p className="text-sm font-medium font-lato">total</p>
                 </div>
               </div>
@@ -141,7 +140,11 @@ function GamePlayed() {
           </div>
         </div>
       </div>
-      <RateTable quanityName="Games played" list={rateList} itemsPerPage={10} />
+      <RateTable
+        quanityName="Games played"
+        list={remainingUser}
+        itemsPerPage={10}
+      />
     </div>
   );
 }
