@@ -7,7 +7,7 @@ import CoinIcon from "@/asset/icons/CoinIcon";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 type Props = {
-  list: Array<any>;
+  list: any[];
   itemsPerPage: number;
 };
 function AvatarShop({ list, itemsPerPage }: Props) {
@@ -40,7 +40,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
     <div className="px-[66px] pt-[18px] pb-[30px] bg-[#2f145f] border-[5px] border-main-pink-f9 rounded-[30px]">
       <div className="flex justify-end mb-[27px]">
         <div className="flex items-center mr-4">
-          <input type="checkbox" id="all" className="mr-[3px]" />
+          <input type="radio" id="all" className="mr-[3px]" />
           <label
             className="text-sm font-medium font-lato text-main-whileColor"
             htmlFor="all"
@@ -49,7 +49,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
           </label>
         </div>
         <div className="flex items-center mr-4">
-          <input type="checkbox" id="buy" className="mr-[3px]" />
+          <input type="radio" id="buy" className="mr-[3px]" />
           <label
             className="text-sm font-medium font-lato text-main-whileColor"
             htmlFor="buy"
@@ -58,7 +58,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
           </label>
         </div>
         <div className="flex items-center">
-          <input type="checkbox" id=" Owned" className="mr-[3px]" />
+          <input type="radio" id=" Owned" className="mr-[3px]" />
           <label
             className="text-sm font-medium font-lato text-main-whileColor"
             htmlFor=" Owned"

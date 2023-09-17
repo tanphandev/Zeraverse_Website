@@ -1,4 +1,5 @@
-import Image from "next/image";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 function CategoryItem({
   src,
   name,
@@ -14,9 +15,10 @@ function CategoryItem({
       className="w-full flex items-center text-center bg-main-whileColor rounded-[20px] transition-all hover:scale-105 duration-300"
     >
       <div className="h-full w-full">
-        <Image
+        <CustomImage
           className="w-full h-full min-w-[94px] rounded-[20px]"
           src={src}
+          fallback={images.default_game_image}
           alt="category image"
           sizes="100vw"
           width={0}

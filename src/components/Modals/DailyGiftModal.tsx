@@ -15,11 +15,12 @@ import { useModalContext } from "@/contexts/ModalContextProvider";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
 import { toast } from "react-toastify";
 import { TOAST_MESSAGE } from "@/utils/constants";
+import { sleep } from "@/utils/helper";
 function DailyGiftModal() {
   const daily_gift_days_ref = useRef<string | null>(null);
   const dailyGiftModalRef = useRef<HTMLDivElement>(null);
   const { closeModalWithAnimation } = useModalContext();
-  const { setUserInfo } = useAuthContext();
+  const { setUserInfo, usernameAuth } = useAuthContext();
   const [selectedItems, setSelectedItems] = useState<Array<boolean>>([
     false,
     false,
@@ -67,10 +68,11 @@ function DailyGiftModal() {
             JSON.stringify(parseInt(daily_gift_days_ref.current) + 1)
           );
         }
-        setUserInfo((prev) => ({
-          ...prev!!,
-          isClaimDailyBonus: true,
-        }));
+        sleep(1000).then(() => {
+          userService.getUserInfo(usernameAuth!!).then((response) => {
+            setUserInfo(response?.data);
+          });
+        });
         closeModalWithAnimation(150);
         toast.success(TOAST_MESSAGE.CLAIM_DAILY_GIFT_SUCCESS, {
           position: "top-right",

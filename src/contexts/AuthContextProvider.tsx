@@ -24,7 +24,6 @@ import {
   VERIFY_STATUS,
 } from "@/utils/constants";
 import { IUserInfo } from "@/interface/user/IUserInfo";
-
 type AuthContextType = {
   userInfo: IUserInfo | null;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserInfo | null>>;

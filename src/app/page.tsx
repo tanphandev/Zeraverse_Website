@@ -11,7 +11,6 @@ import MainLayout from "./(MainLayout)/layout";
 import { newestSelector } from "@/store/selectors/article.selector";
 import { IArticle } from "@/interface/article/IArticle";
 import * as articleService from "@/services/article.service";
-
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const newest = useSelector<RootState>(newestSelector) as IArticle[];
@@ -20,7 +19,6 @@ export default function Home() {
   useEffect(() => {
     !newest && dispatch(articleService.getNewest({}));
   }, [newest]);
-
   return (
     <div>
       <MainLayout>

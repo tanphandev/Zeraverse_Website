@@ -3,6 +3,8 @@ import { IArticle } from "@/interface/article/IArticle";
 import { formatDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { staticPaths } from "@/utils/paths";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   list: IArticle[];
 };
@@ -24,8 +26,9 @@ function PopularNews({ list }: Props) {
           }}
           className="relative col-span-5 rounded-[5px] cursor-pointer"
         >
-          <Image
+          <CustomImage
             src={!!list2Item && list2Item[0]?.featured_image}
+            fallback={images.default_article_image}
             width={0}
             height={0}
             sizes="100vw"
@@ -52,7 +55,7 @@ function PopularNews({ list }: Props) {
               </p>
             </div>
           </div>
-          <div className="absolute top-0 bottom-0 left-0 right-0  bg-gradient-to-b from-transparent to-main-blackColor"></div>
+          <div className="absolute top-0 bottom-0 left-0 right-0  bg-gradient-to-b from-transparent to-main-blackColor rounded-[5px]"></div>
         </div>
         <div
           onClick={() => {
@@ -60,13 +63,14 @@ function PopularNews({ list }: Props) {
           }}
           className="col-span-2 text-main-whileColor bg-main-blackColor rounded-[5px] border-[1px] border-main-pink-be cursor-pointer"
         >
-          <Image
+          <CustomImage
             src={!!list2Item && list2Item[1]?.featured_image}
+            fallback={images.default_article_image}
             width={0}
             height={0}
             sizes="100vw"
             alt="picture"
-            className="w-full h-auto px-[8px] pt-[8px] rounded-[5px] mb-[12px]"
+            className="object-cover w-full h-auto px-[8px] pt-[8px] rounded-[5px] mb-[12px]"
           />
           <div className="flex flex-col px-[15px] pb-[15px]">
             <div>

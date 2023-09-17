@@ -12,6 +12,7 @@ import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import XmarkICon from "@/asset/icons/XmarkIcon";
 import { GLOBAL_MODAL_NAME } from "@/utils/constants";
+import NoData from "../Others/NoData";
 type Props = {
   itemsPerPage: number;
 };
@@ -92,43 +93,49 @@ function EditCoverModal({ itemsPerPage }: Props) {
           Edit Cover Page
         </h2>
         <div className="w-[862px] px-[48px] py-[40px]">
-          <div className="grid grid-cols-2 gap-4 mb-[29px]">
-            {currentItems.map((item, index) => (
-              <Image
-                onClick={() => {
-                  handleEditCover(item);
-                }}
-                key={index}
-                src={item.item_info.url}
-                alt="cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-                className={`${
-                  item.item_info.id === editCover.id
-                    ? "border-[4px] border-main-pink-be"
-                    : ""
-                } w-[424px] max-h-[204px] rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
+          {coverInventory.length === 0 ? (
+            <NoData />
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-4 mb-[29px]">
+                {currentItems.map((item, index) => (
+                  <Image
+                    onClick={() => {
+                      handleEditCover(item);
+                    }}
+                    key={index}
+                    src={item.item_info.url}
+                    alt="cover"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={`${
+                      item.item_info.id === editCover.id
+                        ? "border-[4px] border-main-pink-be"
+                        : ""
+                    } w-[424px] max-h-[204px] rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
+                  />
+                ))}
+              </div>
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel={<ArrowRightIconPagi width="24px" height="24px" />}
+                previousLabel={<ArrowLeftIconPagi width="24px" height="24px" />}
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={4}
+                marginPagesDisplayed={1}
+                forcePage={0}
+                pageCount={pageCount}
+                renderOnZeroPageCount={null}
+                pageClassName="page-item text-[14px] font-bold font-nunito px-[32px]"
+                containerClassName="pagination flex justify-center"
+                activeClassName="active"
+                breakClassName="break"
+                nextClassName="pagi-next"
+                previousClassName="pagi-previous"
               />
-            ))}
-          </div>
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel={<ArrowRightIconPagi width="24px" height="24px" />}
-            previousLabel={<ArrowLeftIconPagi width="24px" height="24px" />}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={4}
-            marginPagesDisplayed={1}
-            forcePage={0}
-            pageCount={pageCount}
-            renderOnZeroPageCount={null}
-            pageClassName="page-item text-[14px] font-bold font-nunito px-[32px]"
-            containerClassName="pagination flex justify-center"
-            activeClassName="active"
-            breakClassName="break"
-            nextClassName="pagi-next"
-            previousClassName="pagi-previous"
-          />
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -26,6 +26,9 @@ const apiURL = {
   get_contact: "/contacts",
   newsletter: "/users/newsletter",
   //shop
+  get_shop_categories: "/shops/categories",
+  get_item_shop: (shop_item_id: number) =>
+    `/shops/categories/${shop_item_id}/items`,
   get_avatar_shop: "/shops/categories/1/items",
   buy_avatar: "/shops/buy",
   //game

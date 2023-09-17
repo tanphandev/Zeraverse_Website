@@ -6,6 +6,8 @@ import * as gameService from "@/services/game.service";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { gameListSelector } from "@/store/selectors/game.selector";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 function GameList() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
@@ -60,9 +62,10 @@ function GameList() {
           key={index}
           className="relative group hover:scale-105 transition-all ease-in-out duration-300"
         >
-          <Image
-            className={` max-w-full max-h-full w-full h-full rounded-[20px]`}
+          <CustomImage
+            className={`max-w-full max-h-full w-full h-full min-h-[94px] rounded-[20px]`}
             src={game.thumbnail}
+            fallback={images.default_game_image}
             alt="gamePicture"
             sizes="100vw"
             width={0}

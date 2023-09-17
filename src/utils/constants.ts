@@ -116,6 +116,13 @@ export enum SHOP_NAME {
   PLAYTIME = "Playtimes",
 }
 
+// SHOP ITEM
+export enum SHOP_ITEM {
+  AVATAR = "AVATAR",
+  COVER = "COVER",
+  PLAYTIME = "PLAY_TIME",
+}
+
 //User inventory name
 export const INVENTORY_NAME = {
   AVATAR: "AVATAR",

@@ -7,6 +7,7 @@ import { listArticleCategorySelector } from "@/store/selectors/article.selector"
 import { AppDispatch, RootState } from "@/store/store";
 import { staticPaths } from "@/utils/paths";
 import * as articleService from "@/services/article.service";
+import Breadcrumbs from "@/components/Others/Breadcumbs";
 
 function ArticleCategoryAll() {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,10 +25,21 @@ function ArticleCategoryAll() {
       >
         {"<"} Back
       </Link>
-      <p className="text-xs font-bold mb-[20px] mt-5">
-        Home / All article category
-      </p>
-      <h1 className="font-bold font-nunito mb-3">All Article Category</h1>
+      <div className="mb-[20px] mt-5">
+        <Breadcrumbs
+          items={[
+            {
+              label: "Home",
+              path: staticPaths.home,
+            },
+            {
+              label: "Article Category",
+              path: staticPaths.article,
+            },
+          ]}
+        />
+      </div>
+      <h1 className="font-bold font-nunito mb-3">Article Category</h1>
       <ul className="list-disc ml-4 text-sm font-normal font-lato text-main-pink-ec">
         {articleCategories?.map((category, index) => (
           <li className="mb-2" key={index}>

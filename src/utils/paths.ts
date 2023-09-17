@@ -6,9 +6,11 @@ export const staticPaths = {
   reset_password: "/reset-password",
   create_user_name: "/create-username",
   about_us: "/about-us",
-  achievements: "/achievements",
+  achievements: (username_slug: string) => `/achievements/${username_slug}`,
   article: "/article",
   article_category: "/article/category",
+  article_category_detail: (category_slug: string) =>
+    `/article/category/${category_slug}`,
   article_detail: (article_slug: string) => `/article/${article_slug}`,
   game_category: "/game-category",
   game_category_all: "/game-category-all",

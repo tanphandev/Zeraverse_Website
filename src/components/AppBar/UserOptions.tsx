@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
+"use client";
 import Link from "next/link";
 import UserIcon from "@/asset/icons/UserIcon";
 import AchievementIcon from "@/asset/icons/AchievementsIcon";
 import LogoutIcon from "@/asset/icons/LogoutIcon";
 import { signOut } from "next-auth/react";
+import { staticPaths } from "@/utils/paths";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 
 function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
-  const dispatch = useDispatch();
+  const { usernameAuth } = useAuthContext();
   const handleLogOut = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("accessToken");
@@ -30,7 +32,7 @@ function UserOption({ hideUserOption }: { hideUserOption: () => void }) {
       </Link>
       <Link
         className="flex items-center group hover:text-main-violet-8b border-b-[1px] border-main-violet-6d px-3 pb-3"
-        href={"/achievements"}
+        href={staticPaths.achievements(usernameAuth!!)}
         onClick={hideUserOption}
       >
         <AchievementIcon

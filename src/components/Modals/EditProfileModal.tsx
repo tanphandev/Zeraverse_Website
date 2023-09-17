@@ -106,16 +106,17 @@ function EditProfileModal({ itemsPerPage }: Props) {
             />
             <div className="relative">
               <textarea
+                disabled
                 value={userInfo?.username}
                 rows={1}
                 className="w-full resize-none text-base text-bold font-lato text-main-blackColor outline-none py-1 pl-3 rounded-[20px] no-scrollbar"
                 placeholder="Enter your name..."
               />
-              <EditTextIcon
+              {/* <EditTextIcon
                 className="absolute top-1/2 -translate-y-1/2 right-[9px]"
                 width="18px"
                 height="18px"
-              />
+              /> */}
             </div>
             <div className="relative mb-[10px] px-[12px] pt-[12px] pb-[27px] bg-main-whileColor rounded-[20px]">
               <textarea

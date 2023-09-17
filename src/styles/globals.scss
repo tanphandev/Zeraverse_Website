@@ -155,6 +155,12 @@
     text-align: justify;
   }
 
+  img {
+    text-align: center;
+    width: 600px;
+    min-width: 300px;
+  }
+
   figure.image {
     text-align: center;
   }
@@ -201,5 +207,17 @@
     margin-bottom: 1em;
     margin-left: 40px;
     margin-right: 40px;
+  }
+}
+
+.news {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  blockquote {
+    font-size: inherit;
+    font-weight: inherit;
   }
 }

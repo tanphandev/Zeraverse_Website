@@ -1,11 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import ArrowDown from "@/asset/icons/ArrowDownIcon";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowUp from "@/asset/icons/ArrowUpIcon";
 import { abbreviateNumber } from "@/utils/helper";
-import { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import { staticPaths } from "@/utils/paths";
 
 function RateTable({
   list,
@@ -16,6 +18,7 @@ function RateTable({
   itemsPerPage: number;
   quanityName: string;
 }) {
+  const router = useRouter();
   const [listData, setListData] = useState<any[]>(list);
   const [isIncreaseSort, setIsIncreaseSort] = useState<boolean>(true);
   //set item start
@@ -39,6 +42,10 @@ function RateTable({
   const handleToggleSort = () => {
     setIsIncreaseSort(!isIncreaseSort);
     listData.reverse();
+  };
+
+  const goToAchievements = (username: string) => {
+    router.push(staticPaths.achievements(encodeURI(username)));
   };
   return (
     <div>
@@ -70,13 +77,18 @@ function RateTable({
         <tbody>
           {currentItems.map((item, index) => (
             <tr
+              onClick={() => {
+                goToAchievements(item?.user?.username);
+              }}
               key={index}
-              className="text-center bg-main-pink-83 bg-opacity-50 rounded-[10px] "
+              className="group text-center bg-main-pink-83 bg-opacity-50 rounded-[10px] cursor-pointer"
             >
               <td className="rounded-tl-[10px] rounded-bl-[10px] py-[11px] ">
                 {item?.rank}
               </td>
-              <td className="py-[11px]">{item?.user?.username}</td>
+              <td className="py-[11px] group-hover:text-main-pink-db group-hover:underline">
+                {item?.user?.username}
+              </td>
               <td className="rounded-tr-[10px] rounded-br-[10px] py-[11px]">
                 {abbreviateNumber(
                   +item?.total_earned_zera |

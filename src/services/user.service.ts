@@ -24,6 +24,7 @@ const userSlice = createSlice({
       games_played: null,
       playstreak: null,
     },
+    achievements: null,
     error: null,
   } as any,
   reducers: {
@@ -171,6 +172,18 @@ const userSlice = createSlice({
         state.hallOfFame[action.payload.type] = action.payload.rankingList;
       })
       .addCase(getHallOfFame.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getAchivements.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getAchivements.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.achievements = action.payload;
+      })
+      .addCase(getAchivements.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -465,6 +478,19 @@ export const getHallOfFame = createAsyncThunk(
         rankingList,
       };
       return payload;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
+
+export const getAchivements = createAsyncThunk(
+  "user/getAchivements",
+  async (username: string, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(apiURL.get_achievements(username));
+      const achievements = data?.data;
+      return achievements;
     } catch (e: any) {
       return rejectWithValue(e?.message);
     }

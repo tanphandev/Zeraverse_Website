@@ -1,11 +1,12 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ArrowRightIcon from "@/asset/icons/ArrowRightIcon";
 import { IArticleRandom } from "@/interface/article/IArticleRandom";
 import { formatDate } from "@/utils/helper";
 import { staticPaths } from "@/utils/paths";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   articleRandom: IArticleRandom[];
 };
@@ -66,13 +67,14 @@ function ArticleCarousel({ articleRandom }: Props) {
                   {...(index === 0 ? { "data-te-carousel-active": true } : {})}
                 >
                   <div className="relative">
-                    <Image
+                    <CustomImage
                       src={item?.featured_image}
+                      fallback={images.default_article_image}
                       alt="image"
                       width={0}
                       height={0}
                       sizes="100vw"
-                      className="w-full h-[537px] rounded-[5px]"
+                      className="object-cover w-full h-[537px] rounded-[5px]"
                     />
                     <div className="absolute flex flex-col justify-center top-0 right-0 bg-main-grayColor-70 rounded-tr-[5px] rounded-br-[5px] h-full w-[380px] text-main-whileColor">
                       <div className="px-[26px]">

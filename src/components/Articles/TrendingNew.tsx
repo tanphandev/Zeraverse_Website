@@ -1,8 +1,9 @@
 "use client";
-import Image from "next/image";
 import { IArticle } from "@/interface/article/IArticle";
 import { useRouter } from "next/navigation";
 import { staticPaths } from "@/utils/paths";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 
 type Props = {
   list: IArticle[];
@@ -27,9 +28,10 @@ function TrendingNew({ list }: Props) {
             key={index}
             className="flex items-center border border-main-pink-be rounded-[10px] bg-main-blackColor cursor-pointer"
           >
-            <Image
+            <CustomImage
               className="w-[194px] h-[194px] ml-[5px] my-[5px] rounded-[10px]"
               src={item?.featured_image}
+              fallback={images.default_article_image}
               alt="trendingNewPicture"
               width={194}
               height={194}

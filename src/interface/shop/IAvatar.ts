@@ -1,4 +1,4 @@
-export interface IAvatarShop {
+export interface IAvatar {
   category_item_id: number;
   created_at: string;
   discount: any;

@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import * as shopService from "@/services/shop.service";
 import AvatarShop from "@/components/Shops/AvatarShop";
 import CoverPage from "@/components/Shops/CoverPageShop";
 import PlaytimesShop from "@/components/Shops/PlayTimesShop";
@@ -11,25 +12,54 @@ import {
 } from "@/dataFetch/dataFetch";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
-const tabs = [
-  {
-    label: "Avatar",
-    component: <AvatarShop list={avatarShoplist} itemsPerPage={8} />,
-  },
-  {
-    label: "Cover page",
-    component: <CoverPage list={coverPageList} itemsPerPage={4} />,
-  },
-  {
-    label: "Playtimes",
-    component: <PlaytimesShop list={playtimesList} itemsPerPage={8} />,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import {
+  coverShopSelector,
+  playtimeShopSelector,
+  shopCategoriesSelector,
+} from "@/store/selectors/shopSelector";
+import { SHOP_ITEM } from "@/utils/constants";
+import { ICoverShop } from "@/interface/shop/ICoverShop";
+import { IPlaytimeShop } from "@/interface/shop/IPlaytimeShop";
+import { IShopCategories } from "@/interface/shop/IShopCategories";
 
 function SimpleShop() {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const shopCategoriesSelectorResult = useSelector<RootState>(
+    shopCategoriesSelector
+  ) as IShopCategories[];
+
+  const shopCategories = useMemo(
+    () => shopCategoriesSelectorResult ?? [],
+    [shopCategoriesSelectorResult]
+  );
+
+  const coverShop =
+    (useSelector<RootState>(coverShopSelector) as ICoverShop[]) ?? [];
+  const playtimeShop =
+    (useSelector<RootState>(playtimeShopSelector) as IPlaytimeShop[]) ?? [];
+
+  console.log("coverShop", coverShop);
+  console.log("playtimeShop", playtimeShop);
+  const [isFetchCategories, setIsFetchCategories] = useState<boolean>(false);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const tabsRef = useRef<HTMLButtonElement[]>([]);
+  const tabs = [
+    {
+      label: "Avatar",
+      component: <AvatarShop list={avatarShoplist} itemsPerPage={8} />,
+    },
+    {
+      label: "Cover page",
+      component: <CoverPage list={coverPageList} itemsPerPage={4} />,
+    },
+    {
+      label: "Playtimes",
+      component: <PlaytimesShop list={playtimesList} itemsPerPage={8} />,
+    },
+  ];
   useEffect(() => {
     function setTabPosition() {
       tabsRef.current?.forEach((tab, idx) => {
@@ -42,6 +72,29 @@ function SimpleShop() {
     }
     setTabPosition();
   }, [activeTabIndex]);
+
+  /* optimize send request to get shop */
+  useEffect(() => {
+    if (shopCategories.length !== 0) {
+      setIsFetchCategories(true);
+    }
+  }, [shopCategories]);
+
+  /* get Cover shop */
+  useEffect(() => {
+    isFetchCategories &&
+      shopCategories.forEach((item, index) => {
+        if (item.item === SHOP_ITEM.COVER || item.item === SHOP_ITEM.PLAYTIME) {
+          dispatch(
+            shopService.getShopItem({
+              shop_item_id: item.id,
+              shop_item: item.item,
+            })
+          );
+        }
+      });
+    console.log("shopCategories.length", shopCategories.length);
+  }, [isFetchCategories]);
   const GotoHome = () => {
     router.push("/");
   };

@@ -18,3 +18,4 @@ export const hallOfFameGamesPlayedSelector = (state: any) =>
   state.user.hallOfFame.games_played;
 export const hallOfFamePlaystreakSelector = (state: any) =>
   state.user.hallOfFame.playstreak;
+export const achievementSelector = (state: any) => state.user.achievements;

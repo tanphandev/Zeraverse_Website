@@ -8,6 +8,8 @@ import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import { IArticle } from "@/interface/article/IArticle";
 import { staticPaths } from "@/utils/paths";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   list: IArticle[];
   itemsPerPage: number;
@@ -51,23 +53,24 @@ function News({ list, itemsPerPage }: Props) {
             onClick={() => {
               gotoArticleDetail(item?.slug);
             }}
-            className=" text-main-whileColor bg-main-blackColor rounded-[5px] border-[1px] border-main-pink-be cursor-pointer"
+            className=" text-main-whileColor bg-main-blackColor rounded-[5px] border-[1px] border-main-pink-be cursor-pointer px-[8px] pt-[8px]"
           >
-            <Image
+            <CustomImage
               src={item?.featured_image}
+              fallback={images.default_article_image}
               alt="picture"
               width={0}
               height={0}
               sizes="100vw"
-              className="w-full h-[244px] px-[8px] py-[8px] rounded-[12px] mb-1"
+              className="object-cover w-full h-[300px] rounded-[5px] mb-2"
             />
-            <div className="flex flex-col px-[15px] pb-[15px]">
+            <div className="flex flex-col px-2 pb-[15px]">
               <div>
                 <h2 className="text-2xl font-bold font-lato line-clamp-2">
                   {item?.title}
                 </h2>
-                <p
-                  className="w-full text-xs text-justify font-light font-nunito mr-2 line-clamp-3"
+                <div
+                  className="news w-full text-xs text-justify font-light font-nunito mr-2 line-clamp-3"
                   dangerouslySetInnerHTML={{
                     __html: item?.content.slice(1, -1),
                   }}

@@ -1,15 +1,20 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import CoinIcon from "@/asset/icons/CoinIcon";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import * as shopService from "@/services/shop.service";
-import { avatarShopSelector } from "@/store/selectors/shopSelector";
-import { IAvatarShop } from "@/interface/shop/IAvatarShop";
+import {
+  avatarShopSelector,
+  shopCategoriesSelector,
+} from "@/store/selectors/shopSelector";
+import { IAvatar } from "@/interface/shop/IAvatar";
 import { useModalContext } from "@/contexts/ModalContextProvider";
-import { MODAL_NAME, SHOP_NAME } from "@/utils/constants";
+import { MODAL_NAME, SHOP_ITEM, SHOP_NAME } from "@/utils/constants";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
+import { IShopCategories } from "@/interface/shop/IShopCategories";
 type Props = {
   zera?: number | null;
 };
@@ -23,17 +28,46 @@ type PayLoadBuyModal = {
 };
 function UserBar({ zera }: Props) {
   const dispatch = useDispatch<AppDispatch>();
-  const avatarShop = useSelector<RootState>(
-    avatarShopSelector
-  ) as IAvatarShop[];
+  const [isFetchCategories, setIsFetchCategories] = useState<boolean>(false);
+
+  const shopCategoriesTemp = useSelector<RootState>(
+    shopCategoriesSelector
+  ) as IShopCategories[];
+
+  const shopCategories = useMemo(
+    () => shopCategoriesTemp ?? [],
+    [shopCategoriesTemp]
+  );
+  const avatarShop =
+    (useSelector<RootState>(avatarShopSelector) as IAvatar[]) ?? [];
   const { openModal, setPayload } = useModalContext();
-
-  /* get avatar shop */
   useEffect(() => {
-    !avatarShop && dispatch(shopService.getAvatarShop({}));
-  }, [avatarShop]);
+    /* get shop categories */
+    dispatch(shopService.getShopCategories({}));
+  }, []);
 
-  // handleClickBuy
+  /* optimize send request to get avatar shop */
+  useEffect(() => {
+    if (shopCategories.length !== 0) {
+      setIsFetchCategories(true);
+    }
+  }, [shopCategories]);
+
+  useEffect(() => {
+    /* get avatar shop */
+    isFetchCategories &&
+      shopCategories.forEach((item, index) => {
+        if (item.item === SHOP_ITEM.AVATAR) {
+          dispatch(
+            shopService.getShopItem({
+              shop_item_id: item.id,
+              shop_item: item.item,
+            })
+          );
+        }
+      });
+  }, [isFetchCategories]);
+
   const handleClickBuyAvatar = (payload: PayLoadBuyModal) => {
     openModal(MODAL_NAME.BUY_AVATAR);
     setPayload(payload);
@@ -50,12 +84,13 @@ function UserBar({ zera }: Props) {
         {avatarShop?.map((item, index) => (
           <div key={index}>
             <div className="relative group">
-              <Image
-                className="rounded-[10px] border border-main-pink-be"
+              <CustomImage
+                className="w-[80px] h-[80px] object-cover rounded-[10px] border border-main-pink-be"
                 src={item.value}
+                fallback={images.default_avatar_shop_image}
                 alt="Picture"
-                width={80}
-                height={80}
+                width={0}
+                height={0}
               />
               {/* buy */}
               {!item?.user_inventory && (

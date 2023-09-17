@@ -36,7 +36,6 @@ function ArticleCategory({ params }: Props) {
     const newOffset = (event.selected * itemsPerPage) % articleList?.length;
     setItemOffset(newOffset);
   };
-  console.log("articleList", articleList);
   useEffect(() => {
     dispatch(articleService.getArticles(params["category-slug"]));
   }, []);

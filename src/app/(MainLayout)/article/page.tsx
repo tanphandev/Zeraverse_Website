@@ -33,7 +33,6 @@ function NewsPage() {
   ) as IArticleRandom[];
   const newest = useSelector<RootState>(newestSelector) as IArticle[];
   const allArticles = useSelector<RootState>(allArticleSelector) as IArticle[];
-  console.log("all article", allArticles);
   useEffect(() => {
     !articleRandom && dispatch(articleService.getArticleRandom({}));
   }, [articleRandom]);

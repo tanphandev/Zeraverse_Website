@@ -1,15 +1,18 @@
 import Image from "next/image";
+import Tippy from "@tippyjs/react";
 import fame1 from "@/asset/image/fame1.png";
 import fame2 from "@/asset/image/fame2.png";
 import fame3 from "@/asset/image/fame3.png";
 import top1 from "@/asset/image/fame1-1.png";
 import top2 from "@/asset/image/fame2-2.png";
 import top3 from "@/asset/image/fame3-3.png";
-import Avatar from "@/asset/image/profilePicture.png";
 import RateTable from "./RateTable";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
 import { abbreviateNumber } from "@/utils/helper";
+import Link from "next/link";
+import { staticPaths } from "@/utils/paths";
+import "tippy.js/dist/tippy.css";
 type Props = {
   hallOfFameZera: IHallOfFameZera[];
 };
@@ -22,18 +25,35 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
       <div className="transition-all flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
         <div>
           <div className="relative mx-[15px]">
-            <Image src={fame2} alt="fame2" className="w-[233px] --[158px]" />
+            <Image src={fame2} alt="fame2" className="w-[233px] h-[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={topThreeUser[1]?.user?.avatar?.url}
-                alt="picture"
-                width={94}
-                height={94}
-              />
-              <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                {topThreeUser[1]?.user?.username}
-              </p>
+              <Link
+                href={staticPaths.achievements(
+                  encodeURI(topThreeUser[1]?.user?.username)
+                )}
+              >
+                <Image
+                  className="mb-[10px] rounded-[10px]"
+                  src={topThreeUser[1]?.user?.avatar?.url}
+                  alt="picture"
+                  width={94}
+                  height={94}
+                />
+              </Link>
+              <Tippy
+                content={topThreeUser[1]?.user?.username}
+                placement="bottom"
+              >
+                <Link
+                  href={staticPaths.achievements(
+                    encodeURI(topThreeUser[1]?.user?.username)
+                  )}
+                >
+                  <p className="text-base font-medium font-lato text-main-whileColor mb-[14px] hover:text-main-pink-db hover:underline">
+                    {topThreeUser[1]?.user?.username}
+                  </p>
+                </Link>
+              </Tippy>
               <Image
                 className="mb-[18px]"
                 src={top2}
@@ -55,18 +75,35 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
         </div>
         <div>
           <div className="relative mx-[15px] mb-[44px]">
-            <Image src={fame1} alt="fame1" className="w-[233px] --[158px]" />
+            <Image src={fame1} alt="fame1" className="w-[233px] h-[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={topThreeUser[0]?.user?.avatar?.url}
-                alt="picture"
-                width={94}
-                height={94}
-              />
-              <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                {topThreeUser[1]?.user?.username}
-              </p>
+              <Link
+                href={staticPaths.achievements(
+                  encodeURI(topThreeUser[0]?.user?.username)
+                )}
+              >
+                <Image
+                  className="mb-[10px] rounded-[10px]"
+                  src={topThreeUser[0]?.user?.avatar?.url}
+                  alt="picture"
+                  width={94}
+                  height={94}
+                />
+              </Link>
+              <Tippy
+                content={topThreeUser[0]?.user?.username}
+                placement="bottom"
+              >
+                <Link
+                  href={staticPaths.achievements(
+                    encodeURI(topThreeUser[0]?.user?.username)
+                  )}
+                >
+                  <p className="text-base font-medium font-lato text-main-whileColor mb-[14px] hover:text-main-pink-db hover:underline">
+                    {topThreeUser[0]?.user?.username}
+                  </p>
+                </Link>
+              </Tippy>
               <Image
                 className="mb-[18px]"
                 src={top1}
@@ -88,18 +125,35 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
         </div>
         <div>
           <div className="relative mx-[15px]">
-            <Image src={fame3} alt="fame3" className="w-[233px] --[158px]" />
+            <Image src={fame3} alt="fame3" className="w-[233px] h-[158px]" />
             <div className="flex flex-col items-center absolute bottom-[54px] left-1/2 -translate-x-1/2">
-              <Image
-                className="mb-[10px] rounded-[10px]"
-                src={topThreeUser[2]?.user?.avatar?.url}
-                alt="picture"
-                width={94}
-                height={94}
-              />
-              <p className="text-base font-medium font-lato text-main-whileColor mb-[14px]">
-                {topThreeUser[2]?.user?.username}
-              </p>
+              <Link
+                href={staticPaths.achievements(
+                  encodeURI(topThreeUser[2]?.user?.username)
+                )}
+              >
+                <Image
+                  className="mb-[10px] rounded-[10px]"
+                  src={topThreeUser[2]?.user?.avatar?.url}
+                  alt="picture"
+                  width={94}
+                  height={94}
+                />
+              </Link>
+              <Tippy
+                content={topThreeUser[2]?.user?.username}
+                placement="bottom"
+              >
+                <Link
+                  href={staticPaths.achievements(
+                    encodeURI(topThreeUser[2]?.user?.username)
+                  )}
+                >
+                  <p className="text-base font-medium font-lato text-main-whileColor mb-[14px] hover:text-main-pink-db hover:underline">
+                    {topThreeUser[2]?.user?.username}
+                  </p>
+                </Link>
+              </Tippy>
               <Image
                 className="mb-[18px]"
                 src={top3}
