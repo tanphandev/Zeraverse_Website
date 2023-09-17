@@ -5,16 +5,12 @@ import * as shopService from "@/services/shop.service";
 import AvatarShop from "@/components/Shops/AvatarShop";
 import CoverPage from "@/components/Shops/CoverPageShop";
 import PlaytimesShop from "@/components/Shops/PlayTimesShop";
-import {
-  avatarShoplist,
-  coverPageList,
-  playtimesList,
-} from "@/dataFetch/dataFetch";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import {
+  avatarShopSelector,
   coverShopSelector,
   playtimeShopSelector,
   shopCategoriesSelector,
@@ -23,9 +19,12 @@ import { SHOP_ITEM } from "@/utils/constants";
 import { ICoverShop } from "@/interface/shop/ICoverShop";
 import { IPlaytimeShop } from "@/interface/shop/IPlaytimeShop";
 import { IShopCategories } from "@/interface/shop/IShopCategories";
+import { IAvatar } from "@/interface/shop/IAvatar";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 
 function SimpleShop() {
   const router = useRouter();
+  const { userInfo } = useAuthContext();
   const dispatch = useDispatch<AppDispatch>();
   const shopCategoriesSelectorResult = useSelector<RootState>(
     shopCategoriesSelector
@@ -35,29 +34,28 @@ function SimpleShop() {
     () => shopCategoriesSelectorResult ?? [],
     [shopCategoriesSelectorResult]
   );
-
+  const avatarShop =
+    (useSelector<RootState>(avatarShopSelector) as IAvatar[]) ?? [];
   const coverShop =
     (useSelector<RootState>(coverShopSelector) as ICoverShop[]) ?? [];
   const playtimeShop =
     (useSelector<RootState>(playtimeShopSelector) as IPlaytimeShop[]) ?? [];
 
-  console.log("coverShop", coverShop);
-  console.log("playtimeShop", playtimeShop);
   const [isFetchCategories, setIsFetchCategories] = useState<boolean>(false);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const tabsRef = useRef<HTMLButtonElement[]>([]);
   const tabs = [
     {
       label: "Avatar",
-      component: <AvatarShop list={avatarShoplist} itemsPerPage={8} />,
+      component: <AvatarShop list={avatarShop} itemsPerPage={8} />,
     },
     {
       label: "Cover page",
-      component: <CoverPage list={coverPageList} itemsPerPage={4} />,
+      component: <CoverPage list={coverShop} itemsPerPage={4} />,
     },
     {
       label: "Playtimes",
-      component: <PlaytimesShop list={playtimesList} itemsPerPage={8} />,
+      component: <PlaytimesShop list={playtimeShop} itemsPerPage={8} />,
     },
   ];
   useEffect(() => {
@@ -93,7 +91,6 @@ function SimpleShop() {
           );
         }
       });
-    console.log("shopCategories.length", shopCategories.length);
   }, [isFetchCategories]);
   const GotoHome = () => {
     router.push("/");
@@ -113,7 +110,9 @@ function SimpleShop() {
       </div>
       <div className="relative w-full mt-[58px]">
         <div className="absolute top-[-14px] right-0 flex px-[10px] py-[10px] bg-main-violet-4c rounded-[10px]">
-          <p className="text-2xl font-black font-nunito mr-[5px]">70</p>
+          <p className="text-2xl font-black font-nunito mr-[5px]">
+            {userInfo?.zera}
+          </p>
           <CoinIcon width="32px" height="32px" className="mr-[10px]" />
           <AddIcon width="29px" height="29px" />
         </div>
@@ -129,7 +128,7 @@ function SimpleShop() {
                       tabsRef.current[idx] = el;
                     }
                   }}
-                  className="text-base text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
+                  className="text-base tab text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
                   onClick={() => setActiveTabIndex(idx)}
                 >
                   {tab.label}

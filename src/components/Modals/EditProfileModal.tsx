@@ -96,7 +96,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
         <div className="flex px-[48px] mb-[46px]">
           <div className="w-[236px] flex flex-col pr-[30px] border-r-[2px] border-main-pink-f9">
             <CustomImage
-              className="w-[204px] h-auto rounded-[20px] mb-[18px]"
+              className="w-[204px] h-[204px] object-cover rounded-[20px] mb-[18px]"
               src={editAvatar.avatar}
               fallback={images.default_profile_image}
               alt="picture"
@@ -112,11 +112,6 @@ function EditProfileModal({ itemsPerPage }: Props) {
                 className="w-full resize-none text-base text-bold font-lato text-main-blackColor outline-none py-1 pl-3 rounded-[20px] no-scrollbar"
                 placeholder="Enter your name..."
               />
-              {/* <EditTextIcon
-                className="absolute top-1/2 -translate-y-1/2 right-[9px]"
-                width="18px"
-                height="18px"
-              /> */}
             </div>
             <div className="relative mb-[10px] px-[12px] pt-[12px] pb-[27px] bg-main-whileColor rounded-[20px]">
               <textarea
@@ -155,13 +150,14 @@ function EditProfileModal({ itemsPerPage }: Props) {
                   key={index}
                   src={item?.item_info?.url}
                   alt="avatar"
-                  width={204}
-                  height={204}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   className={`${
                     item.item_info.id === editAvatar.id
                       ? "border-[4px] border-main-pink-be"
                       : ""
-                  } mb-[5px] rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
+                  } w-[156px] h-[156px] object-cover rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
                 />
               ))}
             </div>

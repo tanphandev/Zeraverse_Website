@@ -29,7 +29,6 @@ type PayLoadBuyModal = {
 function UserBar({ zera }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const [isFetchCategories, setIsFetchCategories] = useState<boolean>(false);
-
   const shopCategoriesTemp = useSelector<RootState>(
     shopCategoriesSelector
   ) as IShopCategories[];
@@ -69,7 +68,7 @@ function UserBar({ zera }: Props) {
   }, [isFetchCategories]);
 
   const handleClickBuyAvatar = (payload: PayLoadBuyModal) => {
-    openModal(MODAL_NAME.BUY_AVATAR);
+    openModal(MODAL_NAME.BUY_SHOP);
     setPayload(payload);
   };
   return (
@@ -86,7 +85,7 @@ function UserBar({ zera }: Props) {
             <div className="relative group">
               <CustomImage
                 className="w-[80px] h-[80px] object-cover rounded-[10px] border border-main-pink-be"
-                src={item.value}
+                src={item?.value}
                 fallback={images.default_avatar_shop_image}
                 alt="Picture"
                 width={0}
@@ -116,13 +115,13 @@ function UserBar({ zera }: Props) {
               )}
             </div>
             {!!item?.user_inventory ? (
-              <div className="text-center">
-                <p className="inline text-[11px] font-semibold font-nunito text-main-whileColor px-2 py-[3px] rounded-[20px] bg-[#360e1e] shadow-[_0_1px_2px_0] shadow-main-pink-9d">
+              <div className="text-center mt-[5px]">
+                <p className="inline text-[11px] font-semibold font-nunito text-main-whileColor px-2 py-[3px] rounded-[20px] bg-[#360e1e] shadow-[_0_1px_2px_0] shadow-main-pink-9d pointer-events-none ">
                   Owned
                 </p>
               </div>
             ) : (
-              <p className="text-[11px] font-black font-nunito text-center text-main-whileColor">
+              <p className="text-[11px] font-black font-nunito text-center text-main-whileColor mt-[5px]">
                 {item.price}
                 <CoinIcon
                   className="inline-block ml-2"

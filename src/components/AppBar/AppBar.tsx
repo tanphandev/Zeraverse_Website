@@ -137,11 +137,11 @@ function AppBar() {
             <div onClick={visibleUserOption ? hideUserOption : showUserOption}>
               <div className="flex flex-col items-center mt-[9px] cursor-pointer">
                 <CustomImage
-                  className="rounded-[10px]"
+                  className="w-[94px] h-[94px] object-cover rounded-[10px]"
                   src={userInfo?.avatar}
                   fallback={images.default_profile_image}
-                  width={94}
-                  height={94}
+                  width={0}
+                  height={0}
                   alt="ProfilePicture"
                 />
                 <p className="text-base font-medium leading-[1.8] font-lato text-main-whileColor">

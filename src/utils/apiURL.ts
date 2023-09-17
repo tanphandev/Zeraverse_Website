@@ -30,7 +30,7 @@ const apiURL = {
   get_item_shop: (shop_item_id: number) =>
     `/shops/categories/${shop_item_id}/items`,
   get_avatar_shop: "/shops/categories/1/items",
-  buy_avatar: "/shops/buy",
+  buy_item: "/shops/buy",
   //game
   get_games: "/game",
   get_game_categories: "/game/categories",

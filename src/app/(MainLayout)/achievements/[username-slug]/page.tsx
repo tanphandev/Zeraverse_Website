@@ -33,7 +33,6 @@ function Achievements({
     (useSelector<RootState>(achievementSelector) as IAchievement) ?? {};
   let { user_info, played_game, total_earned_zera, play_streak } = achievements;
   const { username, avatar, quote, highest_playstreak } = user_info ?? {};
-  console.log("user_info", user_info);
   const { count, rows } = played_game ?? {};
   const { usernameAuth } = useAuthContext();
   const gamePlayed = (achievements?.played_game?.rows as any[]) ?? [];

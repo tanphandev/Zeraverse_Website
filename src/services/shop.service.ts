@@ -6,7 +6,6 @@ const shopSlice = createSlice({
   name: "shop",
   initialState: {
     isLoading: false,
-    avatarShop: null,
     shopCategories: null,
     shop: {},
     error: null,
@@ -76,7 +75,6 @@ export const getShopItem = createAsyncThunk(
         shop_item: itemShopData.shop_item,
         items: itemDetail,
       };
-      console.log("payload", payload);
       return payload;
     } catch (e: any) {
       return rejectWithValue(e?.message);
@@ -84,10 +82,10 @@ export const getShopItem = createAsyncThunk(
   }
 );
 
-export const buyAvatarShop = async (avatarId: number) => {
+export const buyItemShop = async (itemId: number) => {
   try {
-    const { data } = await httpRequest.post(apiURL.buy_avatar, {
-      item: avatarId,
+    const { data } = await httpRequest.post(apiURL.buy_item, {
+      item: itemId,
     });
     return data;
   } catch (e: any) {

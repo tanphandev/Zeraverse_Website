@@ -52,6 +52,10 @@ export const TOAST_MESSAGE = {
   DELETE_PLAYLIST_ITEM_FAIL: "Delete game fail",
   BUY_AVATAR_SUCCESS: "Buy avatar success",
   BUY_AVATAR_FAIL: "Buy avatar fail",
+  BUY_COVER_SUCCESS: "Buy cover success",
+  BUY_COVER_FAIL: "Buy cover fail",
+  BUY_PLAYTIMES_SUCCESS: "Buy playtimes success",
+  BUY_PLAYTIMES_FAIL: "Buy playtimes fail",
 };
 
 // verify_status
@@ -104,7 +108,7 @@ export enum MODAL_NAME {
   SEARCH = "SEARCH",
   EDIT_PROFILE = "EDIT_PROFILE",
   EDIT_COVER = "EDIT_COVER",
-  BUY_AVATAR = "BUY_AVATAR",
+  BUY_SHOP = "BUY_SHOP",
   DELETE_PLAYLIST = "DELETE_PLAYLIST",
   DELETE_ITEM_OF_PLAYLIST = "DELETE_ITEM_OF_PLAYLIST",
 }

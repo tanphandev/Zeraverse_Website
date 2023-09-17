@@ -92,6 +92,13 @@
   color: #ffffff;
   background-color: #9d174d;
   border-color: #ec4899;
+  transition: color ease-in 0.1s, background-color ease-in 0.1s,
+    border-color ease-in 0.1s;
+}
+
+.buy-button:disabled {
+  background-color: #350f1e;
+  pointer-events: none;
 }
 
 .slide-control {

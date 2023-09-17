@@ -47,7 +47,7 @@ const GlobalModal: any = {
 const Modal: any = {
   [MODAL_NAME.SEARCH]: <SearchModal />,
   [MODAL_NAME.CLAIM_DAILY_BONUS]: <DailyGiftModal />,
-  [MODAL_NAME.BUY_AVATAR]: <BuyShopModal />,
+  [MODAL_NAME.BUY_SHOP]: <BuyShopModal />,
   [MODAL_NAME.EDIT_PROFILE]: <EditProfileModal itemsPerPage={6} />,
   [MODAL_NAME.EDIT_COVER]: <EditCoverModal itemsPerPage={4} />,
   [MODAL_NAME.DELETE_PLAYLIST]: <DeletePlayListModal title="Delete Playlist" />,

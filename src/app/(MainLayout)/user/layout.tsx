@@ -47,12 +47,12 @@ function UserLayout({ children }: { children: string }) {
         <Tippy content="Update avatar" placement="bottom">
           <div className="absolute bottom-0 left-11 translate-y-1/2 rounded-[20px]">
             <CustomImage
-              className="rounded-[20px]"
+              className="w-[204px] h-[204px] object-cover rounded-[20px]"
               src={userInfo?.avatar}
               fallback={images.default_profile_image}
               alt="avatar"
-              width={204}
-              height={204}
+              width={0}
+              height={0}
             />
             <div
               onClick={openEditAvatarModal}
