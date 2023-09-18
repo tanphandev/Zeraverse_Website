@@ -146,3 +146,7 @@ export const counterAnimate = (
   };
   window.requestAnimationFrame(step);
 };
+
+export const inRange = (x: number, min: number, max: number) => {
+  return (x - min) * (x - max) <= 0;
+};

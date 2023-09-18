@@ -90,6 +90,7 @@ const config: Config = {
         fadeInDown: "fadeInDown 0.5s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
         slipLeftToRight: "slipLeftToRight 0.5s ease-in-out",
+        spin: "spin 1.2s linear infinite",
       },
       keyframes: (theme) => ({
         fadeUp: {
@@ -109,6 +110,10 @@ const config: Config = {
             transform: "translateX(-120%)",
           },
           "100%": { transform: "translateX(0)" },
+        },
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       }),
     },

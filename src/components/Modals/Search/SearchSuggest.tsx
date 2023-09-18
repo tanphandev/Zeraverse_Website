@@ -4,7 +4,7 @@ type Props = {
 };
 function SearchSuggest({ suggestList, setSearchValue }: Props) {
   return (
-    <ul className="w-[644px] overflow-x-scroll no-scrollbar flex mb-[27px]">
+    <ul className="w-[644px] overflow-x-scroll no-scrollbar flex mb-[27px] mt-[17px]">
       {suggestList?.map((item, index) => {
         return (
           <li

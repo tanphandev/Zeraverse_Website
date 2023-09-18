@@ -25,6 +25,7 @@ import { ISearchGame } from "@/interface/games/ISearchGame";
 import SearchResult from "./SearchResult";
 
 function SearchModal() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchResult, setSearchResult] = useState<ISearchGame | null>(null);
   const { closeModalWithAnimation } = useModalContext();
@@ -48,12 +49,15 @@ function SearchModal() {
   const debounceValue = useDebounce(searchValue, 1000);
   useEffect(() => {
     if (!debounceValue.trim()) return;
+    setIsLoading(true);
     gameService
       .searchGame(debounceValue.trim())
       .then((result) => {
+        setIsLoading(false);
         setSearchResult(result);
       })
       .catch((e: any) => {
+        setIsLoading(false);
         throw e;
       });
   }, [debounceValue]);
@@ -76,8 +80,10 @@ function SearchModal() {
         className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] h-full animate-slipLeftToRight"
       >
         <SearchInput
+          isLoading={isLoading}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          setSearchResult={setSearchResult}
         />
         {!!searchValue ? (
           <SearchResult searchResult={searchResult} />

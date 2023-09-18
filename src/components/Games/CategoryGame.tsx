@@ -1,13 +1,12 @@
 "use client";
 import { gameCategoriesSelector } from "@/store/selectors/game.selector";
 import { AppDispatch, RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as gameService from "@/services/game.service";
-import CategoryItem from "./CategoryItem";
+import { inRange } from "@/utils/helper";
+import CategoryGameItem from "./CategoryGameItem";
 function GameCategory({ colSpan }: { colSpan?: string }) {
-  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const gameCategories = useSelector<RootState>(
     gameCategoriesSelector
@@ -39,25 +38,18 @@ function GameCategory({ colSpan }: { colSpan?: string }) {
     }
   }, [gameCategories]);
 
-  const handleChooseCategory = (categoryName: string) => {
-    router.push(`/game-category/${categoryName}`);
-  };
   return (
-    <div
-      ref={CategoryGridRef}
-      className={`flex-1 grid grid-cols-5 grid-rows-${rowNumber} gap-4 ${colSpan}`}
-      id="CategoryGrid"
-    >
-      {gameCategories?.map((item, index) => (
-        <CategoryItem
-          onClick={() => {
-            handleChooseCategory(item.label);
-          }}
-          key={index}
-          src={item.thumbnail}
-          name={item.label}
-        />
-      ))}
+    <div className={`${colSpan}`}>
+      <div className={`grid grid-cols-10 gap-4`}>
+        {gameCategories?.map((item, index) => (
+          <CategoryGameItem
+            item={item}
+            key={index}
+            index={index}
+            className={inRange(index, 0, 6) ? "row-span-2" : "row-span-1"}
+          ></CategoryGameItem>
+        ))}
+      </div>
     </div>
   );
 }

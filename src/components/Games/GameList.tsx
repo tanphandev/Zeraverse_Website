@@ -8,6 +8,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { gameListSelector } from "@/store/selectors/game.selector";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
+import IGame from "@/interface/games/IGame";
 function GameList() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();

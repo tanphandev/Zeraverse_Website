@@ -2,12 +2,20 @@ import ArrowLeftIcon from "@/asset/icons/ArrowLeftIcon";
 import ClearIcon from "@/asset/icons/ClearIcon";
 import LogoIcon from "@/asset/icons/LogoIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";
+import Spinner from "@/asset/icons/SpinnerIcon";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 type Props = {
+  isLoading: boolean;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<any>>;
 };
-function SearchInput({ searchValue, setSearchValue }: Props) {
+function SearchInput({
+  isLoading,
+  searchValue,
+  setSearchValue,
+  setSearchResult,
+}: Props) {
   const { closeModalWithAnimation } = useModalContext();
   const handleOnChangeSearchInput = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -28,7 +36,7 @@ function SearchInput({ searchValue, setSearchValue }: Props) {
           height="64px"
         />
       </button>
-      <div className="relative mt-[46px] mb-[17px] inline-block mr-[60px]">
+      <div className="relative mt-[46px] inline-block mr-[60px]">
         <LogoIcon
           className="absolute top-1/2 left-3 -translate-y-1/2 "
           width="42px"
@@ -43,14 +51,23 @@ function SearchInput({ searchValue, setSearchValue }: Props) {
         />
         <div className="absolute top-1/2 right-[7px] -translate-y-1/2">
           {!!searchValue === true ? (
-            <ClearIcon
-              onClick={() => {
-                setSearchValue("");
-              }}
-              width="30px"
-              height="30px"
-              className="mr-2"
-            />
+            isLoading ? (
+              <Spinner
+                width="20px"
+                height="20px"
+                className="animate-spin mr-[13px]"
+              />
+            ) : (
+              <ClearIcon
+                onClick={() => {
+                  setSearchValue("");
+                  setSearchResult(null);
+                }}
+                width="30px"
+                height="30px"
+                className="mr-2"
+              />
+            )
           ) : (
             <SeachIcon
               className="text-main-violet-8b"
