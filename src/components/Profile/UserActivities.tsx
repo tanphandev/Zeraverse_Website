@@ -20,6 +20,7 @@ import IMostPlayedGame from "@/interface/user/IMostPlayedGame";
 import PurchaseHistory from "./PurchaseHistory";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import { IUserInfo } from "@/interface/user/IUserInfo";
+import IGame from "@/interface/games/IGame";
 type Props = {
   userInfo: IUserInfo | null;
   onClick: ({ title, payload }: { title: string; payload?: any }) => void;

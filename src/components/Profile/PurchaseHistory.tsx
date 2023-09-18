@@ -30,11 +30,12 @@ function PurchaseHistory({ onClick, data, title }: Props) {
             {data?.avatar.map((item, index) => (
               <div className="flex-shrink-0" key={index}>
                 <Image
-                  className="rounded-[10px]"
+                  className="w-[94px] h-[94px] rounded-[10px] object-cover"
                   src={item?.item_info?.url}
                   alt="avatar"
-                  width={94}
-                  height={94}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                 />
               </div>
             ))}
@@ -43,7 +44,7 @@ function PurchaseHistory({ onClick, data, title }: Props) {
             {data?.cover.map((item, index) => (
               <div className="flex-shrink-0" key={index}>
                 <Image
-                  className="rounded-[10px] w-[204px] h-[94px]"
+                  className="rounded-[10px] w-[204px] h-[94px] object-cover"
                   src={item?.item_info?.url}
                   alt="cover"
                   width={0}

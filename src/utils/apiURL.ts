@@ -34,6 +34,7 @@ const apiURL = {
   //game
   get_games: "/game",
   get_game_categories: "/game/categories",
+  get_popular_game: "/game/popular-game",
   //article
   get_newest: "/article/newest",
   get_article_categories: "/article/category",
@@ -44,6 +45,8 @@ const apiURL = {
   get_hall_of_fame: "/hall-of-fames",
   //achievements
   get_achievements: (username: string) => `/achievements/${username}`,
+  // search
+  search_game: "/game/search",
 };
 
 export default apiURL;

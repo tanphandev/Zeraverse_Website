@@ -11,9 +11,8 @@ import {
   GLOBAL_MODAL_NAME,
   HANDLE_STATUS,
   MODAL_NAME,
-  MODAL_STATUS,
 } from "@/utils/constants";
-import SearchModal from "@/components/Modals/SearchModal";
+import SearchModal from "@/components/Modals/Search/SearchModal";
 import BuyShopModal from "@/components/Modals/BuyShopModal";
 import GlobalLoading from "@/components/Modals/GlobalLoading";
 import EditProfileModal from "@/components/Modals/EditProfileModal";
