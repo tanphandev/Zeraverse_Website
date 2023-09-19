@@ -7,6 +7,7 @@ const gameSlice = createSlice({
   initialState: {
     isLoading: false,
     gameCategories: null,
+    game: {},
     gameList: null,
     popularGame: null,
     error: null,
@@ -34,6 +35,22 @@ const gameSlice = createSlice({
         state.gameCategories = action.payload;
       })
       .addCase(getGameCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getGame.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getGame.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.game[action.payload.category_name] = {
+          description: action.payload.description,
+          detail: action.payload.items,
+          otherCategory: action.payload.otherCategory,
+        };
+      })
+      .addCase(getGame.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -85,6 +102,29 @@ export const getGameCategories = createAsyncThunk(
   }
 );
 
+export const getGame = createAsyncThunk(
+  "game/getGame",
+  async (game_category_slug: string, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(
+        apiURL.get_all_game_of_category(game_category_slug)
+      );
+      const categoryDescription = data?.data?.game_category?.description;
+      const allGameOfCategory = data?.data?.game_category?.game_detail;
+      const otherCategory = data?.data?.other_category;
+      const payload = {
+        category_name: game_category_slug,
+        description: categoryDescription,
+        items: allGameOfCategory,
+        otherCategory: otherCategory,
+      };
+      return payload;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
+
 export const getPopularGame = createAsyncThunk(
   "game/getPopularGame",
   async (data: {}, { rejectWithValue }) => {
@@ -97,6 +137,15 @@ export const getPopularGame = createAsyncThunk(
     }
   }
 );
+
+export const getGameDetail = async (game_slug: string) => {
+  try {
+    const { data } = await httpRequest.get(apiURL.get_game_detail(game_slug));
+    return data?.data;
+  } catch (e: any) {
+    throw e;
+  }
+};
 
 export const searchGame = async (keySearch: string) => {
   const encodeKeySearch = encodeURI(keySearch);

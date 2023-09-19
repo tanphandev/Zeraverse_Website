@@ -44,7 +44,6 @@ function SearchModal() {
   };
   useOnClickOutside(searchModalRef, handleCloseSearchModal);
 
-  console.log("searchResult", searchResult);
   /* search */
   const debounceValue = useDebounce(searchValue, 1000);
   useEffect(() => {

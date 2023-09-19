@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Image from "next/image";
 import NoData from "../Others/NoData";
-import Link from "next/link";
 import { staticPaths } from "@/utils/paths";
 
 type Props = {
@@ -29,7 +29,7 @@ function SlipBar({ data, title, onClick }: Props) {
         <div className="w-full overflow-hidden overflow-x-scroll whitespace-nowrap no-scrollbar p-[10px] mx-[-10px]">
           {data.map((item, index) => (
             <Link
-              href={staticPaths.game_screen}
+              href={staticPaths.game_detail(item?.slug)}
               key={index}
               className="relative group hover:scale-105 transition-all ease-in-out duration-300 inline-block mr-4"
             >

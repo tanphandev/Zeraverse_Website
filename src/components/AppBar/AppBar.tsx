@@ -93,12 +93,12 @@ function AppBar() {
               </p>
             </Link>
             <Link
-              href={staticPaths.game_category_all}
+              href={staticPaths.game_category}
               className="block w-full text-left mb-4"
             >
               <CatelogyIcon className="inline" width="32px" height="32px" />
               <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
-                Game Categor
+                Game Category
               </p>
             </Link>
             <Link

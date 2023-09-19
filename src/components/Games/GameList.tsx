@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import * as gameService from "@/services/game.service";
@@ -9,6 +9,7 @@ import { gameListSelector } from "@/store/selectors/game.selector";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import IGame from "@/interface/games/IGame";
+import { staticPaths } from "@/utils/paths";
 function GameList() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
@@ -48,18 +49,14 @@ function GameList() {
       item.classList.add("col-span-2", "row-span-2");
     });
   }, [gameList]);
-  //Go to Game Screen
-  const gotoGameScreen = () => {
-    router.push("/game-screen");
-  };
   return (
     <div
       className="grid grid-cols-11 grid-flow-dense gap-4"
       ref={gridSystemRef}
     >
       {gameList?.map((game: IGame, index: number) => (
-        <div
-          onClick={gotoGameScreen}
+        <Link
+          href={staticPaths.game_detail(game?.slug)}
           key={index}
           className="relative group hover:scale-105 transition-all ease-in-out duration-300"
         >
@@ -75,7 +72,7 @@ function GameList() {
           <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
             {game.title}
           </p>
-        </div>
+        </Link>
       ))}
     </div>
   );

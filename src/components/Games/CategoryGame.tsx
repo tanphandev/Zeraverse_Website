@@ -1,23 +1,15 @@
 "use client";
-import { gameCategoriesSelector } from "@/store/selectors/game.selector";
-import { AppDispatch, RootState } from "@/store/store";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as gameService from "@/services/game.service";
 import { inRange } from "@/utils/helper";
 import CategoryGameItem from "./CategoryGameItem";
-function GameCategory({ colSpan }: { colSpan?: string }) {
-  const dispatch = useDispatch<AppDispatch>();
-  const gameCategories = useSelector<RootState>(
-    gameCategoriesSelector
-  ) as any[];
+import { IGameCategory } from "@/interface/games/IGameCategory";
+type Props = {
+  listCategory: IGameCategory[];
+  colSpan?: string;
+};
+function GameCategory({ listCategory, colSpan }: Props) {
   const CategoryGridRef = useRef<HTMLDivElement | null>(null);
   const [rowNumber, setRowNumber] = useState<number>(0);
-
-  /* get game categories */
-  useEffect(() => {
-    !gameCategories && dispatch(gameService.getGameCategories({}));
-  }, [gameCategories]);
 
   useEffect(() => {
     if (CategoryGridRef.current) {
@@ -36,12 +28,12 @@ function GameCategory({ colSpan }: { colSpan?: string }) {
         itemLarge.classList.add("row-span-2", "flex-col");
       });
     }
-  }, [gameCategories]);
+  }, [listCategory]);
 
   return (
     <div className={`${colSpan}`}>
       <div className={`grid grid-cols-10 gap-4`}>
-        {gameCategories?.map((item, index) => (
+        {listCategory?.map((item, index) => (
           <CategoryGameItem
             item={item}
             key={index}

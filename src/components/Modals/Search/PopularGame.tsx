@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { images } from "@/asset/image/images";
 import CustomImage from "@/components/Others/CustomImage";
 import { IPopularGame } from "@/interface/games/IPopularGame";
 import { staticPaths } from "@/utils/paths";
-import Link from "next/link";
 
 type Props = {
   popularGameList: IPopularGame[];
@@ -17,7 +17,7 @@ function PopularGame({ popularGameList }: Props) {
         {popularGameList?.map((item, index) => {
           return (
             <li className="rounded-[10px] mr-4" key={index}>
-              <Link href={staticPaths.game_screen}>
+              <Link href={staticPaths.game_detail(item?.game_detail?.slug)}>
                 <div className="relative group hover:scale-105 transition-all ease-in-out duration-300">
                   <CustomImage
                     className="min-w-[94px] w-[94px] h-[94px] rounded-[20px] "

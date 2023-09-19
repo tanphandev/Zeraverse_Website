@@ -3,8 +3,9 @@ import { staticPaths } from "@/utils/paths";
 import Link from "next/link";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
+import { IGameCategory } from "@/interface/games/IGameCategory";
 type Props = {
-  item: any;
+  item: IGameCategory;
   index: number;
   className: string;
   [x: string]: any;
@@ -17,14 +18,13 @@ function CategoryGameItem({
   ...props
 }: Props) {
   const isMinSize = !inRange(index, 0, 6);
-
   return (
     <Link
       {...props}
       className={`${className} col-span-2 rounded-2xl overflow-hidden relative cursor-pointer w-full bg-white 
                       ${isMinSize ? "flex items-center justify-start" : ""}
                       hover:translate-y-[-2px] hover:scale-105 transition-all duration-300 shadow-[0px_6px_12px_0px_rgb(0,0,0,0.24)]`}
-      href={`${staticPaths.game_category}/${item?.label}`}
+      href={staticPaths.game_category_detail(item?.slug)}
     >
       {/* thumbnail */}
       <CustomImage
@@ -50,7 +50,7 @@ function CategoryGameItem({
         </div>
       ) : (
         <div
-          className="bg-main-whileColor bottom-0 px-4 font-bold h-9 flex items-center justify-center w-[190px]
+          className="bg-main-whileColor bottom-0 px-4 font-bold h-9 flex items-center justify-center w-full
                        text-[13px] text-main-violet-4c text-ellipsis overflow-hidden whitespace-nowrap uppercase"
         >
           {item?.label}

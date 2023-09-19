@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Ads1 from "@/asset/image/ads1.png";
 import Ads2 from "@/asset/image/ads2.png";
 import Ads3 from "@/asset/image/ads3.png";
-import Screen from "@/asset/image/screen.png";
 import Thanks from "@/asset/image/thanks.png";
 import Avatar from "@/asset/image/profilePicture.png";
 import GamePic from "@/asset/image/game1.png";
@@ -21,8 +22,40 @@ import HeartIcon from "@/asset/icons/HeartIcon";
 import AddPlayListIcon from "@/asset/icons/AddPlayListIcon";
 import ExpandIcon from "@/asset/icons/ExpandIcon";
 import ReportIcon from "@/asset/icons/ReportIcon";
-
-function GameScreen() {
+import * as gameService from "@/services/game.service";
+import { IGameDetail } from "@/interface/games/IGameDetail";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import IGame from "@/interface/games/IGame";
+type Props = {
+  params: {
+    "game-slug": string;
+  };
+};
+function GameScreen({ params }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const [gameDetail, setGameDetail] = useState<IGameDetail | null>(null);
+  const categorySlugOfGameDetail = gameDetail?.game_category?.slug ?? null;
+  const relativeGames =
+    useSelector<RootState>(
+      (state: any) =>
+        state?.game?.game[`${categorySlugOfGameDetail}`]?.detail as IGame[]
+    ) ?? null;
+  console.log("categoryOfGameDetail", categorySlugOfGameDetail);
+  console.log("relativeGames boolean", !relativeGames);
+  console.log("gameDetail", gameDetail);
+  useEffect(() => {
+    gameService
+      .getGameDetail(params["game-slug"])
+      .then((gameDetail: IGameDetail) => {
+        setGameDetail(gameDetail);
+        !relativeGames &&
+          dispatch(gameService.getGame(gameDetail?.game_category?.slug));
+      })
+      .catch((e: any) => {
+        throw e;
+      });
+  }, []);
   return (
     <div className="mb-10">
       {/* Part 1 */}
@@ -33,11 +66,15 @@ function GameScreen() {
           </div>
           <div className="col-span-7 grid grid-cols-7 grid-rows-7 gap-4">
             <div className="flex flex-col col-span-7 row-span-5 bg-main-violet-ed text-main-blackColor rounded-[10px]">
-              <Image
+              {/* <Image
                 src={Screen}
                 alt="screen"
                 className="rounded-t-[10px] flex-1"
-              />
+              /> */}
+              <iframe
+                src={gameDetail?.play_url}
+                className="w-full h-full"
+              ></iframe>
               <div className="flex justify-between px-[14px] py-2 bg-[#373737] rounded-b-[10px]">
                 <div className="flex items-center">
                   <PauseIcon width="32px" height="32px" />

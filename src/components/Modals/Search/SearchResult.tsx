@@ -1,10 +1,10 @@
+import Link from "next/link";
 import { images } from "@/asset/image/images";
 import CategoryGameItem from "@/components/Games/CategoryGameItem";
 import CustomImage from "@/components/Others/CustomImage";
 import IGame from "@/interface/games/IGame";
 import { ISearchGame } from "@/interface/games/ISearchGame";
 import { staticPaths } from "@/utils/paths";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -22,7 +22,6 @@ function SearchResult({ searchResult }: Props) {
       resultSize === 0 ? setIsNoData(true) : setIsNoData(false);
     }
   }, [searchResult]);
-  console.log("category", category);
   return (
     <>
       {isNoData ? (
@@ -43,7 +42,7 @@ function SearchResult({ searchResult }: Props) {
             />
           ))}
           {game?.concat(gameByCategory)?.map((item: IGame, index: number) => (
-            <Link key={index} href={staticPaths.game_screen}>
+            <Link key={index} href={staticPaths.game_detail(item?.slug)}>
               <div className="relative group hover:scale-105 transition-all ease-in-out duration-300">
                 <CustomImage
                   className="min-w-[94px] w-[] h-[94px] rounded-[20px] "

@@ -140,7 +140,7 @@ function UserPlayListPage({
                   <div className="grid grid-cols-10 grid-rows-1 gap-4">
                     {playListDetail?.detail?.slice(0, 10).map((game, index) => (
                       <Link
-                        href={staticPaths.game_screen}
+                        href={staticPaths.game_detail(game?.slug)}
                         key={index}
                         className="relative group hover:scale-105 transition-all ease-in-out duration-300"
                       >
@@ -271,7 +271,7 @@ function UserPlayListPage({
           <div className="grid grid-cols-10 gap-4 p-11 mb-[40px]">
             {playlistItemDetail?.detail?.map((item, index) => (
               <Link
-                href={staticPaths.game_screen}
+                href={staticPaths.game_detail(item?.slug)}
                 key={index}
                 className="relative group hover:scale-105 transition-all ease-in-out duration-300"
               >

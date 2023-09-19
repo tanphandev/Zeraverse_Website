@@ -34,6 +34,9 @@ const apiURL = {
   //game
   get_games: "/game",
   get_game_categories: "/game/categories",
+  get_all_game_of_category: (category_slug: string) =>
+    `/game/category/${category_slug}`,
+  get_game_detail: (game_slug: string) => `/game/detail/${game_slug}`,
   get_popular_game: "/game/popular-game",
   //article
   get_newest: "/article/newest",

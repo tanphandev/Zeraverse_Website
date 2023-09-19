@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import SlipBar from "./SlipBar";
+import Image from "next/image";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
+import SlipBar from "./SlipBar";
 import {
   userLovedGameSelector,
   userMostPlayedGameSelector,
@@ -65,7 +65,7 @@ function UserActivities({ userInfo, onClick }: Props) {
           </h3>
           {!!mostPlayedGame ? (
             <Link
-              href={staticPaths.game_screen}
+              href={staticPaths.game_detail("no-slug")}
               className="relative group hover:scale-105 transition-all ease-in-out duration-300"
             >
               <Image

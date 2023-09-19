@@ -12,9 +12,10 @@ export const staticPaths = {
   article_category_detail: (category_slug: string) =>
     `/article/category/${category_slug}`,
   article_detail: (article_slug: string) => `/article/${article_slug}`,
-  game_category: "/game-category",
-  game_category_all: "/game-category-all",
-  game_screen: "/game-screen",
+  game_detail: (game_slug: string) => `/game/${game_slug}`,
+  game_category: "/game/category",
+  game_category_detail: (category_slug: string) =>
+    `/game/category/${category_slug}`,
   hall_of_fame: "/hall-of-fame",
   privacy_policy: "/privacy-policy",
   simple_shop: "/simple-shop",
