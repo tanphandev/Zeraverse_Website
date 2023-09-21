@@ -22,8 +22,8 @@ function EditTextIcon({
         fill-opacity="0.4"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M14 16.75C14 16.8881 13.8881 17 13.75 17H2.25C2.11193 17 2 16.8881 2 16.75C2 16.6119 2.11193 16.5 2.25 16.5H13.75C13.8881 16.5 14 16.6119 14 16.75Z"
         fill="black"
         fill-opacity="0.4"

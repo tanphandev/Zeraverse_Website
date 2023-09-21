@@ -6,7 +6,6 @@ import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
 import EditIcon from "@/asset/icons/EditIcon";
 import { images } from "@/asset/image/images";
-import "tippy.js/dist/tippy.css";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
 

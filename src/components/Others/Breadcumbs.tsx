@@ -5,10 +5,13 @@ export type CrumbItem = {
 };
 export type BreadcrumbsProps = {
   items: CrumbItem[];
+  className?: string;
 };
-function Breadcrumbs({ items }: BreadcrumbsProps) {
+function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
-    <div className="flex gap-2 items-start text-sm font-bold font-lato">
+    <div
+      className={`${className} flex gap-2 items-start text-sm font-bold font-lato`}
+    >
       {items.map((crumb, i) => {
         const isLastItem = i === items.length - 1;
         if (!isLastItem) {
@@ -17,7 +20,7 @@ function Breadcrumbs({ items }: BreadcrumbsProps) {
               <Link
                 href={crumb.path}
                 key={i}
-                className="text-main-whileColor hover:text-main-pink-ec hover:underline"
+                className="text-main-whileColor hover:text-main-pink-ec hover:underline line-clamp-1"
               >
                 {crumb.label}
               </Link>
@@ -26,7 +29,11 @@ function Breadcrumbs({ items }: BreadcrumbsProps) {
             </>
           );
         } else {
-          return crumb.label;
+          return (
+            <p className="text-main-whileColor line-clamp-1" key={i}>
+              {crumb.label}
+            </p>
+          );
         }
       })}
     </div>

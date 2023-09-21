@@ -1,5 +1,6 @@
 {
-  "BASE_URL": "https://user-api.stg.zeraverse.io/api/v1",
+  "BASE_URL": "https://user-api.zeraverse.io/api/v1",
+  "DOMAIN_URL": "http://localhost:3000",
   "GOOGLE_CLIENT_ID": "371858033556-qbqdmhpas9c0thtv6rhnic84f9jltvvi.apps.googleusercontent.com",
   "GOOGLE_CLIENT_SECRET": "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",
   "FACEBOOK_CLIENT_ID": "663954559013968",

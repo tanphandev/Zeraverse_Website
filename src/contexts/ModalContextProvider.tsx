@@ -19,6 +19,7 @@ import EditProfileModal from "@/components/Modals/EditProfileModal";
 import EditCoverModal from "@/components/Modals/EditCoverModal";
 import DeletePlayListModal from "@/components/Modals/DeletePlayListModal";
 import DailyGiftModal from "@/components/Modals/DailyGiftModal";
+import AddPlayListModal from "@/components/Modals/PlayList/AddPlayListModal";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -53,6 +54,7 @@ const Modal: any = {
   [MODAL_NAME.DELETE_ITEM_OF_PLAYLIST]: (
     <DeletePlayListModal title="Delete This Game" />
   ),
+  [MODAL_NAME.ADD_PLAYLIST]: <AddPlayListModal />,
 };
 
 export const useModalContext = () => {

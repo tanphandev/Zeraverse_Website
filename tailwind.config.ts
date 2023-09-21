@@ -41,6 +41,7 @@ const config: Config = {
         "grayColor-70": "rgba(0,0,0,0.7)",
         "grayColor-80": "rgba(0,0,0,0.8)",
         "grayColor-90": "rgba(0,0,0,0.9)",
+        "grayColor-37": "#373737",
         "violet-f5": "#F5F3FF",
         "violet-ed": "#EDE9FE",
         "violet-dd": "#DDD6FE",

@@ -140,6 +140,18 @@ const userSlice = createSlice({
         state.error = action.payload;
       });
     builder
+      .addCase(getUserPlaylistGameWithGameSlug.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserPlaylistGameWithGameSlug.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.playListGame = action.payload;
+      })
+      .addCase(getUserPlaylistGameWithGameSlug.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
       .addCase(getUserPurchaseHistory.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -370,6 +382,42 @@ export const getUserPlayListGame = createAsyncThunk(
   }
 );
 
+export const getUserPlaylistGameWithGameSlug = createAsyncThunk(
+  "user/getUserPlaylistGameWithGameSlug",
+  async (
+    params: {
+      username: string;
+      game_slug: string;
+    },
+    { rejectWithValue }
+  ) => {
+    const encodeUserName = encodeURI(params.username);
+    try {
+      const { data } = await httpRequest.get(apiURL.get_user_playList_game, {
+        params: {
+          username: encodeUserName,
+          game_slug: params.game_slug,
+        },
+      });
+      const playListGame = data?.data;
+      return playListGame;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
+
+export const addPlaylistgame = async (playlistName: string) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.add_user_playList_game, {
+      name: playlistName,
+    });
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
 export const getUserPlayListItem = async (playListId: number) => {
   try {
     const { data } = await httpRequest.get(
@@ -398,6 +446,21 @@ export const deleteUserPlayListItemGame = async (gameId: number) => {
     const { data } = await httpRequest.delete(
       apiURL.delete_user_playlist_item_game(gameId)
     );
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
+export const addGameIntoPlayList = async (
+  game_detail_id: number,
+  playlist_id: string
+) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.add_game_into_playlist, {
+      game_detail_id,
+      playlist_id,
+    });
     return data;
   } catch (e: any) {
     throw e;

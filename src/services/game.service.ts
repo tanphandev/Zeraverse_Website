@@ -9,23 +9,15 @@ const gameSlice = createSlice({
     gameCategories: null,
     game: {},
     gameList: null,
+    gameDetail: {
+      gameInfo: null,
+      hallOfFame: null,
+    },
     popularGame: null,
     error: null,
   } as any,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(getGamelist.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(getGamelist.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.gameList = action.payload;
-      })
-      .addCase(getGamelist.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
     builder
       .addCase(getGameCategories.pending, (state, action) => {
         state.isLoading = true;
@@ -38,6 +30,19 @@ const gameSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+    builder
+      .addCase(getGamelist.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getGamelist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.gameList = action.payload;
+      })
+      .addCase(getGamelist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
     builder
       .addCase(getGame.pending, (state, action) => {
         state.isLoading = true;
@@ -63,6 +68,30 @@ const gameSlice = createSlice({
         state.popularGame = action.payload;
       })
       .addCase(getPopularGame.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getInfoGameOfGameDetail.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getInfoGameOfGameDetail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.gameDetail.gameInfo = action.payload;
+      })
+      .addCase(getInfoGameOfGameDetail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getHallOfFameOfGame.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getHallOfFameOfGame.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.gameDetail.hallOfFame = action.payload;
+      })
+      .addCase(getHallOfFameOfGame.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -138,14 +167,35 @@ export const getPopularGame = createAsyncThunk(
   }
 );
 
-export const getGameDetail = async (game_slug: string) => {
-  try {
-    const { data } = await httpRequest.get(apiURL.get_game_detail(game_slug));
-    return data?.data;
-  } catch (e: any) {
-    throw e;
+export const getInfoGameOfGameDetail = createAsyncThunk(
+  "game/getInfoGameOfGameDetail",
+  async (game_slug: string, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await httpRequest.get(apiURL.get_game_detail(game_slug));
+      const gameInfo = data?.data;
+      if (data?.success) {
+        dispatch(getHallOfFameOfGame(gameInfo?.slug));
+      }
+      return gameInfo;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
   }
-};
+);
+
+export const getHallOfFameOfGame = createAsyncThunk(
+  "game/getHallOfFameOfGame",
+  async (game_slug: string, { rejectWithValue }) => {
+    try {
+      const { data } = await httpRequest.get(
+        apiURL.get_hall_of_fame_of_game(game_slug)
+      );
+      return data.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.message);
+    }
+  }
+);
 
 export const searchGame = async (keySearch: string) => {
   const encodeKeySearch = encodeURI(keySearch);
@@ -156,6 +206,17 @@ export const searchGame = async (keySearch: string) => {
       },
     });
     return data?.data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
+export const love_game = async (game_detail_id: number) => {
+  try {
+    const { data } = await httpRequest.post(apiURL.love_game, {
+      game_detail_id,
+    });
+    return data;
   } catch (e: any) {
     throw e;
   }

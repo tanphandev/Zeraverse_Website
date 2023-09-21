@@ -19,6 +19,7 @@ import {
 } from "@/store/selectors/userSelector";
 import IPlayListGame from "@/interface/user/IPlayListGame";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
+import IGame from "@/interface/games/IGame";
 function UserProfile() {
   const dispatch = useDispatch<AppDispatch>();
   const { userInfo } = useAuthContext();

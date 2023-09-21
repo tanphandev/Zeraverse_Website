@@ -15,12 +15,14 @@ const apiURL = {
   get_user_recently_game: "/game/recently-played",
   get_user_loved_game: "/game/loved",
   get_user_playList_game: "/game/playlist",
+  add_user_playList_game: "/game/playlist",
   get_user_playlist_game_item: (playlistId: number) =>
     `/game/playlist/${playlistId}/item`,
   delete_user_playlist_game: (playListId: number) =>
     `/game/playlist/${playListId}`,
   delete_user_playlist_item_game: (gameId: number) =>
     `/game/playlist/item/${gameId}`,
+  add_game_into_playlist: "game/playlist/item",
   get_user_purchase_history: "/users/purchase-history",
   update_user_profile: "/users",
   get_contact: "/contacts",
@@ -38,6 +40,7 @@ const apiURL = {
     `/game/category/${category_slug}`,
   get_game_detail: (game_slug: string) => `/game/detail/${game_slug}`,
   get_popular_game: "/game/popular-game",
+  love_game: "game/love",
   //article
   get_newest: "/article/newest",
   get_article_categories: "/article/category",
@@ -46,6 +49,8 @@ const apiURL = {
   get_article_random: "/article/random",
   //hall of fame
   get_hall_of_fame: "/hall-of-fames",
+  get_hall_of_fame_of_game: (game_slug: string) =>
+    `/hall-of-fames/${game_slug}/game`,
   //achievements
   get_achievements: (username: string) => `/achievements/${username}`,
   // search

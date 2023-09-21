@@ -18,7 +18,6 @@ import { getUserInfo } from "@/services/user.service";
 import {
   AUTHEN_PAGE_URL,
   ERROR_PAGE_URL,
-  MODAL_NAME,
   PRIVATE_PAGE_URL,
   TOAST_MESSAGE,
   VERIFY_STATUS,

@@ -56,6 +56,8 @@ export const TOAST_MESSAGE = {
   BUY_COVER_FAIL: "Buy cover fail",
   BUY_PLAYTIMES_SUCCESS: "Buy playtimes success",
   BUY_PLAYTIMES_FAIL: "Buy playtimes fail",
+  COPY_REFER_A_FRIEND: "Copy successful, send referral link to friends now!",
+  ADD_PLAYLIST_SUCCESS: "Create playlist successfully",
 };
 
 // verify_status
@@ -111,6 +113,7 @@ export enum MODAL_NAME {
   BUY_SHOP = "BUY_SHOP",
   DELETE_PLAYLIST = "DELETE_PLAYLIST",
   DELETE_ITEM_OF_PLAYLIST = "DELETE_ITEM_OF_PLAYLIST",
+  ADD_PLAYLIST = "ADD_PLAYLIST",
 }
 
 // SHOP NAME
