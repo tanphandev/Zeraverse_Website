@@ -58,6 +58,7 @@ export const TOAST_MESSAGE = {
   BUY_PLAYTIMES_FAIL: "Buy playtimes fail",
   COPY_REFER_A_FRIEND: "Copy successful, send referral link to friends now!",
   ADD_PLAYLIST_SUCCESS: "Create playlist successfully",
+  REPORT_SUCCESS: "You reported successful!",
 };
 
 // verify_status
@@ -106,6 +107,8 @@ export enum GLOBAL_MODAL_NAME {
 //modal
 export enum MODAL_NAME {
   NONE = "NONE",
+  REMINDER = "REMINDER",
+  REPORT = "REPORT",
   CLAIM_DAILY_BONUS = "CLAIM_DAILY_BONUS",
   SEARCH = "SEARCH",
   EDIT_PROFILE = "EDIT_PROFILE",

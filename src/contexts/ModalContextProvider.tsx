@@ -20,6 +20,8 @@ import EditCoverModal from "@/components/Modals/EditCoverModal";
 import DeletePlayListModal from "@/components/Modals/DeletePlayListModal";
 import DailyGiftModal from "@/components/Modals/DailyGiftModal";
 import AddPlayListModal from "@/components/Modals/PlayList/AddPlayListModal";
+import ReminderModal from "@/components/Modals/Reminder/ReminderModal";
+import ReportModal from "@/components/Modals/Report/ReportModal";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -45,6 +47,8 @@ const GlobalModal: any = {
 };
 
 const Modal: any = {
+  [MODAL_NAME.REMINDER]: <ReminderModal />,
+  [MODAL_NAME.REPORT]: <ReportModal />,
   [MODAL_NAME.SEARCH]: <SearchModal />,
   [MODAL_NAME.CLAIM_DAILY_BONUS]: <DailyGiftModal />,
   [MODAL_NAME.BUY_SHOP]: <BuyShopModal />,

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import TippyHeadless from "@tippyjs/react/headless";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import Ads1 from "@/asset/image/ads1.png";
@@ -46,17 +46,20 @@ import { userLovedGameSelector } from "@/store/selectors/userSelector";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import "tippy.js/dist/tippy.css";
 import { useModalContext } from "@/contexts/ModalContextProvider";
+import GameScreen from "@/components/Games/GameScreen";
 type Props = {
   params: {
     "game-slug": string;
   };
 };
-function GameScreen({ params }: Props) {
+function GamePage({ params }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const pathName = usePathname();
-  const { usernameAuth } = useAuthContext();
-  const { openModal } = useModalContext();
+  const { usernameAuth, userInfo } = useAuthContext();
+  const { openModal, setPayload } = useModalContext();
   const [isLoveGame, setIsLoveGame] = useState<boolean>(false);
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  
   const gameCategories = useSelector<RootState>(
     gameCategoriesSelector
   ) as IGameCategory[];
@@ -74,13 +77,16 @@ function GameScreen({ params }: Props) {
   const hallOfFameOfGame = useSelector<RootState>(
     hallOfFameOfGameSelector
   ) as IHallOfFameOfGame[];
-  console.log("gameDetail", gameDetail);
-  console.log("userLovedGame", userLovedGame);
-  console.log("isLoveGame", isLoveGame);
+  const gameScreenRef = createRef<any>();
+  // console.log("gameDetail", gameDetail);
+  // console.log("userLovedGame", userLovedGame);
+  // console.log("isLoveGame", isLoveGame);
   const relativeGameSlice1 = relativeGames?.slice(0, 6);
   const relativeGameSlice2 = relativeGames?.slice(6, 17);
   const relativeGameSlice3 = relativeGames?.slice(18, 28);
   const relativeGameSlice4 = relativeGames?.slice(29, 34);
+
+  console.log("gameScreenRef", gameScreenRef.current);
 
   /* get game detail */
   useEffect(() => {
@@ -138,6 +144,11 @@ function GameScreen({ params }: Props) {
     navigator.clipboard.writeText(`${config["DOMAIN_URL"]}${pathName}`);
     toast.success(TOAST_MESSAGE.COPY_REFER_A_FRIEND, { position: "top-right" });
   };
+
+  /* handle zoom in */
+  const handleZoomInScreen = () => {
+    gameScreenRef.current.handleZoomInScreen();
+  };
   return (
     <div className="mb-10">
       {/* Part 1 */}
@@ -148,10 +159,12 @@ function GameScreen({ params }: Props) {
           </div>
           <div className="col-span-7 grid grid-cols-7 grid-rows-7 gap-4">
             <div className="flex flex-col col-span-7 row-span-5 bg-main-violet-ed text-main-blackColor rounded-[10px]">
-              <iframe
-                src={gameDetail?.play_url}
-                className="w-full h-full"
-              ></iframe>
+              <GameScreen
+                ref={gameScreenRef}
+                gameDetail={gameDetail}
+                isFullScreen={isFullScreen}
+                setIsFullScreen={setIsFullScreen}
+              />
               <div className="flex justify-between px-[14px] py-2 bg-main-grayColor-37 rounded-b-[10px]">
                 <div className="flex items-center">
                   <PauseIcon width="32px" height="32px" />
@@ -194,6 +207,10 @@ function GameScreen({ params }: Props) {
                         className="outline-none ml-4"
                         isLoveGame={isLoveGame}
                         onClick={() => {
+                          if (!userInfo) {
+                            openModal(MODAL_NAME.REMINDER);
+                            return;
+                          }
                           handleToggleLoveGame(gameDetail?.id);
                         }}
                       />
@@ -212,6 +229,10 @@ function GameScreen({ params }: Props) {
                     >
                       <AddPlayListIcon
                         onClick={() => {
+                          if (!userInfo) {
+                            openModal(MODAL_NAME.REMINDER);
+                            return;
+                          }
                           openModal(MODAL_NAME.ADD_PLAYLIST);
                         }}
                         width="32px"
@@ -219,8 +240,50 @@ function GameScreen({ params }: Props) {
                         className="ml-4 cursor-pointer outline-none"
                       />
                     </TippyHeadless>
-                    <ExpandIcon width="32px" height="32px" className="ml-4" />
-                    <ReportIcon width="32px" height="32px" className="ml-4" />
+                    <TippyHeadless
+                      render={(attrs) => (
+                        <div
+                          className="flex items-center text-main-whileColor text-sm font-medium py-1 px-3 bg-[#424242] rounded-[10px]"
+                          tabIndex={-1}
+                          {...attrs}
+                        >
+                          Zoom in
+                        </div>
+                      )}
+                      placement="bottom"
+                    >
+                      <ExpandIcon
+                        onClick={handleZoomInScreen}
+                        width="32px"
+                        height="32px"
+                        className="ml-4 cursor-pointer outline-none"
+                      />
+                    </TippyHeadless>
+                    <TippyHeadless
+                      render={(attrs) => (
+                        <div
+                          className="flex items-center text-main-whileColor text-sm font-medium py-1 px-3 bg-[#424242] rounded-[10px]"
+                          tabIndex={-1}
+                          {...attrs}
+                        >
+                          Report
+                        </div>
+                      )}
+                      placement="bottom"
+                    >
+                      <ReportIcon
+                        onClick={() => {
+                          const payload = {
+                            game_detail: gameDetail,
+                          };
+                          setPayload(payload);
+                          openModal(MODAL_NAME.REPORT);
+                        }}
+                        width="32px"
+                        height="32px"
+                        className="ml-4 cursor-pointer outline-none"
+                      />
+                    </TippyHeadless>
                   </div>
                 </div>
               </div>
@@ -498,4 +561,4 @@ function GameScreen({ params }: Props) {
   );
 }
 
-export default GameScreen;
+export default GamePage;

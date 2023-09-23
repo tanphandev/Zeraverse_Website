@@ -41,6 +41,7 @@ const apiURL = {
   get_game_detail: (game_slug: string) => `/game/detail/${game_slug}`,
   get_popular_game: "/game/popular-game",
   love_game: "game/love",
+  report_game: (game_slug: string) => `game/${game_slug}/report`,
   //article
   get_newest: "/article/newest",
   get_article_categories: "/article/category",

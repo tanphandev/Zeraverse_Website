@@ -221,3 +221,18 @@ export const love_game = async (game_detail_id: number) => {
     throw e;
   }
 };
+
+export const report_game = async (
+  game_slug: string,
+  body: { title: string[]; content: string }
+) => {
+  try {
+    const { data } = await httpRequest.post(
+      apiURL.report_game(game_slug),
+      body
+    );
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};
