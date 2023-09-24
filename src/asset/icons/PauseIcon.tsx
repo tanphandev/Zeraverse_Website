@@ -2,12 +2,15 @@ const PauseIcon = ({
   width = "32px",
   height = "32px",
   className,
+  onClick,
 }: {
   width: string;
   height: string;
   className?: string;
+  onClick: () => void;
 }) => (
   <svg
+    onClick={onClick}
     className={className}
     width={width}
     height={height}

@@ -20,9 +20,11 @@ import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
+import { useSocketContext } from "@/contexts/SocketContextProvider";
 function AppBar() {
   const { userInfo } = useAuthContext();
   const { openModal } = useModalContext();
+  const { remainingTime } = useSocketContext();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [visibleUserOption, setVisibleUserOption] = useState(false);
   const showUserOption = () => setVisibleUserOption(true);
@@ -168,7 +170,8 @@ function AppBar() {
         )}
         <div className="relative group px-8 py-[6px] bg-main-pink-be  shadow-[inset_-2px_-2px_1px] shadow-[#d5358d] rounded-[10px] mb-[11px]">
           <p className="text-2xl text-main-whileColor font-normal font-digitalfont ">
-            00:60:00
+            {remainingTime.hours}:{remainingTime.minutes}:
+            {remainingTime.seconds}
           </p>
           {/* Purchase more time */}
           <Link

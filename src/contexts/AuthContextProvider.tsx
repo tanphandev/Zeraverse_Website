@@ -9,6 +9,8 @@ import {
   useState,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { signInAnonymously } from "firebase/auth";
+import auth from "@/firebase/firebase_config";
 import { toast } from "react-toastify";
 import { staticPaths } from "@/utils/paths";
 import { ISso } from "@/interface/auth/ISso";
@@ -18,14 +20,21 @@ import { getUserInfo } from "@/services/user.service";
 import {
   AUTHEN_PAGE_URL,
   ERROR_PAGE_URL,
+  HANDLE_STATUS,
   PRIVATE_PAGE_URL,
   TOAST_MESSAGE,
   VERIFY_STATUS,
 } from "@/utils/constants";
 import { IUserInfo } from "@/interface/user/IUserInfo";
+import { IAnonymousInfo } from "@/interface/user/IAnonymousInfo";
+import { isLogged } from "@/utils/helper";
 type AuthContextType = {
   userInfo: IUserInfo | null;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserInfo | null>>;
+  anonymousInfo: IAnonymousInfo | null;
+  setAnonymousInfo: React.Dispatch<React.SetStateAction<IAnonymousInfo | null>>;
+  anonymousStatus: HANDLE_STATUS;
+  setAnonymousStatus: React.Dispatch<React.SetStateAction<HANDLE_STATUS>>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   usernameAuth: string | null;
@@ -60,8 +69,13 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     !!searchParams.toString() ? "?" : ""
   }${searchParams}`;
   const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
-  // const [activitiesInfo, setActivitiesInfo] = useState();
-  // const [anonymousInfo, setAnonymousInfo] = useState();
+  const [anonymousInfo, setAnonymousInfo] = useState<IAnonymousInfo | null>(
+    null
+  );
+  console.log("anonymousInfo", anonymousInfo);
+  const [anonymousStatus, setAnonymousStatus] = useState<HANDLE_STATUS>(
+    HANDLE_STATUS.NOT_START
+  );
   const [token, setToken] = useState<string | null>(null);
   const [usernameAuth, setUsernameAuth] = useState<string | null>(null);
   const [isRedirectToPrevPage, setIsRedirectToPrevPage] =
@@ -125,14 +139,41 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!pathname) return;
 
-    !isLogged() && clearAuthenticatorData();
+    if (pathname === staticPaths.login) {
+      !isLogged() && clearAuthenticatorData();
+    }
 
     if (isLogged()) {
       isAuthenPath && router.push("/");
     } else {
       isPrivatePath && router.push("/login");
+      !isAuthenPath &&
+        anonymousStatus !== HANDLE_STATUS.SUCCESS &&
+        loginWithAnonymously();
     }
   }, [pathname]);
+
+  // sign in with anonymously
+  const loginWithAnonymously = async () => {
+    setAnonymousStatus(HANDLE_STATUS.IN_PROGRESS);
+    signInAnonymously(auth)
+      .then(async (authData) => {
+        const {
+          user: { uid },
+        } = authData ?? {};
+        uid && setAnonymousInfo((prev: any) => ({ ...prev, uid }));
+        const data = await AuthService.loginWithAnonymous(uid);
+        return data;
+      })
+      .then((data) => {
+        setAnonymousStatus(HANDLE_STATUS.SUCCESS);
+        setAnonymousInfo((prev: any) => ({ ...prev, ...data }));
+      })
+      .catch((e: any) => {
+        setAnonymousStatus(HANDLE_STATUS.FAIL);
+        throw e;
+      });
+  };
 
   // handle Login With Email and Password
   const loginWithEmail = useCallback(async (loginFormData: IAuthFormData) => {
@@ -232,24 +273,22 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem("accessToken");
     setUsernameAuth(null);
     localStorage.removeItem("username");
+
     setUserInfo(null);
     setVerifyStatus(VERIFY_STATUS.NOT_START);
+    setAnonymousInfo(null);
+    setAnonymousStatus(HANDLE_STATUS.NOT_START);
     // setIsRedirectToPrevPage(false);
-  };
-
-  const isLogged = () => {
-    if (typeof window === "undefined") return false;
-
-    const accessToken = localStorage.getItem("accessToken");
-    const username = localStorage.getItem("username");
-
-    return !!accessToken && !!username;
   };
 
   const authContextData: AuthContextType = useMemo(
     () => ({
       userInfo,
       setUserInfo,
+      anonymousInfo,
+      setAnonymousInfo,
+      anonymousStatus,
+      setAnonymousStatus,
       token,
       setToken,
       usernameAuth,
@@ -266,6 +305,10 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     [
       userInfo,
       setUserInfo,
+      anonymousInfo,
+      setAnonymousInfo,
+      anonymousStatus,
+      setAnonymousStatus,
       token,
       setToken,
       usernameAuth,

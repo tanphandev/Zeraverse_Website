@@ -2,6 +2,17 @@ import { httpRequest } from "@/utils/httpRequest";
 import apiURL from "@/utils/apiURL";
 import { ISso } from "@/interface/auth/ISso";
 
+// login with anonymous
+
+export const loginWithAnonymous = async (uid: string) => {
+  try {
+    const { data } = await httpRequest.get(apiURL.get_anonymous_info(uid));
+    return data?.data;
+  } catch (e: any) {
+    throw e;
+  }
+};
+
 // Login with email
 export const loginWithEmail = async (loginFormData: IAuthFormData) => {
   try {

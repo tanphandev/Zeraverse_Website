@@ -15,12 +15,13 @@ import facebook from "@/asset/image/facebook.png";
 import twitter from "@/asset/image/twitter.png";
 import gmail from "@/asset/image/gmail.png";
 import CoinIcon from "@/asset/icons/CoinIcon";
-import SendIcon from "@/asset/icons/SendIcon";
+import PlayIcon from "@/asset/icons/PlayICon";
 import PauseIcon from "@/asset/icons/PauseIcon";
 import HeartIcon from "@/asset/icons/HeartIcon";
 import AddPlayListIcon from "@/asset/icons/AddPlayListIcon";
 import ExpandIcon from "@/asset/icons/ExpandIcon";
 import ReportIcon from "@/asset/icons/ReportIcon";
+import Logo2 from "@/../public/asset/image/Logo2.png";
 import * as gameService from "@/services/game.service";
 import * as userService from "@/services/user.service";
 import { IGameDetail } from "@/interface/games/IGameDetail";
@@ -35,18 +36,28 @@ import {
   gameInfoOfGameDetailSelector,
   hallOfFameOfGameSelector,
 } from "@/store/selectors/game.selector";
-import { formatDate } from "@/utils/helper";
+import { formatDate, getTimeRemaining } from "@/utils/helper";
 import Breadcrumbs from "@/components/Others/Breadcumbs";
 import { IHallOfFameOfGame } from "@/interface/games/IHallOfFameOfGame";
 import { config } from "@/envs/env";
 import { usePathname } from "next/navigation";
-import { MODAL_NAME, TOAST_MESSAGE } from "@/utils/constants";
+import {
+  HANDLE_STATUS,
+  MODAL_NAME,
+  TOAST_MESSAGE,
+  VERIFY_STATUS,
+} from "@/utils/constants";
 import { toast } from "react-toastify";
 import { userLovedGameSelector } from "@/store/selectors/userSelector";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import "tippy.js/dist/tippy.css";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import GameScreen from "@/components/Games/GameScreen";
+import {
+  TIME_COUNTER_TYPE,
+  useSocketContext,
+} from "@/contexts/SocketContextProvider";
+import ChatBox from "@/components/Games/ChatBox";
 type Props = {
   params: {
     "game-slug": string;
@@ -55,11 +66,11 @@ type Props = {
 function GamePage({ params }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const pathName = usePathname();
-  const { usernameAuth, userInfo } = useAuthContext();
+  const { usernameAuth, userInfo, verifyStatus, token } = useAuthContext();
   const { openModal, setPayload } = useModalContext();
   const [isLoveGame, setIsLoveGame] = useState<boolean>(false);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
-  
+
   const gameCategories = useSelector<RootState>(
     gameCategoriesSelector
   ) as IGameCategory[];
@@ -77,16 +88,44 @@ function GamePage({ params }: Props) {
   const hallOfFameOfGame = useSelector<RootState>(
     hallOfFameOfGameSelector
   ) as IHallOfFameOfGame[];
+
+  const {
+    socket,
+    setIsConnectSocket,
+    connectStatusOfSocket,
+    isCountdown,
+    setIsCountdown,
+    playedTime,
+  } = useSocketContext();
+  // console.log("gameDetail", gameDetail);
   const gameScreenRef = createRef<any>();
+  const chatBoxRef = createRef<any>();
   // console.log("gameDetail", gameDetail);
   // console.log("userLovedGame", userLovedGame);
   // console.log("isLoveGame", isLoveGame);
+
+  const playedTimeFormat: TIME_COUNTER_TYPE = getTimeRemaining(playedTime);
   const relativeGameSlice1 = relativeGames?.slice(0, 6);
   const relativeGameSlice2 = relativeGames?.slice(6, 17);
   const relativeGameSlice3 = relativeGames?.slice(18, 28);
   const relativeGameSlice4 = relativeGames?.slice(29, 34);
 
-  console.log("gameScreenRef", gameScreenRef.current);
+  /* init socket connection */
+  useEffect(() => {
+    setIsConnectSocket(true);
+  }, []);
+
+  // join room for logged user
+  useEffect(() => {
+    if (
+      !socket ||
+      connectStatusOfSocket !== HANDLE_STATUS.SUCCESS ||
+      verifyStatus !== VERIFY_STATUS.SUCCESS
+    )
+      return;
+    console.log("join room");
+    socket.emit("joinRoom", { room_id: gameDetail?.id, token: token!! });
+  }, [connectStatusOfSocket, verifyStatus, gameDetail]);
 
   /* get game detail */
   useEffect(() => {
@@ -149,6 +188,22 @@ function GamePage({ params }: Props) {
   const handleZoomInScreen = () => {
     gameScreenRef.current.handleZoomInScreen();
   };
+
+  /* handle Play Game */
+  const handlePlayGame = () => {
+    if (!socket) return;
+    setIsCountdown(true);
+    socket.emit("playGame");
+  };
+
+  /* handle Pause Game */
+  const handlePauseGame = () => {
+    setIsCountdown(false);
+    socket?.emit("stopPlay");
+  };
+  const handleSendMessage = () => {
+    socket?.emit("chatMessage", { msg: chatBoxRef.current.getMessage });
+  };
   return (
     <div className="mb-10">
       {/* Part 1 */}
@@ -158,16 +213,20 @@ function GamePage({ params }: Props) {
             <Image src={Ads1} alt="ads" className="w-full h-full" />
           </div>
           <div className="col-span-7 grid grid-cols-7 grid-rows-7 gap-4">
-            <div className="flex flex-col col-span-7 row-span-5 bg-main-violet-ed text-main-blackColor rounded-[10px]">
+            <div className="relative flex flex-col col-span-7 row-span-5 text-main-blackColor rounded-[10px]">
               <GameScreen
                 ref={gameScreenRef}
                 gameDetail={gameDetail}
                 isFullScreen={isFullScreen}
                 setIsFullScreen={setIsFullScreen}
               />
-              <div className="flex justify-between px-[14px] py-2 bg-main-grayColor-37 rounded-b-[10px]">
+              <div className="flex justify-between px-[14px] py-2 bg-[#00000080] rounded-b-[10px]">
                 <div className="flex items-center">
-                  <PauseIcon width="32px" height="32px" />
+                  <PauseIcon
+                    onClick={handlePauseGame}
+                    width="32px"
+                    height="32px"
+                  />
                   <Image
                     src={gameDetail?.thumbnail}
                     alt="gamepic"
@@ -180,12 +239,9 @@ function GamePage({ params }: Props) {
                   </h2>
                 </div>
                 <div className="flex items-center">
-                  <div>
-                    <div className="py-[2px] px-3 bg-[#5B5B5B] rounded-[12px]">
-                      <p className="text-base font-semibold text-main-whileColor pb-[2px] ">
-                        00 : 00 : 00
-                      </p>
-                    </div>
+                  <div className=" flex justify-center text-base font-medium font-nunito text-main-whileColor py-[2px] px-3 bg-main-violet-6d rounded-[12px]">
+                    {playedTimeFormat.hours}:{playedTimeFormat.minutes}:
+                    {playedTimeFormat.seconds}
                   </div>
                   <div className="flex">
                     <TippyHeadless
@@ -287,6 +343,32 @@ function GamePage({ params }: Props) {
                   </div>
                 </div>
               </div>
+              {!isCountdown && (
+                <div
+                  className="absolute top-0 bottom-0 left-0 right-0 bg-[#000000cc]"
+                  style={{ backdropFilter: "blur(10px)" }}
+                >
+                  <Image
+                    className="absolute top-[10%] left-1/2 -translate-x-1/2"
+                    src={Logo2}
+                    alt="logo"
+                    width={200}
+                    height={37}
+                  />
+                  <div className="flex flex-col items-center justify-center absolute top-0 left-0 bottom-0 right-0">
+                    <h2 className="text-[32px] font-bold font-nunito text-main-whileColor mb-2">
+                      {gameDetail?.title}
+                    </h2>
+                    <button
+                      onClick={handlePlayGame}
+                      className="transition-all hover:scale-105 inline-block text-[24px] font-medium font-nunito text-main-whileColor py-2 px-5 bg-gradient-to-br from-main-pink-f4 via-[#6664ed] to-[#5200ff] rounded-[30px]"
+                    >
+                      Play Now{" "}
+                      <PlayIcon className="inline" width="24px" height="24px" />
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="col-span-4 flex flex-col justify-end items-center bg-main-pink-83 border-[1px] border-main-pink-f9 rounded-[10px] pb-[18px]">
               <h2 className="text-base font-bold leading-[1.6] font-lato text-main-whileColor mb-[3px]">
@@ -334,36 +416,7 @@ function GamePage({ params }: Props) {
           </div>
         </div>
         <div className="col-span-3 grid grid-cols-3 grid-rows-7 gap-4">
-          <div className="row-span-3 col-span-3 ">
-            <div className="relative flex flex-col rounded-[10px] w-full h-full bg-[#3e3661]">
-              <div className="flex justify-between items-center px-[10px] py-1 bg-[#52495D] rounded-[10px]">
-                <Image
-                  src={Avatar}
-                  alt="avatar"
-                  width={24}
-                  height={24}
-                  className="rounded-[50%]"
-                />
-                <p className="text-xs font-normal text-main-whileColor pb-[2px] ">
-                  +100 more
-                </p>
-              </div>
-              <div className="flex-1 pb-[44px] text-main-whileColor">
-                Message
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 rounded-[10px] bg-[#52495D] ">
-                <input
-                  className="w-full text-sm font-medium font-lato outline-none py-[10px] pl-[20px] pr-[40px] text-main-whileColor bg-transparent placeholder:text-main-whileColor-70"
-                  placeholder="Say something ... "
-                />
-                <SendIcon
-                  className="absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer"
-                  width="14px"
-                  height="14px"
-                />
-              </div>
-            </div>
-          </div>
+          <ChatBox ref={chatBoxRef} handleSendMessage={handleSendMessage} />
           <div className="row-span-4 col-span-3 grid grid-cols-3 gap-4">
             <div className="col-span-2 row-span-3 bg-[#D9D9D9] flex justify-center items-center rounded-[10px]">
               ADS

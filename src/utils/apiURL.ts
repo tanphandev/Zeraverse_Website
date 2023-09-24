@@ -1,5 +1,6 @@
 const apiURL = {
   //authenticate
+  get_anonymous_info: (uid: string) => `/users/anonymous/${uid}`,
   login_with_email: "/auth/login-email",
   login_with_SSO: "/auth/sso",
   register_with_email: "/auth/register-email",

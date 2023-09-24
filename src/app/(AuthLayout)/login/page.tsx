@@ -6,7 +6,7 @@ import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { ISso } from "@/interface/auth/ISso";
-import { GLOBAL_MODAL_NAME, MODAL_NAME, SSO_METHOD } from "@/utils/constants";
+import { GLOBAL_MODAL_NAME, SSO_METHOD } from "@/utils/constants";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 
 function LoginPage() {

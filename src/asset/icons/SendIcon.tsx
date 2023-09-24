@@ -2,12 +2,15 @@ const SendIcon = ({
   width = "14px",
   height = "14px",
   className,
+  onClick,
 }: {
   width: string;
   height: string;
   className?: string;
+  onClick: () => void;
 }) => (
   <svg
+    onClick={onClick}
     className={className}
     width={width}
     height={height}

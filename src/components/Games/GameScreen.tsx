@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import ArrowLeftVersion2 from "@/asset/icons/ArrowLeftVersion2";
 import LogoIcon from "@/asset/icons/LogoIcon";
 import { IGameDetail } from "@/interface/games/IGameDetail";
-
 type Props = {
   gameDetail: IGameDetail;
   isFullScreen: boolean;
@@ -34,6 +33,7 @@ const GameScreen = forwardRef<any, Props>(function Component(
   };
   return (
     <div ref={gamescreenRef} className="w-full h-full relative">
+      <iframe src={gameDetail?.play_url} className="w-full h-full"></iframe>
       {isFullScreen && (
         <div
           onClick={handleZoomOutScreen}
@@ -47,7 +47,6 @@ const GameScreen = forwardRef<any, Props>(function Component(
           <LogoIcon width="24px" height="20px" />
         </div>
       )}
-      <iframe src={gameDetail?.play_url} className="w-full h-full"></iframe>
     </div>
   );
 });

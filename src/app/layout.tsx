@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import SSOProvider from "@/components/Providers/SSOProvider";
 import AuthContextProvider from "@/contexts/AuthContextProvider";
 import { ModalContextProvider } from "@/contexts/ModalContextProvider";
+import SocketContextProvider from "@/contexts/SocketContextProvider";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -64,7 +65,9 @@ export default function RootLayout({
         <SSOProvider>
           <ReduxProvider>
             <AuthContextProvider>
-              <ModalContextProvider>{children}</ModalContextProvider>
+              <SocketContextProvider>
+                <ModalContextProvider>{children}</ModalContextProvider>
+              </SocketContextProvider>
             </AuthContextProvider>
           </ReduxProvider>
         </SSOProvider>
