@@ -57,6 +57,8 @@ const apiURL = {
   get_achievements: (username: string) => `/achievements/${username}`,
   // search
   search_game: "/game/search",
+  //chat
+  get_all_message_of_room: (room_id: number) => `/game/${room_id}/messages`,
 };
 
 export default apiURL;

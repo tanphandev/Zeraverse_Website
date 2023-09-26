@@ -1,5 +1,5 @@
 export interface IUserInfo {
-  avatar: string;
+  avatar: any;
   avatar_id: number;
   cover: any;
   cover_id: any;

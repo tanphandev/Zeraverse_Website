@@ -23,6 +23,7 @@ function CustomImage({
 }: Props) {
   return (
     <Image
+      onClick={onClick}
       className={className}
       style={style}
       src={src || fallback}

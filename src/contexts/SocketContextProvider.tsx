@@ -5,6 +5,7 @@ import { HANDLE_STATUS, VERIFY_STATUS } from "@/utils/constants";
 import { config } from "@/envs/env";
 import { useAuthContext } from "./AuthContextProvider";
 import { getTimeRemaining, isLogged } from "@/utils/helper";
+import { IMessage } from "@/interface/chat/IMessage";
 
 type SocketContextType = {
   socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
@@ -24,6 +25,12 @@ type SocketContextType = {
   setPlayedTime: React.Dispatch<React.SetStateAction<number>>;
   remainingTime: TIME_COUNTER_TYPE;
   setRemainingTime: React.Dispatch<React.SetStateAction<TIME_COUNTER_TYPE>>;
+  newMessage: IMessage | null;
+  setNewMessage: React.Dispatch<React.SetStateAction<IMessage | null>>;
+  systemMessage: IMessage | null;
+  setSystemMessage: React.Dispatch<React.SetStateAction<IMessage | null>>;
+  sendMessageStatus: HANDLE_STATUS;
+  setSendMessageStatus: React.Dispatch<React.SetStateAction<HANDLE_STATUS>>;
 };
 
 export type TIME_COUNTER_TYPE = {
@@ -66,7 +73,11 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [remainingTime, setRemainingTime] =
     useState<TIME_COUNTER_TYPE>(DEFAULT_TIME);
   const [playedTime, setPlayedTime] = useState<number>(0);
-  const [newMessage, setNewMessage] = useState();
+  const [newMessage, setNewMessage] = useState<IMessage | null>(null);
+  const [systemMessage, setSystemMessage] = useState<IMessage | null>(null);
+  const [sendMessageStatus, setSendMessageStatus] = useState<HANDLE_STATUS>(
+    HANDLE_STATUS.NOT_START
+  );
   const {
     anonymousInfo,
     anonymousStatus,
@@ -76,13 +87,8 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
     setAnonymousInfo,
   } = useAuthContext();
 
-  // console.log("isConnectSocket", isConnectSocket);
-  // console.log("connectStatusOfSocket", connectStatusOfSocket);
-  // console.log("socket", socket);
-
   /* clear state */
   const clearState = () => {
-    console.log("clear state");
     setIsCountdown(false);
     // setIsJoinedRoom(false);
     setConnectStatusOfSocket(HANDLE_STATUS.NOT_START);
@@ -105,24 +111,21 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
   // on event of user logged
   useEffect(() => {
     if (!socket || verifyStatus !== VERIFY_STATUS.SUCCESS) return;
-
     socket.on("message", (data) => {
-      console.log("data message", data);
       if (!data) return;
       if (data.is_message) {
-        // setSendMessageStatus(STATUS.SUCCESS);
+        setSendMessageStatus(HANDLE_STATUS.SUCCESS);
         setNewMessage(data);
+      } else {
+        setSystemMessage(data);
+        // bonus zera for current user
+        if (data?.user?.id === userInfo?.id && data?.zera) {
+          setUserInfo((prev: any) => ({
+            ...prev,
+            zera: (+prev?.zera || 0) + (+data?.zera || 0),
+          }));
+        }
       }
-      //  else {
-      //   setSystemMessage(data);
-      //   // bonus zera for current user
-      //   if (data?.user?.id === userInfo?.id && data?.zera) {
-      //     setUserInfo((prev) => ({
-      //       ...prev,
-      //       zera: (+prev?.zera || 0) + (+data?.zera || 0),
-      //     }));
-      //   }
-      // }
     });
 
     // socket.on(SOCKET_EVENT.USER_DUPLICATE_LOGIN, () => {
@@ -140,7 +143,6 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     const { uid } = anonymousInfo ?? {};
     if (uid) {
-      console.log("login with anonymouse with id", uid);
       socket.emit("loginAnonymous", { anonymous_id: uid });
     }
   }, [socket, connectStatusOfSocket, anonymousStatus]);
@@ -179,13 +181,11 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
     socket.on("connect_error", (e: any) => {
-      console.error("socket connection error:", e?.message);
       setConnectStatusOfSocket(HANDLE_STATUS.FAIL);
       setIsCountdown(false);
     });
 
     socket.on("disconnect", () => {
-      console.log("server disconnect");
       setConnectStatusOfSocket(HANDLE_STATUS.NOT_START);
       setIsCountdown(false);
     });
@@ -205,6 +205,12 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
       setPlayedTime,
       remainingTime,
       setRemainingTime,
+      newMessage,
+      setNewMessage,
+      systemMessage,
+      setSystemMessage,
+      sendMessageStatus,
+      setSendMessageStatus,
     }),
     [
       socket,
@@ -219,6 +225,12 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
       setPlayedTime,
       remainingTime,
       setRemainingTime,
+      newMessage,
+      setNewMessage,
+      systemMessage,
+      setSystemMessage,
+      sendMessageStatus,
+      setSendMessageStatus,
     ]
   );
   return (

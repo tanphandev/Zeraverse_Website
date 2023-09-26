@@ -22,6 +22,7 @@ import DailyGiftModal from "@/components/Modals/DailyGiftModal";
 import AddPlayListModal from "@/components/Modals/PlayList/AddPlayListModal";
 import ReminderModal from "@/components/Modals/Reminder/ReminderModal";
 import ReportModal from "@/components/Modals/Report/ReportModal";
+import OnlineGamerModal from "@/components/Modals/OnlineGamer/OnlineGamer";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -59,6 +60,7 @@ const Modal: any = {
     <DeletePlayListModal title="Delete This Game" />
   ),
   [MODAL_NAME.ADD_PLAYLIST]: <AddPlayListModal />,
+  [MODAL_NAME.ONLINE_GAMER]: <OnlineGamerModal />,
 };
 
 export const useModalContext = () => {

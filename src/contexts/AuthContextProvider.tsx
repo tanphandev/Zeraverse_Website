@@ -72,7 +72,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [anonymousInfo, setAnonymousInfo] = useState<IAnonymousInfo | null>(
     null
   );
-  console.log("anonymousInfo", anonymousInfo);
   const [anonymousStatus, setAnonymousStatus] = useState<HANDLE_STATUS>(
     HANDLE_STATUS.NOT_START
   );

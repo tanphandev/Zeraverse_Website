@@ -559,3 +559,14 @@ export const getAchivements = createAsyncThunk(
     }
   }
 );
+
+export const get_all_message_of_room = async (room_id: number) => {
+  try {
+    const { data } = await httpRequest.get(
+      apiURL.get_all_message_of_room(room_id)
+    );
+    return data;
+  } catch (e: any) {
+    throw e;
+  }
+};

@@ -56,18 +56,50 @@
   border-radius: 5px;
 }
 
-/* css scrolldown for AvatarShop */
-
+/* css scrolldown for AvatarShop, message-section */
+.message-section::-webkit-scrollbar,
 .avatar-shop-list::-webkit-scrollbar {
   width: 2px;
 }
-
+.message-section::-webkit-scrollbar-track,
 .avatar-shop-list::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.2);
 }
-
+.message-section::-webkit-scrollbar-thumb,
 .avatar-shop-list::-webkit-scrollbar-thumb {
   background: #eceaea;
+  border-radius: 5px;
+}
+
+/* css scrolldown for emoji box */
+
+.epr-body::-webkit-scrollbar {
+  width: 2px;
+}
+
+.epr-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.online-gamers-scroll::-webkit-scrollbar-thumb {
+  background: #bebebe;
+  border-radius: 5px;
+}
+
+/* css scrolldown for online gamers */
+
+.online-gamers-scroll::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 5px;
+}
+
+.online-gamers-scroll::-webkit-scrollbar-track {
+  background: #f079fe;
+  border-radius: 5px;
+}
+
+.online-gamers-scroll::-webkit-scrollbar-thumb {
+  background: #be185d;
   border-radius: 5px;
 }
 

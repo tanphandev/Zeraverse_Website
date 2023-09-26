@@ -9,7 +9,6 @@ import Ads1 from "@/asset/image/ads1.png";
 import Ads2 from "@/asset/image/ads2.png";
 import Ads3 from "@/asset/image/ads3.png";
 import Thanks from "@/asset/image/thanks.png";
-import Avatar from "@/asset/image/profilePicture.png";
 import linkedin from "@/asset/image/linkedin.png";
 import facebook from "@/asset/image/facebook.png";
 import twitter from "@/asset/image/twitter.png";
@@ -96,14 +95,10 @@ function GamePage({ params }: Props) {
     isCountdown,
     setIsCountdown,
     playedTime,
+    setSendMessageStatus,
   } = useSocketContext();
-  // console.log("gameDetail", gameDetail);
   const gameScreenRef = createRef<any>();
   const chatBoxRef = createRef<any>();
-  // console.log("gameDetail", gameDetail);
-  // console.log("userLovedGame", userLovedGame);
-  // console.log("isLoveGame", isLoveGame);
-
   const playedTimeFormat: TIME_COUNTER_TYPE = getTimeRemaining(playedTime);
   const relativeGameSlice1 = relativeGames?.slice(0, 6);
   const relativeGameSlice2 = relativeGames?.slice(6, 17);
@@ -169,7 +164,6 @@ function GamePage({ params }: Props) {
     gameService
       .love_game(game_detail_id)
       .then(({ success, data }) => {
-        console.log("data", data);
         if (success) {
           setIsLoveGame(data);
         }
@@ -202,8 +196,26 @@ function GamePage({ params }: Props) {
     socket?.emit("stopPlay");
   };
   const handleSendMessage = () => {
-    socket?.emit("chatMessage", { msg: chatBoxRef.current.getMessage });
+    socket?.emit("chatMessage", { msg: chatBoxRef.current.inputValue });
+    setSendMessageStatus(HANDLE_STATUS.IN_PROGRESS);
+    chatBoxRef.current.resetInputValue();
   };
+
+  /* listen window change event */
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        handlePauseGame();
+      }
+    };
+    if (!socket || connectStatusOfSocket !== HANDLE_STATUS.SUCCESS) return;
+    window.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [socket, connectStatusOfSocket]);
+
   return (
     <div className="mb-10">
       {/* Part 1 */}
@@ -416,7 +428,11 @@ function GamePage({ params }: Props) {
           </div>
         </div>
         <div className="col-span-3 grid grid-cols-3 grid-rows-7 gap-4">
-          <ChatBox ref={chatBoxRef} handleSendMessage={handleSendMessage} />
+          <ChatBox
+            ref={chatBoxRef}
+            handleSendMessage={handleSendMessage}
+            roomId={gameDetail?.id}
+          />
           <div className="row-span-4 col-span-3 grid grid-cols-3 gap-4">
             <div className="col-span-2 row-span-3 bg-[#D9D9D9] flex justify-center items-center rounded-[10px]">
               ADS

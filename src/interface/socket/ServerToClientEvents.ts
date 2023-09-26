@@ -4,6 +4,7 @@ interface ServerToClientEvents {
   disconnect: () => void;
   playTime: (data: any) => void;
   message: (data: any) => void;
+  roomUsers: (data: any) => void;
 }
 //Socket Event
 // export const SOCKET_EVENT = {

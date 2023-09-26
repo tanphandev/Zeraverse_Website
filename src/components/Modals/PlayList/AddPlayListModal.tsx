@@ -70,7 +70,6 @@ function AddPlayListModal() {
         }
       })
       .catch((e: any) => {
-        console.log("e", e);
         toast.error(e?.message, { position: "top-right" });
         throw e;
       });
@@ -127,7 +126,6 @@ function AddPlayListModal() {
       .getUserPlayListItem(playlist_id)
       .then(({ success, data: gamesOfPlayList }) => {
         if (success) {
-          console.log("ITem of PlayList", gamesOfPlayList);
           const getGameId = (gamesOfPlayList: any[]) => {
             for (const item of gamesOfPlayList) {
               if (item?.game_detail_id === game_detail_id) return item?.id;
@@ -159,7 +157,7 @@ function AddPlayListModal() {
       });
   };
   return (
-    <div className="z-10 flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-main-whileColor-30">
+    <div className="z-20 flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-main-whileColor-30">
       <div
         id="modal"
         ref={addPlayListRef}
