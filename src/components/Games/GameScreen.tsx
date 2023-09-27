@@ -21,6 +21,9 @@ const GameScreen = forwardRef<any, Props>(function Component(
         gamescreenRef.current?.requestFullscreen();
       }
     },
+    handleZoomOut: () => {
+      handleZoomOutScreen();
+    },
   }));
 
   const handleZoomOutScreen = () => {

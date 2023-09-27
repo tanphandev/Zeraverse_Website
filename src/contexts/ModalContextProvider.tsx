@@ -23,6 +23,7 @@ import AddPlayListModal from "@/components/Modals/PlayList/AddPlayListModal";
 import ReminderModal from "@/components/Modals/Reminder/ReminderModal";
 import ReportModal from "@/components/Modals/Report/ReportModal";
 import OnlineGamerModal from "@/components/Modals/OnlineGamer/OnlineGamer";
+import BuyTimeModal from "@/components/Modals/BuyTime/BuyTimeModal";
 
 type ModalContextType = {
   globalModal: GLOBAL_MODAL_NAME;
@@ -53,6 +54,7 @@ const Modal: any = {
   [MODAL_NAME.SEARCH]: <SearchModal />,
   [MODAL_NAME.CLAIM_DAILY_BONUS]: <DailyGiftModal />,
   [MODAL_NAME.BUY_SHOP]: <BuyShopModal />,
+  [MODAL_NAME.BUY_TIME]: <BuyTimeModal />,
   [MODAL_NAME.EDIT_PROFILE]: <EditProfileModal itemsPerPage={6} />,
   [MODAL_NAME.EDIT_COVER]: <EditCoverModal itemsPerPage={4} />,
   [MODAL_NAME.DELETE_PLAYLIST]: <DeletePlayListModal title="Delete Playlist" />,

@@ -5,6 +5,8 @@ interface ClientToServerEvents {
   stopPlay: () => void;
   joinRoom: (data: { room_id: number; token: string }) => void;
   chatMessage: (data: { msg: string }) => {};
+  switchGame: () => void;
+  leaveRoom: (data: { room_id: number; token: string }) => void;
 }
 
 //Socket Event

@@ -35,11 +35,11 @@ import {
   gameInfoOfGameDetailSelector,
   hallOfFameOfGameSelector,
 } from "@/store/selectors/game.selector";
-import { formatDate, getTimeRemaining } from "@/utils/helper";
+import { formatDate, getTimeRemaining, isLogged } from "@/utils/helper";
 import Breadcrumbs from "@/components/Others/Breadcumbs";
 import { IHallOfFameOfGame } from "@/interface/games/IHallOfFameOfGame";
 import { config } from "@/envs/env";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   HANDLE_STATUS,
   MODAL_NAME,
@@ -65,7 +65,8 @@ type Props = {
 function GamePage({ params }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const pathName = usePathname();
-  const { usernameAuth, userInfo, verifyStatus, token } = useAuthContext();
+  const { usernameAuth, userInfo, anonymousInfo, verifyStatus, token } =
+    useAuthContext();
   const { openModal, setPayload } = useModalContext();
   const [isLoveGame, setIsLoveGame] = useState<boolean>(false);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
@@ -95,6 +96,7 @@ function GamePage({ params }: Props) {
     isCountdown,
     setIsCountdown,
     playedTime,
+    setPlayedTime,
     setSendMessageStatus,
   } = useSocketContext();
   const gameScreenRef = createRef<any>();
@@ -108,6 +110,9 @@ function GamePage({ params }: Props) {
   /* init socket connection */
   useEffect(() => {
     setIsConnectSocket(true);
+    return () => {
+      setIsConnectSocket(false);
+    };
   }, []);
 
   // join room for logged user
@@ -183,6 +188,11 @@ function GamePage({ params }: Props) {
     gameScreenRef.current.handleZoomInScreen();
   };
 
+  /* hanndle zoom out */
+
+  const handleZoomOutScreen = () => {
+    gameScreenRef.current.handleZoomOut();
+  };
   /* handle Play Game */
   const handlePlayGame = () => {
     if (!socket) return;
@@ -200,6 +210,30 @@ function GamePage({ params }: Props) {
     setSendMessageStatus(HANDLE_STATUS.IN_PROGRESS);
     chatBoxRef.current.resetInputValue();
   };
+
+  /* switch game */
+  useEffect(() => {
+    if (!socket) return;
+    setPlayedTime(0);
+    setIsCountdown(false);
+    socket.emit("switchGame");
+  }, [pathName]);
+
+  /* buy time when remaining time less 0 */
+  useEffect(() => {
+    if (
+      isCountdown &&
+      +(isLogged() ? userInfo!! : anonymousInfo!!)?.playtime <= 0
+    ) {
+      isFullScreen && handleZoomOutScreen();
+      handlePauseGame();
+      if (!!userInfo) {
+        openModal(MODAL_NAME.BUY_TIME);
+      } else {
+        openModal(MODAL_NAME.REMINDER);
+      }
+    }
+  }, [userInfo?.playtime, anonymousInfo?.playtime, isCountdown]);
 
   /* listen window change event */
   useEffect(() => {
@@ -234,17 +268,32 @@ function GamePage({ params }: Props) {
               />
               <div className="flex justify-between px-[14px] py-2 bg-[#00000080] rounded-b-[10px]">
                 <div className="flex items-center">
-                  <PauseIcon
-                    onClick={handlePauseGame}
-                    width="32px"
-                    height="32px"
-                  />
+                  <TippyHeadless
+                    placement="bottom"
+                    render={(attrs) => (
+                      <div
+                        className="flex items-center text-main-whileColor text-sm font-medium py-1 px-3 bg-[#424242] rounded-[10px]"
+                        tabIndex={-1}
+                        {...attrs}
+                      >
+                        Pause
+                      </div>
+                    )}
+                  >
+                    <PauseIcon
+                      className="cursor-pointer outline-none"
+                      onClick={handlePauseGame}
+                      width="32px"
+                      height="32px"
+                    />
+                  </TippyHeadless>
                   <Image
                     src={gameDetail?.thumbnail}
                     alt="gamepic"
-                    width={50}
-                    height={50}
-                    className="mx-[12px] rounded-[10px]"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-[50px] h-[50px] object-cover mx-[12px] rounded-[10px]"
                   />
                   <h2 className="text-base font-bold font-lato text-main-whileColor">
                     {gameDetail?.title}

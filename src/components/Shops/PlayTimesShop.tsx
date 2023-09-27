@@ -14,6 +14,7 @@ type Props = {
   itemsPerPage: number;
 };
 function PlayTimeShop({ list, itemsPerPage }: Props) {
+  console.log("list time", list);
   const { openModal, setPayload } = useModalContext();
   //set item start
   const [itemOffset, setItemOffset] = useState(0);
@@ -51,11 +52,14 @@ function PlayTimeShop({ list, itemsPerPage }: Props) {
             key={index}
             className="text-main-whileColor bg-main-pink-83 border-[1px] border-main-pink-f4 rounded-[30px] p-[10px]"
           >
-            <div className="flex justify-center items-center bg-[#340216] rounded-[30px] h-[204px]">
+            <div className="flex justify-center items-center bg-[#340216] rounded-[30px] h-[204px] min-w-[150px]">
               <Image
                 src={PlayTimesPicture}
+                width={0}
+                height={0}
+                sizes="100vw"
                 alt="avatar"
-                className="mb-[5px] w-[115px] h-[147px] rounded-[20px]"
+                className="mb-[5px] w-[115px] h-[147px] rounded-[20px] object-cover"
               />
             </div>
             <p className="text-base font-bold font-lato leading-[1.6] mt-[5px]">

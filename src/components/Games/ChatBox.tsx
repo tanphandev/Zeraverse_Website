@@ -122,48 +122,64 @@ const ChatBox = forwardRef<any, Props>(function Component(
   return (
     <div className="row-span-3 col-span-3 ">
       <div className="relative flex flex-col rounded-[10px] w-full h-full bg-[#3e3661]">
-        <div
-          onClick={() => {
-            openModal(MODAL_NAME.ONLINE_GAMER);
-            console.log("open online game modal");
-          }}
-          className="flex justify-between items-center px-[10px] py-1 bg-[#52495D] rounded-[10px] cursor-pointer"
-        >
-          <div className="flex">
-            {previewUser.map((item, index) => (
-              <CustomImage
-                key={index}
-                src={item?.avatar}
-                fallback={images.default_profile_image}
-                alt="avatar"
-                width={0}
-                height={0}
-                className={`first:m-0 w-8 h-8 mr-[-10px] rounded-full object-cover ${
-                  index !== 0 && "translate-x-[-10px]"
-                }`}
-              />
-            ))}
+        {userInfo && (
+          <div
+            onClick={() => {
+              openModal(MODAL_NAME.ONLINE_GAMER);
+              console.log("open online game modal");
+            }}
+            className="flex justify-between items-center px-[10px] py-1 bg-[#52495D] rounded-[10px] cursor-pointer"
+          >
+            <div className="flex min-h-[40px] items-center">
+              {previewUser.map((item, index) => (
+                <CustomImage
+                  key={index}
+                  src={item?.avatar}
+                  fallback={images.default_profile_image}
+                  alt="avatar"
+                  width={0}
+                  height={0}
+                  className={`first:m-0 w-8 h-8 mr-[-10px] rounded-full object-cover ${
+                    index !== 0 && "translate-x-[-10px]"
+                  }`}
+                />
+              ))}
+            </div>
+            {users?.length > 100 && (
+              <p className="text-xs font-normal text-main-whileColor">
+                +100 more
+              </p>
+            )}
           </div>
-          {users?.length > 100 && (
-            <p className="text-xs font-normal text-main-whileColor">
-              +100 more
-            </p>
-          )}
-        </div>
+        )}
         <div
           ref={messageSectionRef}
           className="message-section h-[212px] flex-auto overflow-y-scroll my-2 mr-[3px] pr-1 pl-[10px]"
         >
-          <div ref={messageRef}>
-            {messages?.map((message, index) => (
-              <MessageItem
-                key={index}
-                message={message}
-                userInfo={userInfo!!}
-                prevMessage={index > 0 ? messages[index - 1] : null}
-              />
-            ))}
-          </div>
+          {!!userInfo ? (
+            <div ref={messageRef}>
+              {messages?.map((message, index) => (
+                <MessageItem
+                  key={index}
+                  message={message}
+                  userInfo={userInfo!!}
+                  prevMessage={index > 0 ? messages[index - 1] : null}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="w-full h-full flex flex-col justify-center items-center">
+              <p className="text-lg font-medium text-main-whileColor font-nunito mb-4">
+                Please login to chat!
+              </p>
+              <Link
+                href={staticPaths.login}
+                className="transition-all hover:scale-110 px-4 rounded-[20px] leading-[1.6] bg-gradient-to-br from-[#f265e4] via-[#6664ed] to-[#5200ff] text-main-whileColor"
+              >
+                Login
+              </Link>
+            </div>
+          )}
         </div>
         <div className="relative rounded-[10px] py-[8px] pl-[20px] pr-[80px] bg-[#52495D] ">
           <input
