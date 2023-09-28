@@ -5,14 +5,10 @@ import TippyHeadless from "@tippyjs/react/headless";
 import { createRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import Ads1 from "@/asset/image/ads1.png";
-import Ads2 from "@/asset/image/ads2.png";
-import Ads3 from "@/asset/image/ads3.png";
-import Thanks from "@/asset/image/thanks.png";
-import linkedin from "@/asset/image/linkedin.png";
-import facebook from "@/asset/image/facebook.png";
-import twitter from "@/asset/image/twitter.png";
-import gmail from "@/asset/image/gmail.png";
+import Ads2 from "@/../public/asset/image/ads2.png";
+import Ads1 from "@/../public/asset/image/ads1.png";
+import Ads3 from "@/../public/asset/image/ads3.png";
+import Thanks from "@/../public/asset/image/thanks.png";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import PlayIcon from "@/asset/icons/PlayICon";
 import PauseIcon from "@/asset/icons/PauseIcon";
@@ -39,7 +35,7 @@ import { formatDate, getTimeRemaining, isLogged } from "@/utils/helper";
 import Breadcrumbs from "@/components/Others/Breadcumbs";
 import { IHallOfFameOfGame } from "@/interface/games/IHallOfFameOfGame";
 import { config } from "@/envs/env";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   HANDLE_STATUS,
   MODAL_NAME,
@@ -57,6 +53,7 @@ import {
   useSocketContext,
 } from "@/contexts/SocketContextProvider";
 import ChatBox from "@/components/Games/ChatBox";
+import SocialShare from "@/components/Others/SocialShare";
 type Props = {
   params: {
     "game-slug": string;
@@ -123,7 +120,6 @@ function GamePage({ params }: Props) {
       verifyStatus !== VERIFY_STATUS.SUCCESS
     )
       return;
-    console.log("join room");
     socket.emit("joinRoom", { room_id: gameDetail?.id, token: token!! });
   }, [connectStatusOfSocket, verifyStatus, gameDetail]);
 
@@ -287,8 +283,9 @@ function GamePage({ params }: Props) {
                       height="32px"
                     />
                   </TippyHeadless>
-                  <Image
+                  <CustomImage
                     src={gameDetail?.thumbnail}
+                    fallback={images.default_game_image}
                     alt="gamepic"
                     width={0}
                     height={0}
@@ -431,34 +428,8 @@ function GamePage({ params }: Props) {
                 </div>
               )}
             </div>
-            <div className="col-span-4 flex flex-col justify-end items-center bg-main-pink-83 border-[1px] border-main-pink-f9 rounded-[10px] pb-[18px]">
-              <h2 className="text-base font-bold leading-[1.6] font-lato text-main-whileColor mb-[3px]">
-                Share
-              </h2>
-              <div className="flex justify-between">
-                <Image
-                  src={linkedin}
-                  alt="linkedin"
-                  width={37}
-                  height={37}
-                  className="mr-10"
-                />
-                <Image
-                  src={facebook}
-                  alt="facebook"
-                  width={37}
-                  height={37}
-                  className="mr-10"
-                />
-                <Image
-                  src={twitter}
-                  alt="twitter"
-                  width={37}
-                  height={37}
-                  className="mr-10"
-                />
-                <Image src={gmail} alt="gmail" width={37} height={37} />
-              </div>
+            <div className="col-span-4 w-full h-full bg-main-pink-83 border-[1px] border-main-pink-f9 rounded-[10px]">
+              <SocialShare />
             </div>
             <div className="col-span-2 bg-main-violet-dd text-main-blackColor rounded-[10px]">
               <Image

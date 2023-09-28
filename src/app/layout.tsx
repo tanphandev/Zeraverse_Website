@@ -48,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning={true}
         className={`${lato.variable} ${nunito.variable} ${roboto.className}`}
       >
         <ToastContainer

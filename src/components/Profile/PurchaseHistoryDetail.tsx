@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import PurchaseItem from "./PurchaseItem";
-import { categoryGameList } from "@/dataFetch/dataFetch";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 type Props = {
   title: string;
@@ -9,7 +8,6 @@ type Props = {
   onBack: (title: string) => void;
 };
 function PurchaseHistoryDetail({ title, dataList, onBack }: Props) {
-  const purchaseAvatarList = [...categoryGameList];
   const purchaseHistoryRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (purchaseHistoryRef.current) {

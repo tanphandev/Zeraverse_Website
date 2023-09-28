@@ -9,7 +9,7 @@ import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
 import { staticPaths } from "@/utils/paths";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
-import Logo from "@/asset/image/Logo.png";
+import Logo from "@/../public/asset/image/Logo.png";
 import MenuIcon from "@/asset/icons/MenuIcon";
 import NewIcon from "@/asset/icons/NewsIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";

@@ -17,12 +17,7 @@ import dynamic from "next/dynamic";
 import { IArticle } from "@/interface/article/IArticle";
 import { IListArticleCategory } from "@/interface/article/IListArticleCategory";
 import { ARTICLE_CATEGORY_NAME } from "@/utils/constants";
-const ArticleCarouselDynamic = dynamic(
-  () => import("@/components/Articles/ArticleCarousel"),
-  {
-    ssr: false,
-  }
-);
+import ArticleCarousel from "@/components/Articles/ArticleCarousel";
 function NewsPage() {
   const dispatch = useDispatch<AppDispatch>();
   const listArticleCategories = useSelector<RootState>(
@@ -55,7 +50,8 @@ function NewsPage() {
   }, [listArticleCategories, allArticles]);
   return (
     <div>
-      <ArticleCarouselDynamic articleRandom={articleRandom} />
+      {/* <ArticleCarouselDynamic articleRandom={articleRandom} /> */}
+      <ArticleCarousel articleRandom={articleRandom} />
       {/* Trending New */}
       <TrendingNew list={newest} />
       <PopularNews list={newest} />

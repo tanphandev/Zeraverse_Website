@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Tippy from "@tippyjs/react";
-import fame1 from "@/asset/image/fame1.png";
-import fame2 from "@/asset/image/fame2.png";
-import fame3 from "@/asset/image/fame3.png";
-import top1 from "@/asset/image/fame1-1.png";
-import top2 from "@/asset/image/fame2-2.png";
-import top3 from "@/asset/image/fame3-3.png";
+import fame1 from "@/../public/asset/image/fame1.png";
+import fame2 from "@/../public/asset/image/fame2.png";
+import fame3 from "@/../public/asset/image/fame3.png";
+import top1 from "@/../public/asset/image/fame1-1.png";
+import top2 from "@/../public/asset/image/fame2-2.png";
+import top3 from "@/../public/asset/image/fame3-3.png";
 import RateTable from "./RateTable";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
@@ -13,6 +13,8 @@ import { abbreviateNumber } from "@/utils/helper";
 import Link from "next/link";
 import { staticPaths } from "@/utils/paths";
 import "tippy.js/dist/tippy.css";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   hallOfFameZera: IHallOfFameZera[];
 };
@@ -32,9 +34,10 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
                   encodeURI(topThreeUser[1]?.user?.username)
                 )}
               >
-                <Image
+                <CustomImage
                   className="mb-[10px] rounded-[10px]"
                   src={topThreeUser[1]?.user?.avatar?.url}
+                  fallback={images.default_profile_image}
                   alt="picture"
                   width={94}
                   height={94}
@@ -82,9 +85,10 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
                   encodeURI(topThreeUser[0]?.user?.username)
                 )}
               >
-                <Image
+                <CustomImage
                   className="mb-[10px] rounded-[10px]"
                   src={topThreeUser[0]?.user?.avatar?.url}
+                  fallback={images.default_profile_image}
                   alt="picture"
                   width={94}
                   height={94}
@@ -132,9 +136,10 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
                   encodeURI(topThreeUser[2]?.user?.username)
                 )}
               >
-                <Image
+                <CustomImage
                   className="mb-[10px] rounded-[10px]"
                   src={topThreeUser[2]?.user?.avatar?.url}
+                  fallback={images.default_profile_image}
                   alt="picture"
                   width={94}
                   height={94}

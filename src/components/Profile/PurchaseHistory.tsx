@@ -1,7 +1,5 @@
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import NoData from "../Others/NoData";
-import ProfilePic from "@/asset/image/profilePicture.png";
-import CoverPic from "@/asset/image/UserPageBackround.png";
 import Image from "next/image";
 type Props = {
   data: IPurchaseHistory;

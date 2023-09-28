@@ -7,6 +7,7 @@ type Props = {
   fallback: string;
   width?: number;
   height?: number;
+  priority?: boolean;
   [x: string]: any;
   onClick?: () => void;
 };
@@ -15,6 +16,7 @@ function CustomImage({
   style,
   src,
   alt,
+  priority,
   fallback,
   width,
   height,
@@ -23,6 +25,7 @@ function CustomImage({
 }: Props) {
   return (
     <Image
+      priority={priority}
       onClick={onClick}
       className={className}
       style={style}

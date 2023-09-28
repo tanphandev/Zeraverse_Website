@@ -107,7 +107,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
             <div className="relative">
               <textarea
                 disabled
-                value={userInfo?.username}
+                value={userInfo?.username ?? ""}
                 rows={1}
                 className="w-full resize-none text-base text-bold font-lato text-main-blackColor outline-none py-1 pl-3 rounded-[20px] no-scrollbar"
                 placeholder="Enter your name..."
@@ -115,7 +115,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
             </div>
             <div className="relative mb-[10px] px-[12px] pt-[12px] pb-[27px] bg-main-whileColor rounded-[20px]">
               <textarea
-                value={quote}
+                value={quote ?? ""}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                   setQuote(e.target.value);
                 }}

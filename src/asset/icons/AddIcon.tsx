@@ -21,7 +21,7 @@ const AddIcon = ({
         cy="14.5"
         r="14.5"
         fill="#2B2B2B"
-        fill-opacity="0.7"
+        fillOpacity="0.7"
       />
     </g>
     <path

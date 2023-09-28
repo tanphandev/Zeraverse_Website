@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import NewLogo from "@/asset/image/newsLogo.png";
+import NewLogo from "@/../public/asset/image/newsLogo.png";
 import ReactPaginate from "react-paginate";
 import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";

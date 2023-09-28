@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ArrowRightIcon from "@/asset/icons/ArrowRightIcon";
 import { IArticleRandom } from "@/interface/article/IArticleRandom";
@@ -12,11 +12,10 @@ type Props = {
 };
 function ArticleCarousel({ articleRandom }: Props) {
   const router = useRouter();
-  const [initComplete, setInitComplete] = useState<boolean>(false);
+  const nextBtnRef = useRef<HTMLSpanElement>(null);
   const init = async () => {
     const { Carousel, initTE } = await import("tw-elements");
     initTE({ Carousel });
-    setInitComplete(true);
   };
   init();
 
@@ -24,6 +23,11 @@ function ArticleCarousel({ articleRandom }: Props) {
   const goToArticleDetail = (article_slug: string) => {
     router.push(staticPaths.article_detail(article_slug));
   };
+  useEffect(() => {
+    setTimeout(() => {
+      nextBtnRef?.current?.click();
+    }, 4000);
+  }, []);
   return (
     <div className="pr-[28px]">
       {/* Carousel */}
@@ -68,6 +72,7 @@ function ArticleCarousel({ articleRandom }: Props) {
                 >
                   <div className="relative">
                     <CustomImage
+                      priority={true}
                       src={item?.featured_image}
                       fallback={images.default_article_image}
                       alt="image"
@@ -90,7 +95,7 @@ function ArticleCarousel({ articleRandom }: Props) {
                         <p className="font-light font-nunito mb-[43px]">
                           {formatDate(item?.updated_at)}
                         </p>
-                        <button className="transition-colors flex items-center px-[10px] py-[6px] bg-main-pink-be rounded-[2px] hover:bg-main-pink-83">
+                        <div className="transition-colors inline-flex items-center px-[10px] py-[6px] bg-main-pink-be rounded-[2px] hover:bg-main-pink-83">
                           <button
                             onClick={() => {
                               goToArticleDetail(item?.slug);
@@ -104,7 +109,7 @@ function ArticleCarousel({ articleRandom }: Props) {
                             width="20px"
                             height="20px"
                           />
-                        </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -123,13 +128,13 @@ function ArticleCarousel({ articleRandom }: Props) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="h-6 w-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M15.75 19.5L8.25 12l7.5-7.5"
                 />
               </svg>
@@ -149,18 +154,21 @@ function ArticleCarousel({ articleRandom }: Props) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="h-6 w-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M8.25 4.5l7.5 7.5-7.5 7.5"
                 />
               </svg>
             </span>
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            <span
+              ref={nextBtnRef}
+              className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+            >
               Next
             </span>
           </button>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/asset/image/Logo.png";
+import Logo from "@/../public/asset/image/Logo.png";
 import LetterForm from "./LetterForm";
 import Contact from "./Contact";
 function Footer() {
