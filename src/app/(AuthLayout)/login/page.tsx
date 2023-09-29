@@ -13,6 +13,7 @@ function LoginPage() {
   const { loginWithEmail, loginWithSSO } = useAuthContext();
   const { openGlobalModal, closeGlobalModal } = useModalContext();
   const { data: session } = useSession();
+  console.log("session in login from ", session);
   const handleLoginWithEmail = async (loginFormData: IAuthFormData) => {
     openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
     try {
@@ -25,6 +26,7 @@ function LoginPage() {
   };
   // login with Google or Facebook
   useEffect(() => {
+    if (!session) return;
     if (session?.user.provider === "google") {
       openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
       const googleData: ISso = {

@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 import { signInAnonymously } from "firebase/auth";
 import auth from "@/firebase/firebase_config";
 import { toast } from "react-toastify";
@@ -68,6 +69,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const url = `${pathname}${
     !!searchParams.toString() ? "?" : ""
   }${searchParams}`;
+  const { data: session } = useSession();
   const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
   const [anonymousInfo, setAnonymousInfo] = useState<IAnonymousInfo | null>(
     null
@@ -82,6 +84,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [verifyStatus, setVerifyStatus] = useState<VERIFY_STATUS>(
     VERIFY_STATUS.NOT_START
   );
+  console.log("session in authContextModal", session);
   const prevRoute = useRef<string>("");
   const currentRoute = useRef<string>(url);
   const isAuthenPath = useMemo(
@@ -267,17 +270,23 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
       });
   };
 
-  const clearAuthenticatorData = () => {
-    setToken(null);
-    localStorage.removeItem("accessToken");
-    setUsernameAuth(null);
-    localStorage.removeItem("username");
+  const clearAuthenticatorData = async () => {
+    try {
+      if (session) {
+        await signOut();
+      }
 
-    setUserInfo(null);
-    setVerifyStatus(VERIFY_STATUS.NOT_START);
-    setAnonymousInfo(null);
-    setAnonymousStatus(HANDLE_STATUS.NOT_START);
-    // setIsRedirectToPrevPage(false);
+      setToken(null);
+      localStorage.removeItem("accessToken");
+      setUsernameAuth(null);
+      localStorage.removeItem("username");
+      setUserInfo(null);
+      setVerifyStatus(VERIFY_STATUS.NOT_START);
+      setAnonymousInfo(null);
+      setAnonymousStatus(HANDLE_STATUS.NOT_START);
+    } catch (e: any) {
+      throw e;
+    }
   };
   const authContextData: AuthContextType = useMemo(
     () => ({

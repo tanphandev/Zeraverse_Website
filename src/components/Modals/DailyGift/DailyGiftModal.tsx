@@ -17,13 +17,10 @@ import { toast } from "react-toastify";
 import { TOAST_MESSAGE } from "@/utils/constants";
 import { sleep } from "@/utils/helper";
 function DailyGiftModal() {
-  const daily_gift_days_ref = useRef<string | null>(null);
   const dailyGiftModalRef = useRef<HTMLDivElement>(null);
   const { closeModalWithAnimation } = useModalContext();
   const { userInfo, setUserInfo, usernameAuth } = useAuthContext();
   const playstreak = userInfo?.playstreak;
-  console.log("playstreak", playstreak);
-  console.log("userInfo", userInfo);
   const [selectedItems, setSelectedItems] = useState<Array<boolean>>([
     false,
     false,
