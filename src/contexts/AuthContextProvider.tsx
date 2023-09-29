@@ -43,7 +43,7 @@ type AuthContextType = {
   setVerifyStatus: React.Dispatch<React.SetStateAction<VERIFY_STATUS>>;
   isRedirectToPrevPage: boolean;
   setIsRedirectToPrevPage: React.Dispatch<React.SetStateAction<boolean>>;
-  prevRoute: string;
+  prevRoute: any;
   loginWithEmail: (loginFormData: IAuthFormData) => Promise<any>;
   loginWithSSO: (SSOData: ISso) => Promise<any>;
   logout: () => void;
@@ -246,8 +246,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const handleRouteChange = (url: string) => {
     prevRoute.current = currentRoute.current;
     currentRoute.current = url;
-    console.warn("prevRotue", prevRoute.current);
-    console.warn("currentRoute", currentRoute.current);
   };
 
   // verify AccessToken
@@ -297,7 +295,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
       setVerifyStatus,
       isRedirectToPrevPage,
       setIsRedirectToPrevPage,
-      prevRoute: prevRoute.current,
+      prevRoute,
       loginWithEmail,
       loginWithSSO,
       logout,

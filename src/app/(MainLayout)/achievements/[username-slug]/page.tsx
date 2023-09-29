@@ -31,8 +31,10 @@ function Achievements({
   const dispatch = useDispatch<AppDispatch>();
   const achievements =
     (useSelector<RootState>(achievementSelector) as IAchievement) ?? {};
+  const { userInfo: currentUserInfo, prevRoute } = useAuthContext();
+  console.log("prevRoute", prevRoute);
   let { user_info, played_game, total_earned_zera, play_streak } = achievements;
-  const { username, avatar, quote, highest_playstreak } = user_info ?? {};
+  const { username, id, avatar, quote, highest_playstreak } = user_info ?? {};
   const { count, rows } = played_game ?? {};
   const gamePlayed = (achievements?.played_game?.rows as any[]) ?? [];
   //define itemsPerPage
@@ -73,7 +75,7 @@ function Achievements({
 
   return (
     <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">
-      <Link href={staticPaths.home}>
+      <Link href={prevRoute.current || staticPaths.home}>
         <button className="absolute top-[25px] left-[21px] text-sm font-bold text-main-pink-ec">
           {"<"}Back
         </button>
@@ -86,7 +88,13 @@ function Achievements({
       <div className="w-full rounded-[30px] bg-gradient-to-br from-[#FF00E5] via-[#EAC6E6] to-[#950086] p-[5px] mt-[100px] ">
         <div className="w-full bg-gradient-to-b from-[#300373] to-[#2c026a] py-[64px] px-[110px] rounded-[30px]">
           <div className="flex flex-col items-center mb-[24px]">
-            <Link href={staticPaths.otherUser(username)}>
+            <Link
+              href={
+                id === currentUserInfo?.id
+                  ? staticPaths.user
+                  : staticPaths.otherUser(username)
+              }
+            >
               <CustomImage
                 src={avatar?.url}
                 fallback={images.default_profile_image}

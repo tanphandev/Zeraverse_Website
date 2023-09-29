@@ -20,7 +20,10 @@ function DailyGiftModal() {
   const daily_gift_days_ref = useRef<string | null>(null);
   const dailyGiftModalRef = useRef<HTMLDivElement>(null);
   const { closeModalWithAnimation } = useModalContext();
-  const { setUserInfo, usernameAuth } = useAuthContext();
+  const { userInfo, setUserInfo, usernameAuth } = useAuthContext();
+  const playstreak = userInfo?.playstreak;
+  console.log("playstreak", playstreak);
+  console.log("userInfo", userInfo);
   const [selectedItems, setSelectedItems] = useState<Array<boolean>>([
     false,
     false,
@@ -33,26 +36,16 @@ function DailyGiftModal() {
   useOnClickOutside(dailyGiftModalRef, () => {
     closeModalWithAnimation(150);
   });
-  daily_gift_days_ref.current = localStorage.getItem("daily_gift_days");
+
   // check quanity days checked
   useEffect(() => {
-    if (
-      !daily_gift_days_ref.current ||
-      parseInt(daily_gift_days_ref.current) >= 7
-    ) {
-      daily_gift_days_ref.current = "0";
-      localStorage.setItem("daily_gift_days", "0");
+    if (!playstreak) return;
+    const initialSelectedItems = [...selectedItems];
+    for (let index = 0; index < playstreak - 1; index++) {
+      initialSelectedItems[index] = true;
     }
-    if (daily_gift_days_ref.current) {
-      const initialSelectedItems = [...selectedItems];
-      const numberOfSelectedItems = parseInt(daily_gift_days_ref.current);
-
-      for (let index = 0; index < numberOfSelectedItems; index++) {
-        initialSelectedItems[index] = true;
-      }
-      setSelectedItems(initialSelectedItems);
-    }
-  }, []);
+    setSelectedItems(initialSelectedItems);
+  }, [playstreak]);
 
   // set tick for items when click
   const handleItemClick = (index: number) => {
@@ -62,12 +55,6 @@ function DailyGiftModal() {
         const newSelectedItems = [...selectedItems];
         newSelectedItems[index] = true;
         setSelectedItems(newSelectedItems);
-        if (daily_gift_days_ref.current) {
-          localStorage.setItem(
-            "daily_gift_days",
-            JSON.stringify(parseInt(daily_gift_days_ref.current) + 1)
-          );
-        }
         sleep(1000).then(() => {
           userService.getUserInfo(usernameAuth!!).then((response) => {
             setUserInfo(response?.data);
@@ -99,18 +86,16 @@ function DailyGiftModal() {
         <div className="grid grid-cols-3 gap-4 bg-gradient-to-b from-[#FDA3FF] via-[#F4BFFF] to-[#9949FF] px-[30px] py-[40px] rounded-[10px] shadow-[inset_0_2px_2px_rgba(0,0,0,0.6)] shadow-[#d389d4]">
           <div
             onClick={
-              daily_gift_days_ref.current === "0"
+              playstreak === 1
                 ? () => {
-                    handleItemClick(0);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "0" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 1 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 1
@@ -128,18 +113,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "1"
+              playstreak === 2
                 ? () => {
-                    handleItemClick(1);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "1" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 2 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 2
@@ -157,18 +140,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "2"
+              playstreak === 3
                 ? () => {
-                    handleItemClick(2);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "2" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 3 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 3
@@ -186,18 +167,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "3"
+              playstreak === 4
                 ? () => {
-                    handleItemClick(3);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "3" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 4 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 4
@@ -215,18 +194,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "4"
+              playstreak === 5
                 ? () => {
-                    handleItemClick(4);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "4" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 5 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 5
@@ -244,18 +221,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "5"
+              playstreak === 6
                 ? () => {
-                    handleItemClick(5);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="relative"
+            className="relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "5" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 6 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 6
@@ -273,18 +248,16 @@ function DailyGiftModal() {
           </div>
           <div
             onClick={
-              daily_gift_days_ref.current === "6"
+              playstreak === 7
                 ? () => {
-                    handleItemClick(6);
+                    handleItemClick(playstreak!! - 1);
                   }
                 : undefined
             }
-            className="col-span-3 relative"
+            className="col-span-3 relative cursor-pointer"
           >
             <div
-              className={`${
-                daily_gift_days_ref.current === "6" ? "daily-gift-choose" : ""
-              }`}
+              className={`${playstreak === 7 ? "daily-gift-choose" : ""}`}
             ></div>
             <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 7
@@ -304,7 +277,7 @@ function DailyGiftModal() {
         <button className="bg-gradient-to-br from-[#EDE342] to-[#FF51EB] rounded-[25px] p-[6px] absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 shadow-[0px_0px_10px] shadow-[#EDE342]">
           <p
             onClick={() => {
-              handleItemClick(parseInt(daily_gift_days_ref.current!!));
+              handleItemClick(playstreak!! - 1);
             }}
             className="text-3xl text-main-whileColor font-semibold px-[36px] py-1 border-[3px] border-main-whileColor rounded-[25px]"
           >

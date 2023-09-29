@@ -1,19 +1,20 @@
-import Link from "next/link";
-
+import Breadcrumbs from "@/components/Others/Breadcumbs";
+import { staticPaths } from "@/utils/paths";
 function PrivacyPolicy() {
   return (
     <div className="font-nunito text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 py-[24px] px-[28px] mb-[40px]">
-      <Link
-        href={"/"}
-        className="text-sm font-lato font-bold text-main-pink-ec cursor-pointer"
-      >
-        {"<"} Back
-      </Link>
-      <div className="text-xs font-bold mb-[20px] mt-5">
-        <Link href={"/"}>Home</Link>
-        {" / "}
-        <Link href={"/privacy-policy"}>Privacy policy</Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          {
+            label: "Home",
+            path: staticPaths.home,
+          },
+          {
+            label: "Privacy policy",
+            path: staticPaths.privacy_policy,
+          },
+        ]}
+      />
       <h1 className="font-bold">PRIVACY POLICY</h1>
       <h2 className="text-[32px] font-bold font-nunito">
         I. WHICH DATA DO WE COLLECT?

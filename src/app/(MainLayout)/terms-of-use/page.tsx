@@ -1,19 +1,20 @@
-import Link from "next/link";
-
+import Breadcrumbs from "@/components/Others/Breadcumbs";
+import { staticPaths } from "@/utils/paths";
 function TermsOfUse() {
   return (
     <div className="font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 py-[24px] px-[28px] mb-[40px] ">
-      <Link
-        href={"/"}
-        className="text-sm font-bold text-main-pink-ec cursor-pointer"
-      >
-        {"<"} Back
-      </Link>
-      <div className="text-xs font-bold mb-[20px] mt-5">
-        <Link href={"/"}>Home</Link>
-        {" / "}
-        <Link href={"/terms-of-use"}>Term</Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          {
+            label: "Home",
+            path: staticPaths.home,
+          },
+          {
+            label: "Term of use",
+            path: staticPaths.terms_of_use,
+          },
+        ]}
+      />
       <h1 className="font-bold">TERMS OF USE</h1>
       <div className="text-base font-bold font-nunito text-justify">
         <p>
