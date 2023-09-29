@@ -50,7 +50,7 @@ function LetterForm() {
         onChange={(event) => formik.setFieldValue("name", event.target.value)}
       />
       {formik.touched.name && formik.errors.name ? (
-        <div className="text-main-pink-be">{formik.errors.name}</div>
+        <div className="text-main-pink-be mb-[12px]">{formik.errors.name}</div>
       ) : null}
       <input
         id="email"
@@ -60,7 +60,7 @@ function LetterForm() {
         onChange={(event) => formik.setFieldValue("email", event.target.value)}
       />
       {formik.touched.email && formik.errors.email ? (
-        <div className="text-main-pink-be">{formik.errors.email}</div>
+        <div className="text-main-pink-be mb-[12px]">{formik.errors.email}</div>
       ) : null}
       <button
         type="submit"

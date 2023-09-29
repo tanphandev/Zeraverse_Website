@@ -50,7 +50,6 @@ function NewsPage() {
   }, [listArticleCategories, allArticles]);
   return (
     <div>
-      {/* <ArticleCarouselDynamic articleRandom={articleRandom} /> */}
       <ArticleCarousel articleRandom={articleRandom} />
       {/* Trending New */}
       <TrendingNew list={newest} />

@@ -5,9 +5,9 @@ import LetterForm from "./LetterForm";
 import Contact from "./Contact";
 function Footer() {
   return (
-    <div className="bg-frameFooter bg-center bg-cover w-full h-[408px] pl-[70px] pr-[124px] ">
+    <div className="bg-frameFooter bg-cover w-full px-[70px] pt-[130px] pb-[10px]">
       <div className=" w-full h-full ">
-        <div className="flex w-full h-[calc(100%-40px)] items-center justify-between">
+        <div className="flex w-full h-[calc(100%-40px)] items-end justify-between pb-[50px]">
           <Link href={"/"}>
             <Image
               className="max-w-[290px] max-h-[156px]"
@@ -23,19 +23,19 @@ function Footer() {
               </h2>
               <div className="flex flex-col">
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-db"
                   href={"about-us"}
                 >
                   About Us
                 </Link>
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-db"
                   href={"privacy-policy"}
                 >
                   Privacy Policy
                 </Link>
                 <Link
-                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-ec"
+                  className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-db"
                   href={"terms-of-use"}
                 >
                   Terms

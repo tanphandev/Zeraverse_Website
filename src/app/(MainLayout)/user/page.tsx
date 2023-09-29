@@ -20,6 +20,7 @@ import {
 import IPlayListGame from "@/interface/user/IPlayListGame";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import IGame from "@/interface/games/IGame";
+import UserLayout from "./UserLayout";
 function UserProfile() {
   const dispatch = useDispatch<AppDispatch>();
   const { userInfo } = useAuthContext();
@@ -115,53 +116,55 @@ function UserProfile() {
     setIsOpenUserDetail(true);
   };
   return (
-    <div>
-      {isOpenUserDetail && (
-        <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
-          <div className="col-span-4">
-            <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
-              <UserStatus userInfo={userInfo} />
-              <UserReward userInfo={userInfo} />
+    <UserLayout>
+      <div>
+        {isOpenUserDetail && (
+          <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
+            <div className="col-span-4">
+              <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
+                <UserStatus userInfo={userInfo} />
+                <UserReward userInfo={userInfo} />
+              </div>
+            </div>
+            <div className="col-span-7">
+              <UserActivities userInfo={userInfo} onClick={handleChooseField} />
             </div>
           </div>
-          <div className="col-span-7">
-            <UserActivities userInfo={userInfo} onClick={handleChooseField} />
-          </div>
-        </div>
-      )}
-      {isOpenRecentGame && (
-        <UserFieldDetail
-          dataList={userRecentlyGame}
-          onBack={onBack}
-          title={UserField.recentGame}
-        />
-      )}
-      {isOpenLovedGame && (
-        <UserFieldDetail
-          dataList={userLovedGame}
-          onBack={onBack}
-          title={UserField.lovedGame}
-        />
-      )}
-      {openPlayListGame.isOpenPlayListGame && (
-        <UserPlayList
-          dataList={userPlayListGame}
-          onBack={onBack}
-          title={UserField.playListGame}
-          showPlayListDetailFirst={{
-            isShowFirst: openPlayListGame?.isShowPlayListDetailFirst,
-            playListId: openPlayListGame?.playListid!!,
-          }}
-        />
-      )}
-      {isOpenPurchaseHistory && (
-        <PurchaseHistoryDetail
-          dataList={userPurchaseHistory}
-          onBack={onBack}
-          title={UserField.purchaseHistory}
-        />
-      )}
-    </div>
+        )}
+        {isOpenRecentGame && (
+          <UserFieldDetail
+            dataList={userRecentlyGame}
+            onBack={onBack}
+            title={UserField.recentGame}
+          />
+        )}
+        {isOpenLovedGame && (
+          <UserFieldDetail
+            dataList={userLovedGame}
+            onBack={onBack}
+            title={UserField.lovedGame}
+          />
+        )}
+        {openPlayListGame.isOpenPlayListGame && (
+          <UserPlayList
+            dataList={userPlayListGame}
+            onBack={onBack}
+            title={UserField.playListGame}
+            showPlayListDetailFirst={{
+              isShowFirst: openPlayListGame?.isShowPlayListDetailFirst,
+              playListId: openPlayListGame?.playListid!!,
+            }}
+          />
+        )}
+        {isOpenPurchaseHistory && (
+          <PurchaseHistoryDetail
+            dataList={userPurchaseHistory}
+            onBack={onBack}
+            title={UserField.purchaseHistory}
+          />
+        )}
+      </div>
+    </UserLayout>
   );
 }
 

@@ -26,7 +26,7 @@ function ArticleCarousel({ articleRandom }: Props) {
   useEffect(() => {
     setTimeout(() => {
       nextBtnRef?.current?.click();
-    }, 4000);
+    }, 3000);
   }, []);
   return (
     <div className="pr-[28px]">
@@ -37,7 +37,7 @@ function ArticleCarousel({ articleRandom }: Props) {
           className="relative mb-[30px]"
           data-te-carousel-init
           data-te-ride="carousel"
-          data-te-interval="4000"
+          data-te-interval="3000"
         >
           {/* Carousel indicators */}
           <div

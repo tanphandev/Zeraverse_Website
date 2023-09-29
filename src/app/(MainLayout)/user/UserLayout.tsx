@@ -8,8 +8,8 @@ import EditIcon from "@/asset/icons/EditIcon";
 import { images } from "@/asset/image/images";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
-
-function UserLayout({ children }: { children: string }) {
+import "tippy.js/dist/tippy.css";
+function UserLayout({ children }: { children: React.ReactNode }) {
   const { userInfo } = useAuthContext();
   const { openModal } = useModalContext();
   const openEditAvatarModal = () => {

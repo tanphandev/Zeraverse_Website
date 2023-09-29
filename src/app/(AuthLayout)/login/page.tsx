@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "@/asset/image/Logo.png";
+import Logo from "@/../public/asset/image/Logo.png";
 import AuthForm from "@/components/Auth/AuthForm";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useSession } from "next-auth/react";

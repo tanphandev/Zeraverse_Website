@@ -40,7 +40,7 @@ function SearchModal() {
   const recentlyPlayedGame =
     (useSelector<RootState>(userRecentlyGameSelector) as IGame[]) ?? [];
   const handleCloseSearchModal = () => {
-    closeModalWithAnimation(500);
+    closeModalWithAnimation(400);
   };
   useOnClickOutside(searchModalRef, handleCloseSearchModal);
 
@@ -76,7 +76,7 @@ function SearchModal() {
       <div
         ref={searchModalRef}
         id="modal"
-        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] h-full animate-slipLeftToRight"
+        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] w-[706px] h-full animate-slipLeftToRight"
       >
         <SearchInput
           isLoading={isLoading}
@@ -92,8 +92,14 @@ function SearchModal() {
               suggestList={gameCategories}
               setSearchValue={setSearchValue}
             />
-            <PopularGame popularGameList={popularGames} />
-            <RecentlyPlayedGame recentlyPlayedGameList={recentlyPlayedGame} />
+            <PopularGame
+              popularGameList={popularGames}
+              closeModal={closeModalWithAnimation}
+            />
+            <RecentlyPlayedGame
+              recentlyPlayedGameList={recentlyPlayedGame}
+              closeModal={closeModalWithAnimation}
+            />
           </>
         )}
       </div>

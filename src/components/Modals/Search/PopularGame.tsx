@@ -6,8 +6,9 @@ import { staticPaths } from "@/utils/paths";
 
 type Props = {
   popularGameList: IPopularGame[];
+  closeModal: (duration: number) => void;
 };
-function PopularGame({ popularGameList }: Props) {
+function PopularGame({ popularGameList, closeModal }: Props) {
   return (
     <>
       <h2 className="text-2xl font-bold font-nunito text-main-whileColor mb-3">
@@ -17,7 +18,12 @@ function PopularGame({ popularGameList }: Props) {
         {popularGameList?.map((item, index) => {
           return (
             <li className="rounded-[10px] mr-4" key={index}>
-              <Link href={staticPaths.game_detail(item?.game_detail?.slug)}>
+              <Link
+                onClick={() => {
+                  closeModal(400);
+                }}
+                href={staticPaths.game_detail(item?.game_detail?.slug)}
+              >
                 <div className="relative group hover:scale-105 transition-all ease-in-out duration-300">
                   <CustomImage
                     className="min-w-[94px] w-[94px] h-[94px] rounded-[20px] "

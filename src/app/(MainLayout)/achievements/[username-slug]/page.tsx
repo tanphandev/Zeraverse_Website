@@ -34,9 +34,7 @@ function Achievements({
   let { user_info, played_game, total_earned_zera, play_streak } = achievements;
   const { username, avatar, quote, highest_playstreak } = user_info ?? {};
   const { count, rows } = played_game ?? {};
-  const { usernameAuth } = useAuthContext();
   const gamePlayed = (achievements?.played_game?.rows as any[]) ?? [];
-
   //define itemsPerPage
   const itemsPerPage = 4;
   //set item start
@@ -186,7 +184,7 @@ function Achievements({
             <h2 className="text-[28px] font-semibold font-lato text-main-whileColor mb-[15px] text-center">
               Top game played
             </h2>
-            {gamePlayed.length === 0 ? (
+            {gamePlayed?.length === 0 ? (
               <NoData />
             ) : (
               <div className="grid grid-cols-2 gap-x-[21px] gap-y-[15px] mb-6">
@@ -197,8 +195,9 @@ function Achievements({
                     className=" flex justify-between items-center bg-gradient-to-b from-[#8B5CF6] to-[#503098] rounded-[20px] p-[10px]"
                   >
                     <div className="flex items-center">
-                      <Image
+                      <CustomImage
                         src={gameItem?.game_detail?.thumbnail}
+                        fallback={images.default_game_image}
                         width={0}
                         height={0}
                         sizes="100vw"

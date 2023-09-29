@@ -12,7 +12,7 @@ function SocialShare() {
   }, [pathName]);
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <h2 className=" text-base font-bold leading-[1.6] font-lato text-main-whileColor mb-[3px]">
+      <h2 className="text-base font-bold leading-[1.6] font-lato text-main-whileColor mb-[3px]">
         Share
       </h2>
       <InlineShareButtons

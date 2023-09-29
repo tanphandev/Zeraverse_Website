@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { userAvatarInventorySelector } from "@/store/selectors/userSelector";
 import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
-import CustomImage from "../Others/CustomImage";
+import CustomImage from "../../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import { GLOBAL_MODAL_NAME } from "@/utils/constants";
 type Props = {

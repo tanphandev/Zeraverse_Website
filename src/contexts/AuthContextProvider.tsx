@@ -246,6 +246,8 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const handleRouteChange = (url: string) => {
     prevRoute.current = currentRoute.current;
     currentRoute.current = url;
+    console.warn("prevRotue", prevRoute.current);
+    console.warn("currentRoute", currentRoute.current);
   };
 
   // verify AccessToken
@@ -279,7 +281,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     setAnonymousStatus(HANDLE_STATUS.NOT_START);
     // setIsRedirectToPrevPage(false);
   };
-
   const authContextData: AuthContextType = useMemo(
     () => ({
       userInfo,

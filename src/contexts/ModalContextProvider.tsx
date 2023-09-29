@@ -13,12 +13,12 @@ import {
   MODAL_NAME,
 } from "@/utils/constants";
 import SearchModal from "@/components/Modals/Search/SearchModal";
-import BuyShopModal from "@/components/Modals/BuyShopModal";
-import GlobalLoading from "@/components/Modals/GlobalLoading";
-import EditProfileModal from "@/components/Modals/EditProfileModal";
-import EditCoverModal from "@/components/Modals/EditCoverModal";
-import DeletePlayListModal from "@/components/Modals/DeletePlayListModal";
-import DailyGiftModal from "@/components/Modals/DailyGiftModal";
+import BuyShopModal from "@/components/Modals/Shop/BuyShopModal";
+import GlobalLoading from "@/components/Modals/GlobalLoading/GlobalLoading";
+import EditProfileModal from "@/components/Modals/EditProfile/EditProfileModal";
+import EditCoverModal from "@/components/Modals/EditProfile/EditCoverModal";
+import DeletePlayListModal from "@/components/Modals/DeletePlayList/DeletePlayListModal";
+import DailyGiftModal from "@/components/Modals/DailyGift/DailyGiftModal";
 import AddPlayListModal from "@/components/Modals/PlayList/AddPlayListModal";
 import ReminderModal from "@/components/Modals/Reminder/ReminderModal";
 import ReportModal from "@/components/Modals/Report/ReportModal";

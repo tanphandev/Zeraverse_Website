@@ -6,18 +6,24 @@ import { staticPaths } from "@/utils/paths";
 
 type Props = {
   recentlyPlayedGameList: IGame[];
+  closeModal: (duration: number) => void;
 };
-function RecentlyPlayedGame({ recentlyPlayedGameList }: Props) {
+function RecentlyPlayedGame({ recentlyPlayedGameList, closeModal }: Props) {
   return (
     <>
       <h2 className="text-2xl font-bold font-nunito text-main-whileColor mb-4">
         Recently played
       </h2>
-      <ul className="w-[644px] overflow-hidden overflow-x-scroll no-scrollbar flex mb-[27px]">
+      <ul className="w-[644px] overflow-hidden overflow-x-scroll no-scrollbar flex mb-[27px] px-1 py-2">
         {recentlyPlayedGameList?.map((item, index) => {
           return (
             <li className="rounded-[10px] mr-4" key={index}>
-              <Link href={staticPaths.game_detail(item?.slug)}>
+              <Link
+                onClick={() => {
+                  closeModal(400);
+                }}
+                href={staticPaths.game_detail(item?.slug)}
+              >
                 <div className="relative group hover:scale-105 transition-all ease-in-out duration-300">
                   <CustomImage
                     className="min-w-[94px] w-[94px] h-[94px] rounded-[20px] "

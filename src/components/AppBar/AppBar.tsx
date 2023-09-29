@@ -21,6 +21,7 @@ import TagIcon from "@/asset/icons/TagIcon";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import { useSocketContext } from "@/contexts/SocketContextProvider";
+
 function AppBar() {
   const { userInfo } = useAuthContext();
   const { openModal } = useModalContext();
@@ -72,14 +73,22 @@ function AppBar() {
         >
           <div className="border-b-[1px] border-[#8f66a2] mt-7">
             <button className="block w-full text-left mb-4">
-              <RiderIcon className="inline-block" width="42px" height="42px" />
-              <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+              <RiderIcon
+                className="inline-block text-main-whileColor-50"
+                width="42px"
+                height="42px"
+              />
+              <p className="font-lato ml-[10px] text-main-whileColor-50 inline">
                 Rider
               </p>
             </button>
             <button className="block w-full text-left mb-4">
-              <CasualIcon className="inline-block" width="42px" height="42px" />
-              <p className="font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+              <CasualIcon
+                className="inline-block text-main-whileColor-50"
+                width="42px"
+                height="42px"
+              />
+              <p className="font-lato ml-[10px] text-main-whileColor-50 inline">
                 Casual
               </p>
             </button>
@@ -113,14 +122,22 @@ function AppBar() {
               </p>
             </Link>
             <button className="block w-full text-left mb-4">
-              <TagIcon className="inline" width="32px" height="32px" />
-              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+              <TagIcon
+                className="inline text-main-whileColor-50"
+                width="32px"
+                height="32px"
+              />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor-50 inline">
                 All Game Tags
               </p>
             </button>
             <button className="block w-full text-left mb-7">
-              <TagIcon className="inline" width="32px" height="32px" />
-              <p className="text-sm font-lato ml-[10px] text-main-whileColor inline hover:text-main-violet-a7">
+              <TagIcon
+                className="inline text-main-whileColor-50"
+                width="32px"
+                height="32px"
+              />
+              <p className="text-sm font-lato ml-[10px] text-main-whileColor-50 inline">
                 All Article Tags
               </p>
             </button>

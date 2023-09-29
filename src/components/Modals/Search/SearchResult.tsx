@@ -6,6 +6,7 @@ import IGame from "@/interface/games/IGame";
 import { ISearchGame } from "@/interface/games/ISearchGame";
 import { staticPaths } from "@/utils/paths";
 import { useEffect, useState } from "react";
+import { useModalContext } from "@/contexts/ModalContextProvider";
 
 type Props = {
   searchResult: ISearchGame | null;
@@ -13,6 +14,7 @@ type Props = {
 function SearchResult({ searchResult }: Props) {
   const [isNoData, setIsNoData] = useState<boolean>();
   const { category, game, gameByCategory } = searchResult ?? {};
+  const { closeModalWithAnimation } = useModalContext();
   useEffect(() => {
     if (searchResult) {
       const resultSize = Object.values(searchResult).reduce(
@@ -32,17 +34,24 @@ function SearchResult({ searchResult }: Props) {
           <p className="font-medium font-nunito">Can you try something else?</p>
         </div>
       ) : (
-        <div className="grid grid-cols-6 grid-rows-[repeat(auto-fill,94px)] h-[70vh] gap-4 pb-6 mt-[40px] overflow-y-scroll no-scrollbar">
+        <div className="grid grid-cols-6 grid-rows-[repeat(auto-fill,94px)] h-[70vh] gap-4 pb-6 mt-[40px] pt-1 px-2 overflow-y-scroll no-scrollbar">
           {category?.map((item, index) => (
             <CategoryGameItem
               item={item}
               key={index}
               index={index + 7}
               className="row-span-1"
+              closeModalWithAnimation={closeModalWithAnimation}
             />
           ))}
           {game?.concat(gameByCategory)?.map((item: IGame, index: number) => (
-            <Link key={index} href={staticPaths.game_detail(item?.slug)}>
+            <Link
+              key={index}
+              href={staticPaths.game_detail(item?.slug)}
+              onClick={() => {
+                closeModalWithAnimation(400);
+              }}
+            >
               <div className="relative group hover:scale-105 transition-all ease-in-out duration-300">
                 <CustomImage
                   className="min-w-[94px] w-[] h-[94px] rounded-[20px] "

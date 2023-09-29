@@ -8,12 +8,14 @@ type Props = {
   item: IGameCategory;
   index: number;
   className: string;
+  closeModalWithAnimation?: (duration: number) => void;
   [x: string]: any;
 };
 function CategoryGameItem({
   item,
   index,
   className,
+  closeModalWithAnimation,
   onClick,
   ...props
 }: Props) {
@@ -24,6 +26,9 @@ function CategoryGameItem({
       className={`${className} col-span-2 rounded-2xl overflow-hidden relative cursor-pointer w-full bg-white 
                       ${isMinSize ? "flex items-center justify-start" : ""}
                       hover:translate-y-[-2px] hover:scale-105 transition-all duration-300 shadow-[0px_6px_12px_0px_rgb(0,0,0,0.24)]`}
+      onClick={() => {
+        closeModalWithAnimation && closeModalWithAnimation(400);
+      }}
       href={staticPaths.game_category_detail(item?.slug)}
     >
       {/* thumbnail */}

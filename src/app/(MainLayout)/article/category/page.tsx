@@ -43,7 +43,10 @@ function ArticleCategoryAll() {
       <ul className="list-disc ml-4 text-sm font-normal font-lato text-main-pink-ec">
         {articleCategories?.map((category, index) => (
           <li className="mb-2" key={index}>
-            <Link href={`${staticPaths.article_category}/${category?.slug}`}>
+            <Link
+              className="hover:text-main-pink-9d"
+              href={`${staticPaths.article_category}/${category?.slug}`}
+            >
               {category?.label}
             </Link>
           </li>

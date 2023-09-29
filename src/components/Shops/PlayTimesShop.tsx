@@ -14,7 +14,6 @@ type Props = {
   itemsPerPage: number;
 };
 function PlayTimeShop({ list, itemsPerPage }: Props) {
-  console.log("list time", list);
   const { openModal, setPayload } = useModalContext();
   //set item start
   const [itemOffset, setItemOffset] = useState(0);

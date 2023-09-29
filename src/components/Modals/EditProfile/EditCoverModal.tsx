@@ -12,7 +12,7 @@ import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import XmarkICon from "@/asset/icons/XmarkIcon";
 import { GLOBAL_MODAL_NAME } from "@/utils/constants";
-import NoData from "../Others/NoData";
+import NoData from "../../Others/NoData";
 type Props = {
   itemsPerPage: number;
 };

@@ -126,7 +126,6 @@ const ChatBox = forwardRef<any, Props>(function Component(
           <div
             onClick={() => {
               openModal(MODAL_NAME.ONLINE_GAMER);
-              console.log("open online game modal");
             }}
             className="flex justify-between items-center px-[10px] py-1 bg-[#52495D] rounded-[10px] cursor-pointer"
           >

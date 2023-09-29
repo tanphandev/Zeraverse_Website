@@ -252,7 +252,12 @@ function GamePage({ params }: Props) {
       <div className="grid grid-cols-11 gap-4">
         <div className="col-span-8 grid grid-cols-8 gap-4 ">
           <div className="col-span-1 bg-gradient-to-b from-[#4c265f] to-[#96328f] rounded-[10px]">
-            <Image src={Ads1} alt="ads" className="w-full h-full" />
+            <Image
+              priority={true}
+              src={Ads1}
+              alt="ads"
+              className="w-full h-full"
+            />
           </div>
           <div className="col-span-7 grid grid-cols-7 grid-rows-7 gap-4">
             <div className="relative flex flex-col col-span-7 row-span-5 text-main-blackColor rounded-[10px]">
@@ -433,6 +438,7 @@ function GamePage({ params }: Props) {
             </div>
             <div className="col-span-2 bg-main-violet-dd text-main-blackColor rounded-[10px]">
               <Image
+                priority={true}
                 onClick={referAFriend}
                 src={Ads2}
                 alt="ads"
@@ -443,7 +449,7 @@ function GamePage({ params }: Props) {
               <Image src={Thanks} alt="thanks" className="rounded-[10px]" />
             </div>
             <div className="col-span-7 bg-main-grayColor-40 bg-gradient-to-r from-[#96328f] to-[#512962] rounded-[10px]">
-              <Image src={Ads3} alt="ads" className="" />
+              <Image priority={true} src={Ads3} alt="ads" className="" />
             </div>
           </div>
         </div>
@@ -585,8 +591,15 @@ function GamePage({ params }: Props) {
             <div className="px-[19px]">
               {hallOfFameOfGame?.map((item, index) => (
                 <div
+                  onClick={() => {
+                    // Open the URL in a new tab
+                    window.open(
+                      `${staticPaths.achievements(item.user.username)}`,
+                      "_blank"
+                    );
+                  }}
                   key={index}
-                  className="flex justify-between bg-main-grayColor-45 rounded-[10px] py-[5px] px-[10px] mb-4"
+                  className="flex justify-between bg-main-grayColor-45 rounded-[10px] py-[5px] px-[10px] mb-4 cursor-pointer group"
                 >
                   <CustomImage
                     src={item?.user?.avatar?.url}
@@ -597,7 +610,7 @@ function GamePage({ params }: Props) {
                     className="mr-[10px] rounded-[50%]"
                   />
                   <div className="flex-1">
-                    <h2 className="text-base font-semibold">
+                    <h2 className="text-base font-semibold group-hover:text-main-violet-8b">
                       {item?.user.username}
                     </h2>
                     <p

@@ -24,17 +24,43 @@ function Contact() {
       {contacts?.map((contact, index) => {
         let SocialIcon: JSX.Element | null = null;
         if (contact.network === "Facebook") {
-          SocialIcon = <FacebookIcon width="30px" height="30px" />;
+          SocialIcon = (
+            <FacebookIcon
+              className="text-main-whileColor hover:text-main-pink-db transition-colors"
+              width="30px"
+              height="30px"
+            />
+          );
         } else if (contact.network === "Twitter") {
-          SocialIcon = <TwitterIcon width="30px" height="30px" />;
+          SocialIcon = (
+            <TwitterIcon
+              className="text-main-whileColor hover:text-main-pink-db transition-colors"
+              width="30px"
+              height="30px"
+            />
+          );
         } else if (contact.network === "Telegram") {
-          SocialIcon = <TelegramIcon width="30px" height="30px" />;
+          SocialIcon = (
+            <TelegramIcon
+              className="text-main-whileColor hover:text-main-pink-db transition-colors"
+              width="30px"
+              height="30px"
+            />
+          );
         } else if (contact.network === "Discord") {
-          SocialIcon = <DiscordIcon width="30px" height="30px" />;
+          SocialIcon = (
+            <DiscordIcon
+              className="text-main-whileColor hover:text-main-pink-db transition-colors"
+              width="30px"
+              height="30px"
+            />
+          );
         }
         return (
           <Link key={index} href={contact.link}>
-            <div className="mr-[19px] cursor-pointer">{SocialIcon}</div>
+            <div className="mr-[19px] cursor-pointer hover:text-main-pink-be">
+              {SocialIcon}
+            </div>
           </Link>
         );
       })}
