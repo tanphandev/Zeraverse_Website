@@ -21,6 +21,7 @@ export const staticPaths = {
   simple_shop: "/simple-shop",
   terms_of_use: "/terms-of-use",
   user: "/user",
+  otherUser: (user_name: string) => `/user/${user_name}`,
   maintenance: "/maintenance",
   not_found: "/not-found",
 };

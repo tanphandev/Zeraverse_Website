@@ -1,5 +1,5 @@
 import apiURL from "@/utils/apiURL";
-import { httpRequest } from "@/utils/httpRequest";
+import { httpRequestAuth } from "@/utils/httpRequestAuth";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const articleSlice = createSlice({
@@ -71,7 +71,7 @@ export const getNewest = createAsyncThunk(
   "articles/getNewest",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_newest);
+      const { data } = await httpRequestAuth.get(apiURL.get_newest);
       const newest = data?.data?.rows;
       return newest;
     } catch (e: any) {
@@ -84,7 +84,7 @@ export const getListArticleCategory = createAsyncThunk(
   "articles/getListArticleCategory",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_article_categories);
+      const { data } = await httpRequestAuth.get(apiURL.get_article_categories);
       const articleCategory = data?.data?.rows;
       return articleCategory;
     } catch (e: any) {
@@ -97,7 +97,7 @@ export const getArticleRandom = createAsyncThunk(
   "articles/getArticleRandom",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_article_random);
+      const { data } = await httpRequestAuth.get(apiURL.get_article_random);
       const articleRandom = data?.data;
       return articleRandom;
     } catch (e: any) {
@@ -110,7 +110,9 @@ export const getArticles = createAsyncThunk(
   "articles/getArticles",
   async (articleCate: string, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_article(articleCate));
+      const { data } = await httpRequestAuth.get(
+        apiURL.get_article(articleCate)
+      );
       const articleList = data?.data?.articles?.rows;
       const articleData = {
         category_name: articleCate,

@@ -116,7 +116,7 @@ function UserProfile() {
     setIsOpenUserDetail(true);
   };
   return (
-    <UserLayout>
+    <UserLayout userInfo={userInfo!!}>
       <div>
         {isOpenUserDetail && (
           <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">

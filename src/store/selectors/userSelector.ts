@@ -1,3 +1,5 @@
+export const getOtherUserInfoSelector = (state: any) =>
+  state.user.otherUserInfo;
 export const userAvatarInventorySelector = (state: any) =>
   state.user.inventories.avatar;
 export const userCoverInventorySelector = (state: any) =>

@@ -21,9 +21,11 @@ import PurchaseHistory from "./PurchaseHistory";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import { IUserInfo } from "@/interface/user/IUserInfo";
 import IGame from "@/interface/games/IGame";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   userInfo: IUserInfo | null;
-  onClick: ({ title, payload }: { title: string; payload?: any }) => void;
+  onClick?: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function UserActivities({ userInfo, onClick }: Props) {
   const dispatch = useDispatch<AppDispatch>();
@@ -68,9 +70,10 @@ function UserActivities({ userInfo, onClick }: Props) {
               href={staticPaths.game_detail("no-slug")}
               className="relative group hover:scale-105 transition-all ease-in-out duration-300"
             >
-              <Image
+              <CustomImage
                 className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
                 src={mostPlayedGame.game_detail?.thumbnail}
+                fallback={images.default_game_image}
                 alt="MostPlayedPicture"
                 width={324}
                 height={204}

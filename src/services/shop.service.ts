@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { httpRequest } from "@/utils/httpRequest";
+import { httpRequestAuth } from "@/utils/httpRequestAuth";
 import apiURL from "@/utils/apiURL";
 import { SHOP_ITEM } from "@/utils/constants";
 const shopSlice = createSlice({
@@ -48,7 +48,7 @@ export const getShopCategories = createAsyncThunk(
   "shop/getShopCategories",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_shop_categories);
+      const { data } = await httpRequestAuth.get(apiURL.get_shop_categories);
       const categoryList = data?.data;
       return categoryList;
     } catch (e: any) {
@@ -67,7 +67,7 @@ export const getShopItem = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const { data } = await httpRequest.get(
+      const { data } = await httpRequestAuth.get(
         apiURL.get_item_shop(itemShopData.shop_item_id)
       );
       const itemDetail = data?.data?.rows;
@@ -84,7 +84,7 @@ export const getShopItem = createAsyncThunk(
 
 export const buyItemShop = async (itemId: number) => {
   try {
-    const { data } = await httpRequest.post(apiURL.buy_item, {
+    const { data } = await httpRequestAuth.post(apiURL.buy_item, {
       item: itemId,
     });
     return data;

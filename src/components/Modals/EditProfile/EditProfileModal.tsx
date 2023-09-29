@@ -1,3 +1,4 @@
+"user client";
 import XmarkICon from "@/asset/icons/XmarkIcon";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import Image from "next/image";
@@ -8,13 +9,14 @@ import ArrowRightIconPagi from "@/asset/icons/ArrowRightIconPagi";
 import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import EditTextIcon from "@/asset/icons/EditTextIcon";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userAvatarInventorySelector } from "@/store/selectors/userSelector";
 import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import CustomImage from "../../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import { GLOBAL_MODAL_NAME } from "@/utils/constants";
+import { AppDispatch } from "@/store/store";
 type Props = {
   itemsPerPage: number;
 };
@@ -23,6 +25,7 @@ type EditAvatar = {
   id: number;
 };
 function EditProfileModal({ itemsPerPage }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
   const editAvatarRef = useRef<HTMLDivElement>(null);
   const avatarInventory = useSelector(
     userAvatarInventorySelector
@@ -51,6 +54,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
     const newOffset = (event.selected * itemsPerPage) % avatarInventory.length;
     setItemOffset(newOffset);
   };
+
   // handle save edit profile event
   const handleSaveProfile = async () => {
     openGlobalModal(GLOBAL_MODAL_NAME.LOADING);

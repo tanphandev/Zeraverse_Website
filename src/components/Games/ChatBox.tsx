@@ -275,7 +275,7 @@ const MessageItem = ({ message, prevMessage, userInfo }: MessageItemProps) => {
               ?.replaceAll(
                 `${message?.user?.username}`,
                 renderToString(
-                  <Link href={staticPaths.home}>
+                  <Link href={staticPaths.otherUser(message?.user?.username)}>
                     <p className="inline text-center text-xs py-2 text-main-whileColor hover:text-main-violet-a7">
                       {message?.user?.username}
                     </p>
@@ -306,7 +306,7 @@ const MessageItem = ({ message, prevMessage, userInfo }: MessageItemProps) => {
       <>
         {/* avatar, username */}
         {!isOfOnePerson && (
-          <div>
+          <Link href={staticPaths.otherUser(message?.user?.username)}>
             <header className="flex items-center gap-2 mb-2">
               <CustomImage
                 width={0}
@@ -314,13 +314,13 @@ const MessageItem = ({ message, prevMessage, userInfo }: MessageItemProps) => {
                 alt="avatar"
                 src={message?.user?.avatar?.url}
                 fallback={images.default_profile_image}
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full cursor-pointer"
               />
-              <div className="overflow-hidden whitespace-nowrap w-fit max-w-[240px] break-words text-sm text-[#ffffff80] hover:text-main-violet-8b">
+              <div className="overflow-hidden whitespace-nowrap w-fit max-w-[240px] break-words text-sm text-[#ffffff80] hover:text-main-violet-8b cursor-pointer">
                 {message?.user?.username}
               </div>
             </header>
-          </div>
+          </Link>
         )}
         {/* message */}
         <div className="flex justify-start mb-1">

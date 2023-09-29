@@ -86,7 +86,7 @@ function Achievements({
       <div className="w-full rounded-[30px] bg-gradient-to-br from-[#FF00E5] via-[#EAC6E6] to-[#950086] p-[5px] mt-[100px] ">
         <div className="w-full bg-gradient-to-b from-[#300373] to-[#2c026a] py-[64px] px-[110px] rounded-[30px]">
           <div className="flex flex-col items-center mb-[24px]">
-            <div>
+            <Link href={staticPaths.otherUser(username)}>
               <CustomImage
                 src={avatar?.url}
                 fallback={images.default_profile_image}
@@ -95,7 +95,7 @@ function Achievements({
                 className="w-[204px] h-[204px] rounded-[20px]"
                 alt="Avatar"
               />
-            </div>
+            </Link>
             <p className="text-center font-bold text-base mt-2">{username}</p>
             <p className="text-[13px] text-center">{quote}</p>
           </div>

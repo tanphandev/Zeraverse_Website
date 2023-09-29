@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { httpRequest } from "@/utils/httpRequest";
+import { httpRequestAuth } from "@/utils/httpRequestAuth";
 import apiURL from "@/utils/apiURL";
 
 const gameSlice = createSlice({
@@ -104,7 +104,7 @@ export const getGamelist = createAsyncThunk(
   "game/getGameList",
   async (params: { page: string; limit: string }, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_games, {
+      const { data } = await httpRequestAuth.get(apiURL.get_games, {
         params: {
           page: params.page,
           limit: params.limit,
@@ -122,7 +122,7 @@ export const getGameCategories = createAsyncThunk(
   "game/getGameCategories",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_game_categories);
+      const { data } = await httpRequestAuth.get(apiURL.get_game_categories);
       const gameCategories = data?.data;
       return gameCategories;
     } catch (e: any) {
@@ -135,7 +135,7 @@ export const getGame = createAsyncThunk(
   "game/getGame",
   async (game_category_slug: string, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(
+      const { data } = await httpRequestAuth.get(
         apiURL.get_all_game_of_category(game_category_slug)
       );
       const categoryDescription = data?.data?.game_category?.description;
@@ -158,7 +158,7 @@ export const getPopularGame = createAsyncThunk(
   "game/getPopularGame",
   async (data: {}, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_popular_game);
+      const { data } = await httpRequestAuth.get(apiURL.get_popular_game);
       const popularGames = data?.data;
       return popularGames;
     } catch (e: any) {
@@ -171,7 +171,9 @@ export const getInfoGameOfGameDetail = createAsyncThunk(
   "game/getInfoGameOfGameDetail",
   async (game_slug: string, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await httpRequest.get(apiURL.get_game_detail(game_slug));
+      const { data } = await httpRequestAuth.get(
+        apiURL.get_game_detail(game_slug)
+      );
       const gameInfo = data?.data;
       if (data?.success) {
         dispatch(getHallOfFameOfGame(gameInfo?.slug));
@@ -187,7 +189,7 @@ export const getHallOfFameOfGame = createAsyncThunk(
   "game/getHallOfFameOfGame",
   async (game_slug: string, { rejectWithValue }) => {
     try {
-      const { data } = await httpRequest.get(
+      const { data } = await httpRequestAuth.get(
         apiURL.get_hall_of_fame_of_game(game_slug)
       );
       return data.data;
@@ -200,7 +202,7 @@ export const getHallOfFameOfGame = createAsyncThunk(
 export const searchGame = async (keySearch: string) => {
   const encodeKeySearch = encodeURI(keySearch);
   try {
-    const { data } = await httpRequest.get(apiURL.search_game, {
+    const { data } = await httpRequestAuth.get(apiURL.search_game, {
       params: {
         keySearch: encodeKeySearch,
       },
@@ -213,7 +215,7 @@ export const searchGame = async (keySearch: string) => {
 
 export const love_game = async (game_detail_id: number) => {
   try {
-    const { data } = await httpRequest.post(apiURL.love_game, {
+    const { data } = await httpRequestAuth.post(apiURL.love_game, {
       game_detail_id,
     });
     return data;
@@ -227,7 +229,7 @@ export const report_game = async (
   body: { title: string[]; content: string }
 ) => {
   try {
-    const { data } = await httpRequest.post(
+    const { data } = await httpRequestAuth.post(
       apiURL.report_game(game_slug),
       body
     );

@@ -4,7 +4,7 @@ import Image from "next/image";
 type Props = {
   data: IPurchaseHistory;
   title: string;
-  onClick: ({ title, payload }: { title: string; payload?: any }) => void;
+  onClick?: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function PurchaseHistory({ onClick, data, title }: Props) {
   const isAvatarData = data.avatar && data.avatar.length > 0;
@@ -13,14 +13,16 @@ function PurchaseHistory({ onClick, data, title }: Props) {
     <div className="mb-[43px]">
       <div className="flex justify-between text-main-whileColor mb-4">
         <h1 className="text-2xl font-bold font-nunito">{title}</h1>
-        <button
-          onClick={() => {
-            onClick({ title });
-          }}
-          className="text-sx font-medium font-lato hover:text-main-pink-db"
-        >
-          View all {">"}
-        </button>
+        {!!onClick && (
+          <button
+            onClick={() => {
+              onClick({ title });
+            }}
+            className="text-sx font-medium font-lato hover:text-main-pink-db"
+          >
+            View all {">"}
+          </button>
+        )}
       </div>
       {isAvatarData || isCoverData ? (
         <div className="w-full overflow-x-scroll no-scrollbar">

@@ -1,6 +1,5 @@
 "use client";
 import Tippy from "@tippyjs/react";
-import { useAuthContext } from "@/contexts/AuthContextProvider";
 import CustomImage from "@/components/Others/CustomImage";
 import CoinIcon from "@/asset/icons/CoinIcon";
 import AddIcon from "@/asset/icons/AddIcon";
@@ -9,9 +8,27 @@ import { images } from "@/asset/image/images";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
 import "tippy.js/dist/tippy.css";
-function UserLayout({ children }: { children: React.ReactNode }) {
-  const { userInfo } = useAuthContext();
+import { IUserInfo } from "@/interface/user/IUserInfo";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
+function UserLayout({
+  userInfo,
+  children,
+}: {
+  userInfo: IUserInfo;
+  children: React.ReactNode;
+}) {
+  const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false);
+  const { userInfo: currentUserInfo } = useAuthContext();
   const { openModal } = useModalContext();
+  /* check isCurrentUser */
+  useEffect(() => {
+    if (!userInfo || !currentUserInfo) return;
+    if (userInfo?.id === currentUserInfo?.id) {
+      setIsCurrentUser(true);
+    }
+  }, [userInfo, currentUserInfo]);
+
   const openEditAvatarModal = () => {
     openModal(MODAL_NAME.EDIT_PROFILE);
   };
@@ -22,7 +39,7 @@ function UserLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex-1">
       <div className="relative group rounded-[20px]">
-        <Tippy content="Update cover image">
+        <Tippy disabled={!isCurrentUser} content="Update cover image">
           <div>
             <CustomImage
               src={userInfo?.cover}
@@ -35,15 +52,21 @@ function UserLayout({ children }: { children: React.ReactNode }) {
               height={0}
               className="w-full h-[350px] rounded-[20px]"
             />
-            <div
-              onClick={openEditCoverModal}
-              className="transition-all hidden group-hover:flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
-            >
-              <EditIcon width="30px" height="30px" />
-            </div>
+            {isCurrentUser && (
+              <div
+                onClick={openEditCoverModal}
+                className="transition-all hidden group-hover:flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
+              >
+                <EditIcon width="30px" height="30px" />
+              </div>
+            )}
           </div>
         </Tippy>
-        <Tippy content="Update avatar" placement="bottom">
+        <Tippy
+          disabled={!isCurrentUser}
+          content="Update avatar"
+          placement="bottom"
+        >
           <div className="absolute bottom-0 left-11 translate-y-1/2 rounded-[20px]">
             <CustomImage
               className="w-[204px] h-[204px] object-cover rounded-[20px]"
@@ -53,12 +76,14 @@ function UserLayout({ children }: { children: React.ReactNode }) {
               width={0}
               height={0}
             />
-            <div
-              onClick={openEditAvatarModal}
-              className="transition-all flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
-            >
-              <EditIcon width="30px" height="30px" />
-            </div>
+            {isCurrentUser && (
+              <div
+                onClick={openEditAvatarModal}
+                className="transition-all flex hover:opacity-100 justify-center items-center absolute top-0 right-0 bottom-0 left-0 bg-main-grayColor-40 opacity-0 duration-120 rounded-[20px]"
+              >
+                <EditIcon width="30px" height="30px" />
+              </div>
+            )}
           </div>
         </Tippy>
       </div>

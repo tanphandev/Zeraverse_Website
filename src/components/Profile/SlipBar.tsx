@@ -2,25 +2,29 @@ import Link from "next/link";
 import Image from "next/image";
 import NoData from "../Others/NoData";
 import { staticPaths } from "@/utils/paths";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 
 type Props = {
   data: Array<any>;
   title: string;
-  onClick: ({ title, payload }: { title: string; payload?: any }) => void;
+  onClick?: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function SlipBar({ data, title, onClick }: Props) {
   return (
     <div className="mb-[43px]">
       <div className="flex justify-between text-main-whileColor mb-4">
         <h1 className="text-2xl font-bold font-nunito">{title}</h1>
-        <button
-          onClick={() => {
-            onClick({ title });
-          }}
-          className="text-sx font-medium font-lato hover:text-main-pink-db"
-        >
-          View all {">"}
-        </button>
+        {!!onClick && (
+          <button
+            onClick={() => {
+              onClick({ title });
+            }}
+            className="text-sx font-medium font-lato hover:text-main-pink-db"
+          >
+            View all {">"}
+          </button>
+        )}
       </div>
 
       {data.length === 0 ? (
@@ -33,9 +37,10 @@ function SlipBar({ data, title, onClick }: Props) {
               key={index}
               className="relative group hover:scale-105 transition-all ease-in-out duration-300 inline-block mr-4"
             >
-              <Image
+              <CustomImage
                 className={`w-[94px] h-[94px] rounded-[20px]`}
                 src={item?.thumbnail}
+                fallback={images.default_game_image}
                 alt="Image"
                 width={0}
                 height={0}

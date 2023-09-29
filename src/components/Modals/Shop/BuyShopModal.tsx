@@ -125,6 +125,7 @@ function BuyShopModal() {
           .catch((e: any) => {
             throw e;
           });
+        dispatch(userService.getUserInventories({}));
       })
       .catch((e: any) => {
         throw e;
