@@ -79,7 +79,7 @@ function UserActivities({ userInfo, onClick }: Props) {
           </h3>
           {!!mostPlayedGame ? (
             <Link
-              href={staticPaths.game_detail("no-slug")}
+              href={staticPaths.game_detail(mostPlayedGame?.game_detail?.slug)}
               className="relative group hover:scale-105 transition-all ease-in-out duration-300"
             >
               <CustomImage

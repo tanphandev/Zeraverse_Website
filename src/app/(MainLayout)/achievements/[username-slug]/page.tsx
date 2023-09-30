@@ -197,9 +197,9 @@ function Achievements({
               <div className="grid grid-cols-2 gap-x-[21px] gap-y-[15px] mb-6">
                 {currentItems?.map((gameItem, index) => (
                   <Link
-                    href={staticPaths.game_detail(gameItem?.id)}
+                    href={staticPaths.game_detail(gameItem?.game_detail?.slug)}
                     key={index}
-                    className=" flex justify-between items-center bg-gradient-to-b from-[#8B5CF6] to-[#503098] rounded-[20px] p-[10px]"
+                    className="transition-all hover:scale-105 flex justify-between items-center bg-gradient-to-b from-[#8B5CF6] to-[#503098] rounded-[20px] p-[10px]"
                   >
                     <div className="flex items-center">
                       <CustomImage

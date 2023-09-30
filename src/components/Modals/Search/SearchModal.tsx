@@ -92,14 +92,18 @@ function SearchModal() {
               suggestList={gameCategories}
               setSearchValue={setSearchValue}
             />
-            <PopularGame
-              popularGameList={popularGames}
-              closeModal={closeModalWithAnimation}
-            />
-            <RecentlyPlayedGame
-              recentlyPlayedGameList={recentlyPlayedGame}
-              closeModal={closeModalWithAnimation}
-            />
+            {popularGames.length !== 0 && (
+              <PopularGame
+                popularGameList={popularGames}
+                closeModal={closeModalWithAnimation}
+              />
+            )}
+            {recentlyPlayedGame.length !== 0 && (
+              <RecentlyPlayedGame
+                recentlyPlayedGameList={recentlyPlayedGame}
+                closeModal={closeModalWithAnimation}
+              />
+            )}
           </>
         )}
       </div>

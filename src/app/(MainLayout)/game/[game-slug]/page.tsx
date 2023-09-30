@@ -610,7 +610,12 @@ function GamePage({ params }: Props) {
                     className="mr-[10px] rounded-[50%]"
                   />
                   <div className="flex-1">
-                    <h2 className="text-base font-semibold group-hover:text-main-violet-8b">
+                    <h2
+                      className="text-base font-semibold group-hover:text-main-violet-8b line-clamp-1"
+                      style={{
+                        overflowWrap: "anywhere",
+                      }}
+                    >
                       {item?.user.username}
                     </h2>
                     <p

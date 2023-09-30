@@ -9,6 +9,7 @@ import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
 import { ICoverInventory } from "@/interface/user/ICoverInventory";
 import { formatDate } from "@/utils/helper";
+import NoData from "../Others/NoData";
 type Props = {
   list: IAvatarInventory[] | ICoverInventory[];
   title: string;
@@ -42,31 +43,39 @@ function PurchaseItem({
   return (
     <div>
       <h2 className="mb-4 text-2xl font-bold font-nunito">{title}</h2>
-      <div className="grid grid-cols-4 gap-4 mb-4">
-        {currentItems.map((item, index) => (
-          <div className="flex items-center" key={index}>
-            <Image
-              src={item.item_info.url}
-              alt="Image"
-              width={0}
-              height={0}
-              sizes="100vw"
-              className={`h-[${heightPic}] w-[${widthPic}] rounded-[10px] mr-[15px]`}
-            />
-            <div className="flex flex-col text-main-whileColor">
-              <div className="flex items-center">
-                <h3 className="inline-block text-xl font-black font-nunito mr-2 ">
-                  {item.item_info.price}
-                </h3>
-                <CoinIcon className="inline-block" width="20px" height="22px" />
+      {list.length !== 0 ? (
+        <div className="grid grid-cols-4 gap-4 mb-4">
+          {currentItems.map((item, index) => (
+            <div className="flex items-center" key={index}>
+              <Image
+                src={item.item_info.url}
+                alt="Image"
+                width={0}
+                height={0}
+                sizes="100vw"
+                className={`h-[${heightPic}] w-[${widthPic}] rounded-[10px] mr-[15px]`}
+              />
+              <div className="flex flex-col text-main-whileColor">
+                <div className="flex items-center">
+                  <h3 className="inline-block text-xl font-black font-nunito mr-2 ">
+                    {item.item_info.price}
+                  </h3>
+                  <CoinIcon
+                    className="inline-block"
+                    width="20px"
+                    height="22px"
+                  />
+                </div>
+                <span className="text-[8px] font-normal italic font-nunito">
+                  {formatDate(item.updated_at)}
+                </span>
               </div>
-              <span className="text-[8px] font-normal italic font-nunito">
-                {formatDate(item.updated_at)}
-              </span>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <NoData />
+      )}
       <ReactPaginate
         breakLabel="..."
         nextLabel={<ArrowRightIconPagi width="24px" height="24px" />}

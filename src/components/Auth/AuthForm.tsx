@@ -8,6 +8,7 @@ import FacebookColorIcon from "@/asset/icons/FacebookColorIcon";
 import GoogleIcon from "@/asset/icons/GoogleIcon";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";
+import { staticPaths } from "@/utils/paths";
 
 // create schema formik
 const AuthFormSchema = Yup.object().shape({
@@ -140,12 +141,27 @@ function AuthForm({
               setIsAcceptTerm(!isAcceptTerm);
             }}
             type="checkbox"
-            className="mr-[5px]"
+            className="mr-[5px] cursor-pointer"
           />
           <p className="text-xs inline-block">
             I accept the{" "}
-            <span className="text-main-violet-c4">Terms & Conditions</span> and{" "}
-            <span className="text-main-violet-c4">Privacy</span>
+            <span
+              className="text-main-violet-c4 hover:text-main-violet-8b cursor-pointer"
+              onClick={() => {
+                window.open(`${staticPaths.terms_of_use}`, "_blank");
+              }}
+            >
+              Terms & Conditions
+            </span>{" "}
+            and{" "}
+            <span
+              className="text-main-violet-c4 hover:text-main-violet-8b cursor-pointer"
+              onClick={() => {
+                window.open(`${staticPaths.privacy_policy}`, "_blank");
+              }}
+            >
+              Privacy
+            </span>
           </p>
         </div>
       )}
