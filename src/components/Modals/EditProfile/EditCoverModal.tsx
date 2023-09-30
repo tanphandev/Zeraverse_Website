@@ -75,7 +75,7 @@ function EditCoverModal({ itemsPerPage }: Props) {
     }
   };
   return (
-    <div className="z-10 fixed  flex justify-center items-center top-0 left-0 right-0 bottom-0 bg-main-whileColor-30">
+    <div className="z-10 fixed  flex justify-center items-center top-0 left-0 right-0 bottom-0 bg-main-grayColor-50 backdrop-blur-sm">
       <div
         ref={editCoverModalRef}
         id="modal"

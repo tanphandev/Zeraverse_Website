@@ -30,14 +30,15 @@ function ListArticleCategory() {
       <div className=" text-sm font-normal font-lato text-main-pink-ec">
         <ul className="list-disc pl-[17px] mb-[14px]">
           {listFourArticleCategory?.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                gotoArticleDetail(item?.slug);
-              }}
-              className="cursor-pointer hover:text-main-pink-83"
-            >
-              {item.label}
+            <li key={index}>
+              <p
+                onClick={() => {
+                  gotoArticleDetail(item?.slug);
+                }}
+                className="inline cursor-pointer hover:text-main-pink-83"
+              >
+                {item.label}
+              </p>
             </li>
           ))}
         </ul>

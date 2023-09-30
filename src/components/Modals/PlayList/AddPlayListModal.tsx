@@ -157,7 +157,7 @@ function AddPlayListModal() {
       });
   };
   return (
-    <div className="z-20 flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-main-whileColor-30">
+    <div className="z-20 flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-main-grayColor-50 backdrop-blur-sm">
       <div
         id="modal"
         ref={addPlayListRef}

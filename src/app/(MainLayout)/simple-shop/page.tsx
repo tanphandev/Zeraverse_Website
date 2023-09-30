@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as shopService from "@/services/shop.service";
 import AvatarShop from "@/components/Shops/AvatarShop";
@@ -21,10 +20,11 @@ import { IPlaytimeShop } from "@/interface/shop/IPlaytimeShop";
 import { IShopCategories } from "@/interface/shop/IShopCategories";
 import { IAvatar } from "@/interface/shop/IAvatar";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
+import Link from "next/link";
+import { staticPaths } from "@/utils/paths";
 
 function SimpleShop() {
-  const router = useRouter();
-  const { userInfo } = useAuthContext();
+  const { userInfo, prevRoute } = useAuthContext();
   const dispatch = useDispatch<AppDispatch>();
   const shopCategoriesSelectorResult = useSelector<RootState>(
     shopCategoriesSelector
@@ -92,17 +92,14 @@ function SimpleShop() {
         }
       });
   }, [isFetchCategories]);
-  const GotoHome = () => {
-    router.push("/");
-  };
   return (
     <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-violet-c4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">
-      <button
-        onClick={GotoHome}
+      <Link
+        href={prevRoute.current || staticPaths.home}
         className="absolute top-[25px] left-[21px] text-sm font-bold text-main-pink-ec"
       >
         {"<"}Back
-      </button>
+      </Link>
       <div className="mt-[9px]">
         <h1 className="inline text-[40px] font-bold font-lato px-[30px] py-[10px] bg-main-pink-9d rounded-[20px] shadow-[inset_-2px_-2px_2px_rgba(0,0,0,0.6)] ">
           Simple Shop
