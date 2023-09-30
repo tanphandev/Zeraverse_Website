@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import SlipBar from "./SlipBar";
@@ -23,12 +22,23 @@ import { IUserInfo } from "@/interface/user/IUserInfo";
 import IGame from "@/interface/games/IGame";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
+import { useAuthContext } from "@/contexts/AuthContextProvider";
 type Props = {
   userInfo: IUserInfo | null;
   onClick?: ({ title, payload }: { title: string; payload?: any }) => void;
 };
 function UserActivities({ userInfo, onClick }: Props) {
   const dispatch = useDispatch<AppDispatch>();
+  const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false);
+  const { userInfo: currentUserInfo } = useAuthContext();
+
+  /* check isCurrentUser */
+  useEffect(() => {
+    if (!userInfo || !currentUserInfo) return;
+    if (userInfo?.id === currentUserInfo?.id) {
+      setIsCurrentUser(true);
+    }
+  }, [userInfo, currentUserInfo]);
 
   const mostPlayedGame = useSelector<RootState>(
     userMostPlayedGameSelector
@@ -47,12 +57,14 @@ function UserActivities({ userInfo, onClick }: Props) {
   ) as IPurchaseHistory;
   //get User Recently Game, Loved Game, PlayList Game
   useEffect(() => {
+    if (!userInfo) return;
     dispatch(userService.getMostPlayedGame(userInfo?.username!!));
     dispatch(userService.getUserRecentlyGame(userInfo?.username!!));
     dispatch(userService.getUserLovedGame(userInfo?.username!!));
     dispatch(userService.getUserPlayListGame(userInfo?.username!!));
-    dispatch(userService.getUserPurchaseHistory(userInfo?.username!!));
-  }, [userInfo, dispatch]);
+    isCurrentUser &&
+      dispatch(userService.getUserPurchaseHistory(userInfo?.username!!));
+  }, [userInfo, dispatch, isCurrentUser]);
 
   //
   return (
@@ -111,11 +123,13 @@ function UserActivities({ userInfo, onClick }: Props) {
           data={userListGame}
           title={UserField.playListGame}
         />
-        <PurchaseHistory
-          onClick={onClick}
-          data={userPurchaseHistory}
-          title={UserField.purchaseHistory}
-        />
+        {isCurrentUser && (
+          <PurchaseHistory
+            onClick={onClick}
+            data={userPurchaseHistory}
+            title={UserField.purchaseHistory}
+          />
+        )}
       </div>
     </div>
   );

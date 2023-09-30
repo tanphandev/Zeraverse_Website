@@ -19,12 +19,6 @@ function ArticleCategoryAll() {
   }, [articleCategories]);
   return (
     <div className="font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 py-[24px] px-[28px] mb-[40px]">
-      <Link
-        href={"/"}
-        className="text-sm font-bold text-main-pink-ec cursor-pointer"
-      >
-        {"<"} Back
-      </Link>
       <div className="mb-[20px] mt-5">
         <Breadcrumbs
           items={[

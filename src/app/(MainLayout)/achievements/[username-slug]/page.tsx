@@ -32,7 +32,6 @@ function Achievements({
   const achievements =
     (useSelector<RootState>(achievementSelector) as IAchievement) ?? {};
   const { userInfo: currentUserInfo, prevRoute } = useAuthContext();
-  console.log("prevRoute", prevRoute);
   let { user_info, played_game, total_earned_zera, play_streak } = achievements;
   const { username, id, avatar, quote, highest_playstreak } = user_info ?? {};
   const { count, rows } = played_game ?? {};

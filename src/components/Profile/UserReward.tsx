@@ -17,7 +17,7 @@ function UserReward({ userInfo }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const userRewards = useSelector<RootState>(userRewardsSelector) as any[];
   useEffect(() => {
-    dispatch(userService.getUserRewards(userInfo?.username!!));
+    !!userInfo && dispatch(userService.getUserRewards(userInfo?.username!!));
   }, [userInfo, dispatch]);
   return (
     <div className="h-full text-main-whileColor bg-main-grayColor-50 rounded-[20px]">

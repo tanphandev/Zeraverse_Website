@@ -8,12 +8,13 @@ import { useEffect } from "react";
 import { ISso } from "@/interface/auth/ISso";
 import { GLOBAL_MODAL_NAME, SSO_METHOD } from "@/utils/constants";
 import { useModalContext } from "@/contexts/ModalContextProvider";
+import Link from "next/link";
+import { staticPaths } from "@/utils/paths";
 
 function LoginPage() {
   const { loginWithEmail, loginWithSSO } = useAuthContext();
   const { openGlobalModal, closeGlobalModal } = useModalContext();
   const { data: session } = useSession();
-  console.log("session in login from ", session);
   const handleLoginWithEmail = async (loginFormData: IAuthFormData) => {
     openGlobalModal(GLOBAL_MODAL_NAME.LOADING);
     try {
@@ -61,7 +62,9 @@ function LoginPage() {
   return (
     <>
       <div className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30">
-        <Image className="w-[200px] h-[108px] mb-4" src={Logo} alt="Logo" />
+        <Link href={staticPaths.home} className="cursor-pointer">
+          <Image className="w-[200px] h-[108px] mb-4" src={Logo} alt="Logo" />
+        </Link>
         <AuthForm handleSubmit={handleLoginWithEmail} type="Login" />
       </div>
     </>

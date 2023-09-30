@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Logo from "@/asset/image/Logo.png";
+import Logo from "@/../public/asset/image/Logo.png";
 import * as AuthService from "@/services/auth.service";
 import { toast } from "react-toastify";
 import {

@@ -22,28 +22,20 @@ function OtherUser({ params }: Props) {
   useEffect(() => {
     dispatch(userService.getOtherUserInfo(params["user-name"]));
   }, []);
-  const [isOpenUserDetail, setIsOpenUserDetail] = useState<boolean>(true);
-  const [isOpenPurchaseHistory, setIsOpenPurchaseHistory] =
-    useState<boolean>(false);
-  useEffect(() => {
-    dispatch(userService.getUserInventories({}));
-  }, [dispatch]);
   return (
     <UserLayout userInfo={otherUserInfo!!}>
       <div>
-        {isOpenUserDetail && (
-          <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
-            <div className="col-span-4">
-              <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
-                <UserStatus userInfo={otherUserInfo} />
-                <UserReward userInfo={otherUserInfo} />
-              </div>
-            </div>
-            <div className="col-span-7">
-              <UserActivities userInfo={otherUserInfo} />
+        <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
+          <div className="col-span-4">
+            <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
+              <UserStatus userInfo={otherUserInfo!!} />
+              <UserReward userInfo={otherUserInfo!!} />
             </div>
           </div>
-        )}
+          <div className="col-span-7">
+            <UserActivities userInfo={otherUserInfo!!} />
+          </div>
+        </div>
       </div>
     </UserLayout>
   );

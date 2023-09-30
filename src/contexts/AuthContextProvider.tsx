@@ -84,7 +84,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [verifyStatus, setVerifyStatus] = useState<VERIFY_STATUS>(
     VERIFY_STATUS.NOT_START
   );
-  console.log("session in authContextModal", session);
   const prevRoute = useRef<string>("");
   const currentRoute = useRef<string>(url);
   const isAuthenPath = useMemo(

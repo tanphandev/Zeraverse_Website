@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "@/asset/image/Logo.png";
+import Logo from "@/../public/asset/image/Logo.png";
 import { useState } from "react";
 import HidePasswordIcon from "@/asset/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@/asset/icons/ShowPasswordIcon";

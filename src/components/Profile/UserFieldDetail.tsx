@@ -2,9 +2,10 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import NoData from "../Others/NoData";
+import IGame from "@/interface/games/IGame";
 type Props = {
   title: string;
-  dataList: Array<IGame>;
+  dataList: IGame[];
   onBack: (title: string) => void;
 };
 
