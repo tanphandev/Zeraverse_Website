@@ -1,7 +1,9 @@
 import {
   forwardRef,
+  memo,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -32,6 +34,7 @@ const ChatBox = forwardRef<any, Props>(function Component(
   ref
 ) {
   const [messages, setMessages] = useState<IMessage[]>([]);
+
   const [isOpenEmoji, setIsOpenImoji] = useState<boolean>(false);
   const [selectedEmoji, setSelectedEmoji] = useState<string>("1f60a");
   const [inputValue, setInputValue] = useState<string>("");
@@ -43,6 +46,8 @@ const ChatBox = forwardRef<any, Props>(function Component(
     useSocketContext();
   const { openModal, payload, setPayload } = useModalContext();
   const { users }: { users: any[] } = payload ?? {};
+
+  const memoizedMessages = useMemo(() => messages, [messages]);
 
   useEffect(() => {
     if (users) {
@@ -157,12 +162,12 @@ const ChatBox = forwardRef<any, Props>(function Component(
         >
           {!!userInfo ? (
             <div ref={messageRef}>
-              {messages?.map((message, index) => (
+              {memoizedMessages?.map((message, index) => (
                 <MessageItem
                   key={index}
                   message={message}
                   userInfo={userInfo!!}
-                  prevMessage={index > 0 ? messages[index - 1] : null}
+                  prevMessage={index > 0 ? memoizedMessages[index - 1] : null}
                 />
               ))}
             </div>
@@ -182,6 +187,7 @@ const ChatBox = forwardRef<any, Props>(function Component(
         </div>
         <div className="relative rounded-[10px] py-[8px] pl-[20px] pr-[80px] bg-[#52495D] ">
           <input
+            spellCheck={false}
             value={inputValue}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setInputValue(e.target.value);
@@ -225,7 +231,7 @@ const ChatBox = forwardRef<any, Props>(function Component(
   );
 });
 
-export default ChatBox;
+export default memo(ChatBox);
 
 type MessageItemProps = {
   message: IMessage;
@@ -237,7 +243,11 @@ enum Message_Type {
   MY_MESSAGE = "MY_MESSAGE",
   USER_MESSAGE = "USER_MESSAGE",
 }
-const MessageItem = ({ message, prevMessage, userInfo }: MessageItemProps) => {
+const MessageItem = memo(function Component({
+  message,
+  prevMessage,
+  userInfo,
+}: MessageItemProps) {
   const isOfOnePerson = !prevMessage?.is_message
     ? false
     : message?.user_id === prevMessage?.user_id
@@ -332,4 +342,4 @@ const MessageItem = ({ message, prevMessage, userInfo }: MessageItemProps) => {
     ),
   };
   return <>{MESSAGE_NODE[message_type(message, userInfo)]}</>;
-};
+});

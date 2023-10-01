@@ -7,6 +7,7 @@ import { formatDate } from "@/utils/helper";
 import { staticPaths } from "@/utils/paths";
 import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
+import Link from "next/link";
 type Props = {
   articleRandom: IArticleRandom[];
 };
@@ -95,21 +96,19 @@ function ArticleCarousel({ articleRandom }: Props) {
                         <p className="font-light font-nunito mb-[43px]">
                           {formatDate(item?.updated_at)}
                         </p>
-                        <div className="transition-colors inline-flex items-center px-[10px] py-[6px] bg-main-pink-be rounded-[2px] hover:bg-main-pink-83">
-                          <button
-                            onClick={() => {
-                              goToArticleDetail(item?.slug);
-                            }}
-                            className="inline text-xs font-normal font-nunito"
-                          >
+                        <Link
+                          href={staticPaths.article_detail(item?.slug)}
+                          className="transition-colors inline-flex items-center px-[10px] py-[6px] bg-main-pink-be rounded-[2px] hover:bg-main-pink-83"
+                        >
+                          <p className="inline text-xs font-normal font-nunito">
                             Read More
-                          </button>
+                          </p>
                           <ArrowRightIcon
                             className="inline"
                             width="20px"
                             height="20px"
                           />
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -94,13 +94,15 @@ function ReportModal() {
                 <div key={index} className="flex items-center mb-2">
                   <input
                     id={item.lable}
-                    className="mr-3 w-[18px] h-[18px]"
+                    className="mr-3 w-[18px] h-[18px] cursor-pointer"
                     type="checkbox"
                     checked={titleReport.includes(item.value)}
                     value={item.value}
                     onChange={() => handleCheckboxChange(item.value)}
                   />
-                  <label htmlFor={item.lable}>{item.lable}</label>
+                  <label className="cursor-pointer" htmlFor={item.lable}>
+                    {item.lable}
+                  </label>
                 </div>
               ))}
               <label htmlFor="">Else</label>
