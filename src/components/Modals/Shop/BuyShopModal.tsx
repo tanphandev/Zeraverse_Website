@@ -156,7 +156,7 @@ function BuyShopModal() {
                 <Image
                   src={url}
                   alt="avatar"
-                  className="mb-[5px] w-[115px] h-[147px] rounded-[20px]"
+                  className="mb-[5px] w-[115px] h-[147px] object-cover rounded-[20px]"
                 />
               </div>
             ) : (

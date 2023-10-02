@@ -44,15 +44,15 @@ function UserFieldDetail({ title, dataList, onBack }: Props) {
           <NoData />
         </div>
       ) : (
-        <div className="grid grid-cols-10 gap-4 p-11">
+        <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 py-11 px-9 flex justify-center ">
           {dataList.map((item, index) => (
             <Link
               href={staticPaths.game_detail(item?.slug)}
               key={index}
-              className="relative group hover:scale-105 transition-all ease-in-out duration-300 inline-block mr-4"
+              className="w-full h-full relative group hover:scale-105 transition-all ease-in-out duration-300 inline-block "
             >
               <CustomImage
-                className={`w-[94px] h-[94px] rounded-[20px]`}
+                className={`w-full h-full object-cover rounded-[20px]`}
                 src={item?.thumbnail}
                 fallback={images.default_game_image}
                 alt="Image"

@@ -72,7 +72,7 @@ function UserBar({ zera }: Props) {
     setPayload(payload);
   };
   return (
-    <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mr-4 mb-[3px] ">
+    <div className=" flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)]">
       <div className="w-[146px] border-b-[1px] border-main-violet-c4">
         <h2 className="my-[10px] text-base font-black font-nunito text-main-whileColor text-center">
           {zera}

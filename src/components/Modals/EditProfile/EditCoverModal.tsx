@@ -13,6 +13,8 @@ import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import XmarkICon from "@/asset/icons/XmarkIcon";
 import { GLOBAL_MODAL_NAME } from "@/utils/constants";
 import NoData from "../../Others/NoData";
+import CustomImage from "@/components/Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   itemsPerPage: number;
 };
@@ -99,12 +101,13 @@ function EditCoverModal({ itemsPerPage }: Props) {
             <>
               <div className="grid grid-cols-2 gap-4 mb-[29px]">
                 {currentItems.map((item, index) => (
-                  <Image
+                  <CustomImage
                     onClick={() => {
                       handleEditCover(item);
                     }}
                     key={index}
                     src={item.item_info.url}
+                    fallback={images.default_cover_image}
                     alt="cover"
                     width={0}
                     height={0}
@@ -113,7 +116,7 @@ function EditCoverModal({ itemsPerPage }: Props) {
                       item.item_info.id === editCover.id
                         ? "border-[4px] border-main-pink-be"
                         : ""
-                    } w-[424px] max-h-[204px] rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
+                    } w-[424px] max-h-[204px] object-cover rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
                   />
                 ))}
               </div>

@@ -38,7 +38,10 @@ function LetterForm() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="font-lato mr-[116px]">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="font-lato flex flex-col items-center mb-[40px] md:mb-0 md:items-start md:mr-[116px]"
+    >
       <h3 className="text-main-whileColor font-semibold mb-[11px] font-lato">
         Join our newsletter
       </h3>

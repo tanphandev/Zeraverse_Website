@@ -145,7 +145,7 @@ function UserPlayListPage({
                         className="relative group hover:scale-105 transition-all ease-in-out duration-300"
                       >
                         <Image
-                          className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                          className={`max-w-full max-h-full w-auto h-full object-cover rounded-[20px]`}
                           src={game.thumbnail}
                           alt="gamePicture"
                           sizes="100vw"

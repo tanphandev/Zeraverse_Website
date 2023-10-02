@@ -44,7 +44,7 @@ export default function Home() {
             <TrendingNew list={newest} />
             <ListArticleCategory />
           </div>
-          <DailyGift />
+          {/* <DailyGift /> */}
         </div>
       </MainLayout>
     </div>

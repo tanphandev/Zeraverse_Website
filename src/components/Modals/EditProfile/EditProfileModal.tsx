@@ -144,7 +144,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
           <div className="flex flex-col justify-between ml-[30px] ">
             <div className="grid grid-cols-3 gap-4 mb-[46px] mt-[32px]">
               {currentItems.map((item, index) => (
-                <Image
+                <CustomImage
                   onClick={() => {
                     setEditAvatar({
                       avatar: item.item_info.url,
@@ -153,6 +153,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
                   }}
                   key={index}
                   src={item?.item_info?.url}
+                  fallback={images.default_profile_image}
                   alt="avatar"
                   width={0}
                   height={0}
@@ -161,7 +162,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
                     item.item_info.id === editAvatar.id
                       ? "border-[4px] border-main-pink-be"
                       : ""
-                  } w-[156px] h-[156px] object-cover rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
+                  } transition-all w-[156px] h-[156px] object-cover rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
                 />
               ))}
             </div>

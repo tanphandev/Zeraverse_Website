@@ -3,10 +3,12 @@ import AppBar from "@/components/AppBar/AppBar";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-mainBackground w-full bg-cover bg-bottom bg-fixed">
-      <div className="flex pt-4 px-[24px]">
-        <AppBar />
-        <div className="flex-1">{children}</div>
+    <div className="flex flex-col items-center bg-mainBackground w-full bg-cover bg-bottom bg-fixed">
+      <div>
+        <div className="flex">
+          <AppBar className="hidden lg:block pl-4" />
+          <div className="p-4">{children}</div>
+        </div>
       </div>
       <Footer />
     </div>

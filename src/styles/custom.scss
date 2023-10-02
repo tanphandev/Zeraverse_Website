@@ -40,6 +40,12 @@
   transform-origin: center;
 }
 
+#app-bar-md.hide {
+  opacity: 0;
+  scale: 0;
+  transform-origin: 0 0;
+}
+
 .EmojiPickerReact {
   position: absolute !important;
   z-index: 10;

@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Tippy from "@tippyjs/react/headless";
-import UserOption from "./UserOptions";
-import UserBar from "./UserBar";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME } from "@/utils/constants";
 import { staticPaths } from "@/utils/paths";
@@ -18,14 +16,18 @@ import CasualIcon from "@/asset/icons/CasualIcon";
 import GameIcon from "@/asset/icons/GameIcon";
 import CatelogyIcon from "@/asset/icons/CategoryIcon";
 import TagIcon from "@/asset/icons/TagIcon";
-import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import { useSocketContext } from "@/contexts/SocketContextProvider";
-
+import CustomImage from "@/components/Others/CustomImage";
+import UserOption from "@/components/AppBar/UserOptions";
+import UserBar from "@/components/AppBar/UserBar";
+import { useOnClickOutside } from "@/hooks/useClickOutSide";
+import { sleep } from "@/utils/helper";
 type Props = {
-  className?: string;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
-function AppBar({ className }: Props) {
+function AppBarMD({ setIsShow }: Props) {
+  const appBarMDRef = useRef<HTMLDivElement>(null);
   const { userInfo } = useAuthContext();
   const { openModal } = useModalContext();
   const { remainingTime } = useSocketContext();
@@ -34,6 +36,13 @@ function AppBar({ className }: Props) {
   const showUserOption = () => setVisibleUserOption(true);
   const hideUserOption = () => setVisibleUserOption(false);
 
+  useOnClickOutside(appBarMDRef, () => {
+    const tempRef = document.getElementById("app-bar-md");
+    tempRef?.classList.add("hide");
+    sleep(500).then(() => {
+      setIsShow(false);
+    });
+  });
   //toggle menu
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -43,8 +52,12 @@ function AppBar({ className }: Props) {
     openModal(MODAL_NAME.SEARCH);
   };
   return (
-    <div className={className}>
-      <div className="flex flex-col items-center w-[204px] rounded-[20px] bg-[rgba(15,9,45,0.7)] mb-[16px] mt-4">
+    <div
+      id="app-bar-md"
+      className="transition-all duration-500 animate-fadeIn_20 fixed z-20 top-0 backdrop-blur-[10px] flex rounded-[20px] h-[340px] mt-4"
+      ref={appBarMDRef}
+    >
+      <div className="overflow-y-scroll no-scrollbar flex flex-col items-center w-[204px] rounded-[20px] bg-[#00000080] mr-4">
         <Link href={staticPaths.home}>
           <Image
             className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"
@@ -72,7 +85,7 @@ function AppBar({ className }: Props) {
           id="menu"
           className={`relative ${
             toggleMenu ? "show-menu" : ""
-          } h-0 opacity-0 overflow-hidden transition-all duration-500 border-b-[1px] border-main-violet-c4`}
+          } h-0 opacity-0 transition-all duration-500 border-b-[1px] border-main-violet-c4`}
         >
           <div className="border-b-[1px] border-[#8f66a2] mt-7">
             <button className="block w-full text-left mb-4">
@@ -209,4 +222,4 @@ function AppBar({ className }: Props) {
   );
 }
 
-export default AppBar;
+export default AppBarMD;

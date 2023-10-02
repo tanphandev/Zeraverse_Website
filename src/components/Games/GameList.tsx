@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import * as gameService from "@/services/game.service";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
@@ -10,12 +9,14 @@ import CustomImage from "../Others/CustomImage";
 import { images } from "@/asset/image/images";
 import IGame from "@/interface/games/IGame";
 import { staticPaths } from "@/utils/paths";
+import AppBarMDItem from "../AppBar/AppBarMDItem";
+import AppBarMD from "../Modals/AppBarMD/AppBarMD";
 function GameList() {
-  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const gameList = useSelector<RootState>(gameListSelector) as IGame[];
   const gridSystemRef = useRef<HTMLDivElement | null>(null);
   const itemsRef = useRef<HTMLImageElement[]>([]);
+  const [isShowAppBarMD, setIsShowAppBarMD] = useState<boolean>(false);
   /* get game */
   useEffect(() => {
     !gameList &&
@@ -34,8 +35,8 @@ function GameList() {
       ) as HTMLImageElement[];
     }
     //resize for large items and medium items
-    const itemLargeNumbers = [0, 10, 16, 29, 30];
-    const itemMediumNumbers = [5, 8, 9, 14, 15, 27, 28];
+    const itemLargeNumbers = [1, 11, 17, 30, 31];
+    const itemMediumNumbers = [6, 9, 10, 15, 16, 28, 29];
     const itemLargeList = itemsRef.current.filter((item, index) => {
       return itemLargeNumbers.includes(index);
     });
@@ -51,9 +52,16 @@ function GameList() {
   }, [gameList]);
   return (
     <div
-      className="grid grid-cols-11 grid-flow-dense gap-4"
+      className="p-4 -m-4 w-[346px] sm:w-[456px] md:w-[676px] lg:w-[818px] xl:w-[1006px] min-[1348px]:w-[1116px] 2xl:w-[1226px] grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] grid-flow-dense gap-4 "
       ref={gridSystemRef}
     >
+      <div className="relative lg:hidden">
+        <AppBarMDItem
+          isShowAppBarMD={isShowAppBarMD}
+          setIsShowAppBarMD={setIsShowAppBarMD}
+        />
+        {isShowAppBarMD && <AppBarMD setIsShow={setIsShowAppBarMD} />}
+      </div>
       {gameList?.map((game: IGame, index: number) => (
         <Link
           href={staticPaths.game_detail(game?.slug)}
@@ -61,7 +69,7 @@ function GameList() {
           className="relative group hover:scale-105 transition-all ease-in-out duration-300"
         >
           <CustomImage
-            className={`max-w-full max-h-full w-full h-full min-h-[94px] rounded-[20px]`}
+            className={`w-full h-full object-cover rounded-[20px]`}
             src={game.thumbnail}
             fallback={images.default_game_image}
             alt="gamePicture"

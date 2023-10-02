@@ -30,7 +30,7 @@ function ArticleCarousel({ articleRandom }: Props) {
     }, 3000);
   }, []);
   return (
-    <div className="pr-[28px]">
+    <div>
       {/* Carousel */}
       {!!articleRandom && (
         <div

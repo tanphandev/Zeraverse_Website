@@ -2,6 +2,8 @@ import Image from "next/image";
 import IPlayListGame from "@/interface/user/IPlayListGame";
 import NoData from "../Others/NoData";
 import PlayListGameIcon from "@/asset/icons/PlayListGameIcon";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   data: IPlayListGame[];
   title: string;
@@ -38,13 +40,14 @@ function PlayListGame({ data, title, onClick }: Props) {
               className="mr-4 inline-flex border-[3px] border-main-pink-f4 rounded-[10px]"
             >
               {item?.thumbnail ? (
-                <Image
+                <CustomImage
                   width={0}
                   height={0}
                   sizes="100vw"
                   src={item?.thumbnail}
+                  fallback={images.default_game_image}
                   alt="Image"
-                  className="w-[94px] rounded-[10px] inline-block"
+                  className="object-cover w-[94px] rounded-[10px] inline-block"
                 />
               ) : (
                 <div className="mx-4">

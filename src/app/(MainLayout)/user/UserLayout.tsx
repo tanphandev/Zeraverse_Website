@@ -43,14 +43,11 @@ function UserLayout({
           <div>
             <CustomImage
               src={userInfo?.cover}
-              style={{
-                objectFit: "cover",
-              }}
               fallback={images.default_cover_image}
               alt="bacground"
               width={0}
               height={0}
-              className="w-full h-[350px] rounded-[20px]"
+              className="w-full h-[350px] rounded-[20px] object-cover"
             />
             {isCurrentUser && (
               <div
@@ -103,7 +100,13 @@ function UserLayout({
             {userInfo?.zera}
           </h2>
           <CoinIcon className="mr-[5px]" width="30px" height="32px" />
-          <AddIcon width="29px" height="29px" className="cursor-pointer" />
+          <Tippy content="Buy Zera" placement="bottom">
+            <AddIcon
+              width="29px"
+              height="29px"
+              className="cursor-pointer outline-none"
+            />
+          </Tippy>
         </div>
       </div>
       {children}

@@ -20,7 +20,7 @@ function Contact() {
     !contacts && dispatch(userService.getContact({}));
   }, [contacts]);
   return (
-    <div className="flex">
+    <div className="flex md:ml-[-15px]">
       {contacts?.map((contact, index) => {
         let SocialIcon: JSX.Element | null = null;
         if (contact.network === "Facebook") {
@@ -58,7 +58,7 @@ function Contact() {
         }
         return (
           <Link key={index} href={contact.link}>
-            <div className="mr-[19px] cursor-pointer hover:text-main-pink-be">
+            <div className="mx-[15px] cursor-pointer hover:text-main-pink-be">
               {SocialIcon}
             </div>
           </Link>

@@ -83,12 +83,12 @@ function UserActivities({ userInfo, onClick }: Props) {
               className="relative group hover:scale-105 transition-all ease-in-out duration-300"
             >
               <CustomImage
-                className={`max-w-full max-h-full w-auto h-full rounded-[20px]`}
+                className={`w-[314px] h-[314px] object-cover rounded-[20px]`}
                 src={mostPlayedGame.game_detail?.thumbnail}
                 fallback={images.default_game_image}
                 alt="MostPlayedPicture"
-                width={324}
-                height={204}
+                width={0}
+                height={0}
               />
               <p className="w-full overflow-hidden whitespace-nowrap truncate text-center absolute bottom-0 left-1/2 -translate-x-1/2 opacity-0 transition-all ease-in-out group-hover:translate-y-[-14px] group-hover:opacity-100 duration-300 text-base text-[#f6f5f5] font-semibold font-lato drop-shadow-2xl [text-shadow:_2px_2px_2px_rgb(0_0_0_/_0.8)] px-1">
                 {mostPlayedGame.game_detail?.title}

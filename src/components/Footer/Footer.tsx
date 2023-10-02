@@ -5,9 +5,9 @@ import LetterForm from "./LetterForm";
 import Contact from "./Contact";
 function Footer() {
   return (
-    <div className="bg-frameFooter bg-cover w-full px-[70px] pt-[130px] pb-[10px]">
+    <div className="bg-frameFooter bg-cover w-full pt-[200px] px-[70px] md:pt-[130px] pb-[10px]">
       <div className=" w-full h-full ">
-        <div className="flex w-full h-[calc(100%-40px)] items-end justify-between pb-[50px]">
+        <div className="flex flex-col items-center lg:flex-row w-full h-[calc(100%-40px)] items-end justify-between pb-[50px]">
           <Link href={"/"}>
             <Image
               className="max-w-[290px] max-h-[156px]"
@@ -15,13 +15,13 @@ function Footer() {
               alt="Logo"
             />
           </Link>
-          <div className="flex">
+          <div className="flex flex-col items-center md:flex-row">
             <LetterForm />
             <div>
-              <h2 className="text-[28px] font-semibold text-main-whileColor font-lato mb-[10px]">
+              <h2 className="text-[28px] text-center md:text-start font-semibold text-main-whileColor font-lato mb-[10px]">
                 Useful links
               </h2>
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center md:items-start">
                 <Link
                   className="text-base leading-[1.6 text-main-whileColor mb-[10px] block] hover:text-main-pink-db"
                   href={"about-us"}
