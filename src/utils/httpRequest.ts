@@ -2,6 +2,15 @@ import axios from "axios";
 
 import { config } from "../envs/env";
 
+const headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json; charset=utf-8",
+  "X-Requested-With": "XMLHttpRequest",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Credentials": true,
+};
+
 class Http {
   instance: any = null;
 
@@ -12,6 +21,7 @@ class Http {
   initHttp() {
     const http = axios.create({
       baseURL: config["BASE_URL"],
+      headers,
     });
 
     http.interceptors.response.use(

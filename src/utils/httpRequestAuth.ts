@@ -13,8 +13,10 @@ import queryString from "query-string";
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
-  "Access-Control-Allow-Credentials": true,
   "X-Requested-With": "XMLHttpRequest",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Credentials": true,
 };
 
 // We can use the following function to inject the JWT token through an interceptor
