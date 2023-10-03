@@ -40,42 +40,42 @@ function ArticleCategory({ params }: Props) {
     dispatch(articleService.getArticles(params["category-slug"]));
   }, []);
   return (
-    <div>
-      <div className="grid grid-cols-11 gap-4 bg-main">
-        <h2 className="col-span-4 text-[28px] text-center font-bold font-nunito text-main-whileColor py-7 rounded-[10px] bg-gradient-to-b from-[#979BFF] via-[#ef75f5] to-[#EF36C6] mb-4">
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px]">
+      <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 bg-main mb-4">
+        <h2 className="col-span-3 sm:col-span-4 text-[28px] text-center font-bold font-nunito text-main-whileColor py-7 rounded-[10px] bg-gradient-to-b from-[#979BFF] via-[#ef75f5] to-[#EF36C6]">
           {toUpperCaseFirstLetterOfWord(params["category-slug"])}
         </h2>
-        <div className="col-span-10 mb-[130px]">
-          <div className="grid grid-cols-2 gap-4 mb-5">
-            {currentItems?.map((article, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={staticPaths.article_detail(article?.slug)}
-                >
-                  <ArticleItem article={article} />
-                </Link>
-              );
-            })}
-          </div>
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel={<ArrowRightIconPagi width="24px" height="24px" />}
-            previousLabel={<ArrowLeftIconPagi width="24px" height="24px" />}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={4}
-            marginPagesDisplayed={1}
-            forcePage={0}
-            pageCount={pageCount}
-            renderOnZeroPageCount={null}
-            pageClassName="page-item text-[14px] text-main-whileColor font-bold font-nunito px-[32px]"
-            containerClassName="pagination flex justify-center"
-            activeClassName="active"
-            breakClassName="break"
-            nextClassName="pagi-next"
-            previousClassName="pagi-previous"
-          />
+      </div>
+      <div className="w-full mb-[130px]">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
+          {currentItems?.map((article, index) => {
+            return (
+              <Link
+                key={index}
+                href={staticPaths.article_detail(article?.slug)}
+              >
+                <ArticleItem article={article} />
+              </Link>
+            );
+          })}
         </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel={<ArrowRightIconPagi width="24px" height="24px" />}
+          previousLabel={<ArrowLeftIconPagi width="24px" height="24px" />}
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={4}
+          marginPagesDisplayed={1}
+          forcePage={0}
+          pageCount={pageCount}
+          renderOnZeroPageCount={null}
+          pageClassName="page-item text-[14px] text-main-whileColor font-bold font-nunito px-[32px]"
+          containerClassName="pagination flex justify-center"
+          activeClassName="active"
+          breakClassName="break"
+          nextClassName="pagi-next"
+          previousClassName="pagi-previous"
+        />
       </div>
     </div>
   );

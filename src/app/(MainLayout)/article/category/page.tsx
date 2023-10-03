@@ -18,7 +18,7 @@ function ArticleCategoryAll() {
     !articleCategories && dispatch(articleService.getListArticleCategory({}));
   }, [articleCategories]);
   return (
-    <div className="font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 py-[24px] px-[28px] mb-[40px]">
+    <div className="font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px] py-[24px] px-[28px] mb-[40px]">
       <div className="mb-[20px] mt-5">
         <Breadcrumbs
           items={[
@@ -33,7 +33,9 @@ function ArticleCategoryAll() {
           ]}
         />
       </div>
-      <h1 className="font-bold font-nunito mb-3">Article Category</h1>
+      <h1 className="text-[30px] md:text-[40px] font-bold font-nunito mb-3">
+        Article Category
+      </h1>
       <ul className="list-disc ml-4 text-sm font-normal font-lato text-main-pink-ec">
         {articleCategories?.map((category, index) => (
           <li className="mb-2" key={index}>

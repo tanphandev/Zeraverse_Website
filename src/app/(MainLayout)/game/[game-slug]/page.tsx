@@ -5,7 +5,7 @@ import TippyHeadless from "@tippyjs/react/headless";
 import { createRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import Ads2 from "@/../public/asset/image/ads2.png";
+import ReferFriend from "@/../public/asset/image/refer_friend.png";
 import Ads1 from "@/../public/asset/image/ads1.png";
 import Ads3 from "@/../public/asset/image/ads3.png";
 import Thanks from "@/../public/asset/image/thanks.png";
@@ -247,11 +247,11 @@ function GamePage({ params }: Props) {
   }, [socket, connectStatusOfSocket]);
 
   return (
-    <div className="mb-10">
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px] mb-10">
       {/* Part 1 */}
-      <div className="grid grid-cols-11 gap-4">
-        <div className="col-span-8 grid grid-cols-8 gap-4 ">
-          <div className="col-span-1 bg-gradient-to-b from-[#4c265f] to-[#96328f] rounded-[10px]">
+      <div className="grid grid-cols-[repeat(auto-fill,94px)] grid-flow-dense gap-4">
+        <div className="col-span-3 sm:col-span-4 md:col-span-6 lg:col-span-7 xl:col-span-6 min-[1316px]:col-span-7 2xl:col-span-8 grid 2xl:grid-cols-8 gap-4">
+          <div className="hidden 2xl:block 2xl:col-span-1 bg-gradient-to-b from-[#4c265f] to-[#96328f] rounded-[10px]">
             <Image
               priority={true}
               src={Ads1}
@@ -259,8 +259,8 @@ function GamePage({ params }: Props) {
               className="w-full h-full"
             />
           </div>
-          <div className="col-span-7 grid grid-cols-7 grid-rows-7 gap-4">
-            <div className="relative flex flex-col col-span-7 row-span-5 text-main-blackColor rounded-[10px]">
+          <div className="grid-rows-[repeat(5,94px)] sm:grid-rows-[repeat(6,94px)] md:grid-rows-[repeat(5,94px)] grid-cols-[repeat(auto-fill,94px)] lg:grid-rows-[repeat(7,94px)] grid-row xl:col-span-6 xl:grid-cols-6 min-[1316px]:col-span-7 grid min-[1316px]:grid-cols-7 xl:grid-rows-[repeat(7,94px)] gap-4">
+            <div className="relative flex flex-col col-span-3 row-span-3 sm:col-span-4 sm:row-span-4 md:col-span-6 md:row-span-5 lg:col-span-7 lg:row-span-6 xl:col-span-6 min-[1316px]:col-span-7 xl:row-span-5 text-main-blackColor rounded-[10px]">
               <GameScreen
                 ref={gameScreenRef}
                 gameDetail={gameDetail}
@@ -433,44 +433,44 @@ function GamePage({ params }: Props) {
                 </div>
               )}
             </div>
-            <div className="col-span-4 w-full h-full bg-main-pink-83 border-[1px] border-main-pink-f9 rounded-[10px]">
+            <div className="col-span-3 sm:col-span-4 lg:col-span-5 xl:col-span-4 w-full h-full bg-main-pink-83 border-[1px] border-main-pink-f9 rounded-[10px]">
               <SocialShare />
             </div>
-            <div className="col-span-2 bg-main-violet-dd text-main-blackColor rounded-[10px]">
+            <div className="col-span-3 sm:col-span-4 md:col-span-2 bg-main-violet-dd text-main-blackColor rounded-[10px]">
               <Image
                 priority={true}
                 onClick={referAFriend}
-                src={Ads2}
+                src={ReferFriend}
                 alt="ads"
-                className="rounded-[10px] cursor-pointer"
+                className="rounded-[10px] cursor-pointer w-full h-full object-cover"
               />
             </div>
-            <div className="col-span-1 bg-main-violet-ed text-main-blackColor rounded-[10px]">
+            <div className="hidden min-[1316px]:block min-[1316px]:col-span-1 bg-main-violet-ed text-main-blackColor rounded-[10px]">
               <Image src={Thanks} alt="thanks" className="rounded-[10px]" />
             </div>
-            <div className="col-span-7 bg-main-grayColor-40 bg-gradient-to-r from-[#96328f] to-[#512962] rounded-[10px]">
+            <div className="hidden xl:block xl:col-span-6 min-[1316px]:col-span-7 bg-main-grayColor-40 bg-gradient-to-r from-[#96328f] to-[#512962] rounded-[10px]">
               <Image priority={true} src={Ads3} alt="ads" className="" />
             </div>
           </div>
         </div>
-        <div className="col-span-3 grid grid-cols-3 grid-rows-7 gap-4">
+        <div className="col-span-3 sm:col-span-4 sm:grid-cols-4 sm:grid-rows-[repeat(6,94px)] md:col-span-6 md:grid-cols-6 lg:col-span-7 lg:grid-cols-7 md:grid-rows-3 xl:col-span-3 grid xl:grid-cols-3 xl:grid-rows-7 gap-4">
           <ChatBox
             ref={chatBoxRef}
             handleSendMessage={handleSendMessage}
             roomId={gameDetail?.id}
           />
-          <div className="row-span-4 col-span-3 grid grid-cols-3 gap-4">
-            <div className="col-span-2 row-span-3 bg-[#D9D9D9] flex justify-center items-center rounded-[10px]">
+          <div className="col-span-3 sm:col-span-4 row-span-2 grid-cols-[repeat(auto-fill,94px)] sm:grid-rows-[repeat(2,94px)] md:col-span-3 md:row-span-3 md:grid-cols-3 lg:col-span-4 lg:row-span-3 lg:grid-cols-4 xl:row-span-4 xl:col-span-3 grid xl:grid-cols-3 gap-4">
+            <div className="hidden sm:flex sm:col-span-2 md:col-span-1 lg:col-span-2 md:row-span-3 bg-[#D9D9D9]  justify-center items-center rounded-[10px]">
               ADS
             </div>
             {relativeGameSlice1?.map((game, index) => (
               <Link
                 href={staticPaths.game_detail(game?.slug)}
                 key={index}
-                className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+                className="w-[94px] h-[94px] relative group hover:scale-105 transition-all ease-in-out duration-300"
               >
                 <CustomImage
-                  className={`max-w-full max-h-full w-full h-full min-h-[94px] rounded-[20px]`}
+                  className={`w-full h-full rounded-[20px]`}
                   src={game.thumbnail}
                   fallback={images.default_game_image}
                   alt="gamePicture"
@@ -487,7 +487,7 @@ function GamePage({ params }: Props) {
         </div>
       </div>
       {/* Part 2 */}
-      <div className="grid grid-cols-11 gap-4 my-4">
+      {/* <div className="grid grid-cols-11 gap-4 my-4">
         {relativeGameSlice2?.map((game, index) => (
           <Link
             href={staticPaths.game_detail(game?.slug)}
@@ -508,9 +508,9 @@ function GamePage({ params }: Props) {
             </p>
           </Link>
         ))}
-      </div>
+      </div> */}
       {/* Part 3 */}
-      <div className="grid grid-cols-11 gap-4 mb-[120px]">
+      {/* <div className="grid grid-cols-11 gap-4 mb-[120px]">
         <div className="col-span-2 grid grid-cols-2 grid-rows-[repeat(auto-fill,94px)] gap-4">
           {relativeGameSlice3?.map((game, index) => (
             <Link
@@ -580,9 +580,9 @@ function GamePage({ params }: Props) {
                 ></iframe>
               )}
             </div>
-          </div>
-          {/* hall of fame */}
-          <div className="overflow-y-scroll no-scrollbar h-[534px] col-span-4 row-span-5 text-main-whileColor font-lato bg-main-gray-18 border-[4px] border-[#b62fa9] rounded-[10px]">
+          </div> */}
+      {/* hall of fame */}
+      {/* <div className="overflow-y-scroll no-scrollbar h-[534px] col-span-4 row-span-5 text-main-whileColor font-lato bg-main-gray-18 border-[4px] border-[#b62fa9] rounded-[10px]">
             <div className="sticky top-0 left-0 right-0 flex justify-center rounded-t-[10px] bg-main-blackColor py-[9px] mb-[8px] z-10">
               <h2 className="text-[28px] font-semibold pb-[4px]">
                 Hall of Fame
@@ -660,10 +660,8 @@ function GamePage({ params }: Props) {
             ))}
           </div>
         </div>
-      </div>
-      <div className="grid grid-cols-11">
-        <CategoryGame listCategory={gameCategories} colSpan="col-span-10" />
-      </div>
+      </div> */}
+      {/* <CategoryGame listCategory={gameCategories} /> */}
     </div>
   );
 }

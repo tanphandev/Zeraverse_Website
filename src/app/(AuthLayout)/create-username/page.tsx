@@ -51,20 +51,20 @@ function CreateUserName() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30"
+      className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center w-[350px] px-[30px] sm:w-[400px] md:w-[563px] md:px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30"
     >
       <h1 className="text-[28px] font-bold font-nunito text-main-whileColor text-center mb-5">
         Create UserName
       </h1>
-      <div className="mb-[50px]">
+      <div className="mb-[50px] w-full">
         <label
           htmlFor="username"
-          className="text-base font-nunito font-medium text-main-whileColor block mb-2"
+          className="text-base font-nunito font-bold text-main-whileColor block mb-2"
         >
           User Name
         </label>
         <input
-          className="p-3 text-[18px] font-nunito text-main-blackColor font-semibold placeholder:text-main-whileColor-40 bg-main-whileColor rounded-[10px] w-[460px] outline-none"
+          className="p-3 text-[18px] font-nunito text-main-blackColor font-medium placeholder:text-main-whileColor-40 bg-main-whileColor rounded-[10px] w-full outline-none"
           placeholder="Your Name"
           id="username"
           type="text"

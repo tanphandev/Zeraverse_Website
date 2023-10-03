@@ -52,7 +52,6 @@ function AppBarMD({ position, setIsShow }: Props) {
   const openSeachModal = () => {
     openModal(MODAL_NAME.SEARCH);
   };
-  console.log("top", position?.top);
   return (
     <div
       id="app-bar-md"

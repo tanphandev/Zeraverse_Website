@@ -195,9 +195,9 @@
   }
 
   img {
+    margin: 16px 0;
     text-align: center;
     width: 600px;
-    min-width: 300px;
   }
 
   figure.image {
@@ -210,6 +210,7 @@
 
   a {
     color: #db2777;
+    overflow-wrap: break-word;
 
     &:hover {
       text-decoration: underline;
@@ -244,8 +245,6 @@
     display: block;
     margin-top: 1em;
     margin-bottom: 1em;
-    margin-left: 40px;
-    margin-right: 40px;
   }
 }
 

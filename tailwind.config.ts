@@ -86,6 +86,9 @@ const config: Config = {
         // Simple 8 row grid
         "7": "repeat(7, minmax(0, 1fr))",
       },
+      gridRow: {
+        "span-7": "span 7 / span 7",
+      },
       animation: {
         fadeIn_20: "fadeIn 0.2s ease-in-out",
         fadeInDown: "fadeInDown 0.5s ease-in-out",

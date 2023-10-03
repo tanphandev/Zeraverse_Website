@@ -125,7 +125,7 @@ const ChatBox = forwardRef<any, Props>(function Component(
   }, [messages]);
 
   return (
-    <div className="row-span-3 col-span-3 ">
+    <div className="col-span-3 row-span-3 sm:col-span-4 sm:row-span-4 md:row-span-3 md:col-span-3 ">
       <div className="relative flex flex-col rounded-[10px] w-full h-full bg-[#3e3661]">
         {userInfo && (
           <div
