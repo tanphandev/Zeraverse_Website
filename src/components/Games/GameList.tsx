@@ -52,16 +52,10 @@ function GameList() {
   }, [gameList]);
   return (
     <div
-      className="p-4 -m-4 w-[346px] sm:w-[456px] md:w-[676px] lg:w-[818px] xl:w-[1006px] min-[1348px]:w-[1116px] 2xl:w-[1226px] grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] grid-flow-dense gap-4 "
+      className=" grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] grid-flow-dense gap-4 "
       ref={gridSystemRef}
     >
-      <div className="relative lg:hidden">
-        <AppBarMDItem
-          isShowAppBarMD={isShowAppBarMD}
-          setIsShowAppBarMD={setIsShowAppBarMD}
-        />
-        {isShowAppBarMD && <AppBarMD setIsShow={setIsShowAppBarMD} />}
-      </div>
+      <div className="lg:hidden"></div>
       {gameList?.map((game: IGame, index: number) => (
         <Link
           href={staticPaths.game_detail(game?.slug)}

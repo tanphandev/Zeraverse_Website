@@ -49,7 +49,7 @@ function NewsPage() {
       });
   }, [listArticleCategories, allArticles]);
   return (
-    <div>
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px]">
       <ArticleCarousel articleRandom={articleRandom} />
       {/* Trending New */}
       <TrendingNew list={newest} />

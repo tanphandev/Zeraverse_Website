@@ -14,7 +14,7 @@ function RecentlyPlayedGame({ recentlyPlayedGameList, closeModal }: Props) {
       <h2 className="text-2xl font-bold font-nunito text-main-whileColor mb-4">
         Recently played
       </h2>
-      <ul className="w-[644px] overflow-hidden overflow-x-scroll no-scrollbar flex mb-[27px] px-1 py-2">
+      <ul className="max-w-[644px] w-full overflow-hidden overflow-x-scroll no-scrollbar flex mb-[27px] px-1 py-2">
         {recentlyPlayedGameList?.map((item, index) => {
           return (
             <li className="rounded-[10px] mr-4" key={index}>

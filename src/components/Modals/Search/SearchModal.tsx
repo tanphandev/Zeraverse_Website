@@ -76,7 +76,7 @@ function SearchModal() {
       <div
         ref={searchModalRef}
         id="modal"
-        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] w-[706px] h-full animate-slipLeftToRight"
+        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block px-5 max-w-[706px] w-full h-full animate-slipLeftToRight"
       >
         <SearchInput
           isLoading={isLoading}

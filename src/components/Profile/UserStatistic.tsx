@@ -35,7 +35,6 @@ function UserStatus({ userInfo }: Props) {
 
   //handle click copy user url
   const handleCopyUserLink = () => {
-    console.log("ref_link", userInfo);
     navigator.clipboard.writeText(userInfo?.ref_link!!);
     toast.success(TOAST_MESSAGE.COPY_SUCCESS, { position: "top-right" });
   };

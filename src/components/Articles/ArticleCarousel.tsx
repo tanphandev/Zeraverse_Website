@@ -42,7 +42,7 @@ function ArticleCarousel({ articleRandom }: Props) {
         >
           {/* Carousel indicators */}
           <div
-            className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+            className="hidden lg:flex absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 list-none justify-center p-0"
             data-te-carousel-indicators
           >
             {articleRandom &&
@@ -80,11 +80,13 @@ function ArticleCarousel({ articleRandom }: Props) {
                       width={0}
                       height={0}
                       sizes="100vw"
-                      className="object-cover w-full h-[537px] rounded-[5px]"
+                      className="object-cover w-full h-[400px] lg:h-[537px] rounded-[5px]"
                     />
-                    <div className="absolute flex flex-col justify-center top-0 right-0 bg-main-grayColor-70 rounded-tr-[5px] rounded-br-[5px] h-full w-[380px] text-main-whileColor">
-                      <div className="px-[26px]">
-                        <h2 className="text-[32px] font-bold font-lato mb-[10px]">
+                    {/* <div className="absolute top-0 bottom-0 left-0 right-0  bg-gradient-to-b from-transparent to-main-blackColor rounded-[5px]"></div> */}
+
+                    <div className="absolute flex flex-col justify-end lg:justify-center top-0 right-0 bg-gradient-to-b from-transparent to-main-blackColor lg:bg-main-grayColor-70 rounded-tr-[5px] rounded-br-[5px] h-full w-full lg:w-[380px] text-main-whileColor">
+                      <div className="px-[26px] mb-7 lg:mb-0">
+                        <h2 className="text-[32px] font-bold font-lato mb-[10px] line-clamp-2">
                           {item?.title}
                         </h2>
                         <p

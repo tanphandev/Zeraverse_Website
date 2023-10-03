@@ -1,4 +1,5 @@
 import ArrowLeftIcon from "@/asset/icons/ArrowLeftIcon";
+import ArrowLeftVersion2 from "@/asset/icons/ArrowLeftVersion2";
 import ClearIcon from "@/asset/icons/ClearIcon";
 import LogoIcon from "@/asset/icons/LogoIcon";
 import SeachIcon from "@/asset/icons/SearchIcon";
@@ -29,24 +30,30 @@ function SearchInput({
 
   return (
     <>
-      <button onClick={closeSearchModal}>
+      <div onClick={closeSearchModal}>
         <ArrowLeftIcon
-          className="absolute top-[46px] right-0 translate-x-1/2 cursor-pointer"
+          className="hidden md:block absolute top-[52px] right-0 translate-x-1/2 cursor-pointer"
           width="64px"
           height="64px"
         />
-      </button>
-      <div className="relative mt-[46px] inline-block mr-[60px]">
-        <LogoIcon
-          className="absolute top-1/2 left-3 -translate-y-1/2 "
-          width="42px"
-          height="37px"
-        />
+      </div>
+      <div className="relative max-w-[602px] w-full h-[64px]  mt-[46px] inline-block mr-[60px]">
+        <div
+          onClick={closeSearchModal}
+          className="absolute top-1/2 left-3 -translate-y-1/2 flex justify-center items-center cursor-pointer"
+        >
+          <ArrowLeftVersion2
+            width="14px"
+            height="14px"
+            className="text-main-violet-7c mr-1"
+          />
+          <LogoIcon className="" width="42px" height="37px" />
+        </div>
         <input
           spellCheck="false"
           value={searchValue}
           onChange={handleOnChangeSearchInput}
-          className="w-[602px] h-[64px] rounded-[15px] text-main-violet-5b bg-main-whileColor text-[22px] placeholder-main-violet-c4 font-bold font-nunito pl-20 pr-[62px] outline-none"
+          className="w-full h-full rounded-[15px] text-main-violet-5b bg-main-whileColor text-[22px] placeholder-main-violet-c4 font-bold font-nunito pl-20 pr-[62px] outline-none"
           placeholder="What are you playing today?"
         />
         <div className="absolute top-1/2 right-[7px] -translate-y-1/2">

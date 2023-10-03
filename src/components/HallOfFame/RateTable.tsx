@@ -49,24 +49,26 @@ function RateTable({
   };
   return (
     <div>
-      <table className="w-full text-base text-main-whileColor font-medium font-lato border-separate border-spacing-y-[5px]">
+      <table className="w-full text-base text-main-whileColor font-medium font-lato border-separate border-spacing-y-[5px] px-5 md:px-[60px]">
         <thead>
           <tr className=" text-main-pink-f4">
             <th className=" pb-4 w-[20%] ">Place</th>
             <th className=" pb-4 w-[60%]">Username</th>
-            <th className=" pb-4 w-[20%]">
-              <p className="inline-block mr-1">{quanityName}</p>
+            <th className=" pb-4 flex w-full justify-center items-center">
+              <p className="w-[40px] sm:w-auto inline-block text-ellipsis overflow-hidden whitespace-nowrap mr-1">
+                {quanityName}
+              </p>
               {isIncreaseSort ? (
                 <ArrowDown
                   onClick={handleToggleSort}
-                  className="inline cursor-pointer"
+                  className="cursor-pointer"
                   width="20px"
                   height="20px"
                 />
               ) : (
                 <ArrowUp
                   onClick={handleToggleSort}
-                  className="inline cursor-pointer"
+                  className="cursor-pointer"
                   width="20px"
                   height="20px"
                 />
@@ -86,7 +88,12 @@ function RateTable({
               <td className="rounded-tl-[10px] rounded-bl-[10px] py-[11px] ">
                 {item?.rank}
               </td>
-              <td className="py-[11px] group-hover:text-main-pink-db group-hover:underline">
+              <td
+                className="py-[11px] group-hover:text-main-pink-db group-hover:underline text-ellipsis overflow-hidden w-[50px]"
+                style={{
+                  overflowWrap: "anywhere",
+                }}
+              >
                 {item?.user?.username}
               </td>
               <td className="rounded-tr-[10px] rounded-br-[10px] py-[11px]">
@@ -110,7 +117,7 @@ function RateTable({
         forcePage={0}
         pageCount={pageCount}
         renderOnZeroPageCount={null}
-        pageClassName="page-item text-[14px] font-bold font-nunito px-[32px]"
+        pageClassName="page-item text-[14px] font-bold font-nunito px-3 sm:px-4 md:px-[32px]"
         containerClassName="pagination w-full flex justify-center mt-4"
         activeClassName="active"
         breakClassName="break"

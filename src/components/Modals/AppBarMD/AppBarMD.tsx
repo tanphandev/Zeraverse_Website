@@ -24,9 +24,10 @@ import UserBar from "@/components/AppBar/UserBar";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
 import { sleep } from "@/utils/helper";
 type Props = {
+  position: { top: number; left: number } | null;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
-function AppBarMD({ setIsShow }: Props) {
+function AppBarMD({ position, setIsShow }: Props) {
   const appBarMDRef = useRef<HTMLDivElement>(null);
   const { userInfo } = useAuthContext();
   const { openModal } = useModalContext();
@@ -51,13 +52,22 @@ function AppBarMD({ setIsShow }: Props) {
   const openSeachModal = () => {
     openModal(MODAL_NAME.SEARCH);
   };
+  console.log("top", position?.top);
   return (
     <div
       id="app-bar-md"
-      className="transition-all duration-500 animate-fadeIn_20 fixed z-20 top-0 backdrop-blur-[10px] flex rounded-[20px] h-[340px] mt-4"
+      className="max-h-[781px] md:max-h-[426px] transition-all duration-500 animate-fadeIn_20 fixed z-20 backdrop-blur-[10px] flex flex-col sm:flex-row rounded-[20px] mt-4"
+      style={{
+        top: position?.top ? position?.top!! + 88 : 0,
+        left: position?.left,
+      }}
       ref={appBarMDRef}
     >
-      <div className="overflow-y-scroll no-scrollbar flex flex-col items-center w-[204px] rounded-[20px] bg-[#00000080] mr-4">
+      <div
+        className={`overflow-y-scroll no-scrollbar flex flex-col items-center w-[204px] rounded-[20px] bg-[#00000080] ${
+          !!userInfo ? "mb-4 sm:mr-4 sm:mb-0" : ""
+        }`}
+      >
         <Link href={staticPaths.home}>
           <Image
             className="max-w-[134px] max-h-'[72px] mt-[10px] cursor-pointer"
@@ -87,7 +97,7 @@ function AppBarMD({ setIsShow }: Props) {
             toggleMenu ? "show-menu" : ""
           } h-0 opacity-0 transition-all duration-500 border-b-[1px] border-main-violet-c4`}
         >
-          <div className="border-b-[1px] border-[#8f66a2] mt-7">
+          <div className="hidden border-b-[1px] border-[#8f66a2] mt-7">
             <button className="block w-full text-left mb-4">
               <RiderIcon
                 className="inline-block text-main-whileColor-50"
@@ -109,7 +119,7 @@ function AppBarMD({ setIsShow }: Props) {
               </p>
             </button>
           </div>
-          <div className="mt-7">
+          <div className="hidden mt-7">
             <Link
               href={staticPaths.hall_of_fame}
               className="block w-full text-left mb-4"
@@ -188,14 +198,14 @@ function AppBarMD({ setIsShow }: Props) {
         ) : (
           <>
             <Link
-              href={"/login"}
-              className="py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] via-[#BB37AE] to-[#AF1BA0] shadow-[inset_-2px_-2px_1px_rgba(0,0,0,0.3)] rounded-[10px] mt-[18px] mb-[3px]"
+              href={staticPaths.login}
+              className="z-10 py-[5px] px-[30px] text-main-whileColor text-base font-semibold font-nunito bg-gradient-to-br from-[#4341D1] via-[#BB37AE] to-[#AF1BA0] shadow-[inset_-2px_-2px_1px_rgba(0,0,0,0.3)] rounded-[10px] mt-[18px] mb-[3px]"
             >
               Login
             </Link>
             <Link
-              href={"/register"}
-              className="text-sm text-main-violet-a7 font-nunito font-normal mb-[59px] leading-[1.6]"
+              href={staticPaths.register}
+              className="z-10 text-sm text-main-violet-a7 font-nunito font-normal mb-[59px] leading-[1.6]"
             >
               Register
             </Link>

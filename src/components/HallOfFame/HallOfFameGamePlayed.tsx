@@ -25,8 +25,8 @@ function GamePlayed({ hallOfFameGamePlayed }: Props) {
     ? hallOfFameGamePlayed?.slice(3)
     : [];
   return (
-    <div className="px-[80px] pb-[40px] border-[5px] border-main-pink-f9 rounded-[30px]">
-      <div className="flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
+    <div className="pb-[40px] border-[5px] border-main-pink-f9 rounded-[20px]">
+      <div className="transition-all flex justify-center flex-wrap gap-y-[170px] items-end mt-[206px] mb-[22px] animate-fadeUp">
         <div>
           <div className="relative mx-[15px]">
             <Image src={fame2} alt="fame2" className="w-[233px] --[158px]" />

@@ -22,9 +22,9 @@ function HallOfFameZera({ hallOfFameZera }: Props) {
   const topThreeUser = hallOfFameZera ? hallOfFameZera?.slice(0, 3) : [];
   const remainingUser = hallOfFameZera ? hallOfFameZera?.slice(3) : [];
   return (
-    <div className="px-[80px] pb-[40px] border-[5px] border-main-pink-f9 rounded-[30px]">
+    <div className=" pb-[40px] border-[5px] border-main-pink-f9 rounded-[20px]">
       {/* three ranked user */}
-      <div className="transition-all flex justify-center items-end mt-[206px] mb-[22px] animate-fadeUp">
+      <div className="transition-all flex justify-center flex-wrap gap-y-[170px] items-end mt-[206px] mb-[22px] animate-fadeUp">
         <div>
           <div className="relative mx-[15px]">
             <Image src={fame2} alt="fame2" className="w-[233px] h-[158px]" />
