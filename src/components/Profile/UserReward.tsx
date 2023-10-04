@@ -24,7 +24,7 @@ function UserReward({ userInfo }: Props) {
       <h2 className="text-[28px] font-bold bg-main-pink-ec rounded-t-[20px]  pt-[22px] pb-[14px] pl-4">
         Rewards
       </h2>
-      <div className="font-lato m-[23px]">
+      <div className="font-lato m-[23px] h-[457px] lg:h-[580px] overflow-y-scroll no-scrollbar">
         {userRewards?.map((item, index) => (
           <div
             className="text-xl font-bold font-lato leading-[1.6] text-main-whileColor mb-[35px] last:mb-0"
