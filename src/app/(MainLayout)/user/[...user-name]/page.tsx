@@ -6,7 +6,7 @@ import UserStatus from "@/components/Profile/UserStatistic";
 import UserReward from "@/components/Profile/UserReward";
 import UserActivities from "@/components/Profile/UserActivities";
 import * as userService from "@/services/user.service";
-import { getOtherUserInfoSelector } from "@/store/selectors/userSelector";
+import { getOtherUserInfoSelector } from "@/store/selectors/user.selector";
 import { IUserInfo } from "@/interface/user/IUserInfo";
 import UserLayout from "../UserLayout";
 type Props = {

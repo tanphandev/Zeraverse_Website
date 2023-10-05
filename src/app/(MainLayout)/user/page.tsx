@@ -16,7 +16,7 @@ import {
   userPlayListGameSelector,
   userPurchaseHistorySelector,
   userRecentlyGameSelector,
-} from "@/store/selectors/userSelector";
+} from "@/store/selectors/user.selector";
 import IPlayListGame from "@/interface/user/IPlayListGame";
 import IPurchaseHistory from "@/interface/user/IPurchaseHistory";
 import IGame from "@/interface/games/IGame";

@@ -44,7 +44,7 @@ function UserFieldDetail({ title, dataList, onBack }: Props) {
           <NoData />
         </div>
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 py-11 px-9 flex justify-center ">
+        <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 py-11 px-[55px] flex justify-center ">
           {dataList.map((item, index) => (
             <Link
               href={staticPaths.game_detail(item?.slug)}

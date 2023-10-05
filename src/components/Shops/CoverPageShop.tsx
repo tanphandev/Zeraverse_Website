@@ -60,12 +60,12 @@ function CoverPageShop({ list, itemsPerPage }: Props) {
     setPayload(payload);
   };
   return (
-    <div className="px-[66px] pt-[18px] pb-[30px] bg-[#2f145f] border-[5px] border-main-pink-f9 rounded-[30px]">
+    <div className="px-[10px] md:px-[30px] lg:px-[66px] pt-[18px] pb-[30px] bg-[#2f145f] border-[5px] border-main-pink-f9 rounded-[30px]">
       <GroupRadio
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <div className="grid grid-cols-2 gap-4 mb-[32px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-[32px]">
         {currentItems.map((item, index) => (
           <div
             key={index}
@@ -77,7 +77,7 @@ function CoverPageShop({ list, itemsPerPage }: Props) {
               alt="avatar"
               width={0}
               height={0}
-              className="mb-[5px] w-[441px] h-[204px] rounded-[20px]"
+              className="mb-[5px] w-[441px] h-[204px] rounded-[20px] object-cover"
             />
             <p className="text-base font-bold font-lato leading-[1.6]">
               {item?.name}
@@ -117,7 +117,7 @@ function CoverPageShop({ list, itemsPerPage }: Props) {
         forcePage={currentPage}
         pageCount={pageCount}
         renderOnZeroPageCount={null}
-        pageClassName="page-item text-[14px] font-bold font-nunito px-[32px]"
+        pageClassName="page-item text-[14px] font-bold font-nunito px-4 sm:px-[32px]"
         containerClassName="pagination flex justify-center "
         activeClassName="active"
         breakClassName="break"

@@ -74,7 +74,7 @@ function ReportModal() {
       <div
         id="modal"
         ref={reminderRef}
-        className="add-playlist-modal transition-all absolute w-[540px] pt-5 pb-10 px-[44px] text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-[#515151] border-[#9f9f9f] "
+        className="add-playlist-modal transition-all absolute w-[300px] sm:w-[400px] md:w-[540px] pt-5 pb-10 px-[44px] text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-[#515151] border-[#9f9f9f] "
       >
         <XmarkICon
           onClick={() => {
@@ -85,7 +85,7 @@ function ReportModal() {
           className="absolute top-[20px] right-[30px] p-[3px] cursor-pointer text-main-whileColor hover:text-main-pink-be transition-colors outline-none"
         />
         <div className="font-nunito w-full h-full">
-          <h2 className="text-[30px] font-bold mb-3 text-center w-full">
+          <h2 className="text-2xl sm:text-[30px] font-bold mb-3 text-center w-full">
             Report
           </h2>
           <>

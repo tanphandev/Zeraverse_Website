@@ -34,14 +34,14 @@ function Category({ params }: { params: { "category-slug": string } }) {
     dispatch(gameService.getGame(params["category-slug"]));
   }, []);
   return (
-    <div>
-      <div className="grid grid-cols-11 gap-4">
-        <h2 className="col-span-4 text-[28px] text-center font-bold font-nunito text-main-whileColor py-7 rounded-[10px] bg-gradient-to-b from-[#979BFF] via-[#ef75f5] to-[#EF36C6] mb-4">
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px]">
+      <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 bg-main mb-4">
+        <h2 className="col-span-3 sm:col-span-4 text-[28px] text-center font-bold font-nunito text-main-whileColor py-7 rounded-[10px] bg-gradient-to-b from-[#979BFF] via-[#ef75f5] to-[#EF36C6]">
           {toUpperCaseFirstLetterOfWord(params["category-slug"])}
         </h2>
       </div>
       <div
-        className="grid grid-cols-11 grid-flow-dense gap-4 mb-[80px]"
+        className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 bg-main mb-[40px]"
         ref={gridSystemRef}
       >
         {allGameOfCategory?.detail?.map((game, index) => (
@@ -65,12 +65,7 @@ function Category({ params }: { params: { "category-slug": string } }) {
           </Link>
         ))}
       </div>
-      <div className="grid grid-cols-11">
-        <CategoryGame
-          listCategory={allGameOfCategory?.otherCategory}
-          colSpan="col-span-10"
-        />
-      </div>
+      <CategoryGame listCategory={allGameOfCategory?.otherCategory} />
       <div className="font-lato text-main-whileColor bg-main-grayColor-80 py-4 px-7 mt-20 mb-[42px] rounded-[20px]">
         <Breadcrumbs
           items={[

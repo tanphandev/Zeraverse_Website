@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { IUserInfo } from "@/interface/user/IUserInfo";
-import { userRewardsSelector } from "@/store/selectors/userSelector";
+import { userRewardsSelector } from "@/store/selectors/user.selector";
 import * as userService from "@/services/user.service";
 import {
   abbreviateNumber,

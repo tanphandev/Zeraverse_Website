@@ -43,7 +43,7 @@ import {
   VERIFY_STATUS,
 } from "@/utils/constants";
 import { toast } from "react-toastify";
-import { userLovedGameSelector } from "@/store/selectors/userSelector";
+import { userLovedGameSelector } from "@/store/selectors/user.selector";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import "tippy.js/dist/tippy.css";
 import { useModalContext } from "@/contexts/ModalContextProvider";

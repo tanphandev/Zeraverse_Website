@@ -64,12 +64,12 @@ function AvatarShop({ list, itemsPerPage }: Props) {
     setPayload(payload);
   };
   return (
-    <div className="px-[66px] pt-[18px] pb-[30px] bg-[#2f145f] border-[5px] border-main-pink-f9 rounded-[30px]">
+    <div className="px-[10px] md:px-[30px] lg:px-[66px] pt-[18px] pb-[30px] bg-[#2f145f] border-[5px] border-main-pink-f9 rounded-[30px]">
       <GroupRadio
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <div className="grid grid-cols-4 gap-4 mb-[32px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-[32px]">
         {currentItems.map((item, index) => (
           <div
             key={index}
@@ -81,7 +81,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
               alt="avatar"
               width={0}
               height={0}
-              className="w-[204px] h-[204px] mb-[5px] rounded-[20px] object-cover"
+              className="w-full h-[204px] mb-[5px] rounded-[20px] object-cover"
             />
             <p className="text-base font-bold font-lato leading-[1.6]">
               {item?.name}
@@ -121,7 +121,7 @@ function AvatarShop({ list, itemsPerPage }: Props) {
         forcePage={currentPage}
         pageCount={pageCount}
         renderOnZeroPageCount={null}
-        pageClassName="page-item text-[14px] font-bold font-nunito px-[32px]"
+        pageClassName="page-item text-[14px] font-bold font-nunito px-4 sm:px-[32px]"
         containerClassName="pagination flex justify-center"
         activeClassName="active"
         breakClassName="break"

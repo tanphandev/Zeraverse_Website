@@ -9,7 +9,7 @@ import {
   userPlayListGameSelector,
   userPurchaseHistorySelector,
   userRecentlyGameSelector,
-} from "@/store/selectors/userSelector";
+} from "@/store/selectors/user.selector";
 import PlayListGame from "./PlaylistGame";
 import { staticPaths } from "@/utils/paths";
 import { UserField } from "../../utils/constants";

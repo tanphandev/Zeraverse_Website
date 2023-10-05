@@ -115,7 +115,7 @@ function UserPlayListPage({
             {"<"} Back
           </button>
         </div>
-        <div className="p-11 mb-[40px]">
+        <div className="px-[55px] py-11 mb-[40px]">
           {playListGame.length === 0 ? (
             <NoData />
           ) : (
@@ -137,7 +137,7 @@ function UserPlayListPage({
                 {playListDetail?.detail?.length === 0 ? (
                   <NoData />
                 ) : (
-                  <div className="grid grid-cols-10 grid-rows-1 gap-4">
+                  <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4">
                     {playListDetail?.detail?.slice(0, 10).map((game, index) => (
                       <Link
                         href={staticPaths.game_detail(game?.slug)}
@@ -224,7 +224,7 @@ function UserPlayListPage({
             {"<"} Back
           </button>
           <h2 className=" text-[28px] text-main-whileColor text-center font-bold bg-main-pink-ec rounded-t-[20px] py-4">
-            {`Playlist games/`}{" "}
+            {`Playlist games/`} <br />
             <span className="text-2xl">{playlistItemDetail?.name}</span>
           </h2>
           <div className="absolute delete-icon top-1/2 right-[22px] -translate-y-1/2 z-20">
@@ -268,7 +268,7 @@ function UserPlayListPage({
             <NoData />
           </div>
         ) : (
-          <div className="grid grid-cols-10 gap-4 p-11 mb-[40px]">
+          <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4 px-[55px] py-11 mb-[40px]">
             {playlistItemDetail?.detail?.map((item, index) => (
               <Link
                 href={staticPaths.game_detail(item?.slug)}

@@ -11,7 +11,7 @@ import {
   hallOfFameGamesPlayedSelector,
   hallOfFamePlaystreakSelector,
   hallOfFameZeraSelector,
-} from "@/store/selectors/userSelector";
+} from "@/store/selectors/user.selector";
 import { HallOfFameType } from "@/utils/constants";
 import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
 import { IHallOfFameGamePlayed } from "@/interface/user/IHallOfFameGamePlayed";

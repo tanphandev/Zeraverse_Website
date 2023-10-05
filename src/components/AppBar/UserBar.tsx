@@ -8,7 +8,7 @@ import * as shopService from "@/services/shop.service";
 import {
   avatarShopSelector,
   shopCategoriesSelector,
-} from "@/store/selectors/shopSelector";
+} from "@/store/selectors/shop.selector";
 import { IAvatar } from "@/interface/shop/IAvatar";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME, SHOP_ITEM, SHOP_NAME } from "@/utils/constants";

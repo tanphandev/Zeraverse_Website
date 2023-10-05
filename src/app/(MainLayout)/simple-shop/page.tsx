@@ -13,7 +13,7 @@ import {
   coverShopSelector,
   playtimeShopSelector,
   shopCategoriesSelector,
-} from "@/store/selectors/shopSelector";
+} from "@/store/selectors/shop.selector";
 import { SHOP_ITEM } from "@/utils/constants";
 import { ICoverShop } from "@/interface/shop/ICoverShop";
 import { IPlaytimeShop } from "@/interface/shop/IPlaytimeShop";
@@ -93,7 +93,7 @@ function SimpleShop() {
       });
   }, [isFetchCategories]);
   return (
-    <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-violet-c4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">
+    <div className="relative flex flex-col items-center w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px] font-lato text-main-whileColor border-[5px] border-main-violet-c4 rounded-[20px] bg-main-grayColor-80 px-[10px] md:px-[20px] min-[1316px]:px-[60px] pb-[62px] mb-[40px]">
       <Link
         href={prevRoute.current || staticPaths.home}
         className="absolute top-[25px] left-[21px] text-sm font-bold text-main-pink-ec"
@@ -106,7 +106,7 @@ function SimpleShop() {
         </h1>
       </div>
       <div className="relative w-full mt-[58px]">
-        <div className="absolute top-[-14px] right-0 flex px-[10px] py-[10px] bg-main-violet-4c rounded-[10px]">
+        <div className="absolute top-[-56px] lg:top-[-14px] right-0 flex px-[10px] py-[10px] bg-main-violet-4c rounded-[10px]">
           <p className="text-2xl font-black font-nunito mr-[5px]">
             {userInfo?.zera}
           </p>
@@ -125,7 +125,7 @@ function SimpleShop() {
                       tabsRef.current[idx] = el;
                     }
                   }}
-                  className="text-base tab text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
+                  className="text-base tab text-main-whileColor-70 bg-main-violet-4c font-bold font-lato px-1 md:px-0  md:min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[2px] md:mx-[6px]"
                   onClick={() => setActiveTabIndex(idx)}
                 >
                   {tab.label}

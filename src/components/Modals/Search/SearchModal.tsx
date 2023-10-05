@@ -8,7 +8,7 @@ import {
   gameCategoriesSelector,
   gamePopularSelector,
 } from "@/store/selectors/game.selector";
-import { userRecentlyGameSelector } from "@/store/selectors/userSelector";
+import { userRecentlyGameSelector } from "@/store/selectors/user.selector";
 import SearchInput from "./SearchInput";
 import SearchSuggest from "./SearchSuggest";
 import PopularGame from "./PopularGame";

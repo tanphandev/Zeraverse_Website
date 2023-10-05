@@ -11,7 +11,7 @@ import { SHOP_ITEM } from "@/utils/constants";
 import {
   playtimeShopSelector,
   shopCategoriesSelector,
-} from "@/store/selectors/shopSelector";
+} from "@/store/selectors/shop.selector";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
 
 function BuyTimeModal() {
