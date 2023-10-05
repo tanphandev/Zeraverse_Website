@@ -17,7 +17,7 @@ import {
   SHOP_NAME,
   TOAST_MESSAGE,
 } from "@/utils/constants";
-import { shopCategoriesSelector } from "@/store/selectors/shopSelector";
+import { shopCategoriesSelector } from "@/store/selectors/shop.selector";
 import { IShopCategories } from "@/interface/shop/IShopCategories";
 
 function BuyShopModal() {
@@ -138,7 +138,7 @@ function BuyShopModal() {
       <div
         id="modal"
         ref={buyShopRef}
-        className="buy-shop-modal transition-all absolute min-w-[540px] w-[320px] text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-gradient-to-b from-[#570426] to-[#270010] border-main-pink-f4 "
+        className="buy-shop-modal transition-all absolute w-[300px] sm:w-[400px] md:w-[540px] text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-gradient-to-b from-[#570426] to-[#270010] border-main-pink-f4 "
       >
         <XmarkICon
           onClick={closeBuyModal}

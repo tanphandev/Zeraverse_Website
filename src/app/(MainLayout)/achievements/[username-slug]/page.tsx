@@ -11,7 +11,7 @@ import achievementPlayedGame from "@/../public/asset/image/achievementPlayedGame
 import achievementLeft from "@/../public/asset/image/achievementLeft.png";
 import achievementRight from "@/../public/asset/image/achievementRight.png";
 import { staticPaths } from "@/utils/paths";
-import { achievementSelector } from "@/store/selectors/userSelector";
+import { achievementSelector } from "@/store/selectors/user.selector";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { IAchievement } from "@/interface/user/IAchievements";
 import { counterAnimate } from "@/utils/helper";
@@ -73,7 +73,7 @@ function Achievements({
   }, [achievements]);
 
   return (
-    <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">
+    <div className="relative w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px] flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-[30px] md:px-[60px] pb-[62px] mb-[40px]">
       <Link href={prevRoute.current || staticPaths.home}>
         <button className="absolute top-[25px] left-[21px] text-sm font-bold text-main-pink-ec">
           {"<"}Back
@@ -85,7 +85,7 @@ function Achievements({
         </h1>
       </div>
       <div className="w-full rounded-[30px] bg-gradient-to-br from-[#FF00E5] via-[#EAC6E6] to-[#950086] p-[5px] mt-[100px] ">
-        <div className="w-full bg-gradient-to-b from-[#300373] to-[#2c026a] py-[64px] px-[110px] rounded-[30px]">
+        <div className="w-full bg-gradient-to-b from-[#300373] to-[#2c026a] px-[10px] p-[10px] sm:p-[30px] md:p-[64px] rounded-[30px]">
           <div className="flex flex-col items-center mb-[24px]">
             <Link
               href={
@@ -106,9 +106,9 @@ function Achievements({
             <p className="text-center font-bold text-base mt-2">{username}</p>
             <p className="text-[13px] text-center">{quote}</p>
           </div>
-          <div className="flex justify-center mb-[16px]">
+          <div className="flex justify-center flex-wrap mb-[16px] gap-4">
             <div className="px-[13px] pt-[22px] pb-[24px] rounded-[30px] border-[1px] border-main-pink-f9 bg-gradient-to-b from-[#D34880] to-[#2F0652]">
-              <div className="flex flex-col w-[204px] items-center py-[10px] mb-[55px]">
+              <div className="flex flex-col w-[194px] sm:w-[204px] items-center py-[10px] mb-[55px]">
                 <Image
                   src={achievementZera}
                   alt={"achievementRight"}
@@ -127,8 +127,8 @@ function Achievements({
 
               <p className="text-center font-bold text-base">Earned Zera</p>
             </div>
-            <div className="px-[13px] pt-[22px] pb-[24px] rounded-[30px] border-[1px] border-main-pink-f9 bg-gradient-to-b from-[#D34880] to-[#2F0652] mx-[25px]">
-              <div className="flex flex-col w-[204px] items-center py-[10px] mb-[55px]">
+            <div className="px-[13px] pt-[22px] pb-[24px] rounded-[30px] border-[1px] border-main-pink-f9 bg-gradient-to-b from-[#D34880] to-[#2F0652]">
+              <div className="flex flex-col w-[194px] sm:w-[204px] items-center py-[10px] mb-[55px]">
                 <Image
                   src={achievementPlayedGame}
                   alt={"achievementRight"}
@@ -149,7 +149,7 @@ function Achievements({
               </p>
             </div>
             <div className="px-[13px] pt-[22px] pb-[24px] rounded-[30px] border-[1px] border-main-pink-f9 bg-gradient-to-b from-[#D34880] to-[#2F0652]">
-              <div className="flex flex-col w-[204px] items-center py-[10px] mb-[55px]">
+              <div className="flex flex-col w-[194px] sm:w-[204px] items-center py-[10px] mb-[55px]">
                 <div className="mb-[10px] flex items-center">
                   <Image
                     src={achievementLeft}
@@ -194,14 +194,14 @@ function Achievements({
             {gamePlayed?.length === 0 ? (
               <NoData />
             ) : (
-              <div className="grid grid-cols-2 gap-x-[21px] gap-y-[15px] mb-6">
+              <div className="grid grid-cols-1 min-[1316px]:grid-cols-2 gap-x-[21px] gap-y-[15px] mb-6">
                 {currentItems?.map((gameItem, index) => (
                   <Link
                     href={staticPaths.game_detail(gameItem?.game_detail?.slug)}
                     key={index}
                     className="transition-all hover:scale-105 flex justify-between items-center bg-gradient-to-b from-[#8B5CF6] to-[#503098] rounded-[20px] p-[10px]"
                   >
-                    <div className="flex items-center">
+                    <div className="flex flex-1 items-center mr-1">
                       <CustomImage
                         src={gameItem?.game_detail?.thumbnail}
                         fallback={images.default_game_image}
@@ -209,14 +209,14 @@ function Achievements({
                         height={0}
                         sizes="100vw"
                         alt="iamge"
-                        className="w-[94px] h-[94px] mr-[10px] rounded-[15px]"
+                        className="w-[70px] h-[70px] sm:w-[94px] sm:h-[94px] mr-[10px] rounded-[15px]"
                       />
-                      <p className="text-base font-bold font-lato text-main-whileColor">
+                      <p className="text-base font-bold font-lato text-main-whileColor text-ellipsis overflow-hidden">
                         {gameItem?.game_detail?.title}
                       </p>
                     </div>
-                    <div>
-                      <p className="text-base font-bold font-lato text-main-whileColor inline mr-4">
+                    <div className="min-w-[60px]">
+                      <p className="text-base font-bold font-lato text-main-whileColor inline mr-2 md:mr-4">
                         {gameItem?.zera_earned}
                       </p>
                       <CoinIcon className="inline" width="32px" height="32px" />
@@ -235,7 +235,7 @@ function Achievements({
               forcePage={0}
               pageCount={pageCount}
               renderOnZeroPageCount={null}
-              pageClassName="page-item text-[14px] text-main-whileColor font-bold font-nunito px-[32px]"
+              pageClassName="page-item text-[14px] text-main-whileColor font-bold font-nunito px-4 sm:px-[32px]"
               containerClassName="pagination flex justify-center"
               activeClassName="active"
               breakClassName="break"

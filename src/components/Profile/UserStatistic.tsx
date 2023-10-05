@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { toast } from "react-toastify";
-import { userStatisticSelector } from "@/store/selectors/userSelector";
+import { userStatisticSelector } from "@/store/selectors/user.selector";
 import { IUserStatistic } from "@/interface/user/IUserStatistic";
 import { TOAST_MESSAGE } from "@/utils/constants";
 import { IUserInfo } from "@/interface/user/IUserInfo";
@@ -35,7 +35,6 @@ function UserStatus({ userInfo }: Props) {
 
   //handle click copy user url
   const handleCopyUserLink = () => {
-    console.log("ref_link", userInfo);
     navigator.clipboard.writeText(userInfo?.ref_link!!);
     toast.success(TOAST_MESSAGE.COPY_SUCCESS, { position: "top-right" });
   };

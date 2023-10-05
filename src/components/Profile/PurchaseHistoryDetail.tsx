@@ -39,13 +39,15 @@ function PurchaseHistoryDetail({ title, dataList, onBack }: Props) {
           widthPic="94px"
           heightPic="94px"
           itemsPerPage={8}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
         />
         <PurchaseItem
           list={dataList.cover}
           title="Cover Page"
           widthPic="204px"
           heightPic="94px"
-          itemsPerPage={8}
+          itemsPerPage={6}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
         />
       </div>
     </div>

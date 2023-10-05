@@ -8,7 +8,7 @@ import * as shopService from "@/services/shop.service";
 import {
   avatarShopSelector,
   shopCategoriesSelector,
-} from "@/store/selectors/shopSelector";
+} from "@/store/selectors/shop.selector";
 import { IAvatar } from "@/interface/shop/IAvatar";
 import { useModalContext } from "@/contexts/ModalContextProvider";
 import { MODAL_NAME, SHOP_ITEM, SHOP_NAME } from "@/utils/constants";
@@ -79,7 +79,7 @@ function UserBar({ zera }: Props) {
           <CoinIcon className="ml-2 inline-block" width="20px" height="20px" />
         </h2>
       </div>
-      <div className="avatar-shop-list grid grid-cols-2 gap-x-4 gap-y-2 my-[10px] ml-[14px] mr-[4px] pr-[10px] h-[320px] overflow-y-scroll">
+      <div className="avatar-shop-list grid grid-cols-2 gap-x-4 gap-y-2 my-[10px] ml-[14px] mr-[4px] pr-[10px] h-[200px] sm:h-[320px] overflow-y-scroll">
         {avatarShop?.map((item, index) => (
           <div key={index}>
             <div className="relative group">

@@ -80,7 +80,7 @@ function AuthForm({
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="text-main-whileColor font-lato"
+      className="w-full text-main-whileColor font-lato"
     >
       <div className="mb-[10px]">
         <label htmlFor="email" className="text-base font-bold block">
@@ -90,7 +90,7 @@ function AuthForm({
           id="email"
           type="text"
           {...formik.getFieldProps("email")}
-          className="bg-main-violet-ed text-main-blackColor w-[400px] h-[45px] rounded-[10px] outline-none px-3"
+          className="bg-main-violet-ed text-main-blackColor w-full h-[45px] rounded-[10px] outline-none px-3"
         />
         {formik.touched.email && formik.errors.email ? (
           <div className="text-main-pink-be">{formik.errors.email}</div>
@@ -105,7 +105,7 @@ function AuthForm({
             id="password"
             {...formik.getFieldProps("password")}
             type={isPasswordVisible ? "text" : "password"}
-            className="bg-main-violet-ed text-main-blackColor w-[400px] h-[45px] rounded-[10px] outline-none px-3"
+            className="bg-main-violet-ed text-main-blackColor w-full h-[45px] rounded-[10px] outline-none px-3"
           />
           <button
             onClick={togglePasswordVisibility}
@@ -177,10 +177,10 @@ function AuthForm({
       <p className="text-sm font-semibold mb-[7px] text-center">
         or sign in with
       </p>
-      <div className="flex justify-between mb-[16px]">
+      <div className="flex flex-col md:flex-row justify-between mb-[16px]">
         <button
           onClick={handleSignInWithGoogle}
-          className="bg-main-whileColor rounded-[20px] px-[19px] py-2"
+          className="bg-main-whileColor rounded-[20px] px-[19px] py-2 mb-2 md:mb-0"
         >
           <GoogleIcon
             className="inline-block mr-[10px]"

@@ -19,12 +19,12 @@ function PopularNews({ list }: Props) {
       <h2 className="text-[28px] font-bold font-lato text-main-whileColor mb-[10px]">
         Popular News
       </h2>
-      <div className="grid grid-cols-7 gap-5 ">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <div
           onClick={() => {
             gotoArticleDetail(list2Item[0]?.slug);
           }}
-          className="relative col-span-5 rounded-[5px] cursor-pointer"
+          className="relative col-span-2 sm:col-span-1 lg:col-span-2 rounded-[5px] cursor-pointer"
         >
           <CustomImage
             src={!!list2Item && list2Item[0]?.featured_image}
@@ -61,7 +61,7 @@ function PopularNews({ list }: Props) {
           onClick={() => {
             gotoArticleDetail(list2Item[1]?.slug);
           }}
-          className="col-span-2 text-main-whileColor bg-main-blackColor rounded-[5px] border-[1px] border-main-pink-be cursor-pointer"
+          className="col-span-2 sm:col-span-1 lg:col-span-1 text-main-whileColor bg-main-blackColor rounded-[5px] border-[1px] border-main-pink-be cursor-pointer"
         >
           <CustomImage
             src={!!list2Item && list2Item[1]?.featured_image}

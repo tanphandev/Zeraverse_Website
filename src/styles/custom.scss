@@ -15,6 +15,9 @@
   height: 426px;
   opacity: 1;
 }
+#menu.show-menu div {
+  display: block;
+}
 
 // search modal css
 .search-box {

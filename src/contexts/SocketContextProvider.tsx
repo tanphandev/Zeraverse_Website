@@ -186,7 +186,6 @@ const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
     socket.on("disconnect", () => {
-      console.log("disconnect");
       setConnectStatusOfSocket(HANDLE_STATUS.NOT_START);
       setIsCountdown(false);
     });

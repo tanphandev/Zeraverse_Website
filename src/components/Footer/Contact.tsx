@@ -9,7 +9,7 @@ import TelegramIcon from "@/asset/icons/TelegramIcon";
 import TwitterIcon from "@/asset/icons/TwitterIcon";
 import * as userService from "@/services/user.service";
 import { IContact } from "@/interface/user/IContact";
-import { contactSelector } from "@/store/selectors/userSelector";
+import { contactSelector } from "@/store/selectors/user.selector";
 
 function Contact() {
   const dispatch = useDispatch<AppDispatch>();

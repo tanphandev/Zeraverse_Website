@@ -75,9 +75,9 @@ function DailyGiftModal() {
       <div
         ref={dailyGiftModalRef}
         id="modal"
-        className="daily-gift-modal absolute transition-all duration-150 w-[390px] font-nunito bg-gradient-to-b from-[#C4B5FD] via-[#979BFF] to-[#EF36C6] rounded-[18px] w-[534px] px-2 py-2"
+        className="daily-gift-modal absolute transition-all duration-150 font-nunito bg-gradient-to-b from-[#C4B5FD] via-[#979BFF] to-[#EF36C6] rounded-[18px] w-[300px] sm:w-[390px] md:w-[534px] px-2 py-2"
       >
-        <h1 className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 inline-block text-3xl text-main-whileColor font-semibold leading-[1.6] px-[30px] bg-main-pink-be rounded-[14px] shadow-[inset_0_-2px_3px_rgba(0,0,0,0.3)]">
+        <h1 className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 inline-block text-xl sm:text-3xl text-main-whileColor font-semibold leading-[1.6] px-[30px] bg-main-pink-be rounded-[14px] shadow-[inset_0_-2px_3px_rgba(0,0,0,0.3)]">
           Daily Gift
         </h1>
         <div className="grid grid-cols-3 gap-4 bg-gradient-to-b from-[#FDA3FF] via-[#F4BFFF] to-[#9949FF] px-[30px] py-[40px] rounded-[10px] shadow-[inset_0_2px_2px_rgba(0,0,0,0.6)] shadow-[#d389d4]">
@@ -94,7 +94,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 1 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 1
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -121,7 +121,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 2 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 2
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -148,7 +148,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 3 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 3
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -175,7 +175,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 4 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 4
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -202,7 +202,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 5 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 5
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -229,7 +229,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 6 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 6
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)] ">
@@ -256,7 +256,7 @@ function DailyGiftModal() {
             <div
               className={`${playstreak === 7 ? "daily-gift-choose" : ""}`}
             ></div>
-            <h2 className="text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
+            <h2 className="text-lg sm:text-2xl font-bold font-nunito text-main-whileColor pt-[6px] rounded-t-[15px] text-center bg-main-pink-f4 shadow-[inset_6px_0px_10px_rgba(255,255,255,0.3)]">
               Day 7
             </h2>
             <div className="flex justify-center bg-main-violet-a7 rounded-b-[15px] pt-[9px] shadow-[inset_0px_1px_10px_rgba(0,0,0,0.58)]">
@@ -276,7 +276,7 @@ function DailyGiftModal() {
             onClick={() => {
               handleItemClick(playstreak!! - 1);
             }}
-            className="text-3xl text-main-whileColor font-semibold px-[36px] py-1 border-[3px] border-main-whileColor rounded-[25px]"
+            className="text-xl sm:text-3xl text-main-whileColor font-semibold px-[36px] py-1 border-[3px] border-main-whileColor rounded-[25px]"
           >
             Claim
           </p>

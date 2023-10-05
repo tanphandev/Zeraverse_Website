@@ -6,7 +6,7 @@ import UserStatus from "@/components/Profile/UserStatistic";
 import UserReward from "@/components/Profile/UserReward";
 import UserActivities from "@/components/Profile/UserActivities";
 import * as userService from "@/services/user.service";
-import { getOtherUserInfoSelector } from "@/store/selectors/userSelector";
+import { getOtherUserInfoSelector } from "@/store/selectors/user.selector";
 import { IUserInfo } from "@/interface/user/IUserInfo";
 import UserLayout from "../UserLayout";
 type Props = {
@@ -25,14 +25,14 @@ function OtherUser({ params }: Props) {
   return (
     <UserLayout userInfo={otherUserInfo!!}>
       <div>
-        <div className="grid grid-cols-11 gap-x-[18px] mb-[40px]">
-          <div className="col-span-4">
-            <div className="grid grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
+        <div className="grid grid-cols-11 gap-x-4 mb-[40px] gap-4">
+          <div className="col-span-11 lg:col-span-4">
+            <div className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 lg:grid-cols-1 gap-4 lg:grid-rows-2 h-full font-nunito text-main-whileColor gap-y-4">
               <UserStatus userInfo={otherUserInfo!!} />
               <UserReward userInfo={otherUserInfo!!} />
             </div>
           </div>
-          <div className="col-span-7">
+          <div className="col-span-11 lg:col-span-7">
             <UserActivities userInfo={otherUserInfo!!} />
           </div>
         </div>

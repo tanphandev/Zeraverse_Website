@@ -34,17 +34,14 @@ export default function Home() {
   return (
     <div>
       <MainLayout>
-        <div>
+        <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px]">
           <GameList />
-          <div className="grid grid-cols-11 grid-rows-1 gap-4 mt-4">
-            <CategoryGame listCategory={gameCategories} colSpan="col-span-10" />
-            <div className="col-span-1"></div>
-          </div>
+          <CategoryGame listCategory={gameCategories} />
           <div className="bg-main-grayColor-80 py-[26px] px-[53px] mt-[192px] mb-[70px]">
             <TrendingNew list={newest} />
             <ListArticleCategory />
           </div>
-          {/* <DailyGift /> */}
+          <DailyGift />
         </div>
       </MainLayout>
     </div>

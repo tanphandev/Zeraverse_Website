@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
 import { useModalContext } from "@/contexts/ModalContextProvider";
-import { userCoverInventorySelector } from "@/store/selectors/userSelector";
+import { userCoverInventorySelector } from "@/store/selectors/user.selector";
 import * as userService from "@/services/user.service";
 import { ICoverInventory } from "@/interface/user/ICoverInventory";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
@@ -81,7 +81,7 @@ function EditCoverModal({ itemsPerPage }: Props) {
       <div
         ref={editCoverModalRef}
         id="modal"
-        className="relative edit-cover-modal transition-all opacity-100 duration-150 min-w-[540px] text-main-whileColor font-lato text-center rounded-[30px] border-[4px] bg-gradient-to-b from-[#740b99] to-[#2f0652] border-main-pink-f4 pt-[20px]"
+        className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[862px] relative edit-cover-modal transition-all opacity-100 duration-150 text-main-whileColor font-lato text-center rounded-[30px] border-[4px] bg-gradient-to-b from-[#740b99] to-[#2f0652] border-main-pink-f4 pt-[20px]"
       >
         <XmarkICon
           onClick={() => {
@@ -89,17 +89,17 @@ function EditCoverModal({ itemsPerPage }: Props) {
           }}
           width="25px"
           height="25px"
-          className="absolute top-[35px] right-[52px] p-[3px] cursor-pointer text-main-pink-f4"
+          className="absolute top-[20px] right-[10px] sm:top-[35px] sm:right-[52px] p-[3px] cursor-pointer text-main-pink-f4"
         />
-        <h2 className="inline text-[32px] font-bold font-nunito bg-main-pink-83 rounded-[20px] py-[10px] px-[30px] shadow-md shadow-main-pink-f4">
+        <h2 className="inline text-xl sm:text-[32px] font-bold font-nunito bg-main-pink-83 rounded-[20px] py-[10px] px-[30px] shadow-md shadow-main-pink-f4">
           Edit Cover Page
         </h2>
-        <div className="w-[862px] px-[48px] py-[40px]">
+        <div className="px-[48px] py-[40px]">
           {coverInventory.length === 0 ? (
             <NoData />
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 mb-[29px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-[29px]">
                 {currentItems.map((item, index) => (
                   <CustomImage
                     onClick={() => {
@@ -116,7 +116,7 @@ function EditCoverModal({ itemsPerPage }: Props) {
                       item.item_info.id === editCover.id
                         ? "border-[4px] border-main-pink-be"
                         : ""
-                    } w-[424px] max-h-[204px] object-cover rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
+                    } w-[424px] min-h-[110px] max-h-[204px] object-cover rounded-[30px] hover:border-[4px] hover:border-main-pink-be`}
                   />
                 ))}
               </div>

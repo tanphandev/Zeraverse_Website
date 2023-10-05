@@ -10,7 +10,7 @@ import ArrowLeftIconPagi from "@/asset/icons/ArrowLeftIconPagi";
 import EditTextIcon from "@/asset/icons/EditTextIcon";
 import { useOnClickOutside } from "@/hooks/useClickOutSide";
 import { useDispatch, useSelector } from "react-redux";
-import { userAvatarInventorySelector } from "@/store/selectors/userSelector";
+import { userAvatarInventorySelector } from "@/store/selectors/user.selector";
 import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import CustomImage from "../../Others/CustomImage";
@@ -84,7 +84,7 @@ function EditProfileModal({ itemsPerPage }: Props) {
       <div
         ref={editAvatarRef}
         id="modal"
-        className="w-[862px] relative edit-profile-modal transition-all opacity-100 duration-150 min-w-[540px] text-main-whileColor font-lato text-center rounded-[30px] border-[4px] bg-gradient-to-b from-[#740b99] to-[#2f0652] border-main-pink-f4 pt-[20px]"
+        className="w-[400px] sm:w-[540px] md:w-[700px] lg:w-[862px] relative edit-profile-modal transition-all opacity-100 duration-150 text-main-whileColor font-lato text-center rounded-[30px] border-[4px] bg-gradient-to-b from-[#740b99] to-[#2f0652] border-main-pink-f4 pt-[20px]"
       >
         <XmarkICon
           onClick={() => {
@@ -92,45 +92,51 @@ function EditProfileModal({ itemsPerPage }: Props) {
           }}
           width="25px"
           height="25px"
-          className="absolute top-[35px] right-[52px] p-[3px] cursor-pointer text-main-pink-f4"
+          className="absolute top-[20px] right-[20px] sm:top-[35px] sm:right-[52px] p-[3px] cursor-pointer text-main-pink-f4"
         />
-        <h2 className="inline text-[32px] font-bold font-nunito bg-main-pink-83 rounded-[20px] py-[10px] px-[30px] shadow-md shadow-main-pink-f4">
+        <h2 className="inline texgrid sm:grid-cols-2  md:grid-cols-3 gap-4 mb-[46px] mt-[32px]t-[32px] font-bold font-nunito bg-main-pink-83 rounded-[20px] py-[10px] px-[30px] shadow-md shadow-main-pink-f4">
           Edit Profile
         </h2>
-        <div className="flex px-[48px] mb-[46px]">
-          <div className="w-[236px] flex flex-col pr-[30px] border-r-[2px] border-main-pink-f9">
-            <CustomImage
-              className="w-[204px] h-[204px] object-cover rounded-[20px] mb-[18px]"
-              src={editAvatar.avatar}
-              fallback={images.default_profile_image}
-              alt="picture"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
-            <div className="relative">
-              <textarea
-                disabled
-                value={userInfo?.username ?? ""}
-                rows={1}
-                className="w-full resize-none text-base text-bold font-lato text-main-blackColor outline-none py-1 pl-3 rounded-[20px] no-scrollbar"
-                placeholder="Enter your name..."
-              />
-            </div>
-            <div className="relative mb-[10px] px-[12px] pt-[12px] pb-[27px] bg-main-whileColor rounded-[20px]">
-              <textarea
-                value={quote ?? ""}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                  setQuote(e.target.value);
-                }}
-                className="w-full resize-none h-[150px] text-base font-medium font-lato text-main-blackColor outline-none bg-main-whileColor-30 no-scrollbar"
-                placeholder="User's quote"
-              />
-              <EditTextIcon
-                className="absolute bottom-[9px] right-[9px]"
-                width="18px"
-                height="18px"
-              />
+        <div className="mt-[30px] sm:mt-0 h-[530px] overflow-y-scroll no-scrollbar sm:h-auto flex items-center flex-col lg:flex-row px-[10px] sm:px-[20px] md:px-[48px] mb-[46px]">
+          <div className="w-[236px] sm:mt-[50px] flex flex-col sm:w-full lg:w-auto lg:pr-[30px] sm:border-b-[3px] lg:border-b-0 lg:border-r-[2px] border-main-pink-f9 sm:pb-[20px] lg:pb-0">
+            <div className="sm:flex sm:flex-row sm:justify-evenly sm:items-center lg:block">
+              <div className="flex justify-center ">
+                <CustomImage
+                  className="w-[204px] h-[204px] object-cover rounded-[20px] mb-[18px]"
+                  src={editAvatar.avatar}
+                  fallback={images.default_profile_image}
+                  alt="picture"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                />
+              </div>
+              <div>
+                <div className="relative">
+                  <textarea
+                    disabled
+                    value={userInfo?.username ?? ""}
+                    rows={1}
+                    className="w-full resize-none text-base text-bold font-lato text-main-blackColor outline-none py-1 pl-3 rounded-[20px] no-scrollbar"
+                    placeholder="Enter your name..."
+                  />
+                </div>
+                <div className="relative mb-[10px] px-[12px] pt-[12px] pb-[27px] bg-main-whileColor rounded-[20px]">
+                  <textarea
+                    value={quote ?? ""}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                      setQuote(e.target.value);
+                    }}
+                    className="w-full resize-none h-[150px] text-base font-medium font-lato text-main-blackColor outline-none bg-main-whileColor-30 no-scrollbar"
+                    placeholder="User's quote"
+                  />
+                  <EditTextIcon
+                    className="absolute bottom-[9px] right-[9px]"
+                    width="18px"
+                    height="18px"
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <button
@@ -141,29 +147,31 @@ function EditProfileModal({ itemsPerPage }: Props) {
               </button>
             </div>
           </div>
-          <div className="flex flex-col justify-between ml-[30px] ">
-            <div className="grid grid-cols-3 gap-4 mb-[46px] mt-[32px]">
+          <div className="flex flex-col justify-between ml-[10px] md:ml-[30px] ">
+            <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-[46px] mt-[32px]">
               {currentItems.map((item, index) => (
-                <CustomImage
-                  onClick={() => {
-                    setEditAvatar({
-                      avatar: item.item_info.url,
-                      id: item.item_info.id,
-                    });
-                  }}
-                  key={index}
-                  src={item?.item_info?.url}
-                  fallback={images.default_profile_image}
-                  alt="avatar"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  className={`${
-                    item.item_info.id === editAvatar.id
-                      ? "border-[4px] border-main-pink-be"
-                      : ""
-                  } transition-all w-[156px] h-[156px] object-cover rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
-                />
+                <div key={index} className="flex justify-center">
+                  <CustomImage
+                    onClick={() => {
+                      setEditAvatar({
+                        avatar: item.item_info.url,
+                        id: item.item_info.id,
+                      });
+                    }}
+                    key={index}
+                    src={item?.item_info?.url}
+                    fallback={images.default_profile_image}
+                    alt="avatar"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={`${
+                      item.item_info.id === editAvatar.id
+                        ? "border-[4px] border-main-pink-be"
+                        : ""
+                    } transition-all w-[156px] h-[156px] object-cover rounded-[20px] hover:border-[4px] hover:border-main-pink-be`}
+                  />
+                </div>
               ))}
             </div>
             <ReactPaginate

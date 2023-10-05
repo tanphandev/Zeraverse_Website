@@ -5,9 +5,8 @@ import CategoryGameItem from "./CategoryGameItem";
 import { IGameCategory } from "@/interface/games/IGameCategory";
 type Props = {
   listCategory: IGameCategory[];
-  colSpan?: string;
 };
-function GameCategory({ listCategory, colSpan }: Props) {
+function GameCategory({ listCategory }: Props) {
   const CategoryGridRef = useRef<HTMLDivElement | null>(null);
   const [rowNumber, setRowNumber] = useState<number>(0);
 
@@ -31,17 +30,15 @@ function GameCategory({ listCategory, colSpan }: Props) {
   }, [listCategory]);
 
   return (
-    <div className={`${colSpan}`}>
-      <div className={`grid grid-cols-10 gap-4`}>
-        {listCategory?.map((item, index) => (
-          <CategoryGameItem
-            item={item}
-            key={index}
-            index={index}
-            className={inRange(index, 0, 6) ? "row-span-2" : "row-span-1"}
-          ></CategoryGameItem>
-        ))}
-      </div>
+    <div className="grid sm:grid-cols-[repeat(auto-fill,94px)] md:auto-rows-[94px] gap-4 mt-4 justify-center">
+      {listCategory?.map((item, index) => (
+        <CategoryGameItem
+          item={item}
+          key={index}
+          index={index}
+          className={inRange(index, 0, 6) ? "row-span-2" : "row-span-1"}
+        ></CategoryGameItem>
+      ))}
     </div>
   );
 }

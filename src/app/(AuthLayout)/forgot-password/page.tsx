@@ -53,11 +53,11 @@ function ForgotPassword() {
     router.push("/login");
   };
   return (
-    <div className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center px-[61px] pt-[17px] pb-[40px]  shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30">
+    <div className="inline-block bg-main-grayColor-70 rounded-[30px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center w-[350px] px-[30px] sm:w-[400px] md:w-[563px] md:px-[61px] pt-[17px] pb-[40px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.6)] shadow-main-whileColor-30">
       <Image className="w-[200px] h-[108px] mb-4" src={Logo} alt="Logo" />
       <form
         onSubmit={formik.handleSubmit}
-        className="text-main-whileColor font-lato"
+        className="w-full text-main-whileColor font-lato"
       >
         <h1 className="text-[28px] font-bold mb-[25px] border-b-[1px] border-main-violet-7c pb-1">
           Submit to your email
@@ -72,7 +72,7 @@ function ForgotPassword() {
           id="forgotpassword"
           type="text"
           {...formik.getFieldProps("email")}
-          className="bg-main-violet-ed text-main-blackColor w-[400px] h-[45px] rounded-[10px] outline-none px-3"
+          className="bg-main-violet-ed text-main-blackColor w-full h-[45px] rounded-[10px] outline-none px-3"
         />
         {formik.touched.email && formik.errors.email ? (
           <div className="text-main-pink-be">{formik.errors.email}</div>

@@ -37,7 +37,7 @@ function UserLayout({
     openModal(MODAL_NAME.EDIT_COVER);
   };
   return (
-    <div className="flex-1">
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px]">
       <div className="relative group rounded-[20px]">
         <Tippy disabled={!isCurrentUser} content="Update cover image">
           <div>
@@ -47,7 +47,7 @@ function UserLayout({
               alt="bacground"
               width={0}
               height={0}
-              className="w-full h-[350px] rounded-[20px] object-cover"
+              className="w-full h-[204px] md:h-[350px] rounded-[20px] object-cover"
             />
             {isCurrentUser && (
               <div
@@ -64,7 +64,7 @@ function UserLayout({
           content="Update avatar"
           placement="bottom"
         >
-          <div className="absolute bottom-0 left-11 translate-y-1/2 rounded-[20px]">
+          <div className="absolute bottom-0 left-1/2 md:left-11 -translate-x-1/2 translate-y-1/2 w-[204px] h-[204px] md:translate-x-0 rounded-[20px]">
             <CustomImage
               className="w-[204px] h-[204px] object-cover rounded-[20px]"
               src={userInfo?.avatar}
@@ -84,8 +84,8 @@ function UserLayout({
           </div>
         </Tippy>
       </div>
-      <div className="flex justify-between items-center mt-[10px] mb-[90px]">
-        <div className="font-lato text-main-whileColor ml-[264px] w-[306px]">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-[104px] md:mt-[10px] mb-[90px]">
+        <div className="font-lato text-main-whileColor md:ml-[264px] w-[306px] text-center md:text-start">
           <Tippy content={userInfo?.username} placement="bottom">
             <h2 className="inline text-[28px] font-semibold">
               {userInfo?.username}
@@ -96,7 +96,7 @@ function UserLayout({
           </p>
         </div>
         <div className="flex items-center py-1 px-[10px] bg-main-violet-4c rounded-[10px] shadow-[0_4px_5px_rgba(0,0,0,0.6)]">
-          <h2 className="text-[24px] font-black font-nunito mr-[5px] text-main-whileColor">
+          <h2 className="text-[24px] font-black font-nunito mr-[5px] text-main-whileColor mb-1">
             {userInfo?.zera}
           </h2>
           <CoinIcon className="mr-[5px]" width="30px" height="32px" />

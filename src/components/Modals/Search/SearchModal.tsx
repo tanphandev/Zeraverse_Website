@@ -8,7 +8,7 @@ import {
   gameCategoriesSelector,
   gamePopularSelector,
 } from "@/store/selectors/game.selector";
-import { userRecentlyGameSelector } from "@/store/selectors/userSelector";
+import { userRecentlyGameSelector } from "@/store/selectors/user.selector";
 import SearchInput from "./SearchInput";
 import SearchSuggest from "./SearchSuggest";
 import PopularGame from "./PopularGame";
@@ -76,7 +76,7 @@ function SearchModal() {
       <div
         ref={searchModalRef}
         id="modal"
-        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block pl-[27px] pr-[17px] w-[706px] h-full animate-slipLeftToRight"
+        className="relative search-box transition-transform bg-main-violet-c4-50 inline-block px-5 max-w-[706px] w-full h-full animate-slipLeftToRight"
       >
         <SearchInput
           isLoading={isLoading}

@@ -10,12 +10,15 @@ import { IAvatarInventory } from "@/interface/user/IAvatarInventory";
 import { ICoverInventory } from "@/interface/user/ICoverInventory";
 import { formatDate } from "@/utils/helper";
 import NoData from "../Others/NoData";
+import CustomImage from "../Others/CustomImage";
+import { images } from "@/asset/image/images";
 type Props = {
   list: IAvatarInventory[] | ICoverInventory[];
   title: string;
   widthPic: string;
   heightPic: string;
   itemsPerPage: number;
+  className?: string;
 };
 function PurchaseItem({
   list,
@@ -23,6 +26,7 @@ function PurchaseItem({
   widthPic,
   heightPic,
   itemsPerPage,
+  className,
 }: Props) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -44,16 +48,17 @@ function PurchaseItem({
     <div>
       <h2 className="mb-4 text-2xl font-bold font-nunito">{title}</h2>
       {list.length !== 0 ? (
-        <div className="grid grid-cols-4 gap-4 mb-4">
+        <div className={`${className} mb-4`}>
           {currentItems.map((item, index) => (
             <div className="flex items-center" key={index}>
-              <Image
+              <CustomImage
                 src={item.item_info.url}
+                fallback={images.default_profile_image}
                 alt="Image"
                 width={0}
                 height={0}
                 sizes="100vw"
-                className={`h-[${heightPic}] w-[${widthPic}] rounded-[10px] mr-[15px]`}
+                className={`h-[${heightPic}] w-[${widthPic}] rounded-[10px] mr-[15px] object-cover`}
               />
               <div className="flex flex-col text-main-whileColor">
                 <div className="flex items-center">

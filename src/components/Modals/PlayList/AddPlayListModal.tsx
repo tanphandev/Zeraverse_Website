@@ -10,7 +10,7 @@ import { AddPlayListInput } from "./AddPlayListInput";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { userPlayListGameSelector } from "@/store/selectors/userSelector";
+import { userPlayListGameSelector } from "@/store/selectors/user.selector";
 import IPlayListGame from "@/interface/user/IPlayListGame";
 import { toast } from "react-toastify";
 import { TOAST_MESSAGE } from "@/utils/constants";
@@ -161,7 +161,7 @@ function AddPlayListModal() {
       <div
         id="modal"
         ref={addPlayListRef}
-        className="add-playlist-modal transition-all absolute w-[540px] h-[450px] px-5 pb-5 text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-gradient-to-b from-[#570426] to-[#270010] border-main-pink-f4 "
+        className="add-playlist-modal transition-all absolute w-[300px] sm:w-[400px] md:w-[540px] h-[450px] px-5 pb-5 text-main-whileColor font-lato flex flex-col items-center rounded-[30px] border-[3px] bg-gradient-to-b from-[#570426] to-[#270010] border-main-pink-f4 "
       >
         <XmarkICon
           onClick={closeModal}

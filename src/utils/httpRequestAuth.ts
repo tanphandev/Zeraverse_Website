@@ -15,8 +15,10 @@ const headers = {
   "Content-Type": "application/json; charset=utf-8",
   "X-Requested-With": "XMLHttpRequest",
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Headers":
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
   "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
 };
 
 // We can use the following function to inject the JWT token through an interceptor

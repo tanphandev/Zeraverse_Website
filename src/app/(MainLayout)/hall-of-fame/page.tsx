@@ -11,7 +11,7 @@ import {
   hallOfFameGamesPlayedSelector,
   hallOfFamePlaystreakSelector,
   hallOfFameZeraSelector,
-} from "@/store/selectors/userSelector";
+} from "@/store/selectors/user.selector";
 import { HallOfFameType } from "@/utils/constants";
 import { IHallOfFameZera } from "@/interface/user/IHallOfFameZera";
 import { IHallOfFameGamePlayed } from "@/interface/user/IHallOfFameGamePlayed";
@@ -75,7 +75,7 @@ function HallOfFame() {
     router.push("/");
   };
   return (
-    <div className="relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-[60px] pb-[62px] mb-[40px]">
+    <div className="w-[314px] sm:w-[424px] md:w-[644px] lg:w-[754px] xl:w-[974px] min-[1316px]:w-[1084px] 2xl:w-[1194px] relative flex flex-col items-center font-lato text-main-whileColor border-[5px] border-main-pink-f4 rounded-[20px] bg-main-grayColor-80 px-4 md:px-[60px] pb-[62px] mb-[40px]">
       <button
         onClick={GotoHome}
         className="absolute top-[25px] left-[21px] text-sm font-bold text-main-pink-ec"
@@ -83,7 +83,7 @@ function HallOfFame() {
         {"<"}Back
       </button>
       <div className="mt-[9px]">
-        <h1 className="inline text-[40px] font-bold font-lato px-[30px] py-[10px] bg-main-pink-9d rounded-[20px] shadow-[inset_-2px_-2px_2px_rgba(0,0,0,0.6)] ">
+        <h1 className="inline text-[20px] md:text-[30px] lg:text-[40px] font-bold font-lato px-[30px] py-[10px] bg-main-pink-9d rounded-[20px] shadow-[inset_-2px_-2px_2px_rgba(0,0,0,0.6)] ">
           Hall of Fame
         </h1>
       </div>
@@ -100,7 +100,7 @@ function HallOfFame() {
                       tabsRef.current[idx] = el;
                     }
                   }}
-                  className="text-base text-main-whileColor-70 bg-main-violet-4c font-bold font-lato min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] mx-[6px]"
+                  className="text-xs sm:text-sm lg:text-base text-main-whileColor-70 bg-main-violet-4c font-bold font-lato lg:min-w-[120px] py-[10px] border-[1px] border-main-violet-8b rounded-t-[20px] px-2 mx-[6px]"
                   onClick={() => setActiveTabIndex(idx)}
                 >
                   {tab.label}

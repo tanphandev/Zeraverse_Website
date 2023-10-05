@@ -46,7 +46,7 @@ function News({ list, itemsPerPage }: Props) {
           All Articles
         </h2>
       </div>
-      <div className="grid grid-cols-3 gap-4 mb-[20px] mr-[114px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-[20px]">
         {currentItems?.map((item, index) => (
           <div
             key={index}
@@ -91,7 +91,7 @@ function News({ list, itemsPerPage }: Props) {
         pageCount={pageCount}
         renderOnZeroPageCount={null}
         pageClassName="page-item text-[14px] font-bold font-nunito px-[32px] text-[#ffffff]"
-        containerClassName="pagination flex justify-center mb-[20px] mr-[114px]"
+        containerClassName="pagination flex justify-center mb-[20px]"
         activeClassName="active"
         breakClassName="break"
         nextClassName="pagi-next"
