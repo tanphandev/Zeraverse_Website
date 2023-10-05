@@ -44,10 +44,20 @@ function GameList() {
       return itemMediumNumbers.includes(index);
     });
     itemLargeList.forEach((item) => {
-      item.classList.add("col-span-3", "row-span-3");
+      item.classList.add(
+        "col-span-3",
+        "row-span-3",
+        "shine-effect",
+        "overflow-hidden"
+      );
     });
     itemMediumList.forEach((item) => {
-      item.classList.add("col-span-2", "row-span-2");
+      item.classList.add(
+        "col-span-2",
+        "row-span-2",
+        "shine-effect",
+        "overflow-hidden"
+      );
     });
   }, [gameList]);
   return (
@@ -60,7 +70,7 @@ function GameList() {
         <Link
           href={staticPaths.game_detail(game?.slug)}
           key={index}
-          className="relative group hover:scale-105 transition-all ease-in-out duration-300"
+          className="relative group hover:scale-105 transition-all ease-in-out duration-300 rounded-[20px]"
         >
           <CustomImage
             className={`w-full h-full object-cover rounded-[20px]`}
