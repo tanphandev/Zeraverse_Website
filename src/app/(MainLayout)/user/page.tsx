@@ -4,7 +4,7 @@ import UserStatus from "@/components/Profile/UserStatistic";
 import UserReward from "@/components/Profile/UserReward";
 import UserActivities from "@/components/Profile/UserActivities";
 import UserFieldDetail from "@/components/Profile/UserFieldDetail";
-import UserPlayList from "@/components/Profile/UserPlayList";
+import UserPlayListPage from "@/components/Profile/UserPlayList";
 import PurchaseHistoryDetail from "@/components/Profile/PurchaseHistoryDetail";
 import { UserField } from "@/utils/constants";
 import { useAuthContext } from "@/contexts/AuthContextProvider";
@@ -146,7 +146,7 @@ function UserProfile() {
           />
         )}
         {openPlayListGame.isOpenPlayListGame && (
-          <UserPlayList
+          <UserPlayListPage
             dataList={userPlayListGame}
             onBack={onBack}
             title={UserField.playListGame}

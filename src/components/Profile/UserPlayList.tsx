@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, memo } from "react";
 import Image from "next/image";
 import * as userService from "@/services/user.service";
 import DeleteIcon from "@/asset/icons/DeleteIcon";
@@ -138,7 +138,7 @@ function UserPlayListPage({
                   <NoData />
                 ) : (
                   <div className="grid grid-cols-[repeat(auto-fill,94px)] auto-rows-[94px] gap-4">
-                    {playListDetail?.detail?.slice(0, 10).map((game, index) => (
+                    {playListDetail?.detail?.map((game, index) => (
                       <Link
                         href={staticPaths.game_detail(game?.slug)}
                         key={index}
@@ -166,11 +166,11 @@ function UserPlayListPage({
       </>
     );
   };
-  const PlayListItem = ({
+  const PlayListItem = memo(function Component({
     playListDetail,
   }: {
     playListDetail: IPlayListGame;
-  }) => {
+  }) {
     const { openModal, status, setStatus, payload, setPayload } =
       useModalContext();
     const [playlistItemDetail, setPlayListItemDetail] =
@@ -191,7 +191,7 @@ function UserPlayListPage({
 
     useEffect(() => {
       setPlayListItemDetail(playListDetail);
-    }, []);
+    }, [playListDetail]);
 
     // check delete status to back to PlayList
     useEffect(() => {
@@ -205,10 +205,14 @@ function UserPlayListPage({
           const newPlayListDetail = playlistItemDetail?.detail.filter(
             (item) => item?.id !== payload?.gameId
           );
-          setPlayListItemDetail((prev) => ({
+          setPlayListItem((prev) => ({
             ...prev,
-            detail: newPlayListDetail,
+            playListDetail: {
+              detail: newPlayListDetail,
+            },
           }));
+          // update playlistgame
+          dispatch(userService.getUserPlayListGame(userInfo?.username!!));
           setStatus(HANDLE_STATUS.NOT_START);
           setPayload(null);
         }
@@ -311,7 +315,7 @@ function UserPlayListPage({
         )}
       </>
     );
-  };
+  });
   return (
     <div
       ref={userPlayListPageRef}
